@@ -27,18 +27,11 @@ const ApiIntegrations = () => {
                                         Direct HTTP calls to our RESTful endpoints with JSON payloads. Perfect for
                                         custom integrations and server-side applications.
                                     </p>
-                                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                                        <div className="text-green-600 dark:text-green-400 whitespace-nowrap">curl -X POST
-                                            https://api.passpoint.com/v1/transactions \
-                                        </div>
-                                        <div className="text-brand-600 dark:text-brand-400 whitespace-nowrap"> -H "Authorization: Bearer
-                                            YOUR_API_KEY" \
-                                        </div>
-                                        <div className="text-purple-600 dark:text-purple-400 whitespace-nowrap"> -H "Content-Type:
-                                            application/json" \
-                                        </div>
-                                        <div
-                                            className="text-orange-600 dark:text-orange-400 whitespace-nowrap"> -d {`'{"amount": 1000, "currency": "USD"}'`}</div>
+                                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 sm:p-4 font-mono text-xs sm:text-sm overflow-x-auto">
+                                        <div className="text-green-600 dark:text-green-400 break-all sm:whitespace-nowrap">curl -X POST https://api.passpoint.com/v1/transactions \</div>
+                                        <div className="text-brand-600 dark:text-brand-400 break-all sm:whitespace-nowrap pl-2 sm:pl-0"> -H "Authorization: Bearer YOUR_API_KEY" \</div>
+                                        <div className="text-purple-600 dark:text-purple-400 break-all sm:whitespace-nowrap pl-2 sm:pl-0"> -H "Content-Type: application/json" \</div>
+                                        <div className="text-orange-600 dark:text-orange-400 break-all sm:whitespace-nowrap pl-2 sm:pl-0"> -d {`'{"amount": 1000, "currency": "USD"}'`}</div>
                                     </div>
                                 </div>
                             </div>

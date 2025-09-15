@@ -1,13 +1,9 @@
-import {Button} from "@/components/ui/button.tsx";
+import Routes from "@/Routes.tsx";
+import {RouterProvider} from "react-router-dom";
 
 const App = () => {
     return (
-        <div>
-            <h1 className="flex items-center gap-1 justify-center text-3xl font-bold text-center underline">
-                Hello world!
-                <Button className="cursor-pointer" variant="destructive">Click me</Button>
-            </h1>
-        </div>
+        <RouterProvider router={Routes()}/>
     );
 };
 

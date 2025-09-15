@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ChevronDown, ChevronRight, Home, Book, Users, BarChart3, FileText, Settings, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useLocation } from "react-router-dom";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -19,6 +20,7 @@ interface NavSection {
 }
 
 const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
+  const location = useLocation();
   const [openSections, setOpenSections] = useState<string[]>(["GUIDES", "GETTING STARTED"]);
 
   const toggleSection = (section: string) => {
@@ -35,7 +37,7 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
       items: [
         { icon: BarChart3, label: "API Rate Limits", href: "/api-rate-limits" },
         { icon: Book, label: "Quick Guides", href: "/quick-guides" },
-        { icon: FileText, label: "Transaction Dynamics on Ramp", href: "/transaction-dynamics", isActive: true },
+        { icon: FileText, label: "Transaction Dynamics on Ramp", href: "/transaction-dynamics" },
       ]
     },
     {
@@ -68,15 +70,17 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
       {/* Sidebar */}
       <aside
         className={cn(
-          "h-screen w-72 bg-gray-900 border-r border-gray-800",
-          "lg:static lg:translate-x-0",
-          "fixed left-0 top-0 z-50 transform transition-transform duration-200 ease-in-out",
+          "h-screen w-72 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800",
+          // Desktop: always visible and static
+          "lg:block lg:static",
+          // Mobile: overlay that slides in from left
+          "fixed left-0 top-0 z-50 transform transition-transform duration-200 ease-in-out lg:transform-none lg:transition-none",
           isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         )}
       >
         {/* Mobile close button */}
         <div className="lg:hidden flex justify-end p-4">
-          <Button variant="ghost" size="sm" onClick={onClose} className="text-white">
+          <Button variant="ghost" size="sm" onClick={onClose} className="text-gray-900 dark:text-white">
             <X className="h-4 w-4" />
           </Button>
         </div>
@@ -88,7 +92,7 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
               {/* Section header */}
               <button
                 onClick={() => toggleSection(section.title)}
-                className="flex items-center justify-between w-full px-2 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider hover:text-gray-300 transition-colors"
+                className="flex items-center justify-between w-full px-2 py-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
               >
                 <span>{section.title}</span>
                 {openSections.includes(section.title) ? (
@@ -101,21 +105,24 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
               {/* Section items */}
               {openSections.includes(section.title) && (
                 <div className="space-y-1 ml-2">
-                  {section.items.map((item) => (
-                    <a
-                      key={item.href}
-                      href={item.href}
-                      className={cn(
-                        "flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors",
-                        item.isActive
-                          ? "bg-blue-600 text-white"
-                          : "text-gray-300 hover:text-white hover:bg-gray-800"
-                      )}
-                    >
-                      <item.icon className="h-4 w-4" />
-                      <span className="truncate">{item.label}</span>
-                    </a>
-                  ))}
+                  {section.items.map((item) => {
+                    const isActive = location.pathname === item.href;
+                    return (
+                      <a
+                        key={item.href}
+                        href={item.href}
+                        className={cn(
+                          "flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors",
+                          isActive
+                            ? "bg-blue-600 text-white"
+                            : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                        )}
+                      >
+                        <item.icon className="h-4 w-4" />
+                        <span className="truncate">{item.label}</span>
+                      </a>
+                    );
+                  })}
                 </div>
               )}
             </div>

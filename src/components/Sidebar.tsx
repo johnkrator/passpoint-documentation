@@ -59,7 +59,7 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
 
   return (
     <>
-      {/* Mobile overlay */}
+      {/* Overlay for mobile and small screens */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black/50 z-40 lg:hidden"
@@ -71,11 +71,9 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
       <aside
         className={cn(
           "h-screen w-72 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800",
-          // Desktop: always visible and static
-          "lg:block lg:static",
-          // Mobile: overlay that slides in from left
-          "fixed left-0 top-0 z-50 transform transition-transform duration-200 ease-in-out lg:transform-none lg:transition-none",
-          isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+          // Always fixed position to prevent scrolling with page
+          "fixed left-0 top-0 z-50 transform transition-transform duration-200 ease-in-out",
+          isOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
         {/* Mobile close button */}

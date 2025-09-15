@@ -20,7 +20,7 @@ const Header = ({onMenuClick}: HeaderProps) => {
                     <Button
                         variant="ghost"
                         size="sm"
-                        className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 border border-gray-300 dark:border-gray-600 p-2"
+                        className="text-gray-900 cursor-pointer dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 border border-gray-300 dark:border-gray-600 p-2"
                         onClick={onMenuClick}
                     >
                         <Menu className="h-5 w-5"/>
@@ -42,7 +42,8 @@ const Header = ({onMenuClick}: HeaderProps) => {
                     >
                         Docs
                     </Link>
-                    <a href="https://documenter.getpostman.com/view/606896/2sAXqy3evj#intro" target="_blank" rel="noopener noreferrer"
+                    <a href="https://documenter.getpostman.com/view/606896/2sAXqy3evj#intro" target="_blank"
+                       rel="noopener noreferrer"
                        className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-sm font-medium"
                     >
                         API
@@ -63,7 +64,7 @@ const Header = ({onMenuClick}: HeaderProps) => {
                         variant="ghost"
                         size="sm"
                         onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-                        className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                        className="text-gray-700 cursor-pointer dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
                     >
                         {theme === "light" ? (
                             <Moon className="h-4 w-4"/>

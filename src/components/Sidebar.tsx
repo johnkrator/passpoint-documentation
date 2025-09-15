@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {ChevronDown, ChevronRight, Home, Book, Users, BarChart3, FileText, Settings, X} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {cn} from "@/lib/utils";
-import {useLocation} from "react-router-dom";
+import {useLocation, Link} from "react-router-dom";
 
 interface SidebarProps {
     isOpen: boolean;
@@ -111,9 +111,9 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                     {section.items.map((item) => {
                                         const isActive = location.pathname === item.href;
                                         return (
-                                            <a
+                                            <Link
                                                 key={item.href}
-                                                href={item.href}
+                                                to={item.href}
                                                 className={cn(
                                                     "flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors",
                                                     isActive
@@ -123,7 +123,7 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                             >
                                                 <item.icon className="h-4 w-4"/>
                                                 <span className="truncate">{item.label}</span>
-                                            </a>
+                                            </Link>
                                         );
                                     })}
                                 </div>

@@ -2,6 +2,7 @@ import {Menu, Moon, Sun} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {useTheme} from "@/contexts/ThemeContext";
 import SearchInput from "./SearchInput";
+import {Link} from "react-router-dom";
 
 interface HeaderProps {
     onMenuClick: () => void;
@@ -23,12 +24,12 @@ const Header = ({onMenuClick}: HeaderProps) => {
                     >
                         <Menu className="h-5 w-5"/>
                     </Button>
-                    <div className="flex items-center gap-2">
+                    <Link to="/" className="flex items-center gap-2">
                         <div className="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center">
                             <span className="text-white font-bold text-sm">P</span>
                         </div>
                         <span className="text-gray-900 dark:text-white font-semibold text-lg">PASSPOINT</span>
-                    </div>
+                    </Link>
                 </div>
 
                 {/* Center section - Search */}

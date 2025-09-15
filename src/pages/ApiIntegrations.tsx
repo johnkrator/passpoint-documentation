@@ -8,7 +8,7 @@ const ApiIntegrations = () => {
                 <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">API Integrations</h1>
 
                 <p className="text-gray-700 dark:text-gray-300 text-lg mb-8 leading-relaxed">
-                    Learn how to integrate Ramp APIs into your application with comprehensive guides, code examples, and
+                    Learn how to integrate Passpoint APIs into your application with comprehensive guides, code examples, and
                     best practices for production deployments.
                 </p>
 
@@ -19,7 +19,7 @@ const ApiIntegrations = () => {
                         <div
                             className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
                             <div className="flex items-start space-x-4">
-                                <Terminal className="h-8 w-8 text-blue-500 flex-shrink-0 mt-1"/>
+                                <Terminal className="h-8 w-8 text-brand-500 flex-shrink-0 mt-1"/>
                                 <div>
                                     <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">REST
                                         API</h3>
@@ -29,9 +29,9 @@ const ApiIntegrations = () => {
                                     </p>
                                     <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm">
                                         <div className="text-green-600 dark:text-green-400">curl -X POST
-                                            https://api.ramp.com/v1/transactions \
+                                            https://api.passpoint.com/v1/transactions \
                                         </div>
-                                        <div className="text-blue-600 dark:text-blue-400"> -H "Authorization: Bearer
+                                        <div className="text-brand-600 dark:text-brand-400"> -H "Authorization: Bearer
                                             YOUR_API_KEY" \
                                         </div>
                                         <div className="text-purple-600 dark:text-purple-400"> -H "Content-Type:
@@ -60,7 +60,7 @@ const ApiIntegrations = () => {
                                                 className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Node.js
                                             </div>
                                             <div className="text-xs text-gray-600 dark:text-gray-400 font-mono">npm
-                                                install @ramp/sdk
+                                                install @passpoint/sdk
                                             </div>
                                         </div>
                                         <div className="bg-gray-100 dark:bg-gray-800 rounded p-3">
@@ -68,7 +68,7 @@ const ApiIntegrations = () => {
                                                 className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Python
                                             </div>
                                             <div className="text-xs text-gray-600 dark:text-gray-400 font-mono">pip
-                                                install ramp-python
+                                                install passpoint-python
                                             </div>
                                         </div>
                                     </div>
@@ -169,11 +169,11 @@ const ApiIntegrations = () => {
                             (Node.js)
                         </div>
                         <pre className="text-sm text-gray-900 dark:text-gray-100 overflow-x-auto">
-                            {`const ramp = require('@ramp/sdk');
+                            {`const passpoint = require('@passpoint/sdk');
                             
                             // Initialize with your API key
-                            const client = new ramp.Client({
-                              apiKey: process.env.RAMP_API_KEY
+                            const client = new passpoint.Client({
+                              apiKey: process.env.PASSPOINT_API_KEY
                             });
                             
                             // Create a transaction

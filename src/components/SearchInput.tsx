@@ -85,7 +85,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
           onChange={handleInputChange}
           onFocus={handleInputFocus}
           onKeyDown={handleKeyDown}
-          className="w-full bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md pl-10 pr-10 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+          className="w-full bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md pl-10 pr-10 py-2 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
         />
         {isSearching && (
           <Loader2 className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4 animate-spin" />
@@ -115,7 +115,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
                           {result.content}
                         </div>
                         {result.section && (
-                          <div className="text-xs text-blue-600 dark:text-blue-400 mt-1 font-medium">
+                          <div className="text-xs text-brand-600 dark:text-brand-400 mt-1 font-medium">
                             {result.section}
                           </div>
                         )}

@@ -6,23 +6,23 @@ const Introduction = () => {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
       {/* Main content */}
       <div className="prose prose-invert max-w-none">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Introduction to Ramp API</h1>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Introduction to Passpoint API</h1>
 
         <p className="text-gray-700 dark:text-gray-300 text-lg mb-8 leading-relaxed">
-          Welcome to Ramp's API documentation. Our comprehensive platform enables developers to integrate powerful payment processing, financial management, and business automation capabilities into their applications.
+          Welcome to Passpoint's API documentation. Our comprehensive platform enables developers to integrate powerful payment processing, financial management, and business automation capabilities into their applications.
         </p>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">What is Ramp?</h2>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">What is Passpoint?</h2>
 
           <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-            Ramp is a modern financial platform that helps businesses manage their spending, automate accounting processes, and optimize their financial operations. Our API provides programmatic access to these capabilities, allowing you to build custom integrations and workflows.
+            Passpoint is a modern financial platform that helps businesses manage their spending, automate accounting processes, and optimize their financial operations. Our API provides programmatic access to these capabilities, allowing you to build custom integrations and workflows.
           </p>
 
           <div className="grid gap-6 md:grid-cols-2 mb-8">
             <div className="flex items-start space-x-4">
               <div className="flex-shrink-0">
-                <Shield className="h-8 w-8 text-blue-500" />
+                <Shield className="h-8 w-8 text-brand-500" />
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Enterprise Security</h3>
@@ -118,13 +118,13 @@ const Introduction = () => {
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Getting Started</h2>
 
-          <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6">
-            <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-4">Ready to integrate?</h3>
-            <p className="text-blue-800 dark:text-blue-200 mb-4">
+          <div className="bg-brand-50 dark:bg-brand-950/20 border border-brand-200 dark:border-brand-800 rounded-lg p-6">
+            <h3 className="text-lg font-semibold text-brand-900 dark:text-brand-100 mb-4">Ready to integrate?</h3>
+            <p className="text-brand-800 dark:text-brand-200 mb-4">
               Follow our step-by-step integration guide to get up and running in minutes.
             </p>
-            <ol className="space-y-2 text-blue-700 dark:text-blue-300">
-              <li>1. Create your Ramp developer account</li>
+            <ol className="space-y-2 text-brand-700 dark:text-brand-300">
+              <li>1. Create your Passpoint developer account</li>
               <li>2. Generate API credentials in the dashboard</li>
               <li>3. Install our SDK or use direct REST calls</li>
               <li>4. Test with our comprehensive sandbox environment</li>
@@ -150,7 +150,7 @@ const Introduction = () => {
                 Base URL:
               </div>
               <div className="text-gray-700 dark:text-gray-300 font-mono">
-                https://api.ramp.com/v1
+                https://api.passpoint.com/v1
               </div>
             </div>
             <div className="flex items-start space-x-4">

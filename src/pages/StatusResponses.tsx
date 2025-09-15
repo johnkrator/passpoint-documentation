@@ -204,9 +204,9 @@ const StatusResponses = () => {
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Handling Errors</h2>
 
-          <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6 mb-6">
-            <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">Best Practices</h3>
-            <ul className="space-y-2 text-blue-800 dark:text-blue-200">
+          <div className="bg-brand-50 dark:bg-brand-950/20 border border-brand-200 dark:border-brand-800 rounded-lg p-6 mb-6">
+            <h3 className="text-lg font-semibold text-brand-900 dark:text-brand-100 mb-3">Best Practices</h3>
+            <ul className="space-y-2 text-brand-800 dark:text-brand-200">
               <li>• Always check the status code before processing the response</li>
               <li>• Implement retry logic with exponential backoff for 5xx errors</li>
               <li>• Log error details including request_id for debugging</li>

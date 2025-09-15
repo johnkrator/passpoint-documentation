@@ -41,20 +41,20 @@ const searchData: SearchItem[] = [
     section: "GUIDES"
   },
   {
-    title: "Transaction Dynamics on Ramp",
-    content: "Understanding how transactions flow through the Ramp platform",
+    title: "Transaction Dynamics on Passpoint",
+    content: "Understanding how transactions flow through the Passpoint platform",
     url: "/transaction-dynamics",
     section: "GUIDES"
   },
   {
     title: "Homepage",
-    content: "Welcome to Ramp API documentation",
+    content: "Welcome to Passpoint API documentation",
     url: "/",
     section: "GETTING STARTED"
   },
   {
     title: "Introduction",
-    content: "Get started with Ramp APIs and learn the basics",
+    content: "Get started with Passpoint APIs and learn the basics",
     url: "/introduction",
     section: "GETTING STARTED"
   },
@@ -72,7 +72,7 @@ const searchData: SearchItem[] = [
   },
   {
     title: "Status Responses",
-    content: "HTTP status codes and their meanings in Ramp API",
+    content: "HTTP status codes and their meanings in Passpoint API",
     url: "/status-responses",
     section: "LEARN MORE"
   },

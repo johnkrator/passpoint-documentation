@@ -9,14 +9,14 @@ const ApiRateLimits = () => {
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">API Rate Limits</h1>
 
         <p className="text-gray-700 dark:text-gray-300 text-lg mb-8 leading-relaxed">
-          Understanding and managing API rate limits is crucial for building robust integrations with Ramp. This guide explains how rate limiting works, best practices for handling limits, and strategies for optimal API usage.
+          Understanding and managing API rate limits is crucial for building robust integrations with Passpoint. This guide explains how rate limiting works, best practices for handling limits, and strategies for optimal API usage.
         </p>
 
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Rate Limit Overview</h2>
 
           <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-            Ramp implements rate limiting to ensure fair usage and maintain optimal performance for all users. Our rate limits are designed to accommodate typical usage patterns while protecting against abuse.
+            Passpoint implements rate limiting to ensure fair usage and maintain optimal performance for all users. Our rate limits are designed to accommodate typical usage patterns while protecting against abuse.
           </p>
 
           <div className="space-y-8">
@@ -24,7 +24,7 @@ const ApiRateLimits = () => {
             <div>
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">1. Rate Limit Structure</h3>
               <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
-                Ramp uses a token bucket algorithm with the following limits:
+                Passpoint uses a token bucket algorithm with the following limits:
               </p>
 
               <ul className="space-y-3 text-gray-700 dark:text-gray-300 ml-6">

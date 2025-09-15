@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
-import { SearchProvider } from "@/contexts/SearchContext";
+import ScrollProgress from "./ScrollProgress";
+import {SearchProvider} from "@/contexts/SearchContext";
 
 interface DocumentationLayoutProps {
     children: React.ReactNode;
@@ -21,6 +22,9 @@ const DocumentationLayout = ({children}: DocumentationLayoutProps) => {
     return (
         <SearchProvider>
             <div className="min-h-screen bg-white dark:bg-gray-950">
+                {/* Scroll Progress Bar */}
+                <ScrollProgress/>
+
                 {/* Header */}
                 <Header onMenuClick={handleMenuClick}/>
 
@@ -32,7 +36,7 @@ const DocumentationLayout = ({children}: DocumentationLayoutProps) => {
                     {/* Main content area - adjusts based on sidebar state */}
                     <main
                         className={`flex-1 min-w-0 transition-all duration-200 ease-in-out ${
-                            sidebarOpen ? 'lg:ml-72 ml-0' : 'ml-0'
+                            sidebarOpen ? "lg:ml-0 ml-0" : "lg:ml-0 ml-0"
                         }`}
                     >
                         <div className="bg-white dark:bg-gray-950 min-h-screen">

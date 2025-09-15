@@ -8,7 +8,7 @@ const UserRoles = () => {
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Manage User Roles and Permissions</h1>
 
         <p className="text-gray-700 dark:text-gray-300 text-lg mb-8 leading-relaxed">
-          Control access to your Ramp account with granular user roles and permissions. Set up team members with appropriate access levels to maintain security while enabling productivity.
+          Control access to your Passpoint account with granular user roles and permissions. Set up team members with appropriate access levels to maintain security while enabling productivity.
         </p>
 
         <section className="mb-12">
@@ -36,7 +36,7 @@ const UserRoles = () => {
 
             <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
               <div className="flex items-start space-x-4">
-                <Users className="h-8 w-8 text-blue-500 flex-shrink-0 mt-1" />
+                <Users className="h-8 w-8 text-brand-500 flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Manager</h3>
                   <p className="text-gray-700 dark:text-gray-300 mb-4">
@@ -134,9 +134,9 @@ const UserRoles = () => {
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">API Access Control</h2>
 
-          <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6 mb-6">
-            <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">API Key Permissions</h3>
-            <p className="text-blue-800 dark:text-blue-200 mb-4">
+          <div className="bg-brand-50 dark:bg-brand-950/20 border border-brand-200 dark:border-brand-800 rounded-lg p-6 mb-6">
+            <h3 className="text-lg font-semibold text-brand-900 dark:text-brand-100 mb-3">API Key Permissions</h3>
+            <p className="text-brand-800 dark:text-brand-200 mb-4">
               API keys inherit permissions from the user who created them. Restrict API access by assigning keys to users with appropriate roles.
             </p>
           </div>

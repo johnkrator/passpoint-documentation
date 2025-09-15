@@ -54,7 +54,7 @@ const ApiRateLimits = () => {
                 Every API response includes rate limit information in the headers:
               </p>
 
-              <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm">
+              <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
                 <div className="text-gray-900 dark:text-gray-100">
                   <div>X-RateLimit-Limit: 1000</div>
                   <div>X-RateLimit-Remaining: 999</div>
@@ -64,21 +64,21 @@ const ApiRateLimits = () => {
               </div>
 
               <ul className="space-y-3 text-gray-700 dark:text-gray-300 ml-6 mt-4">
-                <li className="flex items-start">
-                  <span className="font-semibold text-gray-900 dark:text-white mr-2">X-RateLimit-Limit:</span>
-                  <span>Maximum requests allowed in the time window</span>
+                <li className="flex flex-col sm:flex-row sm:items-start">
+                  <span className="font-semibold text-gray-900 dark:text-white mr-2 break-words">X-RateLimit-Limit:</span>
+                  <span className="break-words">Maximum requests allowed in the time window</span>
                 </li>
-                <li className="flex items-start">
-                  <span className="font-semibold text-gray-900 dark:text-white mr-2">X-RateLimit-Remaining:</span>
-                  <span>Number of requests remaining in the current window</span>
+                <li className="flex flex-col sm:flex-row sm:items-start">
+                  <span className="font-semibold text-gray-900 dark:text-white mr-2 break-words">X-RateLimit-Remaining:</span>
+                  <span className="break-words">Number of requests remaining in the current window</span>
                 </li>
-                <li className="flex items-start">
-                  <span className="font-semibold text-gray-900 dark:text-white mr-2">X-RateLimit-Reset:</span>
-                  <span>Unix timestamp when the rate limit resets</span>
+                <li className="flex flex-col sm:flex-row sm:items-start">
+                  <span className="font-semibold text-gray-900 dark:text-white mr-2 break-words">X-RateLimit-Reset:</span>
+                  <span className="break-words">Unix timestamp when the rate limit resets</span>
                 </li>
-                <li className="flex items-start">
-                  <span className="font-semibold text-gray-900 dark:text-white mr-2">Retry-After:</span>
-                  <span>Seconds to wait before retrying (included when rate limited)</span>
+                <li className="flex flex-col sm:flex-row sm:items-start">
+                  <span className="font-semibold text-gray-900 dark:text-white mr-2 break-words">Retry-After:</span>
+                  <span className="break-words">Seconds to wait before retrying (included when rate limited)</span>
                 </li>
               </ul>
             </div>
@@ -90,7 +90,7 @@ const ApiRateLimits = () => {
                 When you exceed the rate limit, you'll receive a 429 Too Many Requests response:
               </p>
 
-              <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm mb-4">
+              <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm mb-4 overflow-x-auto">
                 <div className="text-red-600 dark:text-red-400">
                   <div>HTTP/1.1 429 Too Many Requests</div>
                   <div>Content-Type: application/json</div>
@@ -112,25 +112,25 @@ const ApiRateLimits = () => {
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">4. Best Practices</h3>
 
               <ul className="space-y-3 text-gray-700 dark:text-gray-300 ml-6">
-                <li className="flex items-start">
-                  <span className="font-semibold text-gray-900 dark:text-white mr-2">Monitor Headers:</span>
-                  <span>Always check rate limit headers in responses to prevent hitting limits</span>
+                <li className="flex flex-col sm:flex-row sm:items-start">
+                  <span className="font-semibold text-gray-900 dark:text-white mr-2 break-words">Monitor Headers:</span>
+                  <span className="break-words">Always check rate limit headers in responses to prevent hitting limits</span>
                 </li>
-                <li className="flex items-start">
-                  <span className="font-semibold text-gray-900 dark:text-white mr-2">Implement Backoff:</span>
-                  <span>Use exponential backoff with jitter for retry logic</span>
+                <li className="flex flex-col sm:flex-row sm:items-start">
+                  <span className="font-semibold text-gray-900 dark:text-white mr-2 break-words">Implement Backoff:</span>
+                  <span className="break-words">Use exponential backoff with jitter for retry logic</span>
                 </li>
-                <li className="flex items-start">
-                  <span className="font-semibold text-gray-900 dark:text-white mr-2">Batch Requests:</span>
-                  <span>Use bulk endpoints when available to reduce API call volume</span>
+                <li className="flex flex-col sm:flex-row sm:items-start">
+                  <span className="font-semibold text-gray-900 dark:text-white mr-2 break-words">Batch Requests:</span>
+                  <span className="break-words">Use bulk endpoints when available to reduce API call volume</span>
                 </li>
-                <li className="flex items-start">
-                  <span className="font-semibold text-gray-900 dark:text-white mr-2">Cache Data:</span>
-                  <span>Cache frequently accessed data to minimize API calls</span>
+                <li className="flex flex-col sm:flex-row sm:items-start">
+                  <span className="font-semibold text-gray-900 dark:text-white mr-2 break-words">Cache Data:</span>
+                  <span className="break-words">Cache frequently accessed data to minimize API calls</span>
                 </li>
-                <li className="flex items-start">
-                  <span className="font-semibold text-gray-900 dark:text-white mr-2">Use Webhooks:</span>
-                  <span>Prefer webhooks over polling for real-time data updates</span>
+                <li className="flex flex-col sm:flex-row sm:items-start">
+                  <span className="font-semibold text-gray-900 dark:text-white mr-2 break-words">Use Webhooks:</span>
+                  <span className="break-words">Prefer webhooks over polling for real-time data updates</span>
                 </li>
               </ul>
             </div>

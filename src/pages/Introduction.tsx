@@ -19,7 +19,7 @@ const Introduction = () => {
             Passpoint is a modern financial platform that helps businesses manage their spending, automate accounting processes, and optimize their financial operations. Our API provides programmatic access to these capabilities, allowing you to build custom integrations and workflows.
           </p>
 
-          <div className="grid gap-6 md:grid-cols-2 mb-8">
+          <div className="grid gap-6 sm:grid-cols-2 mb-8">
             <div className="flex items-start space-x-4">
               <div className="flex-shrink-0">
                 <Shield className="h-8 w-8 text-brand-500" />
@@ -141,7 +141,7 @@ const Introduction = () => {
               <div className="flex-shrink-0 w-24 text-sm font-semibold text-gray-900 dark:text-white">
                 Protocol:
               </div>
-              <div className="text-gray-700 dark:text-gray-300">
+              <div className="text-gray-700 dark:text-gray-300 break-words">
                 REST over HTTPS with JSON payloads
               </div>
             </div>
@@ -149,7 +149,7 @@ const Introduction = () => {
               <div className="flex-shrink-0 w-24 text-sm font-semibold text-gray-900 dark:text-white">
                 Base URL:
               </div>
-              <div className="text-gray-700 dark:text-gray-300 font-mono">
+              <div className="text-gray-700 dark:text-gray-300 font-mono break-all">
                 https://api.passpoint.com/v1
               </div>
             </div>
@@ -157,7 +157,7 @@ const Introduction = () => {
               <div className="flex-shrink-0 w-24 text-sm font-semibold text-gray-900 dark:text-white">
                 Rate Limits:
               </div>
-              <div className="text-gray-700 dark:text-gray-300">
+              <div className="text-gray-700 dark:text-gray-300 break-words">
                 1,000 requests per minute per API key
               </div>
             </div>
@@ -165,7 +165,7 @@ const Introduction = () => {
               <div className="flex-shrink-0 w-24 text-sm font-semibold text-gray-900 dark:text-white">
                 SDKs:
               </div>
-              <div className="text-gray-700 dark:text-gray-300">
+              <div className="text-gray-700 dark:text-gray-300 break-words">
                 Available for Python, Node.js, Ruby, PHP, and Java
               </div>
             </div>

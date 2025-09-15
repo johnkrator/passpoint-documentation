@@ -13,7 +13,7 @@ const QuickGuides = () => {
         </p>
 
         <section className="mb-12">
-          <div className="grid gap-8 md:grid-cols-2">
+          <div className="grid gap-8 sm:grid-cols-2">
             {/* Guide 1 */}
             <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Getting Started</h3>
@@ -103,8 +103,8 @@ const QuickGuides = () => {
               <p className="text-gray-700 dark:text-gray-300 mb-4">
                 Integrate Passpoint with your e-commerce platform for seamless payment processing.
               </p>
-              <div className="bg-gray-100 dark:bg-gray-800 rounded p-3 font-mono text-sm text-gray-900 dark:text-gray-100">
-                POST /api/v1/transactions
+              <div className="bg-gray-100 dark:bg-gray-800 rounded p-3 font-mono text-sm text-gray-900 dark:text-gray-100 overflow-x-auto">
+                <div className="break-all">POST /api/v1/transactions</div>
               </div>
             </div>
 
@@ -113,8 +113,8 @@ const QuickGuides = () => {
               <p className="text-gray-700 dark:text-gray-300 mb-4">
                 Handle recurring payments and subscription management with automated billing cycles.
               </p>
-              <div className="bg-gray-100 dark:bg-gray-800 rounded p-3 font-mono text-sm text-gray-900 dark:text-gray-100">
-                POST /api/v1/subscriptions
+              <div className="bg-gray-100 dark:bg-gray-800 rounded p-3 font-mono text-sm text-gray-900 dark:text-gray-100 overflow-x-auto">
+                <div className="break-all">POST /api/v1/subscriptions</div>
               </div>
             </div>
 
@@ -123,8 +123,8 @@ const QuickGuides = () => {
               <p className="text-gray-700 dark:text-gray-300 mb-4">
                 Split payments between multiple parties in marketplace scenarios.
               </p>
-              <div className="bg-gray-100 dark:bg-gray-800 rounded p-3 font-mono text-sm text-gray-900 dark:text-gray-100">
-                POST /api/v1/marketplace/transfers
+              <div className="bg-gray-100 dark:bg-gray-800 rounded p-3 font-mono text-sm text-gray-900 dark:text-gray-100 overflow-x-auto">
+                <div className="break-all">POST /api/v1/marketplace/transfers</div>
               </div>
             </div>
           </div>

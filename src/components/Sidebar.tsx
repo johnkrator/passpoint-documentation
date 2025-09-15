@@ -114,6 +114,7 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                             <Link
                                                 key={item.href}
                                                 to={item.href}
+                                                onClick={onClose}
                                                 className={cn(
                                                     "flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors",
                                                     isActive

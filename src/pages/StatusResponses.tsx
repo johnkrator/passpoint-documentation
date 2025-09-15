@@ -110,8 +110,8 @@ const StatusResponses = () => {
               <p className="text-gray-700 dark:text-gray-300 mb-2">
                 Transaction completed successfully and funds have been transferred.
               </p>
-              <div className="bg-gray-100 dark:bg-gray-800 rounded p-3 font-mono text-sm">
-                <div className="text-gray-900 dark:text-gray-100">"status": "successful"</div>
+              <div className="bg-gray-100 dark:bg-gray-800 rounded p-3 font-mono text-sm overflow-x-auto">
+                <div className="text-gray-900 dark:text-gray-100 break-all">"status": "successful"</div>
               </div>
             </div>
 
@@ -123,8 +123,8 @@ const StatusResponses = () => {
               <p className="text-gray-700 dark:text-gray-300 mb-2">
                 Transaction is being processed. Monitor for status changes via webhooks.
               </p>
-              <div className="bg-gray-100 dark:bg-gray-800 rounded p-3 font-mono text-sm">
-                <div className="text-gray-900 dark:text-gray-100">"status": "pending"</div>
+              <div className="bg-gray-100 dark:bg-gray-800 rounded p-3 font-mono text-sm overflow-x-auto">
+                <div className="text-gray-900 dark:text-gray-100 break-all">"status": "pending"</div>
               </div>
             </div>
 
@@ -136,8 +136,8 @@ const StatusResponses = () => {
               <p className="text-gray-700 dark:text-gray-300 mb-2">
                 Transaction could not be completed. Check the error details for specific reason.
               </p>
-              <div className="bg-gray-100 dark:bg-gray-800 rounded p-3 font-mono text-sm">
-                <div className="text-gray-900 dark:text-gray-100">"status": "failed"</div>
+              <div className="bg-gray-100 dark:bg-gray-800 rounded p-3 font-mono text-sm overflow-x-auto">
+                <div className="text-gray-900 dark:text-gray-100 break-all">"status": "failed"</div>
               </div>
             </div>
 
@@ -149,8 +149,8 @@ const StatusResponses = () => {
               <p className="text-gray-700 dark:text-gray-300 mb-2">
                 Transaction was intentionally cancelled before completion.
               </p>
-              <div className="bg-gray-100 dark:bg-gray-800 rounded p-3 font-mono text-sm">
-                <div className="text-gray-900 dark:text-gray-100">"status": "cancelled"</div>
+              <div className="bg-gray-100 dark:bg-gray-800 rounded p-3 font-mono text-sm overflow-x-auto">
+                <div className="text-gray-900 dark:text-gray-100 break-all">"status": "cancelled"</div>
               </div>
             </div>
           </div>
@@ -163,8 +163,8 @@ const StatusResponses = () => {
             All error responses follow a consistent format to help you handle them programmatically:
           </p>
 
-          <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 mb-6">
-            <pre className="text-sm text-gray-900 dark:text-gray-100 overflow-x-auto">
+          <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 mb-6 overflow-x-auto">
+            <pre className="text-sm text-gray-900 dark:text-gray-100 break-all">
 {`{
   "error": {
     "type": "invalid_request_error",
@@ -215,9 +215,9 @@ const StatusResponses = () => {
             </ul>
           </div>
 
-          <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6">
+          <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 overflow-x-auto">
             <div className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Example Error Handling (JavaScript)</div>
-            <pre className="text-sm text-gray-900 dark:text-gray-100 overflow-x-auto">
+            <pre className="text-sm text-gray-900 dark:text-gray-100 break-all">
 {`async function handleAPICall() {
   try {
     const response = await fetch('/api/v1/transactions', {

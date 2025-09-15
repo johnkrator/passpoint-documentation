@@ -37,30 +37,26 @@ const Header = ({onMenuClick}: HeaderProps) => {
 
                 {/* Right section - Navigation */}
                 <nav className="flex items-center gap-4">
-                    <a
-                        href="#"
-                        className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-sm font-medium"
+                    <Link to="/docs"
+                          className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-sm font-medium"
                     >
                         Docs
-                    </a>
-                    <a
-                        href="#"
-                        className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-sm font-medium"
+                    </Link>
+                    <Link to="/api"
+                          className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-sm font-medium"
                     >
                         API
-                    </a>
-                    <a
-                        href="#"
-                        className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-sm font-medium hidden sm:block"
+                    </Link>
+                    <Link to="/"
+                          className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-sm font-medium hidden sm:block"
                     >
                         Go to Passpoint Website
-                    </a>
-                    <a
-                        href="#"
-                        className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-sm font-medium hidden sm:block"
+                    </Link>
+                    <Link to="/dashboard"
+                          className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-sm font-medium hidden sm:block"
                     >
                         Go to Passpoint Dashboard
-                    </a>
+                    </Link>
 
                     {/* Theme toggle */}
                     <Button

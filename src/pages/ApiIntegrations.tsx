@@ -27,18 +27,18 @@ const ApiIntegrations = () => {
                                         Direct HTTP calls to our RESTful endpoints with JSON payloads. Perfect for
                                         custom integrations and server-side applications.
                                     </p>
-                                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm">
-                                        <div className="text-green-600 dark:text-green-400">curl -X POST
+                                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
+                                        <div className="text-green-600 dark:text-green-400 whitespace-nowrap">curl -X POST
                                             https://api.passpoint.com/v1/transactions \
                                         </div>
-                                        <div className="text-brand-600 dark:text-brand-400"> -H "Authorization: Bearer
+                                        <div className="text-brand-600 dark:text-brand-400 whitespace-nowrap"> -H "Authorization: Bearer
                                             YOUR_API_KEY" \
                                         </div>
-                                        <div className="text-purple-600 dark:text-purple-400"> -H "Content-Type:
+                                        <div className="text-purple-600 dark:text-purple-400 whitespace-nowrap"> -H "Content-Type:
                                             application/json" \
                                         </div>
                                         <div
-                                            className="text-orange-600 dark:text-orange-400"> -d {`'{"amount": 1000, "currency": "USD"}'`}</div>
+                                            className="text-orange-600 dark:text-orange-400 whitespace-nowrap"> -d {`'{"amount": 1000, "currency": "USD"}'`}</div>
                                     </div>
                                 </div>
                             </div>
@@ -54,12 +54,12 @@ const ApiIntegrations = () => {
                                         Official libraries for popular programming languages with built-in error
                                         handling and retry logic.
                                     </p>
-                                    <div className="grid gap-4 md:grid-cols-2">
+                                    <div className="grid gap-4 sm:grid-cols-2">
                                         <div className="bg-gray-100 dark:bg-gray-800 rounded p-3">
                                             <div
                                                 className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Node.js
                                             </div>
-                                            <div className="text-xs text-gray-600 dark:text-gray-400 font-mono">npm
+                                            <div className="text-xs text-gray-600 dark:text-gray-400 font-mono break-all">npm
                                                 install @passpoint/sdk
                                             </div>
                                         </div>
@@ -67,7 +67,7 @@ const ApiIntegrations = () => {
                                             <div
                                                 className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Python
                                             </div>
-                                            <div className="text-xs text-gray-600 dark:text-gray-400 font-mono">pip
+                                            <div className="text-xs text-gray-600 dark:text-gray-400 font-mono break-all">pip
                                                 install passpoint-python
                                             </div>
                                         </div>

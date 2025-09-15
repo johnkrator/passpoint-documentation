@@ -39,8 +39,8 @@ const DocumentationLayout = ({children}: DocumentationLayoutProps) => {
                             sidebarOpen ? "lg:ml-0 ml-0" : "lg:ml-0 ml-0"
                         }`}
                     >
-                        <div className="bg-white dark:bg-gray-950 min-h-screen">
-                            <div className="max-w-4xl mx-auto">
+                        <div className="bg-white dark:bg-gray-950 min-h-screen w-full overflow-x-hidden">
+                            <div className="max-w-4xl mx-auto w-full">
                                 {children}
                             </div>
                         </div>

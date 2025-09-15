@@ -80,7 +80,7 @@ const UserRoles = () => {
             <table className="w-full border border-gray-200 dark:border-gray-800 rounded-lg">
               <thead className="bg-gray-50 dark:bg-gray-900">
                 <tr>
-                  <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 dark:text-white">Feature</th>
+                  <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 dark:text-white break-words">Feature</th>
                   <th className="px-4 py-3 text-center text-sm font-semibold text-gray-900 dark:text-white">Admin</th>
                   <th className="px-4 py-3 text-center text-sm font-semibold text-gray-900 dark:text-white">Manager</th>
                   <th className="px-4 py-3 text-center text-sm font-semibold text-gray-900 dark:text-white">Employee</th>
@@ -88,37 +88,37 @@ const UserRoles = () => {
               </thead>
               <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
                 <tr className="bg-white dark:bg-gray-950">
-                  <td className="px-4 py-3 text-sm text-gray-900 dark:text-white">Create Transactions</td>
+                  <td className="px-4 py-3 text-sm text-gray-900 dark:text-white break-words">Create Transactions</td>
                   <td className="px-4 py-3 text-center">✅</td>
                   <td className="px-4 py-3 text-center">✅</td>
                   <td className="px-4 py-3 text-center">✅</td>
                 </tr>
                 <tr className="bg-gray-50 dark:bg-gray-900">
-                  <td className="px-4 py-3 text-sm text-gray-900 dark:text-white">Approve Expenses</td>
+                  <td className="px-4 py-3 text-sm text-gray-900 dark:text-white break-words">Approve Expenses</td>
                   <td className="px-4 py-3 text-center">✅</td>
                   <td className="px-4 py-3 text-center">✅</td>
                   <td className="px-4 py-3 text-center">❌</td>
                 </tr>
                 <tr className="bg-white dark:bg-gray-950">
-                  <td className="px-4 py-3 text-sm text-gray-900 dark:text-white">View Financial Reports</td>
+                  <td className="px-4 py-3 text-sm text-gray-900 dark:text-white break-words">View Financial Reports</td>
                   <td className="px-4 py-3 text-center">✅</td>
                   <td className="px-4 py-3 text-center">✅</td>
                   <td className="px-4 py-3 text-center">❌</td>
                 </tr>
                 <tr className="bg-gray-50 dark:bg-gray-900">
-                  <td className="px-4 py-3 text-sm text-gray-900 dark:text-white">Manage API Keys</td>
+                  <td className="px-4 py-3 text-sm text-gray-900 dark:text-white break-words">Manage API Keys</td>
                   <td className="px-4 py-3 text-center">✅</td>
                   <td className="px-4 py-3 text-center">❌</td>
                   <td className="px-4 py-3 text-center">❌</td>
                 </tr>
                 <tr className="bg-white dark:bg-gray-950">
-                  <td className="px-4 py-3 text-sm text-gray-900 dark:text-white">User Management</td>
+                  <td className="px-4 py-3 text-sm text-gray-900 dark:text-white break-words">User Management</td>
                   <td className="px-4 py-3 text-center">✅</td>
                   <td className="px-4 py-3 text-center">🔶</td>
                   <td className="px-4 py-3 text-center">❌</td>
                 </tr>
                 <tr className="bg-gray-50 dark:bg-gray-900">
-                  <td className="px-4 py-3 text-sm text-gray-900 dark:text-white">Billing & Settings</td>
+                  <td className="px-4 py-3 text-sm text-gray-900 dark:text-white break-words">Billing & Settings</td>
                   <td className="px-4 py-3 text-center">✅</td>
                   <td className="px-4 py-3 text-center">❌</td>
                   <td className="px-4 py-3 text-center">❌</td>

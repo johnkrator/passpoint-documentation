@@ -3,6 +3,7 @@ import {Button} from "@/components/ui/button";
 import {useTheme} from "@/contexts/ThemeContext";
 import SearchInput from "./SearchInput";
 import {Link} from "react-router-dom";
+import Logo from "@/assets/passpoint-logo.webp";
 
 interface HeaderProps {
     onMenuClick: () => void;
@@ -25,10 +26,7 @@ const Header = ({onMenuClick}: HeaderProps) => {
                         <Menu className="h-5 w-5"/>
                     </Button>
                     <Link to="/" className="flex items-center gap-2">
-                        <div className="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center">
-                            <span className="text-white font-bold text-sm">P</span>
-                        </div>
-                        <span className="text-gray-900 dark:text-white font-semibold text-lg">PASSPOINT</span>
+                        <img src={Logo} className="w-full h-10 object-cover" alt=""/>
                     </Link>
                 </div>
 

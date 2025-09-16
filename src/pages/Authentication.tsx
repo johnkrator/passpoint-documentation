@@ -1,5 +1,6 @@
-import { ArrowLeft, ArrowRight, Key, Shield, Lock, AlertTriangle } from "lucide-react";
+import { ArrowLeft, ArrowRight, Key, Shield, Lock, AlertTriangle, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import CodeBlock from "@/components/CodeBlock";
 
 const Authentication = () => {
@@ -10,12 +11,12 @@ const Authentication = () => {
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Authentication</h1>
 
           <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
-            Secure your API requests with Passpoint's authentication system. Learn how to authenticate users, manage API keys, and implement secure access controls.
+            Secure your API requests with Passpoint Payment Service's robust authentication system. All API endpoints require proper authentication using Bearer tokens to ensure secure access to payment, wallet, and transfer services.
           </p>
 
-          {/* API Key Authentication */}
+          {/* Bearer Token Authentication */}
           <section className="mb-16">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">API Key Authentication</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Bearer Token Authentication</h2>
 
             <div className="bg-yellow-50 dark:bg-yellow-950/20 border border-yellow-200 dark:border-yellow-800 rounded-xl p-6 lg:p-8 mb-8 shadow-sm">
               <div className="flex">
@@ -23,51 +24,53 @@ const Authentication = () => {
                 <div>
                   <h3 className="text-base font-semibold text-yellow-800 dark:text-yellow-200 mb-2">Security Notice</h3>
                   <p className="text-yellow-700 dark:text-yellow-300">
-                    Never expose your API keys in client-side code. Always make API calls from your server environment.
+                    Never expose your access tokens in client-side code. Always make API calls from your secure server environment and store tokens securely.
                   </p>
                 </div>
               </div>
             </div>
 
             <div className="space-y-8">
-              {/* Generate API Key */}
+              {/* Merchant Authentication */}
               <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
                   <div className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                     <Key className="h-12 w-12 text-brand-500 flex-shrink-0"/>
-                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Generate API Key</h3>
+                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Merchant Authentication</h3>
                   </div>
                   <div className="flex-1 min-w-0 lg:max-w-4xl">
                     <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
-                      Create a new API key for authentication. Each key can be scoped to specific permissions and environments.
+                      Authenticate as a merchant to access payment services. Use your merchant credentials to obtain an access token for API requests.
                     </p>
 
                   <div className="space-y-4">
                     <div>
                       <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                      <CodeBlock>{`POST /api/v1/auth/api-keys`}</CodeBlock>
+                      <CodeBlock>{`POST https://dev.mypasspoint.com/userapp/api/v1/merchant/auth`}</CodeBlock>
                     </div>
 
                     <div>
                       <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request Body</h4>
                       <CodeBlock language="json">{`{
-  "name": "Production API Key",
-  "permissions": ["read", "write"],
-  "environment": "live",
-  "expires_at": "2024-12-31T23:59:59Z"
+  "username": "your_merchant_username",
+  "password": "your_merchant_password"
 }`}</CodeBlock>
                     </div>
 
                     <div>
                       <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
                       <CodeBlock language="json">{`{
-  "id": "key_1234567890",
-  "name": "Production API Key",
-  "key": "sk_live_1234567890abcdef",
-  "permissions": ["read", "write"],
-  "environment": "live",
-  "created_at": "2024-01-15T10:30:00Z",
-  "expires_at": "2024-12-31T23:59:59Z"
+  "responseCode": "00",
+  "responseDescription": "Success",
+  "responseMessage": "Authentication successful",
+  "data": {
+    "success": true,
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "tokenType": "Bearer",
+    "expiresIn": 3600,
+    "merchantId": "MERCH_12345",
+    "permissions": ["wallet:read", "wallet:write", "transfer:execute"]
+  }
 }`}</CodeBlock>
                     </div>
                     </div>
@@ -75,44 +78,43 @@ const Authentication = () => {
                 </div>
               </div>
 
-              {/* Verify API Key */}
+              {/* Making Authenticated Requests */}
               <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
                   <div className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                     <Shield className="h-12 w-12 text-green-500 flex-shrink-0"/>
-                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Verify API Key</h3>
+                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Authenticated Requests</h3>
                   </div>
                   <div className="flex-1 min-w-0 lg:max-w-4xl">
                     <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
-                      Validate an API key and retrieve its permissions and metadata.
+                      Include the access token in the Authorization header for all API requests to access protected endpoints.
                     </p>
 
                     <div className="space-y-4">
                       <div>
-                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                        <CodeBlock>{`GET /api/v1/auth/verify`}</CodeBlock>
+                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Required Headers</h4>
+                        <CodeBlock>{`Content-Type: application/json
+Authorization: Bearer YOUR_ACCESS_TOKEN`}</CodeBlock>
                       </div>
 
                       <div>
-                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Headers</h4>
-                        <CodeBlock>{`Authorization: Bearer sk_live_1234567890abcdef`}</CodeBlock>
+                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Example Request</h4>
+                        <CodeBlock language="bash">{`curl -X GET https://dev.mypasspoint.com/paypass/api/v1/wallet/balance \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."`}</CodeBlock>
                       </div>
 
                       <div>
-                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
+                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Successful Response</h4>
                         <CodeBlock language="json">{`{
-  "valid": true,
-  "key_id": "key_1234567890",
-  "permissions": ["read", "write"],
-  "environment": "live",
-  "user": {
-    "id": "user_9876543210",
-    "email": "developer@company.com"
-  },
-  "rate_limit": {
-    "limit": 1000,
-    "remaining": 999,
-    "reset": 1642680000
+  "responseCode": "00",
+  "responseDescription": "Success",
+  "responseMessage": "Balance retrieved successfully",
+  "data": {
+    "success": true,
+    "balance": 1500.00,
+    "currency": "USD",
+    "walletId": "WLT_12345"
   }
 }`}</CodeBlock>
                       </div>
@@ -123,56 +125,52 @@ const Authentication = () => {
             </div>
           </section>
 
-          {/* OAuth 2.0 */}
+          {/* Token Management */}
           <section className="mb-16">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">OAuth 2.0</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Token Management</h2>
 
             <div className="space-y-8">
-              {/* Authorization Code Flow */}
+              {/* Token Refresh */}
               <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
                   <div className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                     <Lock className="h-12 w-12 text-purple-500 flex-shrink-0"/>
-                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Authorization Code Flow</h3>
+                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Token Refresh</h3>
                   </div>
                   <div className="flex-1 min-w-0 lg:max-w-4xl">
                     <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
-                      Implement OAuth 2.0 authorization code flow for secure user authentication.
+                      Access tokens expire after 1 hour. Refresh your token before it expires to maintain continuous access to the API.
                     </p>
 
                     <div className="space-y-6">
                       <div>
-                        <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Step 1: Authorization Request</h4>
-                        <CodeBlock>{`GET https://auth.passpoint.com/oauth/authorize?client_id=your_client_id&response_type=code&redirect_uri=https://yourapp.com/callback&scope=read+write&state=random_state_string`}</CodeBlock>
-                      </div>
-
-                      <div>
-                        <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Step 2: Exchange Code for Token</h4>
+                        <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Refresh Token Request</h4>
                         <div className="space-y-3">
                           <div>
                             <h5 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h5>
-                            <CodeBlock>{`POST /oauth/token`}</CodeBlock>
+                            <CodeBlock>{`POST https://dev.mypasspoint.com/userapp/api/v1/merchant/refresh`}</CodeBlock>
                           </div>
 
                           <div>
                             <h5 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request Body</h5>
                             <CodeBlock language="json">{`{
-  "grant_type": "authorization_code",
-  "code": "auth_code_from_step_1",
-  "redirect_uri": "https://yourapp.com/callback",
-  "client_id": "your_client_id",
-  "client_secret": "your_client_secret"
+  "refreshToken": "your_refresh_token_here"
 }`}</CodeBlock>
                           </div>
 
                           <div>
                             <h5 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h5>
                             <CodeBlock language="json">{`{
-  "access_token": "at_1234567890abcdef",
-  "token_type": "Bearer",
-  "expires_in": 3600,
-  "refresh_token": "rt_1234567890abcdef",
-  "scope": "read write"
+  "responseCode": "00",
+  "responseDescription": "Success",
+  "responseMessage": "Token refreshed successfully",
+  "data": {
+    "success": true,
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "tokenType": "Bearer",
+    "expiresIn": 3600,
+    "refreshToken": "new_refresh_token_here"
+  }
 }`}</CodeBlock>
                           </div>
                         </div>
@@ -184,116 +182,122 @@ const Authentication = () => {
             </div>
           </section>
 
-          {/* Code Examples */}
+          {/* Authentication Errors */}
           <section className="mb-16">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Code Examples</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Authentication Errors</h2>
 
-            <div className="space-y-8">
-              <CodeBlock
-                title="Node.js - API Key Authentication"
-                language="javascript"
-              >{`const axios = require('axios');
+            <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
+              <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
+                <div className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
+                  <AlertTriangle className="h-12 w-12 text-red-500 flex-shrink-0"/>
+                  <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Error Handling</h3>
+                </div>
+                <div className="flex-1 min-w-0 lg:max-w-4xl">
+                  <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                    Handle authentication errors gracefully by checking response codes and implementing proper error handling logic.
+                  </p>
 
-const passpoint = axios.create({
-  baseURL: 'https://api.passpoint.com/v1',
-  headers: {
-    'Authorization': 'Bearer ' + process.env.PASSPOINT_API_KEY,
-    'Content-Type': 'application/json'
-  }
-});
+                  <div className="space-y-6">
+                    <div className="grid gap-4 sm:grid-cols-1">
+                      <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
+                        <div className="font-mono text-sm font-bold text-gray-900 dark:text-white mb-1">401 - Unauthorized</div>
+                        <div className="text-sm text-gray-600 dark:text-gray-400">Invalid or missing access token</div>
+                      </div>
+                      <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
+                        <div className="font-mono text-sm font-bold text-gray-900 dark:text-white mb-1">403 - Forbidden</div>
+                        <div className="text-sm text-gray-600 dark:text-gray-400">Insufficient permissions for the requested operation</div>
+                      </div>
+                      <div className="bg-yellow-50 dark:bg-yellow-950/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
+                        <div className="font-mono text-sm font-bold text-gray-900 dark:text-white mb-1">Token Expired</div>
+                        <div className="text-sm text-gray-600 dark:text-gray-400">Access token has expired, use refresh token to get a new one</div>
+                      </div>
+                    </div>
 
-// Make authenticated request
-async function getUser() {
-  try {
-    const response = await passpoint.get('/user');
-    console.log('User data:', response.data);
-  } catch (error) {
-    console.error('Authentication failed:', error.response.data);
+                    <div>
+                      <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Error Response Format</h4>
+                      <CodeBlock language="json">{`{
+  "responseCode": "01",
+  "responseDescription": "Authentication Failed",
+  "responseMessage": "Invalid access token",
+  "data": {
+    "success": false,
+    "error": "INVALID_TOKEN",
+    "errorDescription": "The provided access token is invalid or has expired"
   }
 }`}</CodeBlock>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
 
-            <CodeBlock
-              title="Java - OAuth Token Refresh"
-              language="java"
-            >{`import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.net.URI;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.Map;
-import java.util.HashMap;
+          {/* Best Practices */}
+          <section className="mb-16">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Best Practices</h2>
 
-public class PasspointAuth {
-    private final HttpClient httpClient = HttpClient.newHttpClient();
-    private final ObjectMapper objectMapper = new ObjectMapper();
-
-    public Map<String, Object> refreshAccessToken(String refreshToken, String clientId, String clientSecret)
-            throws Exception {
-        String url = "https://auth.passpoint.com/oauth/token";
-
-        String requestBody = String.format(
-            "grant_type=refresh_token&refresh_token=%s&client_id=%s&client_secret=%s",
-            refreshToken, clientId, clientSecret
-        );
-
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create(url))
-            .header("Content-Type", "application/x-www-form-urlencoded")
-            .POST(HttpRequest.BodyPublishers.ofString(requestBody))
-            .build();
-
-        HttpResponse<String> response = httpClient.send(request,
-            HttpResponse.BodyHandlers.ofString());
-
-        if (response.statusCode() == 200) {
-            return objectMapper.readValue(response.body(), Map.class);
-        } else {
-            throw new Exception("Token refresh failed: " + response.body());
-        }
-    }
-
-    // Usage
-    public static void main(String[] args) {
-        try {
-            PasspointAuth auth = new PasspointAuth();
-            Map<String, Object> newTokens = auth.refreshAccessToken(
-                "rt_1234567890abcdef",
-                "your_client_id",
-                "your_client_secret"
-            );
-            System.out.println("New access token: " + newTokens.get("access_token"));
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
-        }
-    }
-}`}</CodeBlock>
-          </div>
-        </section>
+            <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-xl p-6 lg:p-8 shadow-sm">
+              <div className="flex items-center mb-4">
+                <CheckCircle className="h-6 w-6 text-blue-500 mr-3" />
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Security Recommendations</h3>
+              </div>
+              <div className="space-y-3 text-gray-700 dark:text-gray-300">
+                <div className="flex items-start">
+                  <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5 flex-shrink-0">1</span>
+                  <div>
+                    <strong>Secure Storage:</strong> Store access tokens securely using encryption and never log them in plain text
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5 flex-shrink-0">2</span>
+                  <div>
+                    <strong>Token Rotation:</strong> Implement automatic token refresh to handle expiration gracefully
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5 flex-shrink-0">3</span>
+                  <div>
+                    <strong>Environment Separation:</strong> Use different credentials for sandbox and production environments
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5 flex-shrink-0">4</span>
+                  <div>
+                    <strong>Error Handling:</strong> Implement proper error handling for authentication failures and retries
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
       </div>
 
       {/* Pagination Navigation */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-8 mt-8 border-t border-gray-200 dark:border-gray-800">
-        <Button
-          variant="ghost"
-          className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 justify-start"
-        >
-          <ArrowLeft className="h-4 w-4 flex-shrink-0"/>
-          <div className="text-left min-w-0">
-            <div className="text-xs text-gray-500 uppercase tracking-wide">Previous</div>
-            <div className="text-sm font-medium truncate">API Integrations</div>
-          </div>
-        </Button>
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4 pt-6 sm:pt-8 mt-6 sm:mt-8 border-t border-gray-200 dark:border-gray-800">
+        <Link to="/introduction">
+          <Button
+            variant="ghost"
+            className="w-full sm:w-auto flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 justify-start px-4 py-3"
+          >
+            <ArrowLeft className="h-4 w-4 flex-shrink-0"/>
+            <div className="text-left min-w-0">
+              <div className="text-xs text-gray-500 uppercase tracking-wide">Previous</div>
+              <div className="text-sm font-medium truncate">Introduction</div>
+            </div>
+          </Button>
+        </Link>
 
-        <Button
-          variant="ghost"
-          className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 justify-end"
-        >
-          <div className="text-right min-w-0">
-            <div className="text-xs text-gray-500 uppercase tracking-wide">Next</div>
-            <div className="text-sm font-medium truncate">Wallet</div>
-          </div>
-          <ArrowRight className="h-4 w-4 flex-shrink-0"/>
-        </Button>
+        <Link to="/wallet">
+          <Button
+            variant="ghost"
+            className="w-full sm:w-auto flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 justify-between sm:justify-end px-4 py-3"
+          >
+            <div className="text-right min-w-0">
+              <div className="text-xs text-gray-500 uppercase tracking-wide">Next</div>
+              <div className="text-sm font-medium truncate">Wallet</div>
+            </div>
+            <ArrowRight className="h-4 w-4 flex-shrink-0"/>
+          </Button>
+        </Link>
       </div>
 
       {/* Footer */}

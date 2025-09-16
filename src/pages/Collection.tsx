@@ -1,56 +1,43 @@
-import {
-    ArrowLeft,
-    ArrowRight,
-    Download,
-    CreditCard,
-    Banknote,
-    Clock,
-    CheckCircle,
-    XCircle,
-    AlertTriangle,
-    QrCode
-} from "lucide-react";
-import {Button} from "@/components/ui/button";
-import {Link} from "react-router-dom";
+import { ArrowLeft, ArrowRight, Download, CreditCard, Banknote, Clock, CheckCircle, XCircle, AlertTriangle, QrCode } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import CodeBlock from "@/components/CodeBlock";
 
 const Collection = () => {
-    return (
-        <div className="px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-            <div className="prose prose-invert max-w-4xl">
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Collection</h1>
+  return (
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+        <div className="max-w-none">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Collection</h1>
 
-                <p className="text-gray-700 dark:text-gray-300 text-lg mb-8 leading-relaxed">
-                    Collect payments from customers through multiple channels including payment links, QR codes, and
-                    direct API integration. Support for cards, bank transfers, and digital wallets.
-                </p>
+          <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+            Collect payments from customers through multiple channels including payment links, QR codes, and direct API integration. Support for cards, bank transfers, and digital wallets.
+          </p>
 
-                {/* Create Payment Link */}
-                <section className="mb-12">
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Create Payment Link</h2>
+          {/* Create Payment Link */}
+          <section className="mb-16">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Create Payment Link</h2>
 
-                    <div
-                        className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
-                        <div className="flex items-start space-x-4">
-                            <Download className="h-8 w-8 text-brand-500 flex-shrink-0 mt-1"/>
-                            <div className="flex-1">
-                                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Create Payment
-                                    Link</h3>
-                                <p className="text-gray-700 dark:text-gray-300 mb-4">
-                                    Generate secure payment links for invoices, products, or services with customizable
-                                    amounts and payment methods.
-                                </p>
+            <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
+                <div className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
+                  <Download className="h-12 w-12 text-brand-500"/>
+                  <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Create Payment Link</h3>
+                </div>
+                <div className="flex-1 min-w-0 lg:max-w-4xl">
+                  <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                    Generate secure payment links for invoices, products, or services with customizable amounts and payment methods.
+                  </p>
 
-                                <div className="space-y-4">
-                                    <div>
-                                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                        <CodeBlock>{`POST /api/v1/collections/payment-links`}</CodeBlock>
-                                    </div>
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
+                      <CodeBlock>{`POST /api/v1/collections/payment-links`}</CodeBlock>
+                    </div>
 
-                                    <div>
-                                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request
-                                            Body</h4>
-                                        <CodeBlock language="json">{`{
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request Body</h4>
+                      <CodeBlock language="json">{`{
   "amount": 299.99,
   "currency": "USD",
   "description": "Premium Subscription - Monthly",
@@ -79,11 +66,11 @@ const Collection = () => {
   },
   "callback_url": "https://yourapp.com/webhooks/payment"
 }`}</CodeBlock>
-                                    </div>
+                    </div>
 
-                                    <div>
-                                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                                        <CodeBlock language="json">{`{
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
+                      <CodeBlock language="json">{`{
   "id": "link_abc123def456",
   "payment_url": "https://pay.passpoint.com/link/abc123def456",
   "qr_code_url": "https://pay.passpoint.com/qr/abc123def456.png",
@@ -99,40 +86,38 @@ const Collection = () => {
   "total_collected": 0.00,
   "created_at": "2024-01-15T10:30:00Z"
 }`}</CodeBlock>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
 
-                {/* Direct Payment Collection */}
-                <section className="mb-12">
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Direct Payment Collection</h2>
+          {/* Direct Payment Collection */}
+          <section className="mb-16">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Direct Payment Collection</h2>
 
-                    <div className="space-y-8">
-                        <div
-                            className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
-                            <div className="flex items-start space-x-4">
-                                <CreditCard className="h-8 w-8 text-green-500 flex-shrink-0 mt-1"/>
-                                <div className="flex-1">
-                                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Process
-                                        Direct Payment</h3>
-                                    <p className="text-gray-700 dark:text-gray-300 mb-4">
-                                        Collect payments directly through API integration with support for cards, ACH,
-                                        and alternative payment methods.
-                                    </p>
+            <div className="space-y-8">
+              <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
+                  <div className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
+                    <CreditCard className="h-12 w-12 text-brand-500"/>
+                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Process Direct Payment</h3>
+                  </div>
+                  <div className="flex-1 min-w-0 lg:max-w-4xl">
+                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                      Collect payments directly through API integration with support for cards, ACH, and alternative payment methods.
+                    </p>
 
-                                    <div className="space-y-4">
-                                        <div>
-                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                            <CodeBlock>{`POST /api/v1/collections/payments`}</CodeBlock>
-                                        </div>
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
+                        <CodeBlock>{`POST /api/v1/collections/payments`}</CodeBlock>
+                      </div>
 
-                                        <div>
-                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request
-                                                Body (Card Payment)</h4>
-                                            <CodeBlock language="json">{`{
+                      <div>
+                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request Body (Card Payment)</h4>
+                        <CodeBlock language="json">{`{
   "amount": 149.99,
   "currency": "USD",
   "payment_method": {
@@ -167,11 +152,11 @@ const Collection = () => {
   "capture": true,
   "callback_url": "https://yourapp.com/webhooks/payment"
 }`}</CodeBlock>
-                                        </div>
+                      </div>
 
-                                        <div>
-                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                                            <CodeBlock language="json">{`{
+                      <div>
+                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
+                        <CodeBlock language="json">{`{
   "id": "payment_xyz789abc123",
   "status": "succeeded",
   "amount": 149.99,
@@ -200,126 +185,118 @@ const Collection = () => {
   "created_at": "2024-01-15T14:22:00Z",
   "captured_at": "2024-01-15T14:22:01Z"
 }`}</CodeBlock>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                      </div>
                     </div>
-                </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
 
-                {/* Payment Methods */}
-                <section className="mb-12">
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Supported Payment Methods</h2>
+          {/* Payment Methods */}
+          <section className="mb-16">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Supported Payment Methods</h2>
 
-                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                        {/* Credit/Debit Cards */}
-                        <div
-                            className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
-                            <div className="flex items-center mb-4">
-                                <CreditCard className="h-8 w-8 text-blue-500 mr-3"/>
-                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Credit/Debit
-                                    Cards</h3>
-                            </div>
-                            <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
-                                Accept Visa, Mastercard, American Express, and Discover cards with instant processing.
-                            </p>
-                            <div className="space-y-2 text-sm">
-                                <div className="flex justify-between">
-                                    <span className="text-gray-600 dark:text-gray-400">Processing Time:</span>
-                                    <span className="text-gray-900 dark:text-white">Instant</span>
-                                </div>
-                                <div className="flex justify-between">
-                                    <span className="text-gray-600 dark:text-gray-400">Fee:</span>
-                                    <span className="text-gray-900 dark:text-white">2.9% + $0.30</span>
-                                </div>
-                                <div className="flex justify-between">
-                                    <span className="text-gray-600 dark:text-gray-400">Chargeback Risk:</span>
-                                    <span className="text-gray-900 dark:text-white">Yes</span>
-                                </div>
-                            </div>
-                        </div>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex items-center mb-4">
+                  <CreditCard className="h-8 w-8 text-blue-500 mr-3"/>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Credit/Debit Cards</h3>
+                </div>
+                <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
+                  Accept Visa, Mastercard, American Express, and Discover cards with instant processing.
+                </p>
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600 dark:text-gray-400">Processing Time:</span>
+                    <span className="text-gray-900 dark:text-white">Instant</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600 dark:text-gray-400">Fee:</span>
+                    <span className="text-gray-900 dark:text-white">2.9% + $0.30</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600 dark:text-gray-400">Chargeback Risk:</span>
+                    <span className="text-gray-900 dark:text-white">Yes</span>
+                  </div>
+                </div>
+              </div>
 
-                        {/* ACH Bank Transfer */}
-                        <div
-                            className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
-                            <div className="flex items-center mb-4">
-                                <Banknote className="h-8 w-8 text-green-500 mr-3"/>
-                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">ACH Bank
-                                    Transfer</h3>
-                            </div>
-                            <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
-                                Direct bank account debits with lower fees and reduced chargeback risk.
-                            </p>
-                            <div className="space-y-2 text-sm">
-                                <div className="flex justify-between">
-                                    <span className="text-gray-600 dark:text-gray-400">Processing Time:</span>
-                                    <span className="text-gray-900 dark:text-white">1-3 business days</span>
-                                </div>
-                                <div className="flex justify-between">
-                                    <span className="text-gray-600 dark:text-gray-400">Fee:</span>
-                                    <span className="text-gray-900 dark:text-white">0.8% + $0.30</span>
-                                </div>
-                                <div className="flex justify-between">
-                                    <span className="text-gray-600 dark:text-gray-400">Chargeback Risk:</span>
-                                    <span className="text-gray-900 dark:text-white">Low</span>
-                                </div>
-                            </div>
-                        </div>
+              <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex items-center mb-4">
+                  <Banknote className="h-8 w-8 text-green-500 mr-3"/>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">ACH Bank Transfer</h3>
+                </div>
+                <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
+                  Direct bank account debits with lower fees and reduced chargeback risk.
+                </p>
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600 dark:text-gray-400">Processing Time:</span>
+                    <span className="text-gray-900 dark:text-white">1-3 business days</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600 dark:text-gray-400">Fee:</span>
+                    <span className="text-gray-900 dark:text-white">0.8% + $0.30</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600 dark:text-gray-400">Chargeback Risk:</span>
+                    <span className="text-gray-900 dark:text-white">Low</span>
+                  </div>
+                </div>
+              </div>
 
-                        {/* Digital Wallets */}
-                        <div
-                            className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
-                            <div className="flex items-center mb-4">
-                                <QrCode className="h-8 w-8 text-purple-500 mr-3"/>
-                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Digital Wallets</h3>
-                            </div>
-                            <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
-                                Apple Pay, Google Pay, PayPal, and other popular digital payment methods.
-                            </p>
-                            <div className="space-y-2 text-sm">
-                                <div className="flex justify-between">
-                                    <span className="text-gray-600 dark:text-gray-400">Processing Time:</span>
-                                    <span className="text-gray-900 dark:text-white">Instant</span>
-                                </div>
-                                <div className="flex justify-between">
-                                    <span className="text-gray-600 dark:text-gray-400">Fee:</span>
-                                    <span className="text-gray-900 dark:text-white">2.7% + $0.30</span>
-                                </div>
-                                <div className="flex justify-between">
-                                    <span className="text-gray-600 dark:text-gray-400">Chargeback Risk:</span>
-                                    <span className="text-gray-900 dark:text-white">Medium</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+              <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex items-center mb-4">
+                  <QrCode className="h-8 w-8 text-purple-500 mr-3"/>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Digital Wallets</h3>
+                </div>
+                <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
+                  Apple Pay, Google Pay, PayPal, and other popular digital payment methods.
+                </p>
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600 dark:text-gray-400">Processing Time:</span>
+                    <span className="text-gray-900 dark:text-white">Instant</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600 dark:text-gray-400">Fee:</span>
+                    <span className="text-gray-900 dark:text-white">2.7% + $0.30</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600 dark:text-gray-400">Chargeback Risk:</span>
+                    <span className="text-gray-900 dark:text-white">Medium</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
 
-                {/* Payment Status Tracking */}
-                <section className="mb-12">
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Payment Status Tracking</h2>
+          {/* Payment Status Tracking */}
+          <section className="mb-16">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Payment Status Tracking</h2>
 
-                    <div className="space-y-8">
-                        <div
-                            className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
-                            <div className="flex items-start space-x-4">
-                                <Clock className="h-8 w-8 text-blue-500 flex-shrink-0 mt-1"/>
-                                <div className="flex-1">
-                                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Get Payment
-                                        Status</h3>
-                                    <p className="text-gray-700 dark:text-gray-300 mb-4">
-                                        Monitor payment progress, view transaction details, and track settlement status.
-                                    </p>
+            <div className="space-y-8">
+              <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
+                  <div className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
+                    <Clock className="h-12 w-12 text-brand-500"/>
+                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Get Payment Status</h3>
+                  </div>
+                  <div className="flex-1 min-w-0 lg:max-w-4xl">
+                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                      Monitor payment progress, view transaction details, and track settlement status.
+                    </p>
 
-                                    <div className="space-y-4">
-                                        <div>
-                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                            <CodeBlock>{`GET /api/v1/collections/payments/{payment_id}`}</CodeBlock>
-                                        </div>
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
+                        <CodeBlock>{`GET /api/v1/collections/payments/{payment_id}`}</CodeBlock>
+                      </div>
 
-                                        <div>
-                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                                            <CodeBlock language="json">{`{
+                      <div>
+                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
+                        <CodeBlock language="json">{`{
   "id": "payment_xyz789abc123",
   "status": "succeeded",
   "amount": 149.99,
@@ -358,82 +335,73 @@ const Collection = () => {
   "created_at": "2024-01-15T14:22:00Z",
   "captured_at": "2024-01-15T14:22:01Z"
 }`}</CodeBlock>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Status Values */}
-                        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                            <div
-                                className="bg-yellow-50 dark:bg-yellow-950/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
-                                <div className="flex items-center mb-2">
-                                    <Clock className="h-5 w-5 text-yellow-600 dark:text-yellow-400 mr-2"/>
-                                    <span className="font-semibold text-yellow-800 dark:text-yellow-200">pending</span>
-                                </div>
-                                <p className="text-yellow-700 dark:text-yellow-300 text-sm">Payment initiated, awaiting
-                                    processing</p>
-                            </div>
-
-                            <div
-                                className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
-                                <div className="flex items-center mb-2">
-                                    <Clock className="h-5 w-5 text-blue-600 dark:text-blue-400 mr-2"/>
-                                    <span className="font-semibold text-blue-800 dark:text-blue-200">processing</span>
-                                </div>
-                                <p className="text-blue-700 dark:text-blue-300 text-sm">Payment being processed by
-                                    network</p>
-                            </div>
-
-                            <div
-                                className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
-                                <div className="flex items-center mb-2">
-                                    <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 mr-2"/>
-                                    <span className="font-semibold text-green-800 dark:text-green-200">succeeded</span>
-                                </div>
-                                <p className="text-green-700 dark:text-green-300 text-sm">Payment completed
-                                    successfully</p>
-                            </div>
-
-                            <div
-                                className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
-                                <div className="flex items-center mb-2">
-                                    <XCircle className="h-5 w-5 text-red-600 dark:text-red-400 mr-2"/>
-                                    <span className="font-semibold text-red-800 dark:text-red-200">failed</span>
-                                </div>
-                                <p className="text-red-700 dark:text-red-300 text-sm">Payment failed or was declined</p>
-                            </div>
-                        </div>
+                      </div>
                     </div>
-                </section>
+                  </div>
+                </div>
+              </div>
 
-                {/* Recurring Collections */}
-                <section className="mb-12">
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Recurring Collections</h2>
+              {/* Status Values */}
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="bg-yellow-50 dark:bg-yellow-950/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
+                  <div className="flex items-center mb-2">
+                    <Clock className="h-5 w-5 text-yellow-600 dark:text-yellow-400 mr-2"/>
+                    <span className="font-semibold text-yellow-800 dark:text-yellow-200">pending</span>
+                  </div>
+                  <p className="text-yellow-700 dark:text-yellow-300 text-sm">Payment initiated, awaiting processing</p>
+                </div>
 
-                    <div
-                        className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
-                        <div className="flex items-start space-x-4">
-                            <Clock className="h-8 w-8 text-purple-500 flex-shrink-0 mt-1"/>
-                            <div className="flex-1">
-                                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Setup Recurring
-                                    Payments</h3>
-                                <p className="text-gray-700 dark:text-gray-300 mb-4">
-                                    Create subscription-based recurring payment schedules with flexible billing
-                                    intervals and automatic retry logic.
-                                </p>
+                <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+                  <div className="flex items-center mb-2">
+                    <Clock className="h-5 w-5 text-blue-600 dark:text-blue-400 mr-2"/>
+                    <span className="font-semibold text-blue-800 dark:text-blue-200">processing</span>
+                  </div>
+                  <p className="text-blue-700 dark:text-blue-300 text-sm">Payment being processed by network</p>
+                </div>
 
-                                <div className="space-y-4">
-                                    <div>
-                                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                        <CodeBlock>{`POST /api/v1/collections/subscriptions`}</CodeBlock>
-                                    </div>
+                <div className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
+                  <div className="flex items-center mb-2">
+                    <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 mr-2"/>
+                    <span className="font-semibold text-green-800 dark:text-green-200">succeeded</span>
+                  </div>
+                  <p className="text-green-700 dark:text-green-300 text-sm">Payment completed successfully</p>
+                </div>
 
-                                    <div>
-                                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request
-                                            Body</h4>
-                                        <CodeBlock language="json">{`{
+                <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
+                  <div className="flex items-center mb-2">
+                    <XCircle className="h-5 w-5 text-red-600 dark:text-red-400 mr-2"/>
+                    <span className="font-semibold text-red-800 dark:text-red-200">failed</span>
+                  </div>
+                  <p className="text-red-700 dark:text-red-300 text-sm">Payment failed or was declined</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Recurring Collections */}
+          <section className="mb-16">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Recurring Collections</h2>
+
+            <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
+                <div className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
+                  <Clock className="h-12 w-12 text-brand-500"/>
+                  <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Setup Recurring Payments</h3>
+                </div>
+                <div className="flex-1 min-w-0 lg:max-w-4xl">
+                  <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                    Create subscription-based recurring payment schedules with flexible billing intervals and automatic retry logic.
+                  </p>
+
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
+                      <CodeBlock>{`POST /api/v1/collections/subscriptions`}</CodeBlock>
+                    </div>
+
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request Body</h4>
+                      <CodeBlock language="json">{`{
   "customer": {
     "email": "subscriber@example.com",
     "name": "Jane Smith",
@@ -465,11 +433,11 @@ const Collection = () => {
   },
   "callback_url": "https://yourapp.com/webhooks/subscription"
 }`}</CodeBlock>
-                                    </div>
+                    </div>
 
-                                    <div>
-                                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                                        <CodeBlock language="json">{`{
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
+                      <CodeBlock language="json">{`{
   "id": "sub_def456ghi789",
   "status": "trialing",
   "customer": {
@@ -491,410 +459,108 @@ const Collection = () => {
   "total_collected": 0.00,
   "created_at": "2024-01-15T10:30:00Z"
 }`}</CodeBlock>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
 
-                {/* Fraud Prevention */}
-                <section className="mb-12">
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Fraud Prevention</h2>
+          {/* Fraud Prevention */}
+          <section className="mb-16">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Fraud Prevention</h2>
 
-                    <div
-                        className="bg-orange-50 dark:bg-orange-950/20 border border-orange-200 dark:border-orange-800 rounded-lg p-6 mb-6">
-                        <div className="flex">
-                            <AlertTriangle
-                                className="h-5 w-5 text-orange-600 dark:text-orange-400 flex-shrink-0 mt-0.5 mr-3"/>
-                            <div>
-                                <h3 className="text-sm font-semibold text-orange-800 dark:text-orange-200">Fraud
-                                    Protection</h3>
-                                <p className="text-orange-700 dark:text-orange-300 text-sm mt-1">
-                                    All payments are automatically screened using machine learning models and risk
-                                    assessment algorithms.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div
-                        className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden">
-                        <div className="overflow-x-auto">
-                            <table className="w-full">
-                                <thead>
-                                <tr className="bg-gray-50 dark:bg-gray-800">
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Fraud
-                                        Check
-                                    </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Description</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Action
-                                        on Failure
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                                <tr>
-                                    <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">CVV
-                                        Verification
-                                    </td>
-                                    <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Validates card
-                                        security code
-                                    </td>
-                                    <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Payment
-                                        declined
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">Address
-                                        Verification
-                                    </td>
-                                    <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Matches billing
-                                        address with card issuer
-                                    </td>
-                                    <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Manual review
-                                        required
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">Velocity
-                                        Checking
-                                    </td>
-                                    <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Monitors payment
-                                        frequency and amounts
-                                    </td>
-                                    <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Temporary block
-                                        applied
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">Device
-                                        Fingerprinting
-                                    </td>
-                                    <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Analyzes device
-                                        and browser characteristics
-                                    </td>
-                                    <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Risk score
-                                        increased
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">Machine
-                                        Learning
-                                    </td>
-                                    <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">AI-powered fraud
-                                        pattern detection
-                                    </td>
-                                    <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Payment flagged
-                                        for review
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Code Examples */}
-                <section className="mb-12">
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Code Examples</h2>
-
-                    <div className="space-y-6">
-                        <CodeBlock
-                            title="Node.js - Create Payment Link and Monitor Status"
-                            language="javascript"
-                        >{`const passpoint = require('@passpoint/sdk');
-
-const client = new passpoint.Client({
-  apiKey: process.env.PASSPOINT_API_KEY
-});
-
-async function createPaymentLinkWithMonitoring(linkData) {
-  try {
-    // Create payment link
-    const paymentLink = await client.collections.createPaymentLink({
-      amount: linkData.amount,
-      currency: 'USD',
-      description: linkData.description,
-      reference: linkData.reference,
-      customer: linkData.customer,
-      payment_methods: ['card', 'bank_transfer', 'digital_wallet'],
-      redirect_urls: {
-        success: 'https://yourapp.com/payment/success',
-        cancel: 'https://yourapp.com/payment/cancel',
-        failure: 'https://yourapp.com/payment/failure'
-      },
-      expiry: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 days
-      customization: {
-        theme_color: '#0099c2',
-        logo_url: 'https://yourapp.com/logo.png',
-        business_name: 'Your Business'
-      },
-      callback_url: 'https://yourapp.com/webhooks/payment'
-    });
-
-    console.log('Payment link created:', paymentLink.payment_url);
-    console.log('QR Code URL:', paymentLink.qr_code_url);
-
-    // Monitor payment link activity
-    const monitorLink = async () => {
-      const status = await client.collections.getPaymentLink(paymentLink.id);
-
-      console.log(\`Link visits: \${status.visits}\`);
-      console.log(\`Payments received: \${status.payments_received}\`);
-      console.log(\`Total collected: $\${status.total_collected}\`);
-
-      if (status.payments_received > 0) {
-        console.log('Payment received! Processing...');
-
-        // Get payment details
-        const payments = await client.collections.getPaymentLinkPayments(paymentLink.id);
-        payments.forEach(payment => {
-          console.log(\`Payment \${payment.id}: \${payment.status} - $\${payment.amount}\`);
-        });
-      }
-
-      // Continue monitoring if link is still active
-      if (status.status === 'active' && new Date() < new Date(status.expiry)) {
-        setTimeout(monitorLink, 30000); // Check every 30 seconds
-      }
-    };
-
-    // Start monitoring after 30 seconds
-    setTimeout(monitorLink, 30000);
-
-    return paymentLink;
-  } catch (error) {
-    console.error('Payment link creation failed:', error.message);
-    throw error;
-  }
-}
-
-// Usage
-createPaymentLinkWithMonitoring({
-  amount: 299.99,
-  description: 'Premium Subscription - Monthly',
-  reference: 'sub_premium_202401_001',
-  customer: {
-    email: 'customer@example.com',
-    name: 'John Doe',
-    phone: '+1234567890'
-  }
-});`}</CodeBlock>
-
-                        <CodeBlock
-                            title="Java - Process Direct Payment with Fraud Detection"
-                            language="java"
-                        >{`import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.net.URI;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-public class PasspointCollection {
-    private final String apiKey;
-    private final String baseUrl = "https://api.passpoint.com/v1";
-    private final HttpClient httpClient;
-    private final ObjectMapper objectMapper;
-
-    public PasspointCollection(String apiKey) {
-        this.apiKey = apiKey;
-        this.httpClient = HttpClient.newHttpClient();
-        this.objectMapper = new ObjectMapper();
-    }
-
-    public Map<String, Object> processPaymentWithFraudCheck(Map<String, Object> paymentData)
-            throws Exception {
-
-        // Pre-flight fraud check
-        double fraudScore = checkFraudIndicators(paymentData);
-
-        if (fraudScore > 0.7) {
-            throw new Exception("High fraud risk detected: " + fraudScore);
-        }
-
-        // Process payment
-        String requestBody = objectMapper.writeValueAsString(paymentData);
-
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create(baseUrl + "/collections/payments"))
-            .header("Authorization", "Bearer " + apiKey)
-            .header("Content-Type", "application/json")
-            .POST(HttpRequest.BodyPublishers.ofString(requestBody))
-            .build();
-
-        HttpResponse<String> response = httpClient.send(request,
-            HttpResponse.BodyHandlers.ofString());
-
-        if (response.statusCode() == 200) {
-            Map<String, Object> payment = objectMapper.readValue(
-                response.body(), Map.class);
-
-            // Additional fraud monitoring
-            Map<String, Object> riskAssessment = (Map<String, Object>)
-                payment.get("risk_assessment");
-            if (riskAssessment != null) {
-                Double riskScore = (Double) riskAssessment.get("fraud_score");
-                if (riskScore != null && riskScore > 0.5) {
-                    System.out.println("Warning: Payment " + payment.get("id") +
-                        " flagged for review");
-                    flagForManualReview((String) payment.get("id"));
-                }
-            }
-
-            return payment;
-        } else {
-            throw new Exception("Payment processing failed: " + response.body());
-        }
-    }
-
-    private double checkFraudIndicators(Map<String, Object> paymentData) {
-        double riskScore = 0.0;
-
-        // Check for suspicious amounts
-        Double amount = (Double) paymentData.get("amount");
-        if (amount != null) {
-            if (amount > 5000) {
-                riskScore += 0.2;
-            }
-            if (amount == 9999.99 || amount == 10000.00) {
-                riskScore += 0.3;
-            }
-        }
-
-        // Check customer information
-        Map<String, Object> customer = (Map<String, Object>) paymentData.get("customer");
-        if (customer != null) {
-            if (customer.get("phone") == null) {
-                riskScore += 0.1;
-            }
-            String email = (String) customer.get("email");
-            if (email != null && email.toLowerCase().contains("temp")) {
-                riskScore += 0.2;
-            }
-        }
-
-        // Check billing address
-        Map<String, Object> paymentMethod = (Map<String, Object>)
-            paymentData.get("payment_method");
-        if (paymentMethod != null) {
-            Map<String, Object> billingAddress = (Map<String, Object>)
-                paymentMethod.get("billing_address");
-            if (billingAddress != null && billingAddress.get("postal_code") == null) {
-                riskScore += 0.1;
-            }
-        }
-
-        return Math.min(riskScore, 1.0);
-    }
-
-    public void flagForManualReview(String paymentId) throws Exception {
-        Map<String, Object> data = new HashMap<>();
-        data.put("payment_id", paymentId);
-        data.put("reason", "High fraud score detected");
-        data.put("priority", "high");
-
-        String requestBody = objectMapper.writeValueAsString(data);
-
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create(baseUrl + "/collections/payments/" + paymentId + "/flag"))
-            .header("Authorization", "Bearer " + apiKey)
-            .header("Content-Type", "application/json")
-            .POST(HttpRequest.BodyPublishers.ofString(requestBody))
-            .build();
-
-        httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-    }
-
-    public Map<String, Object> createSubscriptionWithTrial(Map<String, Object> subscriptionData)
-            throws Exception {
-
-        String requestBody = objectMapper.writeValueAsString(subscriptionData);
-
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create(baseUrl + "/collections/subscriptions"))
-            .header("Authorization", "Bearer " + apiKey)
-            .header("Content-Type", "application/json")
-            .POST(HttpRequest.BodyPublishers.ofString(requestBody))
-            .build();
-
-        HttpResponse<String> response = httpClient.send(request,
-            HttpResponse.BodyHandlers.ofString());
-
-        if (response.statusCode() == 200) {
-            return objectMapper.readValue(response.body(), Map.class);
-        } else {
-            throw new Exception("Subscription creation failed: " + response.body());
-        }
-    }
-
-    // Usage example
-    public static void main(String[] args) {
-        try {
-            PasspointCollection collectionClient = new PasspointCollection("your_api_key");
-
-            // Process one-time payment
-            Map<String, Object> paymentData = new HashMap<>();
-            paymentData.put("amount", 149.99);
-            paymentData.put("currency", "USD");
-            paymentData.put("description", "Online Course - Advanced React");
-            paymentData.put("reference", "course_react_adv_001");
-            paymentData.put("capture", true);
-            paymentData.put("callback_url", "https://yourapp.com/webhooks/payment");
-
-            Map<String, Object> payment = collectionClient.processPaymentWithFraudCheck(paymentData);
-
-            System.out.println("Payment processed successfully: " + payment.get("id"));
-            System.out.println("Amount: $" + payment.get("amount"));
-            System.out.println("Status: " + payment.get("status"));
-
-        } catch (Exception e) {
-            System.err.println("Payment failed: " + e.getMessage());
-        }
-    }
-}`}</CodeBlock>
-                    </div>
-                </section>
+            <div className="bg-orange-50 dark:bg-orange-950/20 border border-orange-200 dark:border-orange-800 rounded-xl p-6 lg:p-8 shadow-sm mb-6">
+              <div className="flex">
+                <AlertTriangle className="h-5 w-5 text-orange-600 dark:text-orange-400 flex-shrink-0 mt-0.5 mr-3"/>
+                <div>
+                  <h3 className="text-sm font-semibold text-orange-800 dark:text-orange-200">Fraud Protection</h3>
+                  <p className="text-orange-700 dark:text-orange-300 text-sm mt-1">
+                    All payments are automatically screened using machine learning models and risk assessment algorithms.
+                  </p>
+                </div>
+              </div>
             </div>
 
-            {/* Pagination Navigation */}
-            <div
-                className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-8 mt-8 border-t border-gray-200 dark:border-gray-800">
-                <Link to="/transfer/payout">
-                    <Button
-                        variant="ghost"
-                        className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 justify-start"
-                    >
-                        <ArrowLeft className="h-4 w-4 flex-shrink-0"/>
-                        <div className="text-left min-w-0">
-                            <div className="text-xs text-gray-500 uppercase tracking-wide">Previous</div>
-                            <div className="text-sm font-medium truncate">Payout</div>
-                        </div>
-                    </Button>
-                </Link>
-
-                <Link to="/global-callback-setup">
-                    <Button
-                        variant="ghost"
-                        className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 justify-end"
-                    >
-                        <div className="text-right min-w-0">
-                            <div className="text-xs text-gray-500 uppercase tracking-wide">Next</div>
-                            <div className="text-sm font-medium truncate">Global Callback Setup</div>
-                        </div>
-                        <ArrowRight className="h-4 w-4 flex-shrink-0"/>
-                    </Button>
-                </Link>
+            <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="bg-gray-50 dark:bg-gray-800">
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Fraud Check</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Description</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Action on Failure</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                    <tr>
+                      <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">CVV Verification</td>
+                      <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Validates card security code</td>
+                      <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Payment declined</td>
+                    </tr>
+                    <tr>
+                      <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">Address Verification</td>
+                      <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Matches billing address with card issuer</td>
+                      <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Manual review required</td>
+                    </tr>
+                    <tr>
+                      <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">Velocity Checking</td>
+                      <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Monitors payment frequency and amounts</td>
+                      <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Temporary block applied</td>
+                    </tr>
+                    <tr>
+                      <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">Device Fingerprinting</td>
+                      <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Analyzes device and browser characteristics</td>
+                      <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Risk score increased</td>
+                    </tr>
+                    <tr>
+                      <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">Machine Learning</td>
+                      <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">AI-powered fraud pattern detection</td>
+                      <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Payment flagged for review</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-
-            {/* Footer */}
-            <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
-                <p className="text-gray-500 text-sm">All rights reserved</p>
-            </footer>
+          </section>
         </div>
-    );
+
+        {/* Pagination Navigation */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-8 mt-8 border-t border-gray-200 dark:border-gray-800">
+          <Link to="/transfer/payout">
+            <Button
+              variant="ghost"
+              className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 justify-start"
+            >
+              <ArrowLeft className="h-4 w-4 flex-shrink-0"/>
+              <div className="text-left min-w-0">
+                <div className="text-xs text-gray-500 uppercase tracking-wide">Previous</div>
+                <div className="text-sm font-medium truncate">Payout</div>
+              </div>
+            </Button>
+          </Link>
+
+          <Link to="/global-callback-setup">
+            <Button
+              variant="ghost"
+              className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 justify-end"
+            >
+              <div className="text-right min-w-0">
+                <div className="text-xs text-gray-500 uppercase tracking-wide">Next</div>
+                <div className="text-sm font-medium truncate">Global Callback Setup</div>
+              </div>
+              <ArrowRight className="h-4 w-4 flex-shrink-0"/>
+            </Button>
+          </Link>
+        </div>
+
+        {/* Footer */}
+        <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
+          <p className="text-gray-500 text-sm">All rights reserved</p>
+        </footer>
+      </div>
+    </div>
+  );
 };
 
 export default Collection;

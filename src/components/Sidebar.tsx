@@ -9,19 +9,23 @@ interface SidebarProps {
     onClose: () => void;
 }
 
+interface NavItem {
+    icon: React.ComponentType<{ className?: string }>;
+    label: string;
+    href: string;
+    isActive?: boolean;
+    children?: NavItem[];
+}
+
 interface NavSection {
     title: string;
-    items: {
-        icon: React.ComponentType<{ className?: string }>;
-        label: string;
-        href: string;
-        isActive?: boolean;
-    }[];
+    items: NavItem[];
 }
 
 const Sidebar = ({isOpen, onClose}: SidebarProps) => {
     const location = useLocation();
-    const [openSections, setOpenSections] = useState<string[]>(["GUIDES", "GETTING STARTED"]);
+    const [openSections, setOpenSections] = useState<string[]>(["GETTING STARTED", "API DOCUMENTATION"]);
+    const [openNavItems, setOpenNavItems] = useState<string[]>(["Transfer"]);
 
     const toggleSection = (section: string) => {
         setOpenSections(prev =>
@@ -31,21 +35,48 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
         );
     };
 
+    const toggleNavItem = (itemLabel: string) => {
+        setOpenNavItems(prev =>
+            prev.includes(itemLabel)
+                ? prev.filter(s => s !== itemLabel)
+                : [...prev, itemLabel]
+        );
+    };
+
     const navSections: NavSection[] = [
-        {
-            title: "GUIDES",
-            items: [
-                {icon: BarChart3, label: "API Rate Limits", href: "/api-rate-limits"},
-                {icon: Book, label: "Quick Guides", href: "/quick-guides"},
-                {icon: FileText, label: "Transaction Dynamics on Passpoint", href: "/transaction-dynamics"},
-            ]
-        },
         {
             title: "GETTING STARTED",
             items: [
                 {icon: Home, label: "Homepage", href: "/"},
                 {icon: FileText, label: "Introduction", href: "/introduction"},
                 {icon: Settings, label: "API Integrations", href: "/api-integrations"},
+            ]
+        },
+        {
+            title: "API DOCUMENTATION",
+            items: [
+                {icon: Settings, label: "Authentication", href: "/authentication"},
+                {icon: BarChart3, label: "Wallet", href: "/wallet"},
+                {
+                    icon: FileText,
+                    label: "Transfer",
+                    href: "/transfer",
+                    children: [
+                        {icon: BarChart3, label: "Payout", href: "/transfer/payout"},
+                        {icon: FileText, label: "Collection", href: "/transfer/collection"},
+                    ]
+                },
+                {icon: Settings, label: "Global Callback Setup", href: "/global-callback-setup"},
+                {icon: FileText, label: "Virtual Card v2", href: "/virtual-card-v2"},
+                {icon: BarChart3, label: "Card Acquiring", href: "/card-acquiring"},
+            ]
+        },
+        {
+            title: "GUIDES",
+            items: [
+                {icon: BarChart3, label: "API Rate Limits", href: "/api-rate-limits"},
+                {icon: Book, label: "Quick Guides", href: "/quick-guides"},
+                {icon: FileText, label: "Transaction Dynamics on Passpoint", href: "/transaction-dynamics"},
             ]
         },
         {
@@ -110,26 +141,103 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                 <div className="space-y-1 ml-2">
                                     {section.items.map((item) => {
                                         const isActive = location.pathname === item.href;
+                                        const hasChildren = item.children && item.children.length > 0;
+                                        const isExpanded = openNavItems.includes(item.label);
+                                        const hasActiveChild = item.children?.some(child => location.pathname === child.href);
+
                                         return (
-                                            <Link
-                                                key={item.href}
-                                                to={item.href}
-                                                onClick={() => {
-                                                    // Only close sidebar on mobile/tablet (lg breakpoint and below)
-                                                    if (window.innerWidth < 1024) {
-                                                        onClose();
-                                                    }
-                                                }}
-                                                className={cn(
-                                                    "flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors",
-                                                    isActive
-                                                        ? "bg-brand-500 text-white"
-                                                        : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                                            <div key={item.href} className="space-y-1">
+                                                {hasChildren ? (
+                                                    <div>
+                                                        {/* Expandable nav item */}
+                                                        <div className="flex items-center">
+                                                            <Link
+                                                                to={item.href}
+                                                                onClick={() => {
+                                                                    // Only close sidebar on mobile/tablet (lg breakpoint and below)
+                                                                    if (window.innerWidth < 1024) {
+                                                                        onClose();
+                                                                    }
+                                                                }}
+                                                                className={cn(
+                                                                    "flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors flex-1",
+                                                                    isActive || hasActiveChild
+                                                                        ? "bg-brand-500 text-white"
+                                                                        : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                                                                )}
+                                                            >
+                                                                <item.icon className="h-4 w-4"/>
+                                                                <span className="truncate">{item.label}</span>
+                                                            </Link>
+                                                            <button
+                                                                onClick={() => toggleNavItem(item.label)}
+                                                                className={cn(
+                                                                    "p-1 ml-1 rounded-md transition-colors",
+                                                                    isActive || hasActiveChild
+                                                                        ? "text-white hover:bg-brand-600"
+                                                                        : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                                                                )}
+                                                            >
+                                                                {isExpanded ? (
+                                                                    <ChevronDown className="h-3 w-3"/>
+                                                                ) : (
+                                                                    <ChevronRight className="h-3 w-3"/>
+                                                                )}
+                                                            </button>
+                                                        </div>
+
+                                                        {/* Child items */}
+                                                        {isExpanded && (
+                                                            <div className="ml-6 space-y-1 mt-1">
+                                                                {item.children!.map((child) => {
+                                                                    const isChildActive = location.pathname === child.href;
+                                                                    return (
+                                                                        <Link
+                                                                            key={child.href}
+                                                                            to={child.href}
+                                                                            onClick={() => {
+                                                                                // Only close sidebar on mobile/tablet (lg breakpoint and below)
+                                                                                if (window.innerWidth < 1024) {
+                                                                                    onClose();
+                                                                                }
+                                                                            }}
+                                                                            className={cn(
+                                                                                "flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors",
+                                                                                isChildActive
+                                                                                    ? "bg-brand-500 text-white"
+                                                                                    : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                                                                            )}
+                                                                        >
+                                                                            <child.icon className="h-4 w-4"/>
+                                                                            <span className="truncate">{child.label}</span>
+                                                                        </Link>
+                                                                    );
+                                                                })}
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                ) : (
+                                                    /* Regular nav item */
+                                                    <Link
+                                                        to={item.href}
+                                                        onClick={() => {
+                                                            // Only close sidebar on mobile/tablet (lg breakpoint and below)
+                                                            if (window.innerWidth < 1024) {
+                                                                onClose();
+                                                            }
+                                                        }}
+                                                        className={cn(
+                                                            "flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors",
+                                                            isActive
+                                                                ? "bg-brand-500 text-white"
+                                                                : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                                                        )}
+                                                    >
+                                                        <item.icon className="h-4 w-4"/>
+                                                        <span className="truncate">{item.label}</span>
+                                                    </Link>
                                                 )}
-                                            >
-                                                <item.icon className="h-4 w-4"/>
-                                                <span className="truncate">{item.label}</span>
-                                            </Link>
+                                            </div>
                                         );
                                     })}
                                 </div>

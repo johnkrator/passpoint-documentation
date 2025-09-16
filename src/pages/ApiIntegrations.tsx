@@ -4,86 +4,98 @@ import CodeBlock from "@/components/CodeBlock";
 
 const ApiIntegrations = () => {
     return (
-        <div className="px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-            <div className="prose prose-invert max-w-none">
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">API Integrations</h1>
+        <div className="min-h-screen bg-white dark:bg-gray-900">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+                <div className="max-w-none">
+                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">API Integrations</h1>
 
-                <p className="text-gray-700 dark:text-gray-300 text-lg mb-8 leading-relaxed">
-                    Learn how to integrate Passpoint APIs into your application with comprehensive guides, code examples, and
-                    best practices for production deployments.
-                </p>
+                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+                        Learn how to integrate Passpoint APIs into your application with comprehensive guides, code examples,
+                        and best practices for production deployments.
+                    </p>
 
-                <section className="mb-12">
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Integration Methods</h2>
+                <section className="mb-16">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Integration Methods</h2>
 
-                    <div className="space-y-6">
-                        <div
-                            className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
-                            <div className="flex items-start space-x-4">
-                                <Terminal className="h-8 w-8 text-brand-500 flex-shrink-0 mt-1"/>
-                                <div>
-                                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">REST
-                                        API</h3>
-                                    <p className="text-gray-700 dark:text-gray-300 mb-4">
+                    <div className="space-y-8">
+                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
+                            <div className="flex flex-col lg:flex-row lg:items-start gap-6">
+                                <div className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center">
+                                    <Terminal className="h-12 w-12 text-brand-500 flex-shrink-0"/>
+                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">REST API</h3>
+                                </div>
+                                <div className="flex-1">
+                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
                                         Direct HTTP calls to our RESTful endpoints with JSON payloads. Perfect for
                                         custom integrations and server-side applications.
                                     </p>
-                                    <CodeBlock language="bash">{`curl -X POST https://api.passpoint.com/v1/transactions \
- -H "Authorization: Bearer YOUR_API_KEY" \
- -H "Content-Type: application/json" \
- -d '{"amount": 1000, "currency": "USD"}'`}</CodeBlock>
+                                    <CodeBlock language="bash">{`curl -X POST https://api.passpoint.com/v1/transactions \\
+  -H "Authorization: Bearer YOUR_API_KEY" \\
+  -H "Content-Type: application/json" \\
+  -d '{"amount": 1000, "currency": "USD"}'`}
+                                    </CodeBlock>
                                 </div>
                             </div>
                         </div>
 
-                        <div
-                            className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
-                            <div className="flex items-start space-x-4">
-                                <Key className="h-8 w-8 text-green-500 flex-shrink-0 mt-1"/>
-                                <div>
-                                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">SDKs</h3>
-                                    <p className="text-gray-700 dark:text-gray-300 mb-4">
+                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
+                            <div className="flex flex-col lg:flex-row lg:items-start gap-6">
+                                <div className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center">
+                                    <Key className="h-12 w-12 text-green-500 flex-shrink-0"/>
+                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">SDKs</h3>
+                                </div>
+                                <div className="flex-1">
+                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
                                         Official libraries for popular programming languages with built-in error
                                         handling and retry logic.
                                     </p>
-                                    <div className="grid gap-4 sm:grid-cols-2">
-                                        <div className="bg-gray-100 dark:bg-gray-800 rounded p-3">
-                                            <div
-                                                className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Node.js
-                                            </div>
-                                            <div className="text-xs text-gray-600 dark:text-gray-400 font-mono break-all">npm
-                                                install @passpoint/sdk
-                                            </div>
+                                    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                                        <div className="bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 rounded-lg p-4 hover:shadow-sm transition-shadow">
+                                            <div className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Node.js</div>
+                                            <div className="text-xs text-gray-600 dark:text-gray-400 font-mono">npm install @passpoint/sdk</div>
                                         </div>
-                                        <div className="bg-gray-100 dark:bg-gray-800 rounded p-3">
-                                            <div
-                                                className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Java
-                                            </div>
-                                            <div className="text-xs text-gray-600 dark:text-gray-400 font-mono break-all">mvn
-                                                dependency: com.passpoint:passpoint-java
-                                            </div>
+                                        <div className="bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 rounded-lg p-4 hover:shadow-sm transition-shadow">
+                                            <div className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Python</div>
+                                            <div className="text-xs text-gray-600 dark:text-gray-400 font-mono">pip install passpoint-python</div>
+                                        </div>
+                                        <div className="bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 rounded-lg p-4 hover:shadow-sm transition-shadow">
+                                            <div className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Java</div>
+                                            <div className="text-xs text-gray-600 dark:text-gray-400 font-mono">com.passpoint:passpoint-java</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div
-                            className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
-                            <div className="flex items-start space-x-4">
-                                <Globe className="h-8 w-8 text-purple-500 flex-shrink-0 mt-1"/>
-                                <div>
-                                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Webhooks</h3>
-                                    <p className="text-gray-700 dark:text-gray-300 mb-4">
+                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
+                            <div className="flex flex-col lg:flex-row lg:items-start gap-6">
+                                <div className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center">
+                                    <Globe className="h-12 w-12 text-purple-500 flex-shrink-0"/>
+                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Webhooks</h3>
+                                </div>
+                                <div className="flex-1">
+                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
                                         Receive real-time notifications about transaction events, user actions, and
                                         system updates.
                                     </p>
-                                    <ul className="space-y-2 text-gray-600 dark:text-gray-400">
-                                        <li>• Transaction status changes</li>
-                                        <li>• Payment confirmations</li>
-                                        <li>• Account updates</li>
-                                        <li>• Security alerts</li>
-                                    </ul>
+                                    <div className="grid gap-3 sm:grid-cols-2">
+                                        <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                                            <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                                            <span>Transaction status changes</span>
+                                        </div>
+                                        <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                                            <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                                            <span>Payment confirmations</span>
+                                        </div>
+                                        <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                                            <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                                            <span>Account updates</span>
+                                        </div>
+                                        <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                                            <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                                            <span>Security alerts</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -217,6 +229,7 @@ async function createTransaction() {
             <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
                 <p className="text-gray-500 text-sm">All rights reserved</p>
             </footer>
+            </div>
         </div>
     );
 };

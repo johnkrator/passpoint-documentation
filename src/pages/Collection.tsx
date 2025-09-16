@@ -17,7 +17,7 @@ import CodeBlock from "@/components/CodeBlock";
 const Collection = () => {
     return (
         <div className="px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-            <div className="prose prose-invert max-w-none">
+            <div className="prose prose-invert max-w-4xl">
                 <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Collection</h1>
 
                 <p className="text-gray-700 dark:text-gray-300 text-lg mb-8 leading-relaxed">

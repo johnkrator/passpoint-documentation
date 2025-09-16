@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, Globe, Shield, Zap, CreditCard, Smartphone, DollarSign } from "lucide-react";
+import { ArrowLeft, ArrowRight, Globe, Shield, Zap, CreditCard, Smartphone, DollarSign, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import CodeBlock from "@/components/CodeBlock";
@@ -101,13 +101,25 @@ const Introduction = () => {
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">API Integration</h2>
 
+          <div className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-xl p-6 mb-6 shadow-sm">
+            <div className="flex items-start">
+              <CheckCircle className="h-6 w-6 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5 mr-4"/>
+              <div>
+                <h3 className="text-lg font-semibold text-green-800 dark:text-green-200 mb-2">Dashboard Access</h3>
+                <p className="text-green-700 dark:text-green-300">
+                  Your <strong>API keys</strong> and <strong>merchant IDs</strong> can be found in the <strong>Developers section</strong> of your Passpoint dashboard. Access your credentials securely through the merchant portal.
+                </p>
+              </div>
+            </div>
+          </div>
+
           <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-xl p-6 mb-6">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Quick Integration Steps</h3>
             <div className="space-y-3 text-gray-700 dark:text-gray-300">
               <div className="flex items-start">
                 <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-0.5 flex-shrink-0">1</span>
                 <div>
-                  <strong>Get API Credentials:</strong> Obtain your merchant credentials and API keys from the dashboard
+                  <strong>Get API Credentials:</strong> Obtain your merchant credentials and API keys from the Developers section of your dashboard
                 </div>
               </div>
               <div className="flex items-start">

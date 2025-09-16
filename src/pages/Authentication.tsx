@@ -1,5 +1,6 @@
 import { ArrowLeft, ArrowRight, Key, Shield, Lock, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import CodeBlock from "@/components/CodeBlock";
 
 const Authentication = () => {
   return (
@@ -41,27 +42,22 @@ const Authentication = () => {
                   <div className="space-y-4">
                     <div>
                       <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                      <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 font-mono text-sm overflow-x-auto">
-                        <span className="text-green-600 dark:text-green-400">POST</span> /api/v1/auth/api-keys
-                      </div>
+                      <CodeBlock>{`POST /api/v1/auth/api-keys`}</CodeBlock>
                     </div>
 
                     <div>
                       <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request Body</h4>
-                      <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                        <pre className="text-gray-900 dark:text-gray-100">{`{
+                      <CodeBlock language="json">{`{
   "name": "Production API Key",
   "permissions": ["read", "write"],
   "environment": "live",
   "expires_at": "2024-12-31T23:59:59Z"
-}`}</pre>
-                      </div>
+}`}</CodeBlock>
                     </div>
 
                     <div>
                       <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                      <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                        <pre className="text-gray-900 dark:text-gray-100">{`{
+                      <CodeBlock language="json">{`{
   "id": "key_1234567890",
   "name": "Production API Key",
   "key": "sk_live_1234567890abcdef",
@@ -69,8 +65,7 @@ const Authentication = () => {
   "environment": "live",
   "created_at": "2024-01-15T10:30:00Z",
   "expires_at": "2024-12-31T23:59:59Z"
-}`}</pre>
-                      </div>
+}`}</CodeBlock>
                     </div>
                   </div>
                 </div>
@@ -90,22 +85,17 @@ const Authentication = () => {
                   <div className="space-y-4">
                     <div>
                       <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                      <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 font-mono text-sm overflow-x-auto">
-                        <span className="text-blue-600 dark:text-blue-400">GET</span> /api/v1/auth/verify
-                      </div>
+                      <CodeBlock>{`GET /api/v1/auth/verify`}</CodeBlock>
                     </div>
 
                     <div>
                       <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Headers</h4>
-                      <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                        <div className="text-brand-600 dark:text-brand-400">Authorization: Bearer sk_live_1234567890abcdef</div>
-                      </div>
+                      <CodeBlock>{`Authorization: Bearer sk_live_1234567890abcdef`}</CodeBlock>
                     </div>
 
                     <div>
                       <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                      <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                        <pre className="text-gray-900 dark:text-gray-100">{`{
+                      <CodeBlock language="json">{`{
   "valid": true,
   "key_id": "key_1234567890",
   "permissions": ["read", "write"],
@@ -119,8 +109,7 @@ const Authentication = () => {
     "remaining": 999,
     "reset": 1642680000
   }
-}`}</pre>
-                      </div>
+}`}</CodeBlock>
                     </div>
                   </div>
                 </div>
@@ -147,16 +136,12 @@ const Authentication = () => {
                   <div className="space-y-6">
                     <div>
                       <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Step 1: Authorization Request</h4>
-                      <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                        <div className="break-all">
-                          <span className="text-blue-600 dark:text-blue-400">GET</span> https://auth.passpoint.com/oauth/authorize?
-                          <br />client_id=your_client_id&
-                          <br />response_type=code&
-                          <br />redirect_uri=https://yourapp.com/callback&
-                          <br />scope=read+write&
-                          <br />state=random_state_string
-                        </div>
-                      </div>
+                      <CodeBlock>{`GET https://auth.passpoint.com/oauth/authorize?
+client_id=your_client_id&
+response_type=code&
+redirect_uri=https://yourapp.com/callback&
+scope=read+write&
+state=random_state_string`}</CodeBlock>
                     </div>
 
                     <div>
@@ -164,35 +149,29 @@ const Authentication = () => {
                       <div className="space-y-3">
                         <div>
                           <h5 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h5>
-                          <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 font-mono text-sm overflow-x-auto">
-                            <span className="text-green-600 dark:text-green-400">POST</span> /oauth/token
-                          </div>
+                          <CodeBlock>{`POST /oauth/token`}</CodeBlock>
                         </div>
 
                         <div>
                           <h5 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request Body</h5>
-                          <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                            <pre className="text-gray-900 dark:text-gray-100">{`{
+                          <CodeBlock language="json">{`{
   "grant_type": "authorization_code",
   "code": "auth_code_from_step_1",
   "redirect_uri": "https://yourapp.com/callback",
   "client_id": "your_client_id",
   "client_secret": "your_client_secret"
-}`}</pre>
-                          </div>
+}`}</CodeBlock>
                         </div>
 
                         <div>
                           <h5 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h5>
-                          <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                            <pre className="text-gray-900 dark:text-gray-100">{`{
+                          <CodeBlock language="json">{`{
   "access_token": "at_1234567890abcdef",
   "token_type": "Bearer",
   "expires_in": 3600,
   "refresh_token": "rt_1234567890abcdef",
   "scope": "read write"
-}`}</pre>
-                          </div>
+}`}</CodeBlock>
                         </div>
                       </div>
                     </div>
@@ -208,9 +187,10 @@ const Authentication = () => {
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Code Examples</h2>
 
           <div className="space-y-6">
-            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6">
-              <div className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Node.js - API Key Authentication</div>
-              <pre className="text-sm text-gray-900 dark:text-gray-100 overflow-x-auto">{`const axios = require('axios');
+            <CodeBlock
+              title="Node.js - API Key Authentication"
+              language="javascript"
+            >{`const axios = require('axios');
 
 const passpoint = axios.create({
   baseURL: 'https://api.passpoint.com/v1',
@@ -228,42 +208,63 @@ async function getUser() {
   } catch (error) {
     console.error('Authentication failed:', error.response.data);
   }
-}`}</pre>
-            </div>
+}`}</CodeBlock>
 
-            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6">
-              <div className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Python - OAuth Token Refresh</div>
-              <pre className="text-sm text-gray-900 dark:text-gray-100 overflow-x-auto">{`import requests
-import json
+            <CodeBlock
+              title="Java - OAuth Token Refresh"
+              language="java"
+            >{`import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.URI;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.Map;
+import java.util.HashMap;
 
-def refresh_access_token(refresh_token, client_id, client_secret):
-    url = 'https://auth.passpoint.com/oauth/token'
+public class PasspointAuth {
+    private final HttpClient httpClient = HttpClient.newHttpClient();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
-    data = {
-        'grant_type': 'refresh_token',
-        'refresh_token': refresh_token,
-        'client_id': client_id,
-        'client_secret': client_secret
+    public Map<String, Object> refreshAccessToken(String refreshToken, String clientId, String clientSecret)
+            throws Exception {
+        String url = "https://auth.passpoint.com/oauth/token";
+
+        String requestBody = String.format(
+            "grant_type=refresh_token&refresh_token=%s&client_id=%s&client_secret=%s",
+            refreshToken, clientId, clientSecret
+        );
+
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create(url))
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+            .build();
+
+        HttpResponse<String> response = httpClient.send(request,
+            HttpResponse.BodyHandlers.ofString());
+
+        if (response.statusCode() == 200) {
+            return objectMapper.readValue(response.body(), Map.class);
+        } else {
+            throw new Exception("Token refresh failed: " + response.body());
+        }
     }
 
-    response = requests.post(url, data=data)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        raise Exception(f'Token refresh failed: {response.text}')
-
-# Usage
-try:
-    new_tokens = refresh_access_token(
-        refresh_token='rt_1234567890abcdef',
-        client_id='your_client_id',
-        client_secret='your_client_secret'
-    )
-    print('New access token:', new_tokens['access_token'])
-except Exception as e:
-    print('Error:', e)`}</pre>
-            </div>
+    // Usage
+    public static void main(String[] args) {
+        try {
+            PasspointAuth auth = new PasspointAuth();
+            Map<String, Object> newTokens = auth.refreshAccessToken(
+                "rt_1234567890abcdef",
+                "your_client_id",
+                "your_client_secret"
+            );
+            System.out.println("New access token: " + newTokens.get("access_token"));
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+}`}</CodeBlock>
           </div>
         </section>
       </div>

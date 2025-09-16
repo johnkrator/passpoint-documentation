@@ -1,5 +1,6 @@
 import { ArrowLeft, ArrowRight, Send, ArrowRightLeft, Clock, CheckCircle, XCircle, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import CodeBlock from "@/components/CodeBlock";
 
 const Transfer = () => {
   return (
@@ -27,15 +28,12 @@ const Transfer = () => {
                 <div className="space-y-4">
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 font-mono text-sm overflow-x-auto">
-                      <span className="text-green-600 dark:text-green-400">POST</span> /api/v1/transfers
-                    </div>
+                    <CodeBlock>{`POST /api/v1/transfers`}</CodeBlock>
                   </div>
 
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request Body</h4>
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                      <pre className="text-gray-900 dark:text-gray-100">{`{
+                    <CodeBlock language="json">{`{
   "source": {
     "type": "wallet",
     "id": "wallet_1234567890"
@@ -57,14 +55,12 @@ const Transfer = () => {
     "transfer_type": "salary"
   },
   "callback_url": "https://yourapp.com/webhooks/transfer"
-}`}</pre>
-                    </div>
+}`}</CodeBlock>
                   </div>
 
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                      <pre className="text-gray-900 dark:text-gray-100">{`{
+                    <CodeBlock language="json">{`{
   "id": "transfer_abcdef123456",
   "status": "pending",
   "source": {
@@ -87,8 +83,7 @@ const Transfer = () => {
   },
   "estimated_completion": "2024-01-16T14:00:00Z",
   "created_at": "2024-01-15T10:30:00Z"
-}`}</pre>
-                    </div>
+}`}</CodeBlock>
                   </div>
                 </div>
               </div>
@@ -113,15 +108,12 @@ const Transfer = () => {
                   <div className="space-y-4">
                     <div>
                       <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                      <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 font-mono text-sm overflow-x-auto">
-                        <span className="text-blue-600 dark:text-blue-400">GET</span> /api/v1/transfers/{`{transfer_id}`}
-                      </div>
+                      <CodeBlock>{`GET /api/v1/transfers/{transfer_id}`}</CodeBlock>
                     </div>
 
                     <div>
                       <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                      <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                        <pre className="text-gray-900 dark:text-gray-100">{`{
+                      <CodeBlock language="json">{`{
   "id": "transfer_abcdef123456",
   "status": "completed",
   "source": {
@@ -160,8 +152,7 @@ const Transfer = () => {
   ],
   "created_at": "2024-01-15T10:30:00Z",
   "completed_at": "2024-01-16T14:22:00Z"
-}`}</pre>
-                      </div>
+}`}</CodeBlock>
                     </div>
                   </div>
                 </div>
@@ -233,15 +224,12 @@ const Transfer = () => {
                 <div className="space-y-4">
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 font-mono text-sm overflow-x-auto">
-                      <span className="text-green-600 dark:text-green-400">POST</span> /api/v1/transfers/bulk
-                    </div>
+                    <CodeBlock>{`POST /api/v1/transfers/bulk`}</CodeBlock>
                   </div>
 
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request Body</h4>
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                      <pre className="text-gray-900 dark:text-gray-100">{`{
+                    <CodeBlock language="json">{`{
   "batch_reference": "payroll_batch_202401_15",
   "description": "Monthly payroll batch",
   "transfers": [
@@ -275,14 +263,12 @@ const Transfer = () => {
     }
   ],
   "callback_url": "https://yourapp.com/webhooks/bulk-transfer"
-}`}</pre>
-                    </div>
+}`}</CodeBlock>
                   </div>
 
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                      <pre className="text-gray-900 dark:text-gray-100">{`{
+                    <CodeBlock language="json">{`{
   "batch_id": "batch_xyz789abc123",
   "batch_reference": "payroll_batch_202401_15",
   "status": "processing",
@@ -305,8 +291,7 @@ const Transfer = () => {
   ],
   "estimated_completion": "2024-01-16T16:00:00Z",
   "created_at": "2024-01-15T14:30:00Z"
-}`}</pre>
-                    </div>
+}`}</CodeBlock>
                   </div>
                 </div>
               </div>
@@ -365,9 +350,10 @@ const Transfer = () => {
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Code Examples</h2>
 
           <div className="space-y-6">
-            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6">
-              <div className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Node.js - Create Transfer with Status Tracking</div>
-              <pre className="text-sm text-gray-900 dark:text-gray-100 overflow-x-auto">{`const passpoint = require('@passpoint/sdk');
+            <CodeBlock
+              title="Node.js - Create Transfer with Status Tracking"
+              language="javascript"
+            >{`const passpoint = require('@passpoint/sdk');
 
 const client = new passpoint.Client({
   apiKey: process.env.PASSPOINT_API_KEY
@@ -429,109 +415,142 @@ createTransferWithTracking({
   amount: 1500.00,
   description: 'Monthly salary transfer',
   reference: 'payroll_202401_001'
-});`}</pre>
-            </div>
+});`}</CodeBlock>
 
-            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6">
-              <div className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Python - Bulk Transfer Processing</div>
-              <pre className="text-sm text-gray-900 dark:text-gray-100 overflow-x-auto">{`import requests
-import json
-import time
+            <CodeBlock
+              title="Java - Bulk Transfer Processing"
+              language="java"
+            >{`import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.URI;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.*;
+import java.time.Instant;
+import java.util.concurrent.TimeUnit;
 
-class PasspointTransfer:
-    def __init__(self, api_key):
-        self.api_key = api_key
-        self.base_url = 'https://api.passpoint.com/v1'
+public class PasspointTransfer {
+    private final String apiKey;
+    private final String baseUrl;
+    private final HttpClient httpClient;
+    private final ObjectMapper objectMapper;
 
-    def get_headers(self):
-        return {
-            'Authorization': f'Bearer {self.api_key}',
-            'Content-Type': 'application/json'
-        }
-
-    def create_bulk_transfer(self, transfers, batch_reference):
-        data = {
-            'batch_reference': batch_reference,
-            'description': f'Bulk transfer batch {batch_reference}',
-            'transfers': transfers,
-            'callback_url': 'https://yourapp.com/webhooks/bulk-transfer'
-        }
-
-        response = requests.post(
-            f'{self.base_url}/transfers/bulk',
-            json=data,
-            headers=self.get_headers()
-        )
-
-        if response.status_code == 200:
-            return response.json()
-        else:
-            raise Exception(f'Bulk transfer failed: {response.text}')
-
-    def monitor_batch_status(self, batch_id, max_wait_time=3600):
-        start_time = time.time()
-
-        while time.time() - start_time < max_wait_time:
-            response = requests.get(
-                f'{self.base_url}/transfers/bulk/{batch_id}',
-                headers=self.get_headers()
-            )
-
-            batch = response.json()
-            print(f'Batch {batch_id} status: {batch["status"]}')
-
-            if batch['status'] in ['completed', 'failed', 'partially_completed']:
-                return batch
-
-            time.sleep(30)  # Wait 30 seconds before next check
-
-        raise TimeoutError(f'Batch {batch_id} did not complete within {max_wait_time} seconds')
-
-# Usage
-transfer_client = PasspointTransfer('your_api_key')
-
-# Prepare transfers
-payroll_transfers = [
-    {
-        'source': {'type': 'wallet', 'id': 'company_wallet_main'},
-        'destination': {
-            'type': 'bank_account',
-            'account_number': '1234567890',
-            'routing_number': '021000021',
-            'account_holder_name': 'John Doe'
-        },
-        'amount': 3000.00,
-        'reference': 'salary_john_202401'
-    },
-    {
-        'source': {'type': 'wallet', 'id': 'company_wallet_main'},
-        'destination': {
-            'type': 'bank_account',
-            'account_number': '9876543210',
-            'routing_number': '021000021',
-            'account_holder_name': 'Jane Smith'
-        },
-        'amount': 3500.00,
-        'reference': 'salary_jane_202401'
+    public PasspointTransfer(String apiKey) {
+        this.apiKey = apiKey;
+        this.baseUrl = "https://api.passpoint.com/v1";
+        this.httpClient = HttpClient.newHttpClient();
+        this.objectMapper = new ObjectMapper();
     }
-]
 
-try:
-    # Create bulk transfer
-    batch = transfer_client.create_bulk_transfer(
-        transfers=payroll_transfers,
-        batch_reference='payroll_202401_15'
-    )
+    private HttpRequest.Builder getRequestBuilder() {
+        return HttpRequest.newBuilder()
+            .header("Authorization", "Bearer " + apiKey)
+            .header("Content-Type", "application/json");
+    }
 
-    print(f'Bulk transfer created: {batch["batch_id"]}')
+    public Map<String, Object> createBulkTransfer(List<Map<String, Object>> transfers, String batchReference)
+            throws Exception {
+        Map<String, Object> data = new HashMap<>();
+        data.put("batch_reference", batchReference);
+        data.put("description", "Bulk transfer batch " + batchReference);
+        data.put("transfers", transfers);
+        data.put("callback_url", "https://yourapp.com/webhooks/bulk-transfer");
 
-    # Monitor completion
-    final_status = transfer_client.monitor_batch_status(batch['batch_id'])
-    print(f'Batch completed with status: {final_status["status"]}')
+        String requestBody = objectMapper.writeValueAsString(data);
 
-except Exception as e:
-    print(f'Error: {e}')`}</pre>
-            </div>
+        HttpRequest request = getRequestBuilder()
+            .uri(URI.create(baseUrl + "/transfers/bulk"))
+            .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+            .build();
+
+        HttpResponse<String> response = httpClient.send(request,
+            HttpResponse.BodyHandlers.ofString());
+
+        if (response.statusCode() == 200) {
+            return objectMapper.readValue(response.body(), Map.class);
+        } else {
+            throw new Exception("Bulk transfer failed: " + response.body());
+        }
+    }
+
+    public Map<String, Object> monitorBatchStatus(String batchId, int maxWaitTimeSeconds)
+            throws Exception {
+        long startTime = System.currentTimeMillis();
+        long maxWaitTimeMillis = maxWaitTimeSeconds * 1000L;
+
+        while (System.currentTimeMillis() - startTime < maxWaitTimeMillis) {
+            HttpRequest request = getRequestBuilder()
+                .uri(URI.create(baseUrl + "/transfers/bulk/" + batchId))
+                .GET()
+                .build();
+
+            HttpResponse<String> response = httpClient.send(request,
+                HttpResponse.BodyHandlers.ofString());
+
+            Map<String, Object> batch = objectMapper.readValue(response.body(), Map.class);
+            String status = (String) batch.get("status");
+
+            System.out.println("Batch " + batchId + " status: " + status);
+
+            if (Arrays.asList("completed", "failed", "partially_completed").contains(status)) {
+                return batch;
+            }
+
+            TimeUnit.SECONDS.sleep(30); // Wait 30 seconds before next check
+        }
+
+        throw new RuntimeException("Batch " + batchId + " did not complete within " + maxWaitTimeSeconds + " seconds");
+    }
+
+    // Usage
+    public static void main(String[] args) throws Exception {
+        PasspointTransfer transferClient = new PasspointTransfer("your_api_key");
+
+        // Prepare transfers
+        List<Map<String, Object>> payrollTransfers = Arrays.asList(
+            Map.of(
+                "source", Map.of("type", "wallet", "id", "company_wallet_main"),
+                "destination", Map.of(
+                    "type", "bank_account",
+                    "account_number", "1234567890",
+                    "routing_number", "021000021",
+                    "account_holder_name", "John Doe"
+                ),
+                "amount", 3000.00,
+                "reference", "salary_john_202401"
+            ),
+            Map.of(
+                "source", Map.of("type", "wallet", "id", "company_wallet_main"),
+                "destination", Map.of(
+                    "type", "bank_account",
+                    "account_number", "9876543210",
+                    "routing_number", "021000021",
+                    "account_holder_name", "Jane Smith"
+                ),
+                "amount", 3500.00,
+                "reference", "salary_jane_202401"
+            )
+        );
+
+        try {
+            // Create bulk transfer
+            Map<String, Object> batch = transferClient.createBulkTransfer(
+                payrollTransfers,
+                "payroll_202401_15"
+            );
+
+            System.out.println("Bulk transfer created: " + batch.get("batch_id"));
+
+            // Monitor completion
+            Map<String, Object> finalStatus = transferClient.monitorBatchStatus(
+                (String) batch.get("batch_id"), 3600);
+            System.out.println("Batch completed with status: " + finalStatus.get("status"));
+
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+}`}</CodeBlock>
           </div>
         </section>
       </div>

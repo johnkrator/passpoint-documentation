@@ -1,6 +1,7 @@
 import { ArrowLeft, ArrowRight, Webhook, Globe, Shield, Settings, CheckCircle, AlertTriangle, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import CodeBlock from "@/components/CodeBlock";
 
 const GlobalCallbackSetup = () => {
   return (
@@ -28,15 +29,12 @@ const GlobalCallbackSetup = () => {
                 <div className="space-y-4">
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 font-mono text-sm overflow-x-auto">
-                      <span className="text-green-600 dark:text-green-400">POST</span> /api/v1/webhooks/global
-                    </div>
+                    <CodeBlock>{`POST /api/v1/webhooks/global`}</CodeBlock>
                   </div>
 
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request Body</h4>
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                      <pre className="text-gray-900 dark:text-gray-100">{`{
+                    <CodeBlock language="json">{`{
   "url": "https://yourapp.com/webhooks/passpoint",
   "description": "Main webhook endpoint for all Passpoint events",
   "events": [
@@ -86,14 +84,12 @@ const GlobalCallbackSetup = () => {
     "team": "backend",
     "priority": "high"
   }
-}`}</pre>
-                    </div>
+}`}</CodeBlock>
                   </div>
 
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                      <pre className="text-gray-900 dark:text-gray-100">{`{
+                    <CodeBlock language="json">{`{
   "id": "webhook_global_abc123def456",
   "url": "https://yourapp.com/webhooks/passpoint",
   "description": "Main webhook endpoint for all Passpoint events",
@@ -125,8 +121,7 @@ const GlobalCallbackSetup = () => {
   },
   "created_at": "2024-01-15T10:30:00Z",
   "updated_at": "2024-01-15T10:30:00Z"
-}`}</pre>
-                    </div>
+}`}</CodeBlock>
                   </div>
                 </div>
               </div>
@@ -248,15 +243,15 @@ const GlobalCallbackSetup = () => {
                   <div className="space-y-4">
                     <div>
                       <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Signature Header</h4>
-                      <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 font-mono text-sm overflow-x-auto">
-                        <div className="text-brand-600 dark:text-brand-400">X-Passpoint-Signature: t=1642676400,v1=a2114d57b48eac39b9ad189dd8316235a7b4a8d21a10bd27519666489c69b503</div>
-                      </div>
+                      <CodeBlock>{`X-Passpoint-Signature: t=1642676400,v1=a2114d57b48eac39b9ad189dd8316235a7b4a8d21a10bd27519666489c69b503`}</CodeBlock>
                     </div>
 
                     <div>
                       <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Verification Example (Node.js)</h4>
-                      <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                        <pre className="text-gray-900 dark:text-gray-100">{`const crypto = require('crypto');
+                      <CodeBlock
+                        title="Verification Example (Node.js)"
+                        language="javascript"
+                      >{`const crypto = require('crypto');
 
 function verifyWebhookSignature(payload, signature, secret) {
   const elements = signature.split(',');
@@ -282,8 +277,7 @@ function verifyWebhookSignature(payload, signature, secret) {
   }
 
   return false;
-}`}</pre>
-                      </div>
+}`}</CodeBlock>
                     </div>
                   </div>
                 </div>
@@ -310,15 +304,12 @@ function verifyWebhookSignature(payload, signature, secret) {
                   <div className="space-y-4">
                     <div>
                       <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                      <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 font-mono text-sm overflow-x-auto">
-                        <span className="text-orange-600 dark:text-orange-400">PUT</span> /api/v1/webhooks/global/{`{webhook_id}`}
-                      </div>
+                      <CodeBlock>{`PUT /api/v1/webhooks/global/{webhook_id}`}</CodeBlock>
                     </div>
 
                     <div>
                       <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request Body</h4>
-                      <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                        <pre className="text-gray-900 dark:text-gray-100">{`{
+                      <CodeBlock language="json">{`{
   "url": "https://yourapp.com/webhooks/passpoint-v2",
   "description": "Updated webhook endpoint with enhanced security",
   "events": [
@@ -342,8 +333,7 @@ function verifyWebhookSignature(payload, signature, secret) {
       "203.0.113.0/24"
     ]
   }
-}`}</pre>
-                      </div>
+}`}</CodeBlock>
                     </div>
                   </div>
                 </div>
@@ -363,15 +353,12 @@ function verifyWebhookSignature(payload, signature, secret) {
                   <div className="space-y-4">
                     <div>
                       <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                      <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 font-mono text-sm overflow-x-auto">
-                        <span className="text-blue-600 dark:text-blue-400">GET</span> /api/v1/webhooks/global/{`{webhook_id}`}/deliveries
-                      </div>
+                      <CodeBlock>{`GET /api/v1/webhooks/global/{webhook_id}/deliveries`}</CodeBlock>
                     </div>
 
                     <div>
                       <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                      <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                        <pre className="text-gray-900 dark:text-gray-100">{`{
+                      <CodeBlock language="json">{`{
   "webhook_id": "webhook_global_abc123def456",
   "deliveries": [
     {
@@ -410,8 +397,7 @@ function verifyWebhookSignature(payload, signature, secret) {
     "success_rate": 98.7,
     "average_response_time_ms": 156
   }
-}`}</pre>
-                      </div>
+}`}</CodeBlock>
                     </div>
                   </div>
                 </div>
@@ -425,9 +411,10 @@ function verifyWebhookSignature(payload, signature, secret) {
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Event Payload Examples</h2>
 
           <div className="space-y-6">
-            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6">
-              <div className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Payment Succeeded Event</div>
-              <pre className="text-sm text-gray-900 dark:text-gray-100 overflow-x-auto">{`{
+            <CodeBlock
+              title="Payment Succeeded Event"
+              language="json"
+            >{`{
   "id": "evt_1234567890abcdef",
   "type": "payment.succeeded",
   "data": {
@@ -458,12 +445,12 @@ function verifyWebhookSignature(payload, signature, secret) {
     "id": "req_abc123def456",
     "idempotency_key": "payment_20240115_001"
   }
-}`}</pre>
-            </div>
+}`}</CodeBlock>
 
-            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6">
-              <div className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Transfer Completed Event</div>
-              <pre className="text-sm text-gray-900 dark:text-gray-100 overflow-x-auto">{`{
+            <CodeBlock
+              title="Transfer Completed Event"
+              language="json"
+            >{`{
   "id": "evt_abcdef1234567890",
   "type": "transfer.completed",
   "data": {
@@ -491,12 +478,12 @@ function verifyWebhookSignature(payload, signature, secret) {
     "id": "req_xyz789abc123",
     "idempotency_key": "transfer_payroll_20240115"
   }
-}`}</pre>
-            </div>
+}`}</CodeBlock>
 
-            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6">
-              <div className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Compliance Review Required Event</div>
-              <pre className="text-sm text-gray-900 dark:text-gray-100 overflow-x-auto">{`{
+            <CodeBlock
+              title="Compliance Review Required Event"
+              language="json"
+            >{`{
   "id": "evt_compliance_789abc",
   "type": "compliance.review_required",
   "data": {
@@ -523,8 +510,7 @@ function verifyWebhookSignature(payload, signature, secret) {
     "id": "req_compliance_review",
     "idempotency_key": "compliance_20240115_001"
   }
-}`}</pre>
-            </div>
+}`}</CodeBlock>
           </div>
         </section>
 
@@ -533,9 +519,10 @@ function verifyWebhookSignature(payload, signature, secret) {
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Code Examples</h2>
 
           <div className="space-y-6">
-            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6">
-              <div className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Node.js - Express Webhook Handler</div>
-              <pre className="text-sm text-gray-900 dark:text-gray-100 overflow-x-auto">{`const express = require('express');
+            <CodeBlock
+              title="Node.js - Express Webhook Handler"
+              language="javascript"
+            >{`const express = require('express');
 const crypto = require('crypto');
 const app = express();
 
@@ -668,243 +655,263 @@ function handleFraudAlert(alert) {
 
 app.listen(3000, () => {
   console.log('Webhook server running on port 3000');
-});`}</pre>
-            </div>
+});`}</CodeBlock>
 
-            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6">
-              <div className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Python - Flask Webhook Handler with Database Integration</div>
-              <pre className="text-sm text-gray-900 dark:text-gray-100 overflow-x-auto">{`from flask import Flask, request, jsonify
-import hmac
-import hashlib
-import time
-import json
-import logging
-from sqlalchemy import create_engine, text
-from datetime import datetime
+            <CodeBlock
+              title="Java - Spring Boot Webhook Handler with Database Integration"
+              language="java"
+            >{`import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import java.security.MessageDigest;
+import java.util.*;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.logging.Logger;
 
-app = Flask(__name__)
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+@SpringBootApplication
+@RestController
+public class PasspointWebhookHandler {
 
-# Database connection
-engine = create_engine('postgresql://user:password@localhost/database')
+    private static final Logger logger = Logger.getLogger(PasspointWebhookHandler.class.getName());
+    private static final String WEBHOOK_SECRET = "your_webhook_secret";
 
-@app.route('/webhooks/passpoint', methods=['POST'])
-def handle_webhook():
-    try:
-        # Get signature and payload
-        signature = request.headers.get('X-Passpoint-Signature')
-        payload = request.get_data()
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
-        if not verify_webhook_signature(payload, signature):
-            logger.warning('Invalid webhook signature')
-            return jsonify({'error': 'Unauthorized'}), 401
+    @Autowired
+    private ObjectMapper objectMapper;
 
-        # Parse event
-        event = json.loads(payload)
-        event_type = event['type']
-        event_data = event['data']['object']
+    public static void main(String[] args) {
+        SpringApplication.run(PasspointWebhookHandler.class, args);
+    }
 
-        logger.info(f'Processing webhook event: {event_type}')
+    @PostMapping("/webhooks/passpoint")
+    public ResponseEntity<Map<String, String>> handleWebhook(
+            @RequestBody String payload,
+            @RequestHeader("X-Passpoint-Signature") String signature) {
 
-        # Store webhook event for audit trail
-        store_webhook_event(event)
+        try {
+            // Verify webhook signature
+            if (!verifyWebhookSignature(payload, signature)) {
+                logger.warning("Invalid webhook signature");
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(Map.of("error", "Unauthorized"));
+            }
 
-        # Route to appropriate handler
-        handlers = {
-            'payment.succeeded': handle_payment_succeeded,
-            'payment.failed': handle_payment_failed,
-            'transfer.completed': handle_transfer_completed,
-            'payout.completed': handle_payout_completed,
-            'compliance.review_required': handle_compliance_review,
-            'fraud.alert_created': handle_fraud_alert,
-            'subscription.created': handle_subscription_created,
-            'subscription.cancelled': handle_subscription_cancelled
+            // Parse event
+            Map<String, Object> event = objectMapper.readValue(payload, Map.class);
+            String eventType = (String) event.get("type");
+            Map<String, Object> eventData = (Map<String, Object>)
+                ((Map<String, Object>) event.get("data")).get("object");
+
+            logger.info("Processing webhook event: " + eventType);
+
+            // Store webhook event for audit trail
+            storeWebhookEvent(event);
+
+            // Route to appropriate handler
+            switch (eventType) {
+                case "payment.succeeded":
+                    handlePaymentSucceeded(eventData, event);
+                    break;
+                case "payment.failed":
+                    handlePaymentFailed(eventData, event);
+                    break;
+                case "transfer.completed":
+                    handleTransferCompleted(eventData, event);
+                    break;
+                case "payout.completed":
+                    handlePayoutCompleted(eventData, event);
+                    break;
+                case "compliance.review_required":
+                    handleComplianceReview(eventData, event);
+                    break;
+                case "fraud.alert_created":
+                    handleFraudAlert(eventData, event);
+                    break;
+                case "subscription.created":
+                    handleSubscriptionCreated(eventData, event);
+                    break;
+                case "subscription.cancelled":
+                    handleSubscriptionCancelled(eventData, event);
+                    break;
+                default:
+                    logger.warning("No handler for event type: " + eventType);
+            }
+
+            return ResponseEntity.ok(Map.of("status", "success"));
+
+        } catch (Exception e) {
+            logger.severe("Webhook processing error: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(Map.of("error", "Internal server error"));
         }
+    }
 
-        handler = handlers.get(event_type)
-        if handler:
-            handler(event_data, event)
-        else:
-            logger.warning(f'No handler for event type: {event_type}')
+    private boolean verifyWebhookSignature(String payload, String signature) {
+        try {
+            String[] elements = signature.split(",");
+            long timestamp = Long.parseLong(elements[0].split("=")[1]);
+            List<String> signatures = Arrays.asList(Arrays.copyOfRange(elements, 1, elements.length));
 
-        return jsonify({'status': 'success'}), 200
+            // Check timestamp (5 minute tolerance)
+            long currentTime = Instant.now().getEpochSecond();
+            if (Math.abs(currentTime - timestamp) > 300) {
+                logger.warning("Webhook timestamp too old");
+                return false;
+            }
 
-    except Exception as e:
-        logger.error(f'Webhook processing error: {str(e)}')
-        return jsonify({'error': 'Internal server error'}), 500
+            // Create expected signature
+            String signedPayload = timestamp + "." + payload;
+            Mac mac = Mac.getInstance("HmacSHA256");
+            SecretKeySpec secretKeySpec = new SecretKeySpec(WEBHOOK_SECRET.getBytes(), "HmacSHA256");
+            mac.init(secretKeySpec);
+            byte[] hash = mac.doFinal(signedPayload.getBytes());
+            String expectedSignature = bytesToHex(hash);
 
-def verify_webhook_signature(payload, signature):
-    webhook_secret = 'your_webhook_secret'
+            // Verify against provided signatures
+            for (String sig : signatures) {
+                String[] parts = sig.split("=");
+                if (parts.length == 2 && "v1".equals(parts[0])) {
+                    if (MessageDigest.isEqual(expectedSignature.getBytes(), parts[1].getBytes())) {
+                        return true;
+                    }
+                }
+            }
 
-    try:
-        elements = signature.split(',')
-        timestamp = int(elements[0].split('=')[1])
-        signatures = elements[1:]
+            return false;
 
-        # Check timestamp (5 minute tolerance)
-        current_time = int(time.time())
-        if abs(current_time - timestamp) > 300:
-            logger.warning('Webhook timestamp too old')
-            return False
+        } catch (Exception e) {
+            logger.severe("Signature verification error: " + e.getMessage());
+            return false;
+        }
+    }
 
-        # Create expected signature
-        signed_payload = f'{timestamp}.{payload.decode()}'
-        expected_signature = hmac.new(
-            webhook_secret.encode(),
-            signed_payload.encode(),
-            hashlib.sha256
-        ).hexdigest()
+    private String bytesToHex(byte[] bytes) {
+        StringBuilder result = new StringBuilder();
+        for (byte b : bytes) {
+            result.append(String.format("%02x", b));
+        }
+        return result.toString();
+    }
 
-        # Verify against provided signatures
-        for sig in signatures:
-            version, provided_sig = sig.split('=')
-            if version == 'v1' and hmac.compare_digest(expected_signature, provided_sig):
-                return True
+    private void storeWebhookEvent(Map<String, Object> event) {
+        try {
+            String sql = "INSERT INTO webhook_events (event_id, event_type, processed_at, payload) VALUES (?, ?, ?, ?)";
+            jdbcTemplate.update(sql,
+                event.get("id"),
+                event.get("type"),
+                LocalDateTime.now(),
+                objectMapper.writeValueAsString(event)
+            );
+        } catch (Exception e) {
+            logger.severe("Failed to store webhook event: " + e.getMessage());
+        }
+    }
 
-        return False
+    private void handlePaymentSucceeded(Map<String, Object> payment, Map<String, Object> event) {
+        logger.info("Payment succeeded: " + payment.get("id") + " for $" + payment.get("amount"));
 
-    except Exception as e:
-        logger.error(f'Signature verification error: {str(e)}')
-        return False
+        try {
+            // Update payment status in database
+            String updateSql = "UPDATE payments SET status = 'completed', completed_at = ?, updated_at = ? WHERE external_id = ?";
+            jdbcTemplate.update(updateSql,
+                payment.get("captured_at"),
+                LocalDateTime.now(),
+                payment.get("id")
+            );
 
-def store_webhook_event(event):
-    """Store webhook event for audit trail and debugging"""
-    with engine.connect() as conn:
-        conn.execute(text(\"\"\"
-            INSERT INTO webhook_events (
-                event_id, event_type, processed_at, payload
-            ) VALUES (
-                :event_id, :event_type, :processed_at, :payload
-            )
-        \"\"\"), {
-            'event_id': event['id'],
-            'event_type': event['type'],
-            'processed_at': datetime.utcnow(),
-            'payload': json.dumps(event)
-        })
-        conn.commit()
+            // Trigger order fulfillment
+            String insertSql = "INSERT INTO fulfillment_queue (payment_id, customer_email, amount, created_at) VALUES (?, ?, ?, ?)";
+            Map<String, Object> customer = (Map<String, Object>) payment.get("customer");
+            jdbcTemplate.update(insertSql,
+                payment.get("id"),
+                customer.get("email"),
+                payment.get("amount"),
+                LocalDateTime.now()
+            );
 
-def handle_payment_succeeded(payment, event):
-    \"\"\"Handle successful payment\"\"\"
-    logger.info('Payment succeeded: %s for $%s', payment["id"], payment["amount"])
+            // Send notification (async recommended)
+            sendPaymentConfirmationEmail(payment);
 
-    with engine.connect() as conn:
-        # Update payment status in database
-        conn.execute(text(\"\"\"
-            UPDATE payments
-            SET status = 'completed',
-                completed_at = :completed_at,
-                updated_at = :updated_at
-            WHERE external_id = :payment_id
-        \"\"\"), {
-            'payment_id': payment['id'],
-            'completed_at': payment.get('captured_at'),
-            'updated_at': datetime.utcnow()
-        })
+        } catch (Exception e) {
+            logger.severe("Failed to handle payment success: " + e.getMessage());
+        }
+    }
 
-        # Trigger order fulfillment
-        conn.execute(text(\"\"\"
-            INSERT INTO fulfillment_queue (
-                payment_id, customer_email, amount, created_at
-            ) VALUES (
-                :payment_id, :customer_email, :amount, :created_at
-            )
-        \"\"\"), {
-            'payment_id': payment['id'],
-            'customer_email': payment['customer']['email'],
-            'amount': payment['amount'],
-            'created_at': datetime.utcnow()
-        })
+    private void handleComplianceReview(Map<String, Object> review, Map<String, Object> event) {
+        logger.warning("Compliance review required: " + review.get("id"));
 
-        conn.commit()
+        try {
+            // Store compliance review record
+            String insertSql = "INSERT INTO compliance_reviews (review_id, transaction_id, transaction_type, amount, reason, priority, deadline, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            jdbcTemplate.update(insertSql,
+                review.get("id"),
+                review.get("transaction_id"),
+                review.get("transaction_type"),
+                review.get("amount"),
+                review.get("reason"),
+                review.get("priority"),
+                review.get("deadline"),
+                LocalDateTime.now()
+            );
 
-    # Send notification (async recommended)
-    send_payment_confirmation_email(payment)
+            // Pause related transactions if high priority
+            if ("high".equals(review.get("priority"))) {
+                String updateSql = "UPDATE transactions SET status = 'on_hold', hold_reason = 'compliance_review' WHERE id = ?";
+                jdbcTemplate.update(updateSql, review.get("transaction_id"));
+            }
 
-def handle_compliance_review(review, event):
-    \"\"\"Handle compliance review requirement\"\"\"
-    logger.warning(f'Compliance review required: {review["id"]}')
+            // Notify compliance team
+            notifyComplianceTeam(review);
 
-    with engine.connect() as conn:
-        # Store compliance review record
-        conn.execute(text(\"\"\"
-            INSERT INTO compliance_reviews (
-                review_id, transaction_id, transaction_type,
-                amount, reason, priority, deadline, created_at
-            ) VALUES (
-                :review_id, :transaction_id, :transaction_type,
-                :amount, :reason, :priority, :deadline, :created_at
-            )
-        \"\"\"), {
-            'review_id': review['id'],
-            'transaction_id': review['transaction_id'],
-            'transaction_type': review['transaction_type'],
-            'amount': review['amount'],
-            'reason': review['reason'],
-            'priority': review['priority'],
-            'deadline': review['deadline'],
-            'created_at': datetime.utcnow()
-        })
+        } catch (Exception e) {
+            logger.severe("Failed to handle compliance review: " + e.getMessage());
+        }
+    }
 
-        # Pause related transactions if high priority
-        if review['priority'] == 'high':
-            conn.execute(text(\"\"\"
-                UPDATE transactions
-                SET status = 'on_hold', hold_reason = 'compliance_review'
-                WHERE id = :transaction_id
-            \"\"\"), {
-                'transaction_id': review['transaction_id']
-            })
+    private void handleFraudAlert(Map<String, Object> alert, Map<String, Object> event) {
+        logger.severe("Fraud alert: " + alert.get("id"));
 
-        conn.commit()
+        try {
+            // Log security incident
+            String insertSql = "INSERT INTO security_incidents (alert_id, transaction_id, risk_score, alert_type, created_at, status) VALUES (?, ?, ?, ?, ?, 'active')";
+            jdbcTemplate.update(insertSql,
+                alert.get("id"),
+                alert.get("transaction_id"),
+                alert.get("risk_score"),
+                alert.get("type"),
+                LocalDateTime.now()
+            );
 
-    # Notify compliance team
-    notify_compliance_team(review)
+            // Notify security team immediately
+            notifySecurityTeam(alert);
 
-def handle_fraud_alert(alert, event):
-    \"\"\"Handle fraud alert\"\"\"
-    logger.error(f'Fraud alert: {alert["id"]}')
+        } catch (Exception e) {
+            logger.severe("Failed to handle fraud alert: " + e.getMessage());
+        }
+    }
 
-    # Immediate security response
-    with engine.connect() as conn:
-        # Log security incident
-        conn.execute(text(\"\"\"
-            INSERT INTO security_incidents (
-                alert_id, transaction_id, risk_score,
-                alert_type, created_at, status
-            ) VALUES (
-                :alert_id, :transaction_id, :risk_score,
-                :alert_type, :created_at, 'active'
-            )
-        \"\"\"), {
-            'alert_id': alert['id'],
-            'transaction_id': alert.get('transaction_id'),
-            'risk_score': alert.get('risk_score'),
-            'alert_type': alert.get('type'),
-            'created_at': datetime.utcnow()
-        })
+    // Placeholder methods for other handlers
+    private void handlePaymentFailed(Map<String, Object> payment, Map<String, Object> event) { /* Implementation */ }
+    private void handleTransferCompleted(Map<String, Object> transfer, Map<String, Object> event) { /* Implementation */ }
+    private void handlePayoutCompleted(Map<String, Object> payout, Map<String, Object> event) { /* Implementation */ }
+    private void handleSubscriptionCreated(Map<String, Object> subscription, Map<String, Object> event) { /* Implementation */ }
+    private void handleSubscriptionCancelled(Map<String, Object> subscription, Map<String, Object> event) { /* Implementation */ }
 
-        conn.commit()
-
-    # Notify security team immediately
-    notify_security_team(alert)
-
-def send_payment_confirmation_email(payment):
-    \"\"\"Send payment confirmation email (implement with your email service)\"\"\"
-    pass
-
-def notify_compliance_team(review):
-    \"\"\"Notify compliance team of review requirement\"\"\"
-    pass
-
-def notify_security_team(alert):
-    \"\"\"Notify security team of fraud alert\"\"\"
-    pass
-
-if __name__ == '__main__':
-    app.run(debug=False, port=5000)`}</pre>
-            </div>
+    // Notification methods (implement with your notification service)
+    private void sendPaymentConfirmationEmail(Map<String, Object> payment) { /* Implementation */ }
+    private void notifyComplianceTeam(Map<String, Object> review) { /* Implementation */ }
+    private void notifySecurityTeam(Map<String, Object> alert) { /* Implementation */ }
+}`}</CodeBlock>
           </div>
         </section>
       </div>

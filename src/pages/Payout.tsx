@@ -1,6 +1,7 @@
 import { ArrowLeft, ArrowRight, DollarSign, CreditCard, Banknote, Clock, CheckCircle, AlertTriangle, Building } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import CodeBlock from "@/components/CodeBlock";
 
 const Payout = () => {
   return (
@@ -28,15 +29,12 @@ const Payout = () => {
                 <div className="space-y-4">
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 font-mono text-sm overflow-x-auto">
-                      <span className="text-green-600 dark:text-green-400">POST</span> /api/v1/payouts
-                    </div>
+                    <CodeBlock>{`POST /api/v1/payouts`}</CodeBlock>
                   </div>
 
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request Body</h4>
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                      <pre className="text-gray-900 dark:text-gray-100">{`{
+                    <CodeBlock language="json">{`{
   "recipient": {
     "type": "bank_account",
     "bank_details": {
@@ -69,14 +67,12 @@ const Payout = () => {
     "business_purpose": "contractor_payment"
   },
   "callback_url": "https://yourapp.com/webhooks/payout"
-}`}</pre>
-                    </div>
+}`}</CodeBlock>
                   </div>
 
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                      <pre className="text-gray-900 dark:text-gray-100">{`{
+                    <CodeBlock language="json">{`{
   "id": "payout_xyz789abc123",
   "status": "pending_compliance",
   "recipient": {
@@ -105,8 +101,7 @@ const Payout = () => {
   },
   "estimated_delivery": "2024-01-17T16:00:00Z",
   "created_at": "2024-01-15T14:30:00Z"
-}`}</pre>
-                    </div>
+}`}</CodeBlock>
                   </div>
                 </div>
               </div>
@@ -213,15 +208,12 @@ const Payout = () => {
                   <div className="space-y-4">
                     <div>
                       <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                      <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 font-mono text-sm overflow-x-auto">
-                        <span className="text-blue-600 dark:text-blue-400">GET</span> /api/v1/payouts/{`{payout_id}`}
-                      </div>
+                      <CodeBlock>{`GET /api/v1/payouts/{payout_id}`}</CodeBlock>
                     </div>
 
                     <div>
                       <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                      <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                        <pre className="text-gray-900 dark:text-gray-100">{`{
+                      <CodeBlock language="json">{`{
   "id": "payout_xyz789abc123",
   "status": "completed",
   "recipient": {
@@ -273,8 +265,7 @@ const Payout = () => {
   ],
   "created_at": "2024-01-15T14:30:00Z",
   "completed_at": "2024-01-17T16:22:00Z"
-}`}</pre>
-                      </div>
+}`}</CodeBlock>
                     </div>
                   </div>
                 </div>
@@ -346,15 +337,12 @@ const Payout = () => {
                 <div className="space-y-4">
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 font-mono text-sm overflow-x-auto">
-                      <span className="text-green-600 dark:text-green-400">POST</span> /api/v1/payouts/bulk
-                    </div>
+                    <CodeBlock>{`POST /api/v1/payouts/bulk`}</CodeBlock>
                   </div>
 
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request Body</h4>
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                      <pre className="text-gray-900 dark:text-gray-100">{`{
+                    <CodeBlock language="json">{`{
   "batch_reference": "marketplace_payouts_202401_15",
   "description": "Weekly marketplace seller payouts",
   "payouts": [
@@ -390,14 +378,12 @@ const Payout = () => {
     }
   ],
   "callback_url": "https://yourapp.com/webhooks/bulk-payout"
-}`}</pre>
-                    </div>
+}`}</CodeBlock>
                   </div>
 
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                      <pre className="text-gray-900 dark:text-gray-100">{`{
+                    <CodeBlock language="json">{`{
   "batch_id": "batch_payout_def456ghi789",
   "batch_reference": "marketplace_payouts_202401_15",
   "status": "processing",
@@ -422,8 +408,7 @@ const Payout = () => {
   ],
   "estimated_completion": "2024-01-17T18:00:00Z",
   "created_at": "2024-01-15T16:30:00Z"
-}`}</pre>
-                    </div>
+}`}</CodeBlock>
                   </div>
                 </div>
               </div>
@@ -488,9 +473,10 @@ const Payout = () => {
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Code Examples</h2>
 
           <div className="space-y-6">
-            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6">
-              <div className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Node.js - Create Payout with Compliance Tracking</div>
-              <pre className="text-sm text-gray-900 dark:text-gray-100 overflow-x-auto">{`const passpoint = require('@passpoint/sdk');
+            <CodeBlock
+              title="Node.js - Create Payout with Compliance Tracking"
+              language="javascript"
+            >{`const passpoint = require('@passpoint/sdk');
 
 const client = new passpoint.Client({
   apiKey: process.env.PASSPOINT_API_KEY
@@ -573,140 +559,176 @@ createPayoutWithCompliance({
   reference: 'project_001_payment',
   sourceOfFunds: 'business_revenue',
   businessPurpose: 'contractor_payment'
-});`}</pre>
-            </div>
+});`}</CodeBlock>
 
-            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6">
-              <div className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Python - Bulk Payout Processing</div>
-              <pre className="text-sm text-gray-900 dark:text-gray-100 overflow-x-auto">{`import requests
-import json
-import time
+            <CodeBlock
+              title="Java - Bulk Payout Processing"
+              language="java"
+            >{`import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.URI;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
-class PasspointPayout:
-    def __init__(self, api_key):
-        self.api_key = api_key
-        self.base_url = 'https://api.passpoint.com/v1'
+public class PasspointPayout {
+    private final String apiKey;
+    private final String baseUrl;
+    private final HttpClient httpClient;
+    private final ObjectMapper objectMapper;
 
-    def get_headers(self):
-        return {
-            'Authorization': f'Bearer {self.api_key}',
-            'Content-Type': 'application/json'
-        }
-
-    def create_bulk_payout(self, payouts, batch_reference):
-        data = {
-            'batch_reference': batch_reference,
-            'description': f'Bulk payout batch {batch_reference}',
-            'payouts': payouts,
-            'callback_url': 'https://yourapp.com/webhooks/bulk-payout'
-        }
-
-        response = requests.post(
-            f'{self.base_url}/payouts/bulk',
-            json=data,
-            headers=self.get_headers()
-        )
-
-        if response.status_code == 200:
-            return response.json()
-        else:
-            raise Exception(f'Bulk payout failed: {response.text}')
-
-    def monitor_bulk_payout_status(self, batch_id):
-        while True:
-            response = requests.get(
-                f'{self.base_url}/payouts/bulk/{batch_id}',
-                headers=self.get_headers()
-            )
-
-            batch = response.json()
-            print(f'Batch {batch_id} status: {batch["status"]}')
-
-            # Check individual payout statuses
-            for payout in batch['payouts']:
-                print(f'  Payout {payout["id"]}: {payout["status"]}')
-
-            if batch['status'] in ['completed', 'failed', 'partially_completed']:
-                return batch
-
-            time.sleep(60)  # Check every minute
-
-    def validate_payout_compliance(self, amount, purpose, recipient_country):
-        """Check if payout meets compliance requirements"""
-        if amount > 10000:
-            print("Warning: Large amount requires manual review")
-            return False
-
-        restricted_countries = ['XX', 'YY']  # Example restricted countries
-        if recipient_country in restricted_countries:
-            print(f"Error: Payouts to {recipient_country} are restricted")
-            return False
-
-        return True
-
-# Usage
-payout_client = PasspointPayout('your_api_key')
-
-# Prepare marketplace payouts
-marketplace_payouts = [
-    {
-        'recipient': {
-            'type': 'bank_account',
-            'bank_details': {
-                'account_number': '1234567890',
-                'routing_number': '021000021',
-                'account_holder_name': 'Alice Johnson',
-                'bank_name': 'Wells Fargo'
-            }
-        },
-        'amount': 850.00,
-        'currency': 'USD',
-        'purpose': 'marketplace_payout',
-        'description': 'Weekly sales commission',
-        'reference': 'seller_alice_week_03'
-    },
-    {
-        'recipient': {
-            'type': 'debit_card',
-            'card_details': {
-                'card_number': '4111111111111111',
-                'cardholder_name': 'Bob Smith'
-            }
-        },
-        'amount': 1200.00,
-        'currency': 'USD',
-        'purpose': 'marketplace_payout',
-        'description': 'Weekly sales commission',
-        'reference': 'seller_bob_week_03'
+    public PasspointPayout(String apiKey) {
+        this.apiKey = apiKey;
+        this.baseUrl = "https://api.passpoint.com/v1";
+        this.httpClient = HttpClient.newHttpClient();
+        this.objectMapper = new ObjectMapper();
     }
-]
 
-try:
-    # Validate compliance for each payout
-    for payout in marketplace_payouts:
-        recipient_country = 'US'  # Get from recipient data
-        if not payout_client.validate_payout_compliance(
-            payout['amount'],
-            payout['purpose'],
-            recipient_country
-        ):
-            continue
+    private HttpRequest.Builder getRequestBuilder() {
+        return HttpRequest.newBuilder()
+            .header("Authorization", "Bearer " + apiKey)
+            .header("Content-Type", "application/json");
+    }
 
-    # Create bulk payout
-    batch = payout_client.create_bulk_payout(
-        payouts=marketplace_payouts,
-        batch_reference='marketplace_202401_15'
-    )
+    public Map<String, Object> createBulkPayout(List<Map<String, Object>> payouts, String batchReference)
+            throws Exception {
+        Map<String, Object> data = new HashMap<>();
+        data.put("batch_reference", batchReference);
+        data.put("description", "Bulk payout batch " + batchReference);
+        data.put("payouts", payouts);
+        data.put("callback_url", "https://yourapp.com/webhooks/bulk-payout");
 
-    print(f'Bulk payout created: {batch["batch_id"]}')
+        String requestBody = objectMapper.writeValueAsString(data);
 
-    # Monitor completion
-    final_status = payout_client.monitor_bulk_payout_status(batch['batch_id'])
-    print(f'Batch completed with status: {final_status["status"]}')
+        HttpRequest request = getRequestBuilder()
+            .uri(URI.create(baseUrl + "/payouts/bulk"))
+            .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+            .build();
 
-except Exception as e:
-    print(f'Error: {e}')`}</pre>
-            </div>
+        HttpResponse<String> response = httpClient.send(request,
+            HttpResponse.BodyHandlers.ofString());
+
+        if (response.statusCode() == 200) {
+            return objectMapper.readValue(response.body(), Map.class);
+        } else {
+            throw new Exception("Bulk payout failed: " + response.body());
+        }
+    }
+
+    public Map<String, Object> monitorBulkPayoutStatus(String batchId) throws Exception {
+        while (true) {
+            HttpRequest request = getRequestBuilder()
+                .uri(URI.create(baseUrl + "/payouts/bulk/" + batchId))
+                .GET()
+                .build();
+
+            HttpResponse<String> response = httpClient.send(request,
+                HttpResponse.BodyHandlers.ofString());
+
+            Map<String, Object> batch = objectMapper.readValue(response.body(), Map.class);
+            String status = (String) batch.get("status");
+
+            System.out.println("Batch " + batchId + " status: " + status);
+
+            // Check individual payout statuses
+            List<Map<String, Object>> payouts = (List<Map<String, Object>>) batch.get("payouts");
+            for (Map<String, Object> payout : payouts) {
+                System.out.println("  Payout " + payout.get("id") + ": " + payout.get("status"));
+            }
+
+            if (Arrays.asList("completed", "failed", "partially_completed").contains(status)) {
+                return batch;
+            }
+
+            TimeUnit.MINUTES.sleep(1); // Check every minute
+        }
+    }
+
+    public boolean validatePayoutCompliance(double amount, String purpose, String recipientCountry) {
+        // Check if payout meets compliance requirements
+        if (amount > 10000) {
+            System.out.println("Warning: Large amount requires manual review");
+            return false;
+        }
+
+        List<String> restrictedCountries = Arrays.asList("XX", "YY"); // Example restricted countries
+        if (restrictedCountries.contains(recipientCountry)) {
+            System.out.println("Error: Payouts to " + recipientCountry + " are restricted");
+            return false;
+        }
+
+        return true;
+    }
+
+    // Usage
+    public static void main(String[] args) throws Exception {
+        PasspointPayout payoutClient = new PasspointPayout("your_api_key");
+
+        // Prepare marketplace payouts
+        List<Map<String, Object>> marketplacePayouts = Arrays.asList(
+            Map.of(
+                "recipient", Map.of(
+                    "type", "bank_account",
+                    "bank_details", Map.of(
+                        "account_number", "1234567890",
+                        "routing_number", "021000021",
+                        "account_holder_name", "Alice Johnson",
+                        "bank_name", "Wells Fargo"
+                    )
+                ),
+                "amount", 850.00,
+                "currency", "USD",
+                "purpose", "marketplace_payout",
+                "description", "Weekly sales commission",
+                "reference", "seller_alice_week_03"
+            ),
+            Map.of(
+                "recipient", Map.of(
+                    "type", "debit_card",
+                    "card_details", Map.of(
+                        "card_number", "4111111111111111",
+                        "cardholder_name", "Bob Smith"
+                    )
+                ),
+                "amount", 1200.00,
+                "currency", "USD",
+                "purpose", "marketplace_payout",
+                "description", "Weekly sales commission",
+                "reference", "seller_bob_week_03"
+            )
+        );
+
+        try {
+            // Validate compliance for each payout
+            for (Map<String, Object> payout : marketplacePayouts) {
+                String recipientCountry = "US"; // Get from recipient data
+                double amount = (Double) payout.get("amount");
+                String purpose = (String) payout.get("purpose");
+
+                if (!payoutClient.validatePayoutCompliance(amount, purpose, recipientCountry)) {
+                    continue;
+                }
+            }
+
+            // Create bulk payout
+            Map<String, Object> batch = payoutClient.createBulkPayout(
+                marketplacePayouts,
+                "marketplace_202401_15"
+            );
+
+            System.out.println("Bulk payout created: " + batch.get("batch_id"));
+
+            // Monitor completion
+            Map<String, Object> finalStatus = payoutClient.monitorBulkPayoutStatus(
+                (String) batch.get("batch_id"));
+            System.out.println("Batch completed with status: " + finalStatus.get("status"));
+
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+}`}</CodeBlock>
           </div>
         </section>
       </div>

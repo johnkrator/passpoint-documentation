@@ -85,7 +85,7 @@ const searchData: SearchItem[] = [
   },
   {
     title: "SDKs",
-    content: "Official libraries for Node.js and Python with built-in error handling",
+    content: "Official libraries for Node.js and Java with built-in error handling",
     url: "/api-integrations",
     section: "Integration Methods"
   },

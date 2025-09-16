@@ -1,5 +1,6 @@
 import { ArrowLeft, ArrowRight, Wallet as WalletIcon, CreditCard, Send, ArrowDownToLine, BarChart3, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import CodeBlock from "@/components/CodeBlock";
 
 const Wallet = () => {
   return (
@@ -27,15 +28,12 @@ const Wallet = () => {
                 <div className="space-y-4">
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 font-mono text-sm overflow-x-auto">
-                      <span className="text-green-600 dark:text-green-400">POST</span> /api/v1/wallets
-                    </div>
+                    <CodeBlock>{`POST /api/v1/wallets`}</CodeBlock>
                   </div>
 
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request Body</h4>
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                      <pre className="text-gray-900 dark:text-gray-100">{`{
+                    <CodeBlock language="json">{`{
   "user_id": "user_1234567890",
   "currency": "USD",
   "name": "Main Wallet",
@@ -44,14 +42,12 @@ const Wallet = () => {
     "department": "engineering",
     "project": "mobile-app"
   }
-}`}</pre>
-                    </div>
+}`}</CodeBlock>
                   </div>
 
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                      <pre className="text-gray-900 dark:text-gray-100">{`{
+                    <CodeBlock language="json">{`{
   "id": "wallet_9876543210",
   "user_id": "user_1234567890",
   "currency": "USD",
@@ -68,8 +64,7 @@ const Wallet = () => {
     "department": "engineering",
     "project": "mobile-app"
   }
-}`}</pre>
-                    </div>
+}`}</CodeBlock>
                   </div>
                 </div>
               </div>
@@ -94,15 +89,12 @@ const Wallet = () => {
                   <div className="space-y-4">
                     <div>
                       <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                      <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 font-mono text-sm overflow-x-auto">
-                        <span className="text-blue-600 dark:text-blue-400">GET</span> /api/v1/wallets/{`{wallet_id}`}/balance
-                      </div>
+                      <CodeBlock>{`GET /api/v1/wallets/{wallet_id}/balance`}</CodeBlock>
                     </div>
 
                     <div>
                       <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                      <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                        <pre className="text-gray-900 dark:text-gray-100">{`{
+                      <CodeBlock language="json">{`{
   "wallet_id": "wallet_9876543210",
   "currency": "USD",
   "balance": {
@@ -112,8 +104,7 @@ const Wallet = () => {
   },
   "last_updated": "2024-01-15T14:22:33Z",
   "transactions_count": 42
-}`}</pre>
-                      </div>
+}`}</CodeBlock>
                     </div>
                   </div>
                 </div>
@@ -138,15 +129,12 @@ const Wallet = () => {
                 <div className="space-y-4">
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 font-mono text-sm overflow-x-auto">
-                      <span className="text-green-600 dark:text-green-400">POST</span> /api/v1/wallets/{`{wallet_id}`}/credit
-                    </div>
+                    <CodeBlock>{`POST /api/v1/wallets/{wallet_id}/credit`}</CodeBlock>
                   </div>
 
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request Body</h4>
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                      <pre className="text-gray-900 dark:text-gray-100">{`{
+                    <CodeBlock language="json">{`{
   "amount": 500.00,
   "source": "bank_transfer",
   "reference": "deposit_20240115_001",
@@ -155,14 +143,12 @@ const Wallet = () => {
     "payment_method": "ACH",
     "external_ref": "bank_tx_xyz789"
   }
-}`}</pre>
-                    </div>
+}`}</CodeBlock>
                   </div>
 
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                      <pre className="text-gray-900 dark:text-gray-100">{`{
+                    <CodeBlock language="json">{`{
   "transaction_id": "tx_1234567890abcdef",
   "wallet_id": "wallet_9876543210",
   "type": "credit",
@@ -176,8 +162,7 @@ const Wallet = () => {
     "total": 1850.75
   },
   "created_at": "2024-01-15T15:30:00Z"
-}`}</pre>
-                    </div>
+}`}</CodeBlock>
                   </div>
                 </div>
               </div>
@@ -213,15 +198,12 @@ const Wallet = () => {
                 <div className="space-y-4">
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 font-mono text-sm overflow-x-auto">
-                      <span className="text-green-600 dark:text-green-400">POST</span> /api/v1/wallets/{`{wallet_id}`}/debit
-                    </div>
+                    <CodeBlock>{`POST /api/v1/wallets/{wallet_id}/debit`}</CodeBlock>
                   </div>
 
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request Body</h4>
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                      <pre className="text-gray-900 dark:text-gray-100">{`{
+                    <CodeBlock language="json">{`{
   "amount": 200.00,
   "destination": "bank_account",
   "reference": "withdrawal_20240115_002",
@@ -230,14 +212,12 @@ const Wallet = () => {
     "atm_location": "Main Street Branch",
     "card_last_four": "1234"
   }
-}`}</pre>
-                    </div>
+}`}</CodeBlock>
                   </div>
 
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                      <pre className="text-gray-900 dark:text-gray-100">{`{
+                    <CodeBlock language="json">{`{
   "transaction_id": "tx_abcdef1234567890",
   "wallet_id": "wallet_9876543210",
   "type": "debit",
@@ -252,8 +232,7 @@ const Wallet = () => {
   },
   "created_at": "2024-01-15T16:45:00Z",
   "estimated_completion": "2024-01-16T10:00:00Z"
-}`}</pre>
-                    </div>
+}`}</CodeBlock>
                   </div>
                 </div>
               </div>
@@ -277,28 +256,21 @@ const Wallet = () => {
                 <div className="space-y-4">
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 font-mono text-sm overflow-x-auto">
-                      <span className="text-blue-600 dark:text-blue-400">GET</span> /api/v1/wallets/{`{wallet_id}`}/transactions
-                    </div>
+                    <CodeBlock>{`GET /api/v1/wallets/{wallet_id}/transactions`}</CodeBlock>
                   </div>
 
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Query Parameters</h4>
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                      <div className="space-y-1">
-                        <div>?limit=50&page=1</div>
-                        <div>&type=credit,debit</div>
-                        <div>&status=completed</div>
-                        <div>&from_date=2024-01-01</div>
-                        <div>&to_date=2024-01-31</div>
-                      </div>
-                    </div>
+                    <CodeBlock>{`?limit=50&page=1
+&type=credit,debit
+&status=completed
+&from_date=2024-01-01
+&to_date=2024-01-31`}</CodeBlock>
                   </div>
 
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                      <pre className="text-gray-900 dark:text-gray-100">{`{
+                    <CodeBlock language="json">{`{
   "wallet_id": "wallet_9876543210",
   "transactions": [
     {
@@ -328,8 +300,7 @@ const Wallet = () => {
     "total_pages": 3,
     "total_transactions": 142
   }
-}`}</pre>
-                    </div>
+}`}</CodeBlock>
                   </div>
                 </div>
               </div>
@@ -342,9 +313,10 @@ const Wallet = () => {
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Code Examples</h2>
 
           <div className="space-y-6">
-            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6">
-              <div className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Node.js - Create Wallet and Add Funds</div>
-              <pre className="text-sm text-gray-900 dark:text-gray-100 overflow-x-auto">{`const passpoint = require('@passpoint/sdk');
+            <CodeBlock
+              title="Node.js - Create Wallet and Add Funds"
+              language="javascript"
+            >{`const passpoint = require('@passpoint/sdk');
 
 const client = new passpoint.Client({
   apiKey: process.env.PASSPOINT_API_KEY
@@ -375,57 +347,89 @@ async function createUserWallet(userId) {
   } catch (error) {
     console.error('Error:', error.message);
   }
-}`}</pre>
-            </div>
+}`}</CodeBlock>
 
-            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6">
-              <div className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Python - Check Balance and Withdraw</div>
-              <pre className="text-sm text-gray-900 dark:text-gray-100 overflow-x-auto">{`import requests
+            <CodeBlock
+              title="Java - Check Balance and Withdraw"
+              language="java"
+            >{`import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.URI;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.Map;
+import java.util.HashMap;
+import java.time.Instant;
 
-class PasspointWallet:
-    def __init__(self, api_key):
-        self.api_key = api_key
-        self.base_url = 'https://api.passpoint.com/v1'
+public class PasspointWallet {
+    private final String apiKey;
+    private final String baseUrl;
+    private final HttpClient httpClient;
+    private final ObjectMapper objectMapper;
 
-    def get_headers(self):
-        return {
-            'Authorization': f'Bearer {self.api_key}',
-            'Content-Type': 'application/json'
+    public PasspointWallet(String apiKey) {
+        this.apiKey = apiKey;
+        this.baseUrl = "https://api.passpoint.com/v1";
+        this.httpClient = HttpClient.newHttpClient();
+        this.objectMapper = new ObjectMapper();
+    }
+
+    private HttpRequest.Builder getRequestBuilder() {
+        return HttpRequest.newBuilder()
+            .header("Authorization", "Bearer " + apiKey)
+            .header("Content-Type", "application/json");
+    }
+
+    public Map<String, Object> getBalance(String walletId) throws Exception {
+        HttpRequest request = getRequestBuilder()
+            .uri(URI.create(baseUrl + "/wallets/" + walletId + "/balance"))
+            .GET()
+            .build();
+
+        HttpResponse<String> response = httpClient.send(request,
+            HttpResponse.BodyHandlers.ofString());
+
+        return objectMapper.readValue(response.body(), Map.class);
+    }
+
+    public Map<String, Object> withdrawFunds(String walletId, double amount, String description)
+            throws Exception {
+        // Check balance first
+        Map<String, Object> balance = getBalance(walletId);
+        Map<String, Object> balanceData = (Map<String, Object>) balance.get("balance");
+        double available = (Double) balanceData.get("available");
+
+        if (available < amount) {
+            throw new IllegalArgumentException("Insufficient funds");
         }
 
-    def get_balance(self, wallet_id):
-        response = requests.get(
-            f'{self.base_url}/wallets/{wallet_id}/balance',
-            headers=self.get_headers()
-        )
-        return response.json()
+        // Process withdrawal
+        Map<String, Object> data = new HashMap<>();
+        data.put("amount", amount);
+        data.put("destination", "bank_account");
+        data.put("description", description);
+        data.put("reference", "withdraw_" + Instant.now().getEpochSecond());
 
-    def withdraw_funds(self, wallet_id, amount, description):
-        # Check balance first
-        balance = self.get_balance(wallet_id)
-        if balance['balance']['available'] < amount:
-            raise ValueError('Insufficient funds')
+        String requestBody = objectMapper.writeValueAsString(data);
 
-        # Process withdrawal
-        data = {
-            'amount': amount,
-            'destination': 'bank_account',
-            'description': description,
-            'reference': f'withdraw_{int(time.time())}'
-        }
+        HttpRequest request = getRequestBuilder()
+            .uri(URI.create(baseUrl + "/wallets/" + walletId + "/debit"))
+            .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+            .build();
 
-        response = requests.post(
-            f'{self.base_url}/wallets/{wallet_id}/debit',
-            json=data,
-            headers=self.get_headers()
-        )
+        HttpResponse<String> response = httpClient.send(request,
+            HttpResponse.BodyHandlers.ofString());
 
-        return response.json()
+        return objectMapper.readValue(response.body(), Map.class);
+    }
 
-# Usage
-wallet = PasspointWallet(api_key='your_api_key')
-result = wallet.withdraw_funds('wallet_123', 50.00, 'Coffee expense')`}</pre>
-            </div>
+    // Usage
+    public static void main(String[] args) throws Exception {
+        PasspointWallet wallet = new PasspointWallet("your_api_key");
+        Map<String, Object> result = wallet.withdrawFunds("wallet_123", 50.00, "Coffee expense");
+        System.out.println("Withdrawal result: " + result);
+    }
+}`}</CodeBlock>
           </div>
         </section>
       </div>

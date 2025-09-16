@@ -1,5 +1,6 @@
 import { ArrowLeft, ArrowRight, CheckCircle, XCircle, Clock, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import CodeBlock from "@/components/CodeBlock";
 
 const StatusResponses = () => {
   return (
@@ -163,9 +164,7 @@ const StatusResponses = () => {
             All error responses follow a consistent format to help you handle them programmatically:
           </p>
 
-          <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 mb-6 overflow-x-auto">
-            <pre className="text-sm text-gray-900 dark:text-gray-100 break-all">
-{`{
+          <CodeBlock language="json">{`{
   "error": {
     "type": "invalid_request_error",
     "code": "missing_required_field",
@@ -173,9 +172,7 @@ const StatusResponses = () => {
     "field": "amount",
     "request_id": "req_abc123"
   }
-}`}
-            </pre>
-          </div>
+}`}</CodeBlock>
 
           <div className="space-y-4">
             <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded p-4">
@@ -215,10 +212,10 @@ const StatusResponses = () => {
             </ul>
           </div>
 
-          <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 overflow-x-auto">
-            <div className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Example Error Handling (JavaScript)</div>
-            <pre className="text-sm text-gray-900 dark:text-gray-100 break-all">
-{`async function handleAPICall() {
+          <CodeBlock
+            title="Example Error Handling (JavaScript)"
+            language="javascript"
+          >{`async function handleAPICall() {
   try {
     const response = await fetch('/api/v1/transactions', {
       method: 'POST',
@@ -245,9 +242,7 @@ const StatusResponses = () => {
     console.error('Request failed:', error.message);
     throw error;
   }
-}`}
-            </pre>
-          </div>
+}`}</CodeBlock>
         </section>
       </div>
 

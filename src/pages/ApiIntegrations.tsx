@@ -1,5 +1,6 @@
 import {ArrowLeft, ArrowRight, Terminal, Key, Globe} from "lucide-react";
 import {Button} from "@/components/ui/button";
+import CodeBlock from "@/components/CodeBlock";
 
 const ApiIntegrations = () => {
     return (
@@ -27,12 +28,10 @@ const ApiIntegrations = () => {
                                         Direct HTTP calls to our RESTful endpoints with JSON payloads. Perfect for
                                         custom integrations and server-side applications.
                                     </p>
-                                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 sm:p-4 font-mono text-xs sm:text-sm overflow-x-auto">
-                                        <div className="text-green-600 dark:text-green-400 break-all sm:whitespace-nowrap">curl -X POST https://api.passpoint.com/v1/transactions \</div>
-                                        <div className="text-brand-600 dark:text-brand-400 break-all sm:whitespace-nowrap pl-2 sm:pl-0"> -H "Authorization: Bearer YOUR_API_KEY" \</div>
-                                        <div className="text-purple-600 dark:text-purple-400 break-all sm:whitespace-nowrap pl-2 sm:pl-0"> -H "Content-Type: application/json" \</div>
-                                        <div className="text-orange-600 dark:text-orange-400 break-all sm:whitespace-nowrap pl-2 sm:pl-0"> -d {`'{"amount": 1000, "currency": "USD"}'`}</div>
-                                    </div>
+                                    <CodeBlock language="bash">{`curl -X POST https://api.passpoint.com/v1/transactions \
+ -H "Authorization: Bearer YOUR_API_KEY" \
+ -H "Content-Type: application/json" \
+ -d '{"amount": 1000, "currency": "USD"}'`}</CodeBlock>
                                 </div>
                             </div>
                         </div>
@@ -58,10 +57,10 @@ const ApiIntegrations = () => {
                                         </div>
                                         <div className="bg-gray-100 dark:bg-gray-800 rounded p-3">
                                             <div
-                                                className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Python
+                                                className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Java
                                             </div>
-                                            <div className="text-xs text-gray-600 dark:text-gray-400 font-mono break-all">pip
-                                                install passpoint-python
+                                            <div className="text-xs text-gray-600 dark:text-gray-400 font-mono break-all">mvn
+                                                dependency: com.passpoint:passpoint-java
                                             </div>
                                         </div>
                                     </div>
@@ -157,38 +156,34 @@ const ApiIntegrations = () => {
                 <section className="mb-12">
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Quick Start Example</h2>
 
-                    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6">
-                        <div className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Create a Transaction
-                            (Node.js)
-                        </div>
-                        <pre className="text-sm text-gray-900 dark:text-gray-100 overflow-x-auto">
-                            {`const passpoint = require('@passpoint/sdk');
-                            
-                            // Initialize with your API key
-                            const client = new passpoint.Client({
-                              apiKey: process.env.PASSPOINT_API_KEY
-                            });
-                            
-                            // Create a transaction
-                            async function createTransaction() {
-                              try {
-                                const transaction = await client.transactions.create({
-                                  amount: 1000, // $10.00 in cents
-                                  currency: 'USD',
-                                  description: 'Payment for services',
-                                  customer: {
-                                    email: 'customer@example.com'
-                                  }
-                                });
-                            
-                                console.log('Transaction created:', transaction.id); 
-                                return transaction;
-                              } catch (error) {
-                                console.error('Error:', error.message);
-                              }
-                            }`}
-                        </pre>
-                    </div>
+                    <CodeBlock
+                        title="Create a Transaction (Node.js)"
+                        language="javascript"
+                    >{`const passpoint = require('@passpoint/sdk');
+
+// Initialize with your API key
+const client = new passpoint.Client({
+  apiKey: process.env.PASSPOINT_API_KEY
+});
+
+// Create a transaction
+async function createTransaction() {
+  try {
+    const transaction = await client.transactions.create({
+      amount: 1000, // $10.00 in cents
+      currency: 'USD',
+      description: 'Payment for services',
+      customer: {
+        email: 'customer@example.com'
+      }
+    });
+
+    console.log('Transaction created:', transaction.id);
+    return transaction;
+  } catch (error) {
+    console.error('Error:', error.message);
+  }
+}`}</CodeBlock>
                 </section>
             </div>
 

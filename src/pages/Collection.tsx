@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {Link} from "react-router-dom";
+import CodeBlock from "@/components/CodeBlock";
 
 const Collection = () => {
     return (
@@ -43,19 +44,13 @@ const Collection = () => {
                                 <div className="space-y-4">
                                     <div>
                                         <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                        <div
-                                            className="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 font-mono text-sm overflow-x-auto">
-                                            <span
-                                                className="text-green-600 dark:text-green-400">POST</span> /api/v1/collections/payment-links
-                                        </div>
+                                        <CodeBlock>{`POST /api/v1/collections/payment-links`}</CodeBlock>
                                     </div>
 
                                     <div>
                                         <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request
                                             Body</h4>
-                                        <div
-                                            className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                      <pre className="text-gray-900 dark:text-gray-100">{`{
+                                        <CodeBlock language="json">{`{
   "amount": 299.99,
   "currency": "USD",
   "description": "Premium Subscription - Monthly",
@@ -83,15 +78,12 @@ const Collection = () => {
     "business_name": "Your Business"
   },
   "callback_url": "https://yourapp.com/webhooks/payment"
-}`}</pre>
-                                        </div>
+}`}</CodeBlock>
                                     </div>
 
                                     <div>
                                         <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                                        <div
-                                            className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                      <pre className="text-gray-900 dark:text-gray-100">{`{
+                                        <CodeBlock language="json">{`{
   "id": "link_abc123def456",
   "payment_url": "https://pay.passpoint.com/link/abc123def456",
   "qr_code_url": "https://pay.passpoint.com/qr/abc123def456.png",
@@ -106,8 +98,7 @@ const Collection = () => {
   "payments_received": 0,
   "total_collected": 0.00,
   "created_at": "2024-01-15T10:30:00Z"
-}`}</pre>
-                                        </div>
+}`}</CodeBlock>
                                     </div>
                                 </div>
                             </div>
@@ -135,19 +126,13 @@ const Collection = () => {
                                     <div className="space-y-4">
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                            <div
-                                                className="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 font-mono text-sm overflow-x-auto">
-                                                <span
-                                                    className="text-green-600 dark:text-green-400">POST</span> /api/v1/collections/payments
-                                            </div>
+                                            <CodeBlock>{`POST /api/v1/collections/payments`}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request
                                                 Body (Card Payment)</h4>
-                                            <div
-                                                className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                        <pre className="text-gray-900 dark:text-gray-100">{`{
+                                            <CodeBlock language="json">{`{
   "amount": 149.99,
   "currency": "USD",
   "payment_method": {
@@ -181,15 +166,12 @@ const Collection = () => {
   },
   "capture": true,
   "callback_url": "https://yourapp.com/webhooks/payment"
-}`}</pre>
-                                            </div>
+}`}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                                            <div
-                                                className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                        <pre className="text-gray-900 dark:text-gray-100">{`{
+                                            <CodeBlock language="json">{`{
   "id": "payment_xyz789abc123",
   "status": "succeeded",
   "amount": 149.99,
@@ -217,8 +199,7 @@ const Collection = () => {
   "net_amount": 145.04,
   "created_at": "2024-01-15T14:22:00Z",
   "captured_at": "2024-01-15T14:22:01Z"
-}`}</pre>
-                                            </div>
+}`}</CodeBlock>
                                         </div>
                                     </div>
                                 </div>
@@ -333,18 +314,12 @@ const Collection = () => {
                                     <div className="space-y-4">
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                            <div
-                                                className="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 font-mono text-sm overflow-x-auto">
-                                                <span
-                                                    className="text-blue-600 dark:text-blue-400">GET</span> /api/v1/collections/payments/{`{payment_id}`}
-                                            </div>
+                                            <CodeBlock>{`GET /api/v1/collections/payments/{payment_id}`}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                                            <div
-                                                className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                        <pre className="text-gray-900 dark:text-gray-100">{`{
+                                            <CodeBlock language="json">{`{
   "id": "payment_xyz789abc123",
   "status": "succeeded",
   "amount": 149.99,
@@ -382,8 +357,7 @@ const Collection = () => {
   },
   "created_at": "2024-01-15T14:22:00Z",
   "captured_at": "2024-01-15T14:22:01Z"
-}`}</pre>
-                                            </div>
+}`}</CodeBlock>
                                         </div>
                                     </div>
                                 </div>
@@ -453,19 +427,13 @@ const Collection = () => {
                                 <div className="space-y-4">
                                     <div>
                                         <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                        <div
-                                            className="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 font-mono text-sm overflow-x-auto">
-                                            <span
-                                                className="text-green-600 dark:text-green-400">POST</span> /api/v1/collections/subscriptions
-                                        </div>
+                                        <CodeBlock>{`POST /api/v1/collections/subscriptions`}</CodeBlock>
                                     </div>
 
                                     <div>
                                         <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request
                                             Body</h4>
-                                        <div
-                                            className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                      <pre className="text-gray-900 dark:text-gray-100">{`{
+                                        <CodeBlock language="json">{`{
   "customer": {
     "email": "subscriber@example.com",
     "name": "Jane Smith",
@@ -496,15 +464,12 @@ const Collection = () => {
     "signup_source": "website"
   },
   "callback_url": "https://yourapp.com/webhooks/subscription"
-}`}</pre>
-                                        </div>
+}`}</CodeBlock>
                                     </div>
 
                                     <div>
                                         <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                                        <div
-                                            className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                      <pre className="text-gray-900 dark:text-gray-100">{`{
+                                        <CodeBlock language="json">{`{
   "id": "sub_def456ghi789",
   "status": "trialing",
   "customer": {
@@ -525,8 +490,7 @@ const Collection = () => {
   "payments_count": 0,
   "total_collected": 0.00,
   "created_at": "2024-01-15T10:30:00Z"
-}`}</pre>
-                                        </div>
+}`}</CodeBlock>
                                     </div>
                                 </div>
                             </div>
@@ -636,11 +600,10 @@ const Collection = () => {
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Code Examples</h2>
 
                     <div className="space-y-6">
-                        <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6">
-                            <div className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Node.js - Create
-                                Payment Link and Monitor Status
-                            </div>
-                            <pre className="text-sm text-gray-900 dark:text-gray-100 overflow-x-auto">{`const passpoint = require('@passpoint/sdk');
+                        <CodeBlock
+                            title="Node.js - Create Payment Link and Monitor Status"
+                            language="javascript"
+                        >{`const passpoint = require('@passpoint/sdk');
 
 const client = new passpoint.Client({
   apiKey: process.env.PASSPOINT_API_KEY
@@ -717,187 +680,181 @@ createPaymentLinkWithMonitoring({
     name: 'John Doe',
     phone: '+1234567890'
   }
-});`}</pre>
-                        </div>
+});`}</CodeBlock>
 
-                        <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6">
-                            <div className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Python - Process
-                                Direct Payment with Fraud Detection
-                            </div>
-                            <pre className="text-sm text-gray-900 dark:text-gray-100 overflow-x-auto">{`import requests
-import json
+                        <CodeBlock
+                            title="Java - Process Direct Payment with Fraud Detection"
+                            language="java"
+                        >{`import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.URI;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-class PasspointCollection:
-    def __init__(self, api_key):
-        self.api_key = api_key
-        self.base_url = 'https://api.passpoint.com/v1'
+public class PasspointCollection {
+    private final String apiKey;
+    private final String baseUrl = "https://api.passpoint.com/v1";
+    private final HttpClient httpClient;
+    private final ObjectMapper objectMapper;
 
-    def get_headers(self):
-        return {
-            'Authorization': f'Bearer {self.api_key}',
-            'Content-Type': 'application/json'
+    public PasspointCollection(String apiKey) {
+        this.apiKey = apiKey;
+        this.httpClient = HttpClient.newHttpClient();
+        this.objectMapper = new ObjectMapper();
+    }
+
+    public Map<String, Object> processPaymentWithFraudCheck(Map<String, Object> paymentData)
+            throws Exception {
+
+        // Pre-flight fraud check
+        double fraudScore = checkFraudIndicators(paymentData);
+
+        if (fraudScore > 0.7) {
+            throw new Exception("High fraud risk detected: " + fraudScore);
         }
 
-    def process_payment_with_fraud_check(self, payment_data):
-        # Pre-flight fraud check
-        fraud_score = self.check_fraud_indicators(payment_data)
+        // Process payment
+        String requestBody = objectMapper.writeValueAsString(paymentData);
 
-        if fraud_score > 0.7:
-            raise Exception(f'High fraud risk detected: {fraud_score}')
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create(baseUrl + "/collections/payments"))
+            .header("Authorization", "Bearer " + apiKey)
+            .header("Content-Type", "application/json")
+            .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+            .build();
 
-        # Process payment
-        response = requests.post(
-            f'{self.base_url}/collections/payments',
-            json=payment_data,
-            headers=self.get_headers()
-        )
+        HttpResponse<String> response = httpClient.send(request,
+            HttpResponse.BodyHandlers.ofString());
 
-        if response.status_code == 200:
-            payment = response.json()
+        if (response.statusCode() == 200) {
+            Map<String, Object> payment = objectMapper.readValue(
+                response.body(), Map.class);
 
-            # Additional fraud monitoring
-            if payment.get('risk_assessment', {}).get('fraud_score', 0) > 0.5:
-                print(f'Warning: Payment {payment["id"]} flagged for review')
-                self.flag_for_manual_review(payment['id'])
+            // Additional fraud monitoring
+            Map<String, Object> riskAssessment = (Map<String, Object>)
+                payment.get("risk_assessment");
+            if (riskAssessment != null) {
+                Double riskScore = (Double) riskAssessment.get("fraud_score");
+                if (riskScore != null && riskScore > 0.5) {
+                    System.out.println("Warning: Payment " + payment.get("id") +
+                        " flagged for review");
+                    flagForManualReview((String) payment.get("id"));
+                }
+            }
 
-            return payment
-        else:
-            raise Exception(f'Payment processing failed: {response.text}')
+            return payment;
+        } else {
+            throw new Exception("Payment processing failed: " + response.body());
+        }
+    }
 
-    def check_fraud_indicators(self, payment_data):
-        """Basic fraud indicators check"""
-        risk_score = 0.0
+    private double checkFraudIndicators(Map<String, Object> paymentData) {
+        double riskScore = 0.0;
 
-        # Check for suspicious amounts
-        amount = payment_data.get('amount', 0)
-        if amount > 5000:
-            risk_score += 0.2
-        if amount in [9999.99, 10000.00]:  # Common fraud amounts
-            risk_score += 0.3
-
-        # Check customer information
-        customer = payment_data.get('customer', {})
-        if not customer.get('phone'):
-            risk_score += 0.1
-        if 'temp' in customer.get('email', '').lower():
-            risk_score += 0.2
-
-        # Check billing address
-        billing = payment_data.get('payment_method', {}).get('billing_address', {})
-        if not billing.get('postal_code'):
-            risk_score += 0.1
-
-        return min(risk_score, 1.0)
-
-    def flag_for_manual_review(self, payment_id):
-        """Flag payment for manual review"""
-        data = {
-            'payment_id': payment_id,
-            'reason': 'High fraud score detected',
-            'priority': 'high'
+        // Check for suspicious amounts
+        Double amount = (Double) paymentData.get("amount");
+        if (amount != null) {
+            if (amount > 5000) {
+                riskScore += 0.2;
+            }
+            if (amount == 9999.99 || amount == 10000.00) {
+                riskScore += 0.3;
+            }
         }
 
-        requests.post(
-            f'{self.base_url}/collections/payments/{payment_id}/flag',
-            json=data,
-            headers=self.get_headers()
-        )
-
-    def create_subscription_with_trial(self, subscription_data):
-        """Create recurring subscription with trial period"""
-        response = requests.post(
-            f'{self.base_url}/collections/subscriptions',
-            json=subscription_data,
-            headers=self.get_headers()
-        )
-
-        if response.status_code == 200:
-            return response.json()
-        else:
-            raise Exception(f'Subscription creation failed: {response.text}')
-
-# Usage
-collection_client = PasspointCollection('your_api_key')
-
-# Process one-time payment
-payment_data = {
-    'amount': 149.99,
-    'currency': 'USD',
-    'payment_method': {
-        'type': 'card',
-        'card': {
-            'number': '4111111111111111',
-            'exp_month': '12',
-            'exp_year': '2025',
-            'cvc': '123',
-            'cardholder_name': 'John Doe'
-        },
-        'billing_address': {
-            'street': '123 Main St',
-            'city': 'New York',
-            'state': 'NY',
-            'postal_code': '10001',
-            'country': 'US'
+        // Check customer information
+        Map<String, Object> customer = (Map<String, Object>) paymentData.get("customer");
+        if (customer != null) {
+            if (customer.get("phone") == null) {
+                riskScore += 0.1;
+            }
+            String email = (String) customer.get("email");
+            if (email != null && email.toLowerCase().contains("temp")) {
+                riskScore += 0.2;
+            }
         }
-    },
-    'customer': {
-        'email': 'customer@example.com',
-        'name': 'John Doe',
-        'phone': '+1234567890'
-    },
-    'description': 'Online Course - Advanced React',
-    'reference': 'course_react_adv_001',
-    'capture': True,
-    'callback_url': 'https://yourapp.com/webhooks/payment'
-}
 
-try:
-    payment = collection_client.process_payment_with_fraud_check(payment_data)
-    print('Payment processed successfully: %s', payment["id"])
-    print('Amount: $%s', payment["amount"])
-    print('Status: %s', payment["status"])
-    print('Fraud Score: %s', payment.get("risk_assessment", {}).get("fraud_score", "N/A"))
-
-except Exception as e:
-    print(f'Payment failed: {e}')
-
-# Create subscription with trial
-subscription_data = {
-    'customer': {
-        'email': 'subscriber@example.com',
-        'name': 'Jane Smith',
-        'phone': '+1234567890'
-    },
-    'payment_method': {
-        'type': 'card',
-        'card': {
-            'number': '4111111111111111',
-            'exp_month': '12',
-            'exp_year': '2025',
-            'cvc': '123',
-            'cardholder_name': 'Jane Smith'
+        // Check billing address
+        Map<String, Object> paymentMethod = (Map<String, Object>)
+            paymentData.get("payment_method");
+        if (paymentMethod != null) {
+            Map<String, Object> billingAddress = (Map<String, Object>)
+                paymentMethod.get("billing_address");
+            if (billingAddress != null && billingAddress.get("postal_code") == null) {
+                riskScore += 0.1;
+            }
         }
-    },
-    'plan': {
-        'amount': 29.99,
-        'currency': 'USD',
-        'interval': 'monthly',
-        'interval_count': 1,
-        'description': 'Pro Plan Monthly Subscription'
-    },
-    'trial_period_days': 14,
-    'callback_url': 'https://yourapp.com/webhooks/subscription'
-}
 
-try:
-    subscription = collection_client.create_subscription_with_trial(subscription_data)
-    print(f'Subscription created: {subscription["id"]}')
-    print(f'Status: {subscription["status"]}')
-    print(f'Trial ends: {subscription["trial_end"]}')
+        return Math.min(riskScore, 1.0);
+    }
 
-except Exception as e:
-    print(f'Subscription creation failed: {e}')`}</pre>
-                        </div>
+    public void flagForManualReview(String paymentId) throws Exception {
+        Map<String, Object> data = new HashMap<>();
+        data.put("payment_id", paymentId);
+        data.put("reason", "High fraud score detected");
+        data.put("priority", "high");
+
+        String requestBody = objectMapper.writeValueAsString(data);
+
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create(baseUrl + "/collections/payments/" + paymentId + "/flag"))
+            .header("Authorization", "Bearer " + apiKey)
+            .header("Content-Type", "application/json")
+            .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+            .build();
+
+        httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+    }
+
+    public Map<String, Object> createSubscriptionWithTrial(Map<String, Object> subscriptionData)
+            throws Exception {
+
+        String requestBody = objectMapper.writeValueAsString(subscriptionData);
+
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create(baseUrl + "/collections/subscriptions"))
+            .header("Authorization", "Bearer " + apiKey)
+            .header("Content-Type", "application/json")
+            .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+            .build();
+
+        HttpResponse<String> response = httpClient.send(request,
+            HttpResponse.BodyHandlers.ofString());
+
+        if (response.statusCode() == 200) {
+            return objectMapper.readValue(response.body(), Map.class);
+        } else {
+            throw new Exception("Subscription creation failed: " + response.body());
+        }
+    }
+
+    // Usage example
+    public static void main(String[] args) {
+        try {
+            PasspointCollection collectionClient = new PasspointCollection("your_api_key");
+
+            // Process one-time payment
+            Map<String, Object> paymentData = new HashMap<>();
+            paymentData.put("amount", 149.99);
+            paymentData.put("currency", "USD");
+            paymentData.put("description", "Online Course - Advanced React");
+            paymentData.put("reference", "course_react_adv_001");
+            paymentData.put("capture", true);
+            paymentData.put("callback_url", "https://yourapp.com/webhooks/payment");
+
+            Map<String, Object> payment = collectionClient.processPaymentWithFraudCheck(paymentData);
+
+            System.out.println("Payment processed successfully: " + payment.get("id"));
+            System.out.println("Amount: $" + payment.get("amount"));
+            System.out.println("Status: " + payment.get("status"));
+
+        } catch (Exception e) {
+            System.err.println("Payment failed: " + e.getMessage());
+        }
+    }
+}`}</CodeBlock>
                     </div>
                 </section>
             </div>

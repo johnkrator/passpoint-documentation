@@ -13,7 +13,7 @@ import Transfer from "@/pages/Transfer.tsx";
 import Payout from "@/pages/Payout.tsx";
 import Collection from "@/pages/Collection.tsx";
 import GlobalCallbackSetup from "@/pages/GlobalCallbackSetup.tsx";
-import ErrorBoundary from "@/components/ErrorBoundary.tsx";
+import ErrorBoundary, { RouterErrorBoundary } from "@/components/ErrorBoundary.tsx";
 
 const Routes = () => {
     return createBrowserRouter([
@@ -27,6 +27,7 @@ const Routes = () => {
                     </ErrorBoundary>
                 </>
             ),
+            errorElement: <RouterErrorBoundary />,
             children: [
                 {path: "", element: <Home/>},
                 {path: "api-rate-limits", element: <ApiRateLimits/>},
@@ -44,6 +45,8 @@ const Routes = () => {
                 {path: "card-acquiring", element: <Home/>}, // Placeholder for Card Acquiring page
                 {path: "user-roles", element: <UserRoles/>},
                 {path: "status-responses", element: <StatusResponses/>},
+                // Catch-all route for 404 errors
+                {path: "*", element: <RouterErrorBoundary />}
             ]
         }
     ]);

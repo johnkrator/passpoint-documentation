@@ -5,26 +5,29 @@ import CodeBlock from "@/components/CodeBlock";
 
 const Payout = () => {
   return (
-    <div className="px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-      <div className="prose prose-invert max-w-4xl">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Payout</h1>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+        <div className="max-w-none">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Payout</h1>
 
-        <p className="text-gray-700 dark:text-gray-300 text-lg mb-8 leading-relaxed">
-          Process secure payouts to bank accounts, cards, and digital wallets. Manage single and batch payouts with comprehensive compliance and fraud protection.
-        </p>
+          <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+            Process secure payouts to bank accounts, cards, and digital wallets. Manage single and batch payouts with comprehensive compliance and fraud protection.
+          </p>
 
-        {/* Create Payout */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Create Payout</h2>
+          {/* Create Payout */}
+          <section className="mb-16">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Create Payout</h2>
 
-          <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
-            <div className="flex items-start space-x-4">
-              <DollarSign className="h-8 w-8 text-brand-500 flex-shrink-0 mt-1"/>
-              <div className="flex-1">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Create New Payout</h3>
-                <p className="text-gray-700 dark:text-gray-300 mb-4">
-                  Initiate a payout to various destination types including bank accounts, debit cards, and digital wallets with real-time validation.
-                </p>
+            <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
+                <div className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
+                  <DollarSign className="h-12 w-12 text-brand-500"/>
+                  <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Create New Payout</h3>
+                </div>
+                <div className="flex-1 min-w-0 lg:max-w-4xl">
+                  <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                    Initiate a payout to various destination types including bank accounts, debit cards, and digital wallets with real-time validation.
+                  </p>
 
                 <div className="space-y-4">
                   <div>
@@ -102,23 +105,23 @@ const Payout = () => {
   "estimated_delivery": "2024-01-17T16:00:00Z",
   "created_at": "2024-01-15T14:30:00Z"
 }`}</CodeBlock>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* Payout Methods */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Payout Methods</h2>
+          {/* Payout Methods */}
+          <section className="mb-16">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Payout Methods</h2>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {/* Bank Account Payout */}
-            <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+            <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex items-center mb-4">
-                <Building className="h-8 w-8 text-blue-500 mr-3"/>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Bank Account</h3>
+                <Building className="h-12 w-12 text-blue-500 mr-3"/>
+                <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white">Bank Account</h3>
               </div>
               <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
                 Direct bank transfers via ACH or wire transfer with 1-3 business day delivery.
@@ -140,10 +143,10 @@ const Payout = () => {
             </div>
 
             {/* Debit Card Payout */}
-            <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+            <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex items-center mb-4">
-                <CreditCard className="h-8 w-8 text-green-500 mr-3"/>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Debit Card</h3>
+                <CreditCard className="h-12 w-12 text-green-500 mr-3"/>
+                <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white">Debit Card</h3>
               </div>
               <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
                 Instant payouts to Visa or Mastercard debit cards with real-time delivery.
@@ -165,10 +168,10 @@ const Payout = () => {
             </div>
 
             {/* Digital Wallet Payout */}
-            <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+            <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex items-center mb-4">
-                <Banknote className="h-8 w-8 text-purple-500 mr-3"/>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Digital Wallet</h3>
+                <Banknote className="h-12 w-12 text-purple-500 mr-3"/>
+                <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white">Digital Wallet</h3>
               </div>
               <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
                 Payouts to PayPal, Venmo, and other digital wallet providers.
@@ -189,31 +192,33 @@ const Payout = () => {
               </div>
             </div>
           </div>
-        </section>
+          </section>
 
-        {/* Get Payout Status */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Payout Status</h2>
+          {/* Get Payout Status */}
+          <section className="mb-16">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Payout Status</h2>
 
-          <div className="space-y-8">
-            <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
-              <div className="flex items-start space-x-4">
-                <Clock className="h-8 w-8 text-blue-500 flex-shrink-0 mt-1"/>
-                <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Get Payout Status</h3>
-                  <p className="text-gray-700 dark:text-gray-300 mb-4">
-                    Track payout progress including compliance checks, processing updates, and delivery confirmation.
-                  </p>
+            <div className="space-y-8">
+              <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
+                  <div className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
+                    <Clock className="h-12 w-12 text-blue-500"/>
+                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Get Payout Status</h3>
+                  </div>
+                  <div className="flex-1 min-w-0 lg:max-w-4xl">
+                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                      Track payout progress including compliance checks, processing updates, and delivery confirmation.
+                    </p>
 
-                  <div className="space-y-4">
-                    <div>
-                      <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                      <CodeBlock>{`GET /api/v1/payouts/{payout_id}`}</CodeBlock>
-                    </div>
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
+                        <CodeBlock>{`GET /api/v1/payouts/{payout_id}`}</CodeBlock>
+                      </div>
 
-                    <div>
-                      <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                      <CodeBlock language="json">{`{
+                      <div>
+                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
+                        <CodeBlock language="json">{`{
   "id": "payout_xyz789abc123",
   "status": "completed",
   "recipient": {
@@ -266,83 +271,85 @@ const Payout = () => {
   "created_at": "2024-01-15T14:30:00Z",
   "completed_at": "2024-01-17T16:22:00Z"
 }`}</CodeBlock>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Status Values */}
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              <div className="bg-yellow-50 dark:bg-yellow-950/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
+              {/* Status Values */}
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="bg-yellow-50 dark:bg-yellow-950/20 border border-yellow-200 dark:border-yellow-800 rounded-xl p-6 lg:p-8 shadow-sm">
                 <div className="flex items-center mb-2">
-                  <Clock className="h-5 w-5 text-yellow-600 dark:text-yellow-400 mr-2"/>
+                  <Clock className="h-6 w-6 text-yellow-600 dark:text-yellow-400 mr-4"/>
                   <span className="font-semibold text-yellow-800 dark:text-yellow-200">pending_compliance</span>
                 </div>
                 <p className="text-yellow-700 dark:text-yellow-300 text-sm">Compliance and fraud checks in progress</p>
               </div>
 
-              <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+              <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-xl p-6 lg:p-8 shadow-sm">
                 <div className="flex items-center mb-2">
-                  <CheckCircle className="h-5 w-5 text-blue-600 dark:text-blue-400 mr-2"/>
+                  <CheckCircle className="h-6 w-6 text-blue-600 dark:text-blue-400 mr-4"/>
                   <span className="font-semibold text-blue-800 dark:text-blue-200">approved</span>
                 </div>
                 <p className="text-blue-700 dark:text-blue-300 text-sm">Compliance passed, ready for processing</p>
               </div>
 
-              <div className="bg-purple-50 dark:bg-purple-950/20 border border-purple-200 dark:border-purple-800 rounded-lg p-4">
+              <div className="bg-purple-50 dark:bg-purple-950/20 border border-purple-200 dark:border-purple-800 rounded-xl p-6 lg:p-8 shadow-sm">
                 <div className="flex items-center mb-2">
-                  <Clock className="h-5 w-5 text-purple-600 dark:text-purple-400 mr-2"/>
+                  <Clock className="h-6 w-6 text-purple-600 dark:text-purple-400 mr-4"/>
                   <span className="font-semibold text-purple-800 dark:text-purple-200">processing</span>
                 </div>
                 <p className="text-purple-700 dark:text-purple-300 text-sm">Payout sent to recipient's bank</p>
               </div>
 
-              <div className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
+              <div className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-xl p-6 lg:p-8 shadow-sm">
                 <div className="flex items-center mb-2">
-                  <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 mr-2"/>
+                  <CheckCircle className="h-6 w-6 text-green-600 dark:text-green-400 mr-4"/>
                   <span className="font-semibold text-green-800 dark:text-green-200">completed</span>
                 </div>
                 <p className="text-green-700 dark:text-green-300 text-sm">Payout delivered successfully</p>
               </div>
             </div>
-          </div>
-        </section>
+            </div>
+          </section>
 
-        {/* Bulk Payouts */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Bulk Payouts</h2>
+          {/* Bulk Payouts */}
+          <section className="mb-16">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Bulk Payouts</h2>
 
-          <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
-            <div className="flex items-start space-x-4">
-              <DollarSign className="h-8 w-8 text-green-500 flex-shrink-0 mt-1"/>
-              <div className="flex-1">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Process Bulk Payouts</h3>
-                <p className="text-gray-700 dark:text-gray-300 mb-4">
-                  Execute multiple payouts in a single batch operation with comprehensive compliance checking and error handling.
-                </p>
+            <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
+                <div className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
+                  <DollarSign className="h-12 w-12 text-green-500"/>
+                  <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Process Bulk Payouts</h3>
+                </div>
+                <div className="flex-1 min-w-0 lg:max-w-4xl">
+                  <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                    Execute multiple payouts in a single batch operation with comprehensive compliance checking and error handling.
+                  </p>
 
-                <div className="bg-orange-50 dark:bg-orange-950/20 border border-orange-200 dark:border-orange-800 rounded-lg p-4 mb-4">
-                  <div className="flex">
-                    <AlertTriangle className="h-5 w-5 text-orange-600 dark:text-orange-400 flex-shrink-0 mt-0.5 mr-3"/>
-                    <div>
-                      <h4 className="text-sm font-semibold text-orange-800 dark:text-orange-200">Batch Limits</h4>
-                      <p className="text-orange-700 dark:text-orange-300 text-sm mt-1">
-                        Maximum 500 payouts per batch. Each payout subject to individual compliance checks.
-                      </p>
+                  <div className="bg-orange-50 dark:bg-orange-950/20 border border-orange-200 dark:border-orange-800 rounded-xl p-6 lg:p-8 shadow-sm mb-4">
+                    <div className="flex">
+                      <AlertTriangle className="h-6 w-6 text-orange-600 dark:text-orange-400 flex-shrink-0 mt-0.5 mr-4"/>
+                      <div>
+                        <h4 className="text-sm font-semibold text-orange-800 dark:text-orange-200">Batch Limits</h4>
+                        <p className="text-orange-700 dark:text-orange-300 text-sm mt-1">
+                          Maximum 500 payouts per batch. Each payout subject to individual compliance checks.
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                    <CodeBlock>{`POST /api/v1/payouts/bulk`}</CodeBlock>
-                  </div>
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
+                      <CodeBlock>{`POST /api/v1/payouts/bulk`}</CodeBlock>
+                    </div>
 
-                  <div>
-                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request Body</h4>
-                    <CodeBlock language="json">{`{
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request Body</h4>
+                      <CodeBlock language="json">{`{
   "batch_reference": "marketplace_payouts_202401_15",
   "description": "Weekly marketplace seller payouts",
   "payouts": [
@@ -379,11 +386,11 @@ const Payout = () => {
   ],
   "callback_url": "https://yourapp.com/webhooks/bulk-payout"
 }`}</CodeBlock>
-                  </div>
+                    </div>
 
-                  <div>
-                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                    <CodeBlock language="json">{`{
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
+                      <CodeBlock language="json">{`{
   "batch_id": "batch_payout_def456ghi789",
   "batch_reference": "marketplace_payouts_202401_15",
   "status": "processing",
@@ -409,30 +416,30 @@ const Payout = () => {
   "estimated_completion": "2024-01-17T18:00:00Z",
   "created_at": "2024-01-15T16:30:00Z"
 }`}</CodeBlock>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* Compliance Requirements */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Compliance Requirements</h2>
+          {/* Compliance Requirements */}
+          <section className="mb-16">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Compliance Requirements</h2>
 
-          <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-lg p-6 mb-6">
-            <div className="flex">
-              <AlertTriangle className="h-5 w-5 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5 mr-3"/>
-              <div>
-                <h3 className="text-sm font-semibold text-red-800 dark:text-red-200">Compliance Notice</h3>
-                <p className="text-red-700 dark:text-red-300 text-sm mt-1">
-                  All payouts are subject to anti-money laundering (AML) and sanctions screening. Large amounts may require additional documentation.
-                </p>
+            <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-xl p-6 lg:p-8 shadow-sm mb-6">
+              <div className="flex">
+                <AlertTriangle className="h-6 w-6 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5 mr-4"/>
+                <div>
+                  <h3 className="text-sm font-semibold text-red-800 dark:text-red-200">Compliance Notice</h3>
+                  <p className="text-red-700 dark:text-red-300 text-sm mt-1">
+                    All payouts are subject to anti-money laundering (AML) and sanctions screening. Large amounts may require additional documentation.
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden">
+            <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
@@ -465,12 +472,12 @@ const Payout = () => {
                 </tbody>
               </table>
             </div>
-          </div>
-        </section>
+            </div>
+          </section>
 
-        {/* Code Examples */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Code Examples</h2>
+          {/* Code Examples */}
+          <section className="mb-16">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Code Examples</h2>
 
           <div className="space-y-6">
             <CodeBlock
@@ -730,42 +737,43 @@ public class PasspointPayout {
     }
 }`}</CodeBlock>
           </div>
-        </section>
-      </div>
+          </section>
+        </div>
 
-      {/* Pagination Navigation */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-8 mt-8 border-t border-gray-200 dark:border-gray-800">
-        <Link to="/transfer">
-          <Button
-            variant="ghost"
-            className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 justify-start"
-          >
-            <ArrowLeft className="h-4 w-4 flex-shrink-0"/>
-            <div className="text-left min-w-0">
-              <div className="text-xs text-gray-500 uppercase tracking-wide">Previous</div>
-              <div className="text-sm font-medium truncate">Transfer</div>
-            </div>
-          </Button>
-        </Link>
+        {/* Pagination Navigation */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-8 mt-8 border-t border-gray-200 dark:border-gray-800">
+          <Link to="/transfer">
+            <Button
+              variant="ghost"
+              className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 justify-start"
+            >
+              <ArrowLeft className="h-4 w-4 flex-shrink-0"/>
+              <div className="text-left min-w-0">
+                <div className="text-xs text-gray-500 uppercase tracking-wide">Previous</div>
+                <div className="text-sm font-medium truncate">Transfer</div>
+              </div>
+            </Button>
+          </Link>
 
-        <Link to="/transfer/collection">
-          <Button
-            variant="ghost"
-            className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 justify-end"
-          >
-            <div className="text-right min-w-0">
-              <div className="text-xs text-gray-500 uppercase tracking-wide">Next</div>
-              <div className="text-sm font-medium truncate">Collection</div>
-            </div>
-            <ArrowRight className="h-4 w-4 flex-shrink-0"/>
-          </Button>
-        </Link>
+          <Link to="/transfer/collection">
+            <Button
+              variant="ghost"
+              className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 justify-end"
+            >
+              <div className="text-right min-w-0">
+                <div className="text-xs text-gray-500 uppercase tracking-wide">Next</div>
+                <div className="text-sm font-medium truncate">Collection</div>
+              </div>
+              <ArrowRight className="h-4 w-4 flex-shrink-0"/>
+            </Button>
+          </Link>
       </div>
 
       {/* Footer */}
       <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
         <p className="text-gray-500 text-sm">All rights reserved</p>
       </footer>
+      </div>
     </div>
   );
 };

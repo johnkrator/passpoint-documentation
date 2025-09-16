@@ -4,26 +4,29 @@ import CodeBlock from "@/components/CodeBlock";
 
 const Transfer = () => {
   return (
-    <div className="px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-      <div className="prose prose-invert max-w-4xl">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Transfer</h1>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+        <div className="max-w-none">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Transfer</h1>
 
-        <p className="text-gray-700 dark:text-gray-300 text-lg mb-8 leading-relaxed">
-          Process secure fund transfers between wallets, bank accounts, and external payment systems. Manage both internal and external transfers with real-time status tracking.
-        </p>
+          <p className="text-lg mb-12 leading-relaxed max-w-4xl">
+            Process secure fund transfers between wallets, bank accounts, and external payment systems. Manage both internal and external transfers with real-time status tracking.
+          </p>
 
-        {/* Create Transfer */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Create Transfer</h2>
+          {/* Create Transfer */}
+          <section className="mb-16">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Create Transfer</h2>
 
-          <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
-            <div className="flex items-start space-x-4">
-              <Send className="h-8 w-8 text-brand-500 flex-shrink-0 mt-1"/>
-              <div className="flex-1">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Create New Transfer</h3>
-                <p className="text-gray-700 dark:text-gray-300 mb-4">
-                  Initiate a transfer between wallets, bank accounts, or external payment providers with comprehensive validation and fraud detection.
-                </p>
+            <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
+                <div className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
+                  <Send className="h-12 w-12 text-brand-500 flex-shrink-0"/>
+                </div>
+                <div className="flex-1 min-w-0 lg:max-w-4xl">
+                  <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Create New Transfer</h3>
+                  <p className="text-lg mb-6 leading-relaxed">
+                    Initiate a transfer between wallets, bank accounts, or external payment providers with comprehensive validation and fraud detection.
+                  </p>
 
                 <div className="space-y-4">
                   <div>
@@ -86,24 +89,26 @@ const Transfer = () => {
 }`}</CodeBlock>
                   </div>
                 </div>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* Get Transfer Status */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Transfer Status</h2>
+          {/* Get Transfer Status */}
+          <section className="mb-16">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Transfer Status</h2>
 
-          <div className="space-y-8">
-            <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
-              <div className="flex items-start space-x-4">
-                <Clock className="h-8 w-8 text-blue-500 flex-shrink-0 mt-1"/>
-                <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Get Transfer Status</h3>
-                  <p className="text-gray-700 dark:text-gray-300 mb-4">
-                    Check the current status and details of a transfer including processing updates and completion information.
-                  </p>
+            <div className="space-y-8">
+              <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
+                  <div className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
+                    <Clock className="h-12 w-12 text-blue-500 flex-shrink-0"/>
+                  </div>
+                  <div className="flex-1 min-w-0 lg:max-w-4xl">
+                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Get Transfer Status</h3>
+                    <p className="text-lg mb-6 leading-relaxed">
+                      Check the current status and details of a transfer including processing updates and completion information.
+                    </p>
 
                   <div className="space-y-4">
                     <div>
@@ -154,72 +159,74 @@ const Transfer = () => {
   "completed_at": "2024-01-16T14:22:00Z"
 }`}</CodeBlock>
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Status Values */}
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              <div className="bg-yellow-50 dark:bg-yellow-950/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
-                <div className="flex items-center mb-2">
-                  <Clock className="h-5 w-5 text-yellow-600 dark:text-yellow-400 mr-2"/>
-                  <span className="font-semibold text-yellow-800 dark:text-yellow-200">pending</span>
-                </div>
-                <p className="text-yellow-700 dark:text-yellow-300 text-sm">Transfer created, awaiting processing</p>
-              </div>
-
-              <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
-                <div className="flex items-center mb-2">
-                  <ArrowRightLeft className="h-5 w-5 text-blue-600 dark:text-blue-400 mr-2"/>
-                  <span className="font-semibold text-blue-800 dark:text-blue-200">processing</span>
-                </div>
-                <p className="text-blue-700 dark:text-blue-300 text-sm">Funds secured, transfer in progress</p>
-              </div>
-
-              <div className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
-                <div className="flex items-center mb-2">
-                  <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 mr-2"/>
-                  <span className="font-semibold text-green-800 dark:text-green-200">completed</span>
-                </div>
-                <p className="text-green-700 dark:text-green-300 text-sm">Transfer completed successfully</p>
-              </div>
-
-              <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
-                <div className="flex items-center mb-2">
-                  <XCircle className="h-5 w-5 text-red-600 dark:text-red-400 mr-2"/>
-                  <span className="font-semibold text-red-800 dark:text-red-200">failed</span>
-                </div>
-                <p className="text-red-700 dark:text-red-300 text-sm">Transfer failed, funds returned</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Bulk Transfer */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Bulk Transfer</h2>
-
-          <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
-            <div className="flex items-start space-x-4">
-              <ArrowRightLeft className="h-8 w-8 text-purple-500 flex-shrink-0 mt-1"/>
-              <div className="flex-1">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Process Bulk Transfers</h3>
-                <p className="text-gray-700 dark:text-gray-300 mb-4">
-                  Execute multiple transfers in a single batch operation with atomic processing and comprehensive error handling.
-                </p>
-
-                <div className="bg-orange-50 dark:bg-orange-950/20 border border-orange-200 dark:border-orange-800 rounded-lg p-4 mb-4">
-                  <div className="flex">
-                    <AlertTriangle className="h-5 w-5 text-orange-600 dark:text-orange-400 flex-shrink-0 mt-0.5 mr-3"/>
-                    <div>
-                      <h4 className="text-sm font-semibold text-orange-800 dark:text-orange-200">Batch Limits</h4>
-                      <p className="text-orange-700 dark:text-orange-300 text-sm mt-1">
-                        Maximum 100 transfers per batch. Total batch amount cannot exceed $50,000 USD.
-                      </p>
                     </div>
                   </div>
                 </div>
+              </div>
+
+                {/* Status Values */}
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="bg-yellow-50 dark:bg-yellow-950/20 border border-yellow-200 dark:border-yellow-800 rounded-xl p-6 lg:p-8 shadow-sm">
+                  <div className="flex items-center mb-2">
+                    <Clock className="h-6 w-6 text-yellow-600 dark:text-yellow-400 mr-4"/>
+                  <span className="font-semibold text-yellow-800 dark:text-yellow-200">pending</span>
+                  </div>
+                  <p className="text-yellow-700 dark:text-yellow-300 text-sm">Transfer created, awaiting processing</p>
+                </div>
+
+                <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-xl p-6 lg:p-8 shadow-sm">
+                  <div className="flex items-center mb-2">
+                    <ArrowRightLeft className="h-6 w-6 text-blue-600 dark:text-blue-400 mr-4"/>
+                  <span className="font-semibold text-blue-800 dark:text-blue-200">processing</span>
+                  </div>
+                  <p className="text-blue-700 dark:text-blue-300 text-sm">Funds secured, transfer in progress</p>
+                </div>
+
+                <div className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-xl p-6 lg:p-8 shadow-sm">
+                  <div className="flex items-center mb-2">
+                    <CheckCircle className="h-6 w-6 text-green-600 dark:text-green-400 mr-4"/>
+                  <span className="font-semibold text-green-800 dark:text-green-200">completed</span>
+                  </div>
+                  <p className="text-green-700 dark:text-green-300 text-sm">Transfer completed successfully</p>
+                </div>
+
+                <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-xl p-6 lg:p-8 shadow-sm">
+                  <div className="flex items-center mb-2">
+                    <XCircle className="h-6 w-6 text-red-600 dark:text-red-400 mr-4"/>
+                  <span className="font-semibold text-red-800 dark:text-red-200">failed</span>
+                  </div>
+                  <p className="text-red-700 dark:text-red-300 text-sm">Transfer failed, funds returned</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Bulk Transfer */}
+          <section className="mb-16">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Bulk Transfer</h2>
+
+            <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
+                <div className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
+                  <ArrowRightLeft className="h-12 w-12 text-purple-500 flex-shrink-0"/>
+                </div>
+                <div className="flex-1 min-w-0 lg:max-w-4xl">
+                  <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Process Bulk Transfers</h3>
+                  <p className="text-lg mb-6 leading-relaxed">
+                    Execute multiple transfers in a single batch operation with atomic processing and comprehensive error handling.
+                  </p>
+
+                  <div className="bg-orange-50 dark:bg-orange-950/20 border border-orange-200 dark:border-orange-800 rounded-xl p-6 lg:p-8 shadow-sm mb-4">
+                    <div className="flex">
+                      <AlertTriangle className="h-6 w-6 text-orange-600 dark:text-orange-400 flex-shrink-0 mt-0.5 mr-4"/>
+                      <div>
+                        <h4 className="text-sm font-semibold text-orange-800 dark:text-orange-200">Batch Limits</h4>
+                        <p className="text-orange-700 dark:text-orange-300 text-sm mt-1">
+                          Maximum 100 transfers per batch. Total batch amount cannot exceed $50,000 USD.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
 
                 <div className="space-y-4">
                   <div>
@@ -294,16 +301,16 @@ const Transfer = () => {
 }`}</CodeBlock>
                   </div>
                 </div>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* Transfer Fees */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Transfer Fees</h2>
+          {/* Transfer Fees */}
+          <section className="mb-16">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Transfer Fees</h2>
 
-          <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden">
+            <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
@@ -341,13 +348,13 @@ const Transfer = () => {
                   </tr>
                 </tbody>
               </table>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* Code Examples */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Code Examples</h2>
+          {/* Code Examples */}
+          <section className="mb-16">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Code Examples</h2>
 
           <div className="space-y-6">
             <CodeBlock
@@ -551,11 +558,11 @@ public class PasspointTransfer {
         }
     }
 }`}</CodeBlock>
-          </div>
-        </section>
-      </div>
+            </div>
+          </section>
+        </div>
 
-      {/* Pagination Navigation */}
+        {/* Pagination Navigation */}
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-8 mt-8 border-t border-gray-200 dark:border-gray-800">
         <Button
           variant="ghost"
@@ -580,10 +587,11 @@ public class PasspointTransfer {
         </Button>
       </div>
 
-      {/* Footer */}
-      <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
-        <p className="text-gray-500 text-sm">All rights reserved</p>
-      </footer>
+        {/* Footer */}
+        <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
+          <p className="text-gray-500 text-sm">All rights reserved</p>
+        </footer>
+      </div>
     </div>
   );
 };

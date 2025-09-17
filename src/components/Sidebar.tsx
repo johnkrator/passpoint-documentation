@@ -1,5 +1,28 @@
 import React, {useState} from "react";
-import {ChevronDown, ChevronRight, Home, Book, Users, BarChart3, FileText, Settings, X} from "lucide-react";
+import {
+    ChevronDown,
+    ChevronRight,
+    Home,
+    Book,
+    Users,
+    BarChart3,
+    FileText,
+    Settings,
+    X,
+    CreditCard,
+    Send,
+    ArrowDownToLine,
+    ArrowUpToLine,
+    Building,
+    Globe,
+    MapPin,
+    DollarSign,
+    TrendingUp,
+    History,
+    MessageSquare,
+    Webhook,
+    CheckCircle
+} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {cn} from "@/lib/utils";
 import {useLocation, Link} from "react-router-dom";
@@ -25,7 +48,7 @@ interface NavSection {
 const Sidebar = ({isOpen, onClose}: SidebarProps) => {
     const location = useLocation();
     const [openSections, setOpenSections] = useState<string[]>(["GETTING STARTED", "API DOCUMENTATION"]);
-    const [openNavItems, setOpenNavItems] = useState<string[]>(["Transfer"]);
+    const [openNavItems, setOpenNavItems] = useState<string[]>(["Transfer", "Payout", "Collection", "Momo", "Open Banking", "Rate", "Report", "Local", "Foreign", "Bank"]);
 
     const toggleSection = (section: string) => {
         setOpenSections(prev =>
@@ -58,12 +81,367 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                 {icon: Settings, label: "Authentication", href: "/authentication"},
                 {icon: BarChart3, label: "Wallet", href: "/wallet"},
                 {
-                    icon: FileText,
+                    icon: Send,
                     label: "Transfer",
                     href: "/transfer",
                     children: [
-                        {icon: BarChart3, label: "Payout", href: "/transfer/payout"},
-                        {icon: FileText, label: "Collection", href: "/transfer/collection"},
+                        {
+                            icon: ArrowUpToLine,
+                            label: "Payout",
+                            href: "/payout",
+                            children: [
+                                {
+                                    icon: MessageSquare,
+                                    label: "Momo",
+                                    href: "/payout/momo",
+                                    children: [
+                                        {
+                                            icon: Globe,
+                                            label: "Get Momo Payout Network",
+                                            href: "/payout/momo/get-network"
+                                        },
+                                        {
+                                            icon: Globe,
+                                            label: "Get Momo Payout Network",
+                                            href: "/payout/momo/get-payout-network"
+                                        },
+                                        {
+                                            icon: CheckCircle,
+                                            label: "Validate Momo Msisdn",
+                                            href: "/payout/momo/validate-msisdn"
+                                        },
+                                        {icon: Send, label: "Momo Transfer", href: "/payout/momo/transfer"}
+                                    ]
+                                },
+                                {
+                                    icon: Building,
+                                    label: "Bank",
+                                    href: "/payout/bank",
+                                    children: [
+                                        {
+                                            icon: MapPin,
+                                            label: "Local",
+                                            href: "/payout/bank/local",
+                                            children: [
+                                                {
+                                                    icon: Building,
+                                                    label: "Get Banks",
+                                                    href: "/payout/bank/local/get-banks"
+                                                },
+                                                {
+                                                    icon: CreditCard,
+                                                    label: "Account Enquiry",
+                                                    href: "/payout/bank/local/account-enquiry"
+                                                },
+                                                {
+                                                    icon: Send,
+                                                    label: "Account Transfer - NGN",
+                                                    href: "/payout/bank/local/account-transfer-ngn"
+                                                },
+                                                {
+                                                    icon: CreditCard,
+                                                    label: "Passpoint Enquiry",
+                                                    href: "/payout/bank/local/passpoint-enquiry"
+                                                },
+                                                {
+                                                    icon: Send,
+                                                    label: "Passpoint Wallet Transfer",
+                                                    href: "/payout/bank/local/passpoint-wallet-transfer"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            icon: Globe,
+                                            label: "Foreign",
+                                            href: "/payout/bank/foreign",
+                                            children: [
+                                                {
+                                                    icon: Globe,
+                                                    label: "Get Available Countries",
+                                                    href: "/payout/bank/foreign/get-countries"
+                                                },
+                                                {
+                                                    icon: Globe,
+                                                    label: "Get Payment Methods",
+                                                    href: "/payout/bank/foreign/get-payment-methods"
+                                                },
+                                                {icon: Send, label: "ACH - USD", href: "/payout/bank/foreign/ach-usd"},
+                                                {
+                                                    icon: Send,
+                                                    label: "WIRE - USD",
+                                                    href: "/payout/bank/foreign/wire-usd"
+                                                },
+                                                {icon: Send, label: "RTP - USD", href: "/payout/bank/foreign/rtp-usd"},
+                                                {
+                                                    icon: Send,
+                                                    label: "FEDNOW - USD",
+                                                    href: "/payout/bank/foreign/fednow-usd"
+                                                },
+                                                {
+                                                    icon: Send,
+                                                    label: "Account Deposit - USD",
+                                                    href: "/payout/bank/foreign/account-deposit-usd"
+                                                },
+                                                {
+                                                    icon: Send,
+                                                    label: "Account Deposit - GBP",
+                                                    href: "/payout/bank/foreign/account-deposit-gbp"
+                                                },
+                                                {
+                                                    icon: Send,
+                                                    label: "Account Deposit - EUR",
+                                                    href: "/payout/bank/foreign/account-deposit-eur"
+                                                },
+                                                {
+                                                    icon: Send,
+                                                    label: "Account Deposit - CNY",
+                                                    href: "/payout/bank/foreign/account-deposit-cny"
+                                                },
+                                                {
+                                                    icon: Send,
+                                                    label: "Momo Deposit - CNY",
+                                                    href: "/payout/bank/foreign/momo-deposit-cny"
+                                                },
+                                                {
+                                                    icon: Send,
+                                                    label: "B2B Transfer - CNY",
+                                                    href: "/payout/bank/foreign/b2b-transfer-cny"
+                                                },
+                                                {
+                                                    icon: Send,
+                                                    label: "B2C Transfer - CNY",
+                                                    href: "/payout/bank/foreign/b2c-transfer-cny"
+                                                },
+                                                {
+                                                    icon: Send,
+                                                    label: "B2B Transfer - USD",
+                                                    href: "/payout/bank/foreign/b2b-transfer-usd"
+                                                },
+                                                {
+                                                    icon: Send,
+                                                    label: "Convert Funds",
+                                                    href: "/payout/bank/foreign/convert-funds"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    icon: TrendingUp,
+                                    label: "Rate",
+                                    href: "/payout/rate",
+                                    children: [
+                                        {
+                                            icon: DollarSign,
+                                            label: "Get Transfer Fee",
+                                            href: "/payout/rate/get-transfer-fee"
+                                        },
+                                        {
+                                            icon: TrendingUp,
+                                            label: "Get Exchange Rate",
+                                            href: "/payout/rate/get-exchange-rate"
+                                        },
+                                        {
+                                            icon: Webhook,
+                                            label: "Funds Transfer Callback Sample",
+                                            href: "/payout/rate/funds-transfer-callback"
+                                        }
+                                    ]
+                                },
+                                {
+                                    icon: History,
+                                    label: "Report",
+                                    href: "/payout/report",
+                                    children: [
+                                        {
+                                            icon: History,
+                                            label: "Transaction History - Payout - All Currencies",
+                                            href: "/payout/report/transaction-history-all"
+                                        },
+                                        {
+                                            icon: History,
+                                            label: "Transaction History - Payout - NGN",
+                                            href: "/payout/report/transaction-history-ngn"
+                                        },
+                                        {
+                                            icon: History,
+                                            label: "Transaction History - Payout - All Currencies",
+                                            href: "/payout/report/transaction-history-all-2"
+                                        },
+                                        {
+                                            icon: History,
+                                            label: "Transaction History - Payout - NGN - Network",
+                                            href: "/payout/report/transaction-history-ngn-network"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            icon: ArrowDownToLine,
+                            label: "Collection",
+                            href: "/collection",
+                            children: [
+                                {
+                                    icon: MessageSquare,
+                                    label: "Momo",
+                                    href: "/collection/momo",
+                                    children: [
+                                        {
+                                            icon: Globe,
+                                            label: "Get Momo Collection Currency",
+                                            href: "/collection/momo/get-currency"
+                                        },
+                                        {
+                                            icon: Globe,
+                                            label: "Get Momo Collection Network",
+                                            href: "/collection/momo/get-network"
+                                        },
+                                        {
+                                            icon: Send,
+                                            label: "Momo Request to Pay",
+                                            href: "/collection/momo/request-to-pay"
+                                        }
+                                    ]
+                                },
+                                {
+                                    icon: Building,
+                                    label: "Bank",
+                                    href: "/collection/bank",
+                                    children: [
+                                        {
+                                            icon: CreditCard,
+                                            label: "Open Banking",
+                                            href: "/collection/bank/open-banking",
+                                            children: [
+                                                {
+                                                    icon: Building,
+                                                    label: "Get Banks",
+                                                    href: "/collection/bank/open-banking/get-banks"
+                                                },
+                                                {
+                                                    icon: Send,
+                                                    label: "Request Payment - Foreign",
+                                                    href: "/collection/bank/open-banking/request-payment-foreign"
+                                                },
+                                                {
+                                                    icon: Send,
+                                                    label: "Request Payment - Foreign [With Redirect URL]",
+                                                    href: "/collection/bank/open-banking/request-payment-foreign-redirect"
+                                                },
+                                                {
+                                                    icon: Send,
+                                                    label: "Request Payment - Foreign [Without Redirect URL]",
+                                                    href: "/collection/bank/open-banking/request-payment-foreign-no-redirect"
+                                                },
+                                                {
+                                                    icon: Globe,
+                                                    label: "Get Collection Currency",
+                                                    href: "/collection/bank/open-banking/get-currency"
+                                                },
+                                                {
+                                                    icon: Send,
+                                                    label: "Generate NGN Static Virtual Account",
+                                                    href: "/collection/bank/open-banking/generate-ngn-static"
+                                                },
+                                                {
+                                                    icon: Send,
+                                                    label: "Generate NGN Dynamic Virtual Account",
+                                                    href: "/collection/bank/open-banking/generate-ngn-dynamic"
+                                                },
+                                                {
+                                                    icon: Send,
+                                                    label: "Generate USD Virtual Account - Individual",
+                                                    href: "/collection/bank/open-banking/generate-usd-individual"
+                                                },
+                                                {
+                                                    icon: Send,
+                                                    label: "Generate USD Virtual Account - Business",
+                                                    href: "/collection/bank/open-banking/generate-usd-business"
+                                                },
+                                                {
+                                                    icon: BarChart3,
+                                                    label: "List Virtual Accounts - NGN - Paginated",
+                                                    href: "/collection/bank/open-banking/list-virtual-ngn"
+                                                },
+                                                {
+                                                    icon: Globe,
+                                                    label: "Get Virtual Account",
+                                                    href: "/collection/bank/open-banking/get-virtual-account"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    icon: History,
+                                    label: "Report",
+                                    href: "/collection/report",
+                                    children: [
+                                        {
+                                            icon: History,
+                                            label: "Transaction History - Collection - All Currencies",
+                                            href: "/collection/report/transaction-history-all"
+                                        },
+                                        {
+                                            icon: History,
+                                            label: "Transaction History - Collection - NGN",
+                                            href: "/collection/report/transaction-history-ngn"
+                                        },
+                                        {
+                                            icon: History,
+                                            label: "Transaction History - Collection - All Currencies",
+                                            href: "/collection/report/transaction-history-all-2"
+                                        },
+                                        {
+                                            icon: BarChart3,
+                                            label: "List Virtual Accounts - All Currency",
+                                            href: "/collection/report/list-virtual-all"
+                                        },
+                                        {
+                                            icon: BarChart3,
+                                            label: "List Virtual Accounts - All Currency - Not Paginated",
+                                            href: "/collection/report/list-virtual-all-no-pagination"
+                                        },
+                                        {
+                                            icon: Webhook,
+                                            label: "Wallet Credit Callback Sample",
+                                            href: "/collection/report/wallet-credit-callback"
+                                        },
+                                        {
+                                            icon: BarChart3,
+                                            label: "List Countries",
+                                            href: "/collection/report/list-countries"
+                                        },
+                                        {
+                                            icon: BarChart3,
+                                            label: "Transfer Status",
+                                            href: "/collection/report/transfer-status"
+                                        },
+                                        {
+                                            icon: BarChart3,
+                                            label: "Payment Status Report",
+                                            href: "/collection/report/payment-status"
+                                        },
+                                        {
+                                            icon: BarChart3,
+                                            label: "Resend Single Webhook",
+                                            href: "/collection/report/resend-single-webhook"
+                                        },
+                                        {
+                                            icon: Send,
+                                            label: "Resend Bulk Webhook",
+                                            href: "/collection/report/resend-bulk-webhook"
+                                        },
+                                        {
+                                            icon: Send,
+                                            label: "Confirm Momo Payment",
+                                            href: "/collection/report/confirm-momo-payment"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
                     ]
                 },
                 {icon: Settings, label: "Global Callback Setup", href: "/global-callback-setup"},
@@ -143,7 +521,7 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                         const isActive = location.pathname === item.href;
                                         const hasChildren = item.children && item.children.length > 0;
                                         const isExpanded = openNavItems.includes(item.label);
-                                        const hasActiveChild = item.children?.some(child => location.pathname === child.href);
+                                        // Removed unused hasActiveChild variable
 
                                         return (
                                             <div key={item.href} className="space-y-1">
@@ -151,38 +529,29 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                                     <div>
                                                         {/* Expandable nav item */}
                                                         <div className="flex items-center">
-                                                            <Link
-                                                                to={item.href}
+                                                            <button
                                                                 onClick={() => {
-                                                                    // Only close sidebar on mobile/tablet (lg breakpoint and below)
+                                                                    toggleNavItem(item.label);
                                                                     if (window.innerWidth < 1024) {
                                                                         onClose();
                                                                     }
                                                                 }}
                                                                 className={cn(
-                                                                    "flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors flex-1",
-                                                                    isActive || hasActiveChild
+                                                                    "flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors flex-1 text-left",
+                                                                    isActive
                                                                         ? "bg-brand-500 text-white"
                                                                         : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
                                                                 )}
                                                             >
                                                                 <item.icon className="h-4 w-4"/>
                                                                 <span className="truncate">{item.label}</span>
-                                                            </Link>
-                                                            <button
-                                                                onClick={() => toggleNavItem(item.label)}
-                                                                className={cn(
-                                                                    "p-1 ml-1 rounded-md transition-colors",
-                                                                    isActive || hasActiveChild
-                                                                        ? "text-white hover:bg-brand-600"
-                                                                        : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                                                                )}
-                                                            >
-                                                                {isExpanded ? (
-                                                                    <ChevronDown className="h-3 w-3"/>
-                                                                ) : (
-                                                                    <ChevronRight className="h-3 w-3"/>
-                                                                )}
+                                                                <span className="ml-auto">
+                                                                    {isExpanded ? (
+                                                                        <ChevronDown className="h-3 w-3"/>
+                                                                    ) : (
+                                                                        <ChevronRight className="h-3 w-3"/>
+                                                                    )}
+                                                                </span>
                                                             </button>
                                                         </div>
 
@@ -191,26 +560,172 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                                             <div className="ml-6 space-y-1 mt-1">
                                                                 {item.children!.map((child) => {
                                                                     const isChildActive = location.pathname === child.href;
+                                                                    const hasGrandchildren = child.children && child.children.length > 0;
+                                                                    const isChildExpanded = openNavItems.includes(child.label);
+                                                                    // Removed unused hasActiveGrandchild variable
+
                                                                     return (
-                                                                        <Link
-                                                                            key={child.href}
-                                                                            to={child.href}
-                                                                            onClick={() => {
-                                                                                // Only close sidebar on mobile/tablet (lg breakpoint and below)
-                                                                                if (window.innerWidth < 1024) {
-                                                                                    onClose();
-                                                                                }
-                                                                            }}
-                                                                            className={cn(
-                                                                                "flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors",
-                                                                                isChildActive
-                                                                                    ? "bg-brand-500 text-white"
-                                                                                    : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                                                                        <div key={child.href} className="space-y-1">
+                                                                            {hasGrandchildren ? (
+                                                                                <div>
+                                                                                    <div className="flex items-center">
+                                                                                        <button
+                                                                                            onClick={() => {
+                                                                                                toggleNavItem(child.label);
+                                                                                                if (window.innerWidth < 1024) {
+                                                                                                    onClose();
+                                                                                                }
+                                                                                            }}
+                                                                                            className={cn(
+                                                                                                "flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors flex-1 text-left",
+                                                                                                isChildActive
+                                                                                                    ? "bg-brand-500 text-white"
+                                                                                                    : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                                                                                            )}
+                                                                                        >
+                                                                                            <child.icon
+                                                                                                className="h-4 w-4"/>
+                                                                                            <span
+                                                                                                className="truncate">{child.label}</span>
+                                                                                            <span className="ml-auto">
+                                                                                                {isChildExpanded ? (
+                                                                                                    <ChevronDown
+                                                                                                        className="h-3 w-3"/>
+                                                                                                ) : (
+                                                                                                    <ChevronRight
+                                                                                                        className="h-3 w-3"/>
+                                                                                                )}
+                                                                                            </span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    {/* Grandchildren */}
+                                                                                    {isChildExpanded && (
+                                                                                        <div
+                                                                                            className="ml-6 space-y-1 mt-1">
+                                                                                            {child.children!.map((grandchild) => {
+                                                                                                const isGrandchildActive = location.pathname === grandchild.href;
+                                                                                                const hasGreatGrandchildren = grandchild.children && grandchild.children.length > 0;
+                                                                                                const isGrandchildExpanded = openNavItems.includes(grandchild.label);
+                                                                                                // Removed unused hasActiveGreatGrandchild variable
+
+                                                                                                return (
+                                                                                                    <div
+                                                                                                        key={grandchild.href}
+                                                                                                        className="space-y-1">
+                                                                                                        {hasGreatGrandchildren ? (
+                                                                                                            <div>
+                                                                                                                <div
+                                                                                                                    className="flex items-center">
+                                                                                                                    <button
+                                                                                                                        onClick={() => {
+                                                                                                                            toggleNavItem(grandchild.label);
+                                                                                                                            if (window.innerWidth < 1024) {
+                                                                                                                                onClose();
+                                                                                                                            }
+                                                                                                                        }}
+                                                                                                                        className={cn(
+                                                                                                                            "flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors flex-1 text-left",
+                                                                                                                            isGrandchildActive
+                                                                                                                                ? "bg-brand-500 text-white"
+                                                                                                                                : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                                                                                                                        )}
+                                                                                                                    >
+                                                                                                                        <grandchild.icon
+                                                                                                                            className="h-4 w-4"/>
+                                                                                                                        <span
+                                                                                                                            className="truncate">{grandchild.label}</span>
+                                                                                                                        <span
+                                                                                                                            className="ml-auto">
+                                                                                                                            {isGrandchildExpanded ? (
+                                                                                                                                <ChevronDown
+                                                                                                                                    className="h-3 w-3"/>
+                                                                                                                            ) : (
+                                                                                                                                <ChevronRight
+                                                                                                                                    className="h-3 w-3"/>
+                                                                                                                            )}
+                                                                                                                        </span>
+                                                                                                                    </button>
+                                                                                                                </div>
+                                                                                                                {/* Great-grandchildren */}
+                                                                                                                {isGrandchildExpanded && (
+                                                                                                                    <div
+                                                                                                                        className="ml-6 space-y-1 mt-1">
+                                                                                                                        {grandchild.children!.map((ggchild) => {
+                                                                                                                            const isGGChildActive = location.pathname === ggchild.href;
+                                                                                                                            return (
+                                                                                                                                <Link
+                                                                                                                                    key={ggchild.href}
+                                                                                                                                    to={ggchild.href}
+                                                                                                                                    onClick={() => {
+                                                                                                                                        if (window.innerWidth < 1024) {
+                                                                                                                                            onClose();
+                                                                                                                                        }
+                                                                                                                                    }}
+                                                                                                                                    className={cn(
+                                                                                                                                        "flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors",
+                                                                                                                                        isGGChildActive
+                                                                                                                                            ? "bg-brand-500 text-white"
+                                                                                                                                            : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                                                                                                                                    )}
+                                                                                                                                >
+                                                                                                                                    <ggchild.icon
+                                                                                                                                        className="h-4 w-4"/>
+                                                                                                                                    <span
+                                                                                                                                        className="truncate">{ggchild.label}</span>
+                                                                                                                                </Link>
+                                                                                                                            );
+                                                                                                                        })}
+                                                                                                                    </div>
+                                                                                                                )}
+                                                                                                            </div>
+                                                                                                        ) : (
+                                                                                                            <Link
+                                                                                                                to={grandchild.href}
+                                                                                                                onClick={() => {
+                                                                                                                    if (window.innerWidth < 1024) {
+                                                                                                                        onClose();
+                                                                                                                    }
+                                                                                                                }}
+                                                                                                                className={cn(
+                                                                                                                    "flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors",
+                                                                                                                    isGrandchildActive
+                                                                                                                        ? "bg-brand-500 text-white"
+                                                                                                                        : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                                                                                                                )}
+                                                                                                            >
+                                                                                                                <grandchild.icon
+                                                                                                                    className="h-4 w-4"/>
+                                                                                                                <span
+                                                                                                                    className="truncate">{grandchild.label}</span>
+                                                                                                            </Link>
+                                                                                                        )}
+                                                                                                    </div>
+                                                                                                );
+                                                                                            })}
+                                                                                        </div>
+                                                                                    )}
+                                                                                </div>
+                                                                            ) : (
+                                                                                <Link
+                                                                                    to={child.href}
+                                                                                    onClick={() => {
+                                                                                        if (window.innerWidth < 1024) {
+                                                                                            onClose();
+                                                                                        }
+                                                                                    }}
+                                                                                    className={cn(
+                                                                                        "flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors",
+                                                                                        isChildActive
+                                                                                            ? "bg-brand-500 text-white"
+                                                                                            : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                                                                                    )}
+                                                                                >
+                                                                                    <child.icon className="h-4 w-4"/>
+                                                                                    <span
+                                                                                        className="truncate">{child.label}</span>
+                                                                                </Link>
                                                                             )}
-                                                                        >
-                                                                            <child.icon className="h-4 w-4"/>
-                                                                            <span className="truncate">{child.label}</span>
-                                                                        </Link>
+                                                                        </div>
                                                                     );
                                                                 })}
                                                             </div>

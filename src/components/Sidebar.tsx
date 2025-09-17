@@ -49,7 +49,7 @@ interface NavSection {
 
 const Sidebar = ({isOpen, onClose}: SidebarProps) => {
     const location = useLocation();
-    const [openSections, setOpenSections] = useState<string[]>(["GETTING STARTED", "API DOCUMENTATION"]);
+    const [openSections, setOpenSections] = useState<string[]>(["GETTING STARTED"]);
     const [openNavItems, setOpenNavItems] = useState<string[]>([]);
 
     const toggleSection = (section: string) => {
@@ -116,7 +116,7 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                         },
                                         {
                                             icon: Globe,
-                                            label: "Get Momo Payout Network",
+                                            label: "Get Momo Payout Currency",
                                             href: "/payout/momo/get-payout-network"
                                         },
                                         {

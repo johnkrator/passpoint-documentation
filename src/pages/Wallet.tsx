@@ -401,6 +401,262 @@ Content-Type: application/json`}</CodeBlock>
                         </div>
                     </section>
 
+                    {/* API Parameters Summary */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">API Parameters
+                            Summary</h2>
+
+                        <div
+                            className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
+                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                Summary of key parameters used across the wallet endpoints for quick reference and
+                                integration.
+                            </p>
+
+                            <div className="space-y-8">
+                                {/* Path Parameters */}
+                                <div>
+                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Path
+                                        Parameters</h3>
+                                    <div className="overflow-x-auto">
+                                        <table className="w-full text-sm border-collapse">
+                                            <thead>
+                                            <tr className="border-b-2 border-gray-200 dark:border-gray-700">
+                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Parameter</th>
+                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Type</th>
+                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Required</th>
+                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Description</th>
+                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Default
+                                                    Value
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody className="text-gray-700 dark:text-gray-300">
+                                            <tr className="border-b border-gray-100 dark:border-gray-800">
+                                                <td className="py-3 px-4 font-mono text-xs">currency</td>
+                                                <td className="py-3 px-4">string</td>
+                                                <td className="py-3 px-4">Optional</td>
+                                                <td className="py-3 px-4">The currency of the wallet. When currency =
+                                                    "all", it
+                                                    retrieves the balance of all wallets
+                                                </td>
+                                                <td className="py-3 px-4">"all"</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                {/* Request Body Parameters */}
+                                <div>
+                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Request
+                                        Body
+                                        Parameters</h3>
+                                    <div className="overflow-x-auto">
+                                        <table className="w-full text-sm border-collapse">
+                                            <thead>
+                                            <tr className="border-b-2 border-gray-200 dark:border-gray-700">
+                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Parameter</th>
+                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Type</th>
+                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Required</th>
+                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Description</th>
+                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Used
+                                                    In
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody className="text-gray-700 dark:text-gray-300">
+                                            <tr className="border-b border-gray-100 dark:border-gray-800">
+                                                <td className="py-3 px-4 font-mono text-xs">currency</td>
+                                                <td className="py-3 px-4">string</td>
+                                                <td className="py-3 px-4">Yes</td>
+                                                <td className="py-3 px-4">Currency code for the wallet (USD, EUR,
+                                                    etc.)
+                                                </td>
+                                                <td className="py-3 px-4">History, Statement</td>
+                                            </tr>
+                                            <tr className="border-b border-gray-100 dark:border-gray-800">
+                                                <td className="py-3 px-4 font-mono text-xs">pageNumber</td>
+                                                <td className="py-3 px-4">number</td>
+                                                <td className="py-3 px-4">Yes</td>
+                                                <td className="py-3 px-4">Page number for pagination (starts from 1)
+                                                </td>
+                                                <td className="py-3 px-4">History, Statement</td>
+                                            </tr>
+                                            <tr className="border-b border-gray-100 dark:border-gray-800">
+                                                <td className="py-3 px-4 font-mono text-xs">pageSize</td>
+                                                <td className="py-3 px-4">number</td>
+                                                <td className="py-3 px-4">Yes</td>
+                                                <td className="py-3 px-4">Number of records per page (maximum 100)</td>
+                                                <td className="py-3 px-4">History, Statement</td>
+                                            </tr>
+                                            <tr className="border-b border-gray-100 dark:border-gray-800">
+                                                <td className="py-3 px-4 font-mono text-xs">fromDate</td>
+                                                <td className="py-3 px-4">string</td>
+                                                <td className="py-3 px-4">Optional</td>
+                                                <td className="py-3 px-4">Start date for filtering (YYYY-MM-DD format)
+                                                </td>
+                                                <td className="py-3 px-4">History, Statement</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="py-3 px-4 font-mono text-xs">toDate</td>
+                                                <td className="py-3 px-4">string</td>
+                                                <td className="py-3 px-4">Optional</td>
+                                                <td className="py-3 px-4">End date for filtering (YYYY-MM-DD format)
+                                                </td>
+                                                <td className="py-3 px-4">History, Statement</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                {/* Response Parameters */}
+                                <div>
+                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Response
+                                        Parameters</h3>
+                                    <div className="overflow-x-auto">
+                                        <table className="w-full text-sm border-collapse">
+                                            <thead>
+                                            <tr className="border-b-2 border-gray-200 dark:border-gray-700">
+                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Parameter</th>
+                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Type</th>
+                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Description</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody className="text-gray-700 dark:text-gray-300">
+                                            <tr className="border-b border-gray-100 dark:border-gray-800">
+                                                <td className="py-3 px-4 font-mono text-xs">responseCode</td>
+                                                <td className="py-3 px-4">string</td>
+                                                <td className="py-3 px-4">The response code indicating success ("00") or
+                                                    failure
+                                                </td>
+                                            </tr>
+                                            <tr className="border-b border-gray-100 dark:border-gray-800">
+                                                <td className="py-3 px-4 font-mono text-xs">responseDescription</td>
+                                                <td className="py-3 px-4">string</td>
+                                                <td className="py-3 px-4">Human-readable description of the response
+                                                    code
+                                                </td>
+                                            </tr>
+                                            <tr className="border-b border-gray-100 dark:border-gray-800">
+                                                <td className="py-3 px-4 font-mono text-xs">responseMessage</td>
+                                                <td className="py-3 px-4">string</td>
+                                                <td className="py-3 px-4">Detailed message about the operation result
+                                                </td>
+                                            </tr>
+                                            <tr className="border-b border-gray-100 dark:border-gray-800">
+                                                <td className="py-3 px-4 font-mono text-xs">data</td>
+                                                <td className="py-3 px-4">object/array</td>
+                                                <td className="py-3 px-4">The main response data containing wallet
+                                                    information
+                                                </td>
+                                            </tr>
+                                            <tr className="border-b border-gray-100 dark:border-gray-800">
+                                                <td className="py-3 px-4 font-mono text-xs">data.currency</td>
+                                                <td className="py-3 px-4">string</td>
+                                                <td className="py-3 px-4">The wallet currency code</td>
+                                            </tr>
+                                            <tr className="border-b border-gray-100 dark:border-gray-800">
+                                                <td className="py-3 px-4 font-mono text-xs">data.balance</td>
+                                                <td className="py-3 px-4">decimal</td>
+                                                <td className="py-3 px-4">The current wallet balance</td>
+                                            </tr>
+                                            <tr className="border-b border-gray-100 dark:border-gray-800">
+                                                <td className="py-3 px-4 font-mono text-xs">data.availableBalance</td>
+                                                <td className="py-3 px-4">decimal</td>
+                                                <td className="py-3 px-4">The available balance of the wallet for
+                                                    transactions
+                                                </td>
+                                            </tr>
+                                            <tr className="border-b border-gray-100 dark:border-gray-800">
+                                                <td className="py-3 px-4 font-mono text-xs">currentBalance</td>
+                                                <td className="py-3 px-4">decimal</td>
+                                                <td className="py-3 px-4">Current wallet balance (in statement
+                                                    response)
+                                                </td>
+                                            </tr>
+                                            <tr className="border-b border-gray-100 dark:border-gray-800">
+                                                <td className="py-3 px-4 font-mono text-xs">totalCount</td>
+                                                <td className="py-3 px-4">number</td>
+                                                <td className="py-3 px-4">Total number of records available</td>
+                                            </tr>
+                                            <tr className="border-b border-gray-100 dark:border-gray-800">
+                                                <td className="py-3 px-4 font-mono text-xs">pageCount</td>
+                                                <td className="py-3 px-4">number</td>
+                                                <td className="py-3 px-4">Total number of pages available</td>
+                                            </tr>
+                                            <tr className="border-b border-gray-100 dark:border-gray-800">
+                                                <td className="py-3 px-4 font-mono text-xs">transactionId</td>
+                                                <td className="py-3 px-4">string</td>
+                                                <td className="py-3 px-4">Unique identifier for each transaction</td>
+                                            </tr>
+                                            <tr className="border-b border-gray-100 dark:border-gray-800">
+                                                <td className="py-3 px-4 font-mono text-xs">runningBalance</td>
+                                                <td className="py-3 px-4">decimal</td>
+                                                <td className="py-3 px-4">Balance after the transaction was processed
+                                                </td>
+                                            </tr>
+                                            <tr className="border-b border-gray-100 dark:border-gray-800">
+                                                <td className="py-3 px-4 font-mono text-xs">transactionType</td>
+                                                <td className="py-3 px-4">string</td>
+                                                <td className="py-3 px-4">Type of transaction (Credit, Debit)</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="py-3 px-4 font-mono text-xs">transMode</td>
+                                                <td className="py-3 px-4">string</td>
+                                                <td className="py-3 px-4">Mode of transaction (Online Payment, Wallet
+                                                    Transfer, etc.)
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                {/* Required Headers */}
+                                <div>
+                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Required
+                                        Headers
+                                        (All Endpoints)</h3>
+                                    <div className="overflow-x-auto">
+                                        <table className="w-full text-sm border-collapse">
+                                            <thead>
+                                            <tr className="border-b-2 border-gray-200 dark:border-gray-700">
+                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Header</th>
+                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Value</th>
+                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Description</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody className="text-gray-700 dark:text-gray-300">
+                                            <tr className="border-b border-gray-100 dark:border-gray-800">
+                                                <td className="py-3 px-4 font-mono text-xs">x-channel-id</td>
+                                                <td className="py-3 px-4 font-mono text-xs">2</td>
+                                                <td className="py-3 px-4">Channel identifier for wallet operations</td>
+                                            </tr>
+                                            <tr className="border-b border-gray-100 dark:border-gray-800">
+                                                <td className="py-3 px-4 font-mono text-xs">x-channel-code</td>
+                                                <td className="py-3 px-4 font-mono text-xs">passpoint-merchant-user</td>
+                                                <td className="py-3 px-4">Channel code for merchant user operations</td>
+                                            </tr>
+                                            <tr className="border-b border-gray-100 dark:border-gray-800">
+                                                <td className="py-3 px-4 font-mono text-xs">x-merchant-id</td>
+                                                <td className="py-3 px-4 font-mono text-xs">[your-merchant-id]</td>
+                                                <td className="py-3 px-4">Your unique merchant identifier</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="py-3 px-4 font-mono text-xs">Authorization</td>
+                                                <td className="py-3 px-4 font-mono text-xs">Bearer [token]</td>
+                                                <td className="py-3 px-4">Bearer token obtained from authentication</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
                     {/* Code Examples */}
                     <section className="mb-16">
                         <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Integration
@@ -477,89 +733,6 @@ wallet.getWalletBalance()
 wallet.getWalletStatement('USD', 1, 20, '2024-01-01', '2024-01-31')
   .then(statement => console.log('Wallet Statement:', statement))
   .catch(err => console.error('Statement Error:', err));`}</CodeBlock>
-
-                            <CodeBlock
-                                title="Python - Wallet Operations"
-                                language="python"
-                            >{`import requests
-import json
-from datetime import datetime
-
-class PasspointWallet:
-    def __init__(self, merchant_id: str, access_token: str):
-        self.merchant_id = merchant_id
-        self.access_token = access_token
-        self.base_url = "https://dev.mypasspoint.com/paypass"
-
-    def get_headers(self) -> dict:
-        return {
-            "x-channel-id": "2",
-            "x-channel-code": "passpoint-merchant-user",
-            "x-merchant-id": self.merchant_id,
-            "Authorization": f"Bearer {self.access_token}",
-            "Content-Type": "application/json"
-        }
-
-    def get_wallet_details(self) -> dict:
-        """Get wallet details for all currencies"""
-        url = f"{self.base_url}/wallet-app/get-wallet-details"
-
-        try:
-            response = requests.get(url, headers=self.get_headers())
-            response.raise_for_status()
-            return response.json()
-        except requests.exceptions.RequestException as e:
-            print(f"Error fetching wallet details: {e}")
-            raise
-
-    def get_wallet_history(self, currency: str, page_number: int = 1,
-                          page_size: int = 20, from_date: str = None,
-                          to_date: str = None) -> dict:
-        """Get wallet transaction history"""
-        url = f"{self.base_url}/wallet-app/wallet-history?type=all"
-
-        payload = {
-            "currency": currency,
-            "pageNumber": page_number,
-            "pageSize": page_size
-        }
-
-        if from_date:
-            payload["fromDate"] = from_date
-        if to_date:
-            payload["toDate"] = to_date
-
-        try:
-            response = requests.post(url,
-                                   headers=self.get_headers(),
-                                   json=payload)
-            response.raise_for_status()
-            return response.json()
-        except requests.exceptions.RequestException as e:
-            print(f"Error fetching wallet history: {e}")
-            raise
-
-# Usage example
-if __name__ == "__main__":
-    wallet = PasspointWallet("your-merchant-id", "your-access-token")
-
-    # Get wallet details
-    try:
-        details = wallet.get_wallet_details()
-        print("Wallet Details:", json.dumps(details, indent=2))
-
-        # Get USD transaction history
-        history = wallet.get_wallet_history(
-            currency="USD",
-            page_number=1,
-            page_size=10,
-            from_date="2024-01-01",
-            to_date="2024-01-31"
-        )
-        print("Transaction History:", json.dumps(history, indent=2))
-
-    except Exception as e:
-        print(f"Operation failed: {e}")`}</CodeBlock>
                         </div>
                     </section>
 

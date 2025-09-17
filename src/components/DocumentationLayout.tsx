@@ -40,7 +40,7 @@ const DocumentationLayout = ({children}: DocumentationLayoutProps) => {
                         }`}
                     >
                         <div className="bg-white dark:bg-gray-950 min-h-screen w-full overflow-x-hidden">
-                            <div className="max-w-4xl mx-auto w-full">
+                            <div className="max-w-5xl mx-auto w-full">
                                 {children}
                             </div>
                         </div>

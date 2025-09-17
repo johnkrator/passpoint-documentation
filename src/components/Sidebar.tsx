@@ -21,11 +21,8 @@ import {
     CheckCircle,
     Building2,
     RefreshCw,
-    ArrowRightLeft,
     MapPin,
     CreditCard,
-    Zap,
-    Banknote,
     Shield
 } from "lucide-react";
 import {Button} from "@/components/ui/button";
@@ -64,22 +61,23 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
     };
 
     const toggleNavItem = (itemLabel: string) => {
-        setOpenNavItems(prev =>
-            prev.includes(itemLabel)
+        console.log("Toggling:", itemLabel);
+        setOpenNavItems(prev => {
+            const newState = prev.includes(itemLabel)
                 ? prev.filter(s => s !== itemLabel)
-                : [...prev, itemLabel]
-        );
+                : [...prev, itemLabel];
+            console.log("Open items:", newState);
+            return newState;
+        });
     };
 
     const getUniqueKey = (item: NavItem, parentItem?: NavItem, grandparentItem?: NavItem) => {
-        // Build a unique key based on the hierarchy
-        if (grandparentItem) {
-            return `${grandparentItem.label}-${parentItem?.label}-${item.label}`;
-        }
-        if (parentItem) {
-            return `${parentItem.label}-${item.label}`;
-        }
-        return item.label;
+        // Build a unique key based on the full hierarchy path
+        const parts = [];
+        if (grandparentItem) parts.push(grandparentItem.label);
+        if (parentItem) parts.push(parentItem.label);
+        parts.push(item.label);
+        return parts.join("-");
     };
 
     const navSections: NavSection[] = [
@@ -140,29 +138,24 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                             href: "/payout/bank/local",
                                             children: [
                                                 {
-                                                    icon: Building2,
-                                                    label: "Get Banks",
-                                                    href: "/payout/bank/local/get-banks"
+                                                    icon: Globe,
+                                                    label: "Get Momo Payout Network",
+                                                    href: "/payout/bank/local/get-network"
                                                 },
                                                 {
-                                                    icon: BarChart3,
-                                                    label: "Account Enquiry",
-                                                    href: "/payout/bank/local/account-enquiry"
+                                                    icon: Globe,
+                                                    label: "Get Momo Payout Network",
+                                                    href: "/payout/bank/local/get-payout-network"
                                                 },
                                                 {
-                                                    icon: ArrowRightLeft,
-                                                    label: "Account Transfer - NGN",
-                                                    href: "/payout/bank/local/account-transfer-ngn"
+                                                    icon: CheckCircle,
+                                                    label: "Validate Momo Msisdn",
+                                                    href: "/payout/bank/local/validate-msisdn"
                                                 },
                                                 {
-                                                    icon: BarChart3,
-                                                    label: "Passpoint Enquiry",
-                                                    href: "/payout/bank/local/passpoint-enquiry"
-                                                },
-                                                {
-                                                    icon: ArrowRightLeft,
-                                                    label: "Passpoint Wallet Transfer",
-                                                    href: "/payout/bank/local/passpoint-wallet-transfer"
+                                                    icon: Send,
+                                                    label: "Momo Transfer",
+                                                    href: "/payout/bank/local/transfer"
                                                 }
                                             ]
                                         },
@@ -172,70 +165,24 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                             href: "/payout/bank/foreign",
                                             children: [
                                                 {
-                                                    icon: MapPin,
-                                                    label: "Get available countries",
-                                                    href: "/payout/bank/foreign/get-countries"
+                                                    icon: Globe,
+                                                    label: "Get Momo Payout Network",
+                                                    href: "/payout/bank/foreign/get-network"
                                                 },
                                                 {
-                                                    icon: CreditCard,
-                                                    label: "Get payment methods",
-                                                    href: "/payout/bank/foreign/get-payment-methods"
+                                                    icon: Globe,
+                                                    label: "Get Momo Payout Network",
+                                                    href: "/payout/bank/foreign/get-payout-network"
                                                 },
                                                 {
-                                                    icon: Banknote,
-                                                    label: "ACH - USD",
-                                                    href: "/payout/bank/foreign/ach-usd"
+                                                    icon: CheckCircle,
+                                                    label: "Validate Momo Msisdn",
+                                                    href: "/payout/bank/foreign/validate-msisdn"
                                                 },
                                                 {
-                                                    icon: Banknote,
-                                                    label: "Wire - USD",
-                                                    href: "/payout/bank/foreign/wire-usd"
-                                                },
-                                                {icon: Zap, label: "RTP - USD", href: "/payout/bank/foreign/rtp-usd"},
-                                                {
-                                                    icon: Zap,
-                                                    label: "FedNow - USD",
-                                                    href: "/payout/bank/foreign/fednow-usd"
-                                                },
-                                                {
-                                                    icon: ArrowDownToLine,
-                                                    label: "Account Deposit - USD",
-                                                    href: "/payout/bank/foreign/account-deposit-usd"
-                                                },
-                                                {
-                                                    icon: ArrowDownToLine,
-                                                    label: "Account Deposit - GBP",
-                                                    href: "/payout/bank/foreign/account-deposit-gbp"
-                                                },
-                                                {
-                                                    icon: ArrowDownToLine,
-                                                    label: "Account Deposit - EUR",
-                                                    href: "/payout/bank/foreign/account-deposit-eur"
-                                                },
-                                                {
-                                                    icon: ArrowDownToLine,
-                                                    label: "Account Deposit - CNY",
-                                                    href: "/payout/bank/foreign/account-deposit-cny"
-                                                },
-                                                {
-                                                    icon: MessageSquare,
-                                                    label: "Momo Deposit - CNY",
-                                                    href: "/payout/bank/foreign/momo-deposit-cny"
-                                                },
-                                                {
-                                                    icon: ArrowRightLeft,
-                                                    label: "B2B Transfer - CNY",
-                                                    href: "/payout/bank/foreign/b2b-transfer-cny"
-                                                },
-                                                {
-                                                    icon: ArrowRightLeft,
-                                                    label: "B2C Transfer - CNY",
-                                                    href: "/payout/bank/foreign/b2c-transfer-cny"
-                                                },
-                                                {
-                                                    icon: ArrowRightLeft,
-                                                    label: "B2B Transfer - USD",
-                                                    href: "/payout/bank/foreign/b2b-transfer-usd"
+                                                    icon: Send,
+                                                    label: "Momo Transfer",
+                                                    href: "/payout/bank/foreign/transfer"
                                                 }
                                             ]
                                         }
@@ -474,7 +421,7 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
             {/* Sidebar */}
             <aside
                 className={cn(
-                    "h-screen w-72 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800",
+                    "h-screen w-96 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800", // Increased width from w-72 to w-96
                     // Mobile: fixed position with slide animation
                     "lg:sticky lg:top-0 lg:transform-none lg:transition-none",
                     "fixed left-0 top-0 z-50 transform transition-transform duration-200 ease-in-out lg:z-auto",

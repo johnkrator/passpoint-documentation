@@ -9,19 +9,24 @@ import {
     FileText,
     Settings,
     X,
-    CreditCard,
     Send,
     ArrowDownToLine,
     ArrowUpToLine,
-    Building,
     Globe,
-    MapPin,
     DollarSign,
     TrendingUp,
     History,
     MessageSquare,
     Webhook,
-    CheckCircle
+    CheckCircle,
+    Building2,
+    RefreshCw,
+    ArrowRightLeft,
+    MapPin,
+    CreditCard,
+    Zap,
+    Banknote,
+    Shield
 } from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {cn} from "@/lib/utils";
@@ -48,7 +53,7 @@ interface NavSection {
 const Sidebar = ({isOpen, onClose}: SidebarProps) => {
     const location = useLocation();
     const [openSections, setOpenSections] = useState<string[]>(["GETTING STARTED", "API DOCUMENTATION"]);
-    const [openNavItems, setOpenNavItems] = useState<string[]>(["Transfer", "Payout", "Collection", "Momo", "Open Banking", "Rate", "Report", "Local", "Foreign", "Payout-Bank", "Collection-Bank"]);
+    const [openNavItems, setOpenNavItems] = useState<string[]>([]);
 
     const toggleSection = (section: string) => {
         setOpenSections(prev =>
@@ -66,13 +71,16 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
         );
     };
 
-    const getUniqueKey = (item: NavItem, parentItem?: NavItem) => {
-        if (item.label === "Bank" && parentItem) {
+    const getUniqueKey = (item: NavItem, parentItem?: NavItem, grandparentItem?: NavItem) => {
+        // Build a unique key based on the hierarchy
+        if (grandparentItem) {
+            return `${grandparentItem.label}-${parentItem?.label}-${item.label}`;
+        }
+        if (parentItem) {
             return `${parentItem.label}-${item.label}`;
         }
         return item.label;
     };
-
 
     const navSections: NavSection[] = [
         {
@@ -122,7 +130,7 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                     ]
                                 },
                                 {
-                                    icon: Building,
+                                    icon: Building2,
                                     label: "Bank",
                                     href: "/payout/bank",
                                     children: [
@@ -132,27 +140,27 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                             href: "/payout/bank/local",
                                             children: [
                                                 {
-                                                    icon: Building,
+                                                    icon: Building2,
                                                     label: "Get Banks",
                                                     href: "/payout/bank/local/get-banks"
                                                 },
                                                 {
-                                                    icon: CreditCard,
+                                                    icon: BarChart3,
                                                     label: "Account Enquiry",
                                                     href: "/payout/bank/local/account-enquiry"
                                                 },
                                                 {
-                                                    icon: Send,
+                                                    icon: ArrowRightLeft,
                                                     label: "Account Transfer - NGN",
                                                     href: "/payout/bank/local/account-transfer-ngn"
                                                 },
                                                 {
-                                                    icon: CreditCard,
+                                                    icon: BarChart3,
                                                     label: "Passpoint Enquiry",
                                                     href: "/payout/bank/local/passpoint-enquiry"
                                                 },
                                                 {
-                                                    icon: Send,
+                                                    icon: ArrowRightLeft,
                                                     label: "Passpoint Wallet Transfer",
                                                     href: "/payout/bank/local/passpoint-wallet-transfer"
                                                 }
@@ -164,64 +172,68 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                             href: "/payout/bank/foreign",
                                             children: [
                                                 {
-                                                    icon: Globe,
-                                                    label: "Get Available Countries",
+                                                    icon: MapPin,
+                                                    label: "Get available countries",
                                                     href: "/payout/bank/foreign/get-countries"
                                                 },
                                                 {
-                                                    icon: Globe,
-                                                    label: "Get Payment Methods",
+                                                    icon: CreditCard,
+                                                    label: "Get payment methods",
                                                     href: "/payout/bank/foreign/get-payment-methods"
                                                 },
-                                                {icon: Send, label: "ACH - USD", href: "/payout/bank/foreign/ach-usd"},
                                                 {
-                                                    icon: Send,
-                                                    label: "WIRE - USD",
+                                                    icon: Banknote,
+                                                    label: "ACH - USD",
+                                                    href: "/payout/bank/foreign/ach-usd"
+                                                },
+                                                {
+                                                    icon: Banknote,
+                                                    label: "Wire - USD",
                                                     href: "/payout/bank/foreign/wire-usd"
                                                 },
-                                                {icon: Send, label: "RTP - USD", href: "/payout/bank/foreign/rtp-usd"},
+                                                {icon: Zap, label: "RTP - USD", href: "/payout/bank/foreign/rtp-usd"},
                                                 {
-                                                    icon: Send,
-                                                    label: "FEDNOW - USD",
+                                                    icon: Zap,
+                                                    label: "FedNow - USD",
                                                     href: "/payout/bank/foreign/fednow-usd"
                                                 },
                                                 {
-                                                    icon: Send,
+                                                    icon: ArrowDownToLine,
                                                     label: "Account Deposit - USD",
                                                     href: "/payout/bank/foreign/account-deposit-usd"
                                                 },
                                                 {
-                                                    icon: Send,
+                                                    icon: ArrowDownToLine,
                                                     label: "Account Deposit - GBP",
                                                     href: "/payout/bank/foreign/account-deposit-gbp"
                                                 },
                                                 {
-                                                    icon: Send,
+                                                    icon: ArrowDownToLine,
                                                     label: "Account Deposit - EUR",
                                                     href: "/payout/bank/foreign/account-deposit-eur"
                                                 },
                                                 {
-                                                    icon: Send,
+                                                    icon: ArrowDownToLine,
                                                     label: "Account Deposit - CNY",
                                                     href: "/payout/bank/foreign/account-deposit-cny"
                                                 },
                                                 {
-                                                    icon: Send,
+                                                    icon: MessageSquare,
                                                     label: "Momo Deposit - CNY",
                                                     href: "/payout/bank/foreign/momo-deposit-cny"
                                                 },
                                                 {
-                                                    icon: Send,
+                                                    icon: ArrowRightLeft,
                                                     label: "B2B Transfer - CNY",
                                                     href: "/payout/bank/foreign/b2b-transfer-cny"
                                                 },
                                                 {
-                                                    icon: Send,
+                                                    icon: ArrowRightLeft,
                                                     label: "B2C Transfer - CNY",
                                                     href: "/payout/bank/foreign/b2c-transfer-cny"
                                                 },
                                                 {
-                                                    icon: Send,
+                                                    icon: ArrowRightLeft,
                                                     label: "B2B Transfer - USD",
                                                     href: "/payout/bank/foreign/b2b-transfer-usd"
                                                 }
@@ -277,6 +289,11 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                             href: "/payout/report/transaction-history-ngn-network"
                                         }
                                     ]
+                                },
+                                {
+                                    icon: RefreshCw,
+                                    label: "Convert Funds",
+                                    href: "/payout/convert-funds"
                                 }
                             ]
                         },
@@ -308,17 +325,17 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                     ]
                                 },
                                 {
-                                    icon: Building,
+                                    icon: Building2,
                                     label: "Bank",
                                     href: "/collection/bank",
                                     children: [
                                         {
-                                            icon: CreditCard,
+                                            icon: Shield,
                                             label: "Open Banking",
                                             href: "/collection/bank/open-banking",
                                             children: [
                                                 {
-                                                    icon: Building,
+                                                    icon: Building2,
                                                     label: "Get Banks",
                                                     href: "/collection/bank/open-banking/get-banks"
                                                 },
@@ -328,49 +345,51 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                                     href: "/collection/bank/open-banking/request-payment-foreign"
                                                 },
                                                 {
-                                                    icon: Send,
-                                                    label: "Request Payment - Foreign [With Redirect URL]",
-                                                    href: "/collection/bank/open-banking/request-payment-foreign-redirect"
+                                                    icon: CreditCard,
+                                                    label: "Request Payment - Foreign [with Tokenization]",
+                                                    href: "/collection/bank/open-banking/request-payment-foreign-tokenization"
                                                 },
                                                 {
-                                                    icon: Send,
-                                                    label: "Request Payment - Foreign [Without Redirect URL]",
-                                                    href: "/collection/bank/open-banking/request-payment-foreign-no-redirect"
-                                                },
+                                                    icon: CreditCard,
+                                                    label: "Request Payment - Foreign [with Tokenization - New Payer]",
+                                                    href: "/collection/bank/open-banking/request-payment-foreign-tokenization-new-payer"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            icon: Building2,
+                                            label: "Direct bank options",
+                                            href: "/collection/bank/direct",
+                                            children: [
                                                 {
-                                                    icon: Globe,
+                                                    icon: DollarSign,
                                                     label: "Get Collection Currency",
-                                                    href: "/collection/bank/open-banking/get-currency"
+                                                    href: "/collection/bank/direct/get-collection-currency"
                                                 },
                                                 {
-                                                    icon: Send,
+                                                    icon: BarChart3,
                                                     label: "Generate NGN Static Virtual Account",
-                                                    href: "/collection/bank/open-banking/generate-ngn-static"
+                                                    href: "/collection/bank/direct/generate-ngn-static-virtual-account"
                                                 },
                                                 {
-                                                    icon: Send,
-                                                    label: "Generate NGN Dynamic Virtual Account",
-                                                    href: "/collection/bank/open-banking/generate-ngn-dynamic"
-                                                },
-                                                {
-                                                    icon: Send,
+                                                    icon: BarChart3,
                                                     label: "Generate USD Virtual Account - Individual",
-                                                    href: "/collection/bank/open-banking/generate-usd-individual"
+                                                    href: "/collection/bank/direct/generate-usd-virtual-account-individual"
                                                 },
                                                 {
-                                                    icon: Send,
+                                                    icon: BarChart3,
                                                     label: "Generate USD Virtual Account - Business",
-                                                    href: "/collection/bank/open-banking/generate-usd-business"
+                                                    href: "/collection/bank/direct/generate-usd-virtual-account-business"
                                                 },
                                                 {
                                                     icon: BarChart3,
                                                     label: "List Virtual Accounts - NGN - Paginated",
-                                                    href: "/collection/bank/open-banking/list-virtual-ngn"
+                                                    href: "/collection/bank/direct/list-virtual-accounts-ngn-paginated"
                                                 },
                                                 {
-                                                    icon: Globe,
+                                                    icon: BarChart3,
                                                     label: "Get Virtual Account",
-                                                    href: "/collection/bank/open-banking/get-virtual-account"
+                                                    href: "/collection/bank/direct/get-virtual-account"
                                                 }
                                             ]
                                         }
@@ -379,69 +398,42 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                 {
                                     icon: History,
                                     label: "Report",
-                                    href: "/collection/report",
-                                    children: [
-                                        {
-                                            icon: History,
-                                            label: "Transaction History - Collection - All Currencies",
-                                            href: "/collection/report/transaction-history-all"
-                                        },
-                                        {
-                                            icon: History,
-                                            label: "Transaction History - Collection - NGN",
-                                            href: "/collection/report/transaction-history-ngn"
-                                        },
-                                        {
-                                            icon: History,
-                                            label: "Transaction History - Collection - All Currencies",
-                                            href: "/collection/report/transaction-history-all-2"
-                                        },
-                                        {
-                                            icon: BarChart3,
-                                            label: "List Virtual Accounts - All Currency",
-                                            href: "/collection/report/list-virtual-all"
-                                        },
-                                        {
-                                            icon: BarChart3,
-                                            label: "List Virtual Accounts - All Currency - Not Paginated",
-                                            href: "/collection/report/list-virtual-all-no-pagination"
-                                        },
-                                        {
-                                            icon: Webhook,
-                                            label: "Wallet Credit Callback Sample",
-                                            href: "/collection/report/wallet-credit-callback"
-                                        },
-                                        {
-                                            icon: BarChart3,
-                                            label: "List Countries",
-                                            href: "/collection/report/list-countries"
-                                        },
-                                        {
-                                            icon: BarChart3,
-                                            label: "Transfer Status",
-                                            href: "/collection/report/transfer-status"
-                                        },
-                                        {
-                                            icon: BarChart3,
-                                            label: "Payment Status Report",
-                                            href: "/collection/report/payment-status"
-                                        },
-                                        {
-                                            icon: BarChart3,
-                                            label: "Resend Single Webhook",
-                                            href: "/collection/report/resend-single-webhook"
-                                        },
-                                        {
-                                            icon: Send,
-                                            label: "Resend Bulk Webhook",
-                                            href: "/collection/report/resend-bulk-webhook"
-                                        },
-                                        {
-                                            icon: Send,
-                                            label: "Confirm Momo Payment",
-                                            href: "/collection/report/confirm-momo-payment"
-                                        }
-                                    ]
+                                    href: "/collection/report"
+                                },
+                                {
+                                    icon: Webhook,
+                                    label: "Wallet Credit Callback Sample",
+                                    href: "/collection/wallet-credit-callback"
+                                },
+                                {
+                                    icon: BarChart3,
+                                    label: "List Countries",
+                                    href: "/collection/list-countries"
+                                },
+                                {
+                                    icon: BarChart3,
+                                    label: "Transfer Status",
+                                    href: "/collection/transfer-status"
+                                },
+                                {
+                                    icon: BarChart3,
+                                    label: "Payment Status Report",
+                                    href: "/collection/payment-status"
+                                },
+                                {
+                                    icon: Send,
+                                    label: "Resend Single Webhook",
+                                    href: "/collection/resend-single-webhook"
+                                },
+                                {
+                                    icon: Send,
+                                    label: "Resend Bulk Webhook",
+                                    href: "/collection/resend-bulk-webhook"
+                                },
+                                {
+                                    icon: CheckCircle,
+                                    label: "Confirm Momo Payment",
+                                    href: "/collection/confirm-momo-payment"
                                 }
                             ]
                         }
@@ -524,7 +516,6 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                         const isActive = location.pathname === item.href;
                                         const hasChildren = item.children && item.children.length > 0;
                                         const isExpanded = openNavItems.includes(item.label);
-                                        // Removed unused hasActiveChild variable
 
                                         return (
                                             <div key={item.href} className="space-y-1">
@@ -533,12 +524,7 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                                         {/* Expandable nav item */}
                                                         <div className="flex items-center">
                                                             <button
-                                                                onClick={() => {
-                                                                    toggleNavItem(item.label);
-                                                                    if (window.innerWidth < 1024) {
-                                                                        onClose();
-                                                                    }
-                                                                }}
+                                                                onClick={() => toggleNavItem(item.label)}
                                                                 className={cn(
                                                                     "flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors flex-1 text-left",
                                                                     isActive
@@ -566,7 +552,6 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                                                     const hasGrandchildren = child.children && child.children.length > 0;
                                                                     const childKey = getUniqueKey(child, item);
                                                                     const isChildExpanded = openNavItems.includes(childKey);
-                                                                    // Removed unused hasActiveGrandchild variable
 
                                                                     return (
                                                                         <div key={child.href} className="space-y-1">
@@ -574,12 +559,7 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                                                                 <div>
                                                                                     <div className="flex items-center">
                                                                                         <button
-                                                                                            onClick={() => {
-                                                                                                toggleNavItem(child.label);
-                                                                                                if (window.innerWidth < 1024) {
-                                                                                                    onClose();
-                                                                                                }
-                                                                                            }}
+                                                                                            onClick={() => toggleNavItem(childKey)}
                                                                                             className={cn(
                                                                                                 "flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors flex-1 text-left",
                                                                                                 isChildActive
@@ -609,8 +589,8 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                                                                             {child.children!.map((grandchild) => {
                                                                                                 const isGrandchildActive = location.pathname === grandchild.href;
                                                                                                 const hasGreatGrandchildren = grandchild.children && grandchild.children.length > 0;
-                                                                                                const isGrandchildExpanded = openNavItems.includes(grandchild.label);
-                                                                                                // Removed unused hasActiveGreatGrandchild variable
+                                                                                                const grandchildKey = getUniqueKey(grandchild, child, item);
+                                                                                                const isGrandchildExpanded = openNavItems.includes(grandchildKey);
 
                                                                                                 return (
                                                                                                     <div
@@ -621,12 +601,7 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                                                                                                 <div
                                                                                                                     className="flex items-center">
                                                                                                                     <button
-                                                                                                                        onClick={() => {
-                                                                                                                            toggleNavItem(grandchild.label);
-                                                                                                                            if (window.innerWidth < 1024) {
-                                                                                                                                onClose();
-                                                                                                                            }
-                                                                                                                        }}
+                                                                                                                        onClick={() => toggleNavItem(grandchildKey)}
                                                                                                                         className={cn(
                                                                                                                             "flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors flex-1 text-left",
                                                                                                                             isGrandchildActive

@@ -440,7 +440,7 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                 </div>
 
                 {/* Navigation */}
-                <nav className="px-4 pb-4 space-y-2 h-full overflow-y-auto">
+                <nav className="px-4 pb-4 space-y-2 h-full overflow-y-auto scrollbar-hide">
                     {navSections.map((section) => (
                         <div key={section.title} className="space-y-1">
                             {/* Section header */}

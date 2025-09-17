@@ -48,7 +48,7 @@ interface NavSection {
 const Sidebar = ({isOpen, onClose}: SidebarProps) => {
     const location = useLocation();
     const [openSections, setOpenSections] = useState<string[]>(["GETTING STARTED", "API DOCUMENTATION"]);
-    const [openNavItems, setOpenNavItems] = useState<string[]>(["Transfer", "Payout", "Collection", "Momo", "Open Banking", "Rate", "Report", "Local", "Foreign", "Bank"]);
+    const [openNavItems, setOpenNavItems] = useState<string[]>(["Transfer", "Payout", "Collection", "Momo", "Open Banking", "Rate", "Report", "Local", "Foreign", "Payout-Bank", "Collection-Bank"]);
 
     const toggleSection = (section: string) => {
         setOpenSections(prev =>
@@ -65,6 +65,14 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                 : [...prev, itemLabel]
         );
     };
+
+    const getUniqueKey = (item: NavItem, parentItem?: NavItem) => {
+        if (item.label === "Bank" && parentItem) {
+            return `${parentItem.label}-${item.label}`;
+        }
+        return item.label;
+    };
+
 
     const navSections: NavSection[] = [
         {
@@ -216,11 +224,6 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                                     icon: Send,
                                                     label: "B2B Transfer - USD",
                                                     href: "/payout/bank/foreign/b2b-transfer-usd"
-                                                },
-                                                {
-                                                    icon: Send,
-                                                    label: "Convert Funds",
-                                                    href: "/payout/bank/foreign/convert-funds"
                                                 }
                                             ]
                                         }
@@ -561,7 +564,8 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                                                 {item.children!.map((child) => {
                                                                     const isChildActive = location.pathname === child.href;
                                                                     const hasGrandchildren = child.children && child.children.length > 0;
-                                                                    const isChildExpanded = openNavItems.includes(child.label);
+                                                                    const childKey = getUniqueKey(child, item);
+                                                                    const isChildExpanded = openNavItems.includes(childKey);
                                                                     // Removed unused hasActiveGrandchild variable
 
                                                                     return (

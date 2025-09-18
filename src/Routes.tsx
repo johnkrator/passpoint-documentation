@@ -26,6 +26,31 @@ import PayoutMomoGetCurrency from "@/pages/payout/momo/PayoutMomoGetCurrency.tsx
 import PayoutMomoValidateMsisdn from "@/pages/payout/momo/PayoutMomoValidateMsisdn.tsx";
 import PayoutMomoTransfer from "@/pages/payout/momo/PayoutMomoTransfer.tsx";
 
+// Payout Bank Local Pages
+import PayoutBankLocalGetBanks from "@/pages/payout/bank/local/PayoutBankLocalGetBanks.tsx";
+import PayoutBankLocalAccountEnquiry from "@/pages/payout/bank/local/PayoutBankLocalAccountEnquiry.tsx";
+import PayoutBankLocalAccountTransferNgn from "@/pages/payout/bank/local/PayoutBankLocalAccountTransferNgn.tsx";
+import PayoutBankLocalPasspointEnquiry from "@/pages/payout/bank/local/PayoutBankLocalPasspointEnquiry.tsx";
+import PayoutBankLocalPasspointWalletTransfer
+    from "@/pages/payout/bank/local/PayoutBankLocalPasspointWalletTransfer.tsx";
+
+// Payout Bank Foreign Pages
+import PayoutBankForeignGetAvailableCountries
+    from "@/pages/payout/bank/foreign/PayoutBankForeignGetAvailableCountries.tsx";
+import PayoutBankForeignGetPaymentMethods from "@/pages/payout/bank/foreign/PayoutBankForeignGetPaymentMethods.tsx";
+import PayoutBankForeignB2cTransferCny from "@/pages/payout/bank/foreign/PayoutBankForeignB2cTransferCny.tsx";
+import PayoutBankForeignB2bTransferUsd from "@/pages/payout/bank/foreign/PayoutBankForeignB2bTransferUsd.tsx";
+import PayoutBankForeignB2bTransferCny from "@/pages/payout/bank/foreign/PayoutBankForeignB2bTransferCny.tsx";
+import PayoutBankForeignAchUsd from "@/pages/payout/bank/foreign/PayoutBankForeignAchUsd.tsx";
+import PayoutBankForeignWireUsd from "@/pages/payout/bank/foreign/PayoutBankForeignWireUsd.tsx";
+import PayoutBankForeignRtpUsd from "@/pages/payout/bank/foreign/PayoutBankForeignRtpUsd.tsx";
+import PayoutBankForeignFednowUsd from "@/pages/payout/bank/foreign/PayoutBankForeignFednowUsd.tsx";
+import PayoutBankForeignAccountDepositUsd from "@/pages/payout/bank/foreign/PayoutBankForeignAccountDepositUsd.tsx";
+import PayoutBankForeignAccountDepositGbp from "@/pages/payout/bank/foreign/PayoutBankForeignAccountDepositGbp.tsx";
+import PayoutBankForeignAccountDepositEur from "@/pages/payout/bank/foreign/PayoutBankForeignAccountDepositEur.tsx";
+import PayoutBankForeignAccountDepositCny from "@/pages/payout/bank/foreign/PayoutBankForeignAccountDepositCny.tsx";
+import PayoutBankForeignMomoDepositCny from "@/pages/payout/bank/foreign/PayoutBankForeignMomoDepositCny.tsx";
+
 // Collection Bank Pages
 import CollectionBank from "@/pages/collection/CollectionBank.tsx";
 import CollectionBankOpenBanking from "@/pages/collection/CollectionBankOpenBanking.tsx";
@@ -64,26 +89,32 @@ const Routes = () => {
                 {path: "payout/momo/transfer", element: <PayoutMomoTransfer/>},
                 {path: "payout/bank", element: <PayoutBank/>},
                 {path: "payout/bank/local", element: <PayoutBankLocal/>},
-                {path: "payout/bank/local/get-banks", element: <Home/>},
-                {path: "payout/bank/local/account-enquiry", element: <Home/>},
-                {path: "payout/bank/local/account-transfer-ngn", element: <Home/>},
-                {path: "payout/bank/local/passpoint-enquiry", element: <Home/>},
-                {path: "payout/bank/local/passpoint-wallet-transfer", element: <Home/>},
+                {path: "payout/bank/local/get-banks", element: <PayoutBankLocalGetBanks/>},
+                {path: "payout/bank/local/account-enquiry", element: <PayoutBankLocalAccountEnquiry/>},
+                {path: "payout/bank/local/account-transfer-ngn", element: <PayoutBankLocalAccountTransferNgn/>},
+                {path: "payout/bank/local/passpoint-enquiry", element: <PayoutBankLocalPasspointEnquiry/>},
+                {
+                    path: "payout/bank/local/passpoint-wallet-transfer",
+                    element: <PayoutBankLocalPasspointWalletTransfer/>
+                },
                 {path: "payout/bank/foreign", element: <PayoutBankForeign/>},
-                {path: "payout/bank/foreign/get-available-countries", element: <Home/>},
-                {path: "payout/bank/foreign/get-payment-methods", element: <Home/>},
-                {path: "payout/bank/foreign/ach-usd", element: <Home/>},
-                {path: "payout/bank/foreign/wire-usd", element: <Home/>},
-                {path: "payout/bank/foreign/rtp-usd", element: <Home/>},
-                {path: "payout/bank/foreign/fednow-usd", element: <Home/>},
-                {path: "payout/bank/foreign/account-deposit-usd", element: <Home/>},
-                {path: "payout/bank/foreign/account-deposit-gbp", element: <Home/>},
-                {path: "payout/bank/foreign/account-deposit-eur", element: <Home/>},
-                {path: "payout/bank/foreign/account-deposit-cny", element: <Home/>},
-                {path: "payout/bank/foreign/momo-deposit-cny", element: <Home/>},
-                {path: "payout/bank/foreign/b2b-transfer-cny", element: <Home/>},
-                {path: "payout/bank/foreign/b2c-transfer-cny", element: <Home/>},
-                {path: "payout/bank/foreign/b2b-transfer-usd", element: <Home/>},
+                {
+                    path: "payout/bank/foreign/get-available-countries",
+                    element: <PayoutBankForeignGetAvailableCountries/>
+                },
+                {path: "payout/bank/foreign/get-payment-methods", element: <PayoutBankForeignGetPaymentMethods/>},
+                {path: "payout/bank/foreign/ach-usd", element: <PayoutBankForeignAchUsd/>},
+                {path: "payout/bank/foreign/wire-usd", element: <PayoutBankForeignWireUsd/>},
+                {path: "payout/bank/foreign/rtp-usd", element: <PayoutBankForeignRtpUsd/>},
+                {path: "payout/bank/foreign/fednow-usd", element: <PayoutBankForeignFednowUsd/>},
+                {path: "payout/bank/foreign/account-deposit-usd", element: <PayoutBankForeignAccountDepositUsd/>},
+                {path: "payout/bank/foreign/account-deposit-gbp", element: <PayoutBankForeignAccountDepositGbp/>},
+                {path: "payout/bank/foreign/account-deposit-eur", element: <PayoutBankForeignAccountDepositEur/>},
+                {path: "payout/bank/foreign/account-deposit-cny", element: <PayoutBankForeignAccountDepositCny/>},
+                {path: "payout/bank/foreign/momo-deposit-cny", element: <PayoutBankForeignMomoDepositCny/>},
+                {path: "payout/bank/foreign/b2b-transfer-cny", element: <PayoutBankForeignB2bTransferCny/>},
+                {path: "payout/bank/foreign/b2c-transfer-cny", element: <PayoutBankForeignB2cTransferCny/>},
+                {path: "payout/bank/foreign/b2b-transfer-usd", element: <PayoutBankForeignB2bTransferUsd/>},
                 {path: "payout/rate", element: <Home/>},
                 {path: "payout/report", element: <Home/>},
                 {path: "payout/convert-funds", element: <PayoutConvertFunds/>},

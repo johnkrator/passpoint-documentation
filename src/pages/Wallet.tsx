@@ -1,7 +1,6 @@
-import {ArrowLeft, ArrowRight, Wallet as WalletIcon, BarChart3, AlertCircle, History, FileText} from "lucide-react";
-import {Button} from "@/components/ui/button";
-import {Link} from "react-router-dom";
+import {Wallet as WalletIcon, BarChart3, AlertCircle, History, FileText} from "lucide-react";
 import CodeBlock from "@/components/CodeBlock";
+import PaginationNavigation from "@/components/PaginationNavigation";
 
 const Wallet = () => {
     return (
@@ -739,34 +738,7 @@ wallet.getWalletStatement('USD', 1, 20, '2024-01-01', '2024-01-31')
                 </div>
 
                 {/* Pagination Navigation */}
-                <div
-                    className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4 pt-6 sm:pt-8 mt-6 sm:mt-8 border-t border-gray-200 dark:border-gray-800">
-                    <Link to="/authentication">
-                        <Button
-                            variant="ghost"
-                            className="w-full sm:w-auto flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 justify-start px-4 py-3"
-                        >
-                            <ArrowLeft className="h-4 w-4 flex-shrink-0"/>
-                            <div className="text-left min-w-0">
-                                <div className="text-xs text-gray-500 uppercase tracking-wide">Previous</div>
-                                <div className="text-sm font-medium truncate">Authentication</div>
-                            </div>
-                        </Button>
-                    </Link>
-
-                    <Link to="/transfer">
-                        <Button
-                            variant="ghost"
-                            className="w-full sm:w-auto flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 justify-between sm:justify-end px-4 py-3"
-                        >
-                            <div className="text-right min-w-0">
-                                <div className="text-xs text-gray-500 uppercase tracking-wide">Next</div>
-                                <div className="text-sm font-medium truncate">Transfer</div>
-                            </div>
-                            <ArrowRight className="h-4 w-4 flex-shrink-0"/>
-                        </Button>
-                    </Link>
-                </div>
+                <PaginationNavigation />
 
                 {/* Footer */}
                 <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">

@@ -1,7 +1,8 @@
-import { ArrowLeft, ArrowRight, Building2, Send, CreditCard, Shield, CheckCircle, Globe, AlertTriangle, Lock } from "lucide-react";
+import { Building2, Send, CreditCard, Shield, CheckCircle, Globe, AlertTriangle, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import CodeBlock from "@/components/CodeBlock";
+import PaginationNavigation from "@/components/PaginationNavigation";
 
 const CollectionBankOpenBanking = () => {
   return (
@@ -506,33 +507,16 @@ const CollectionBankOpenBanking = () => {
         </div>
 
         {/* Pagination Navigation */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4 pt-6 sm:pt-8 mt-6 sm:mt-8 border-t border-gray-200 dark:border-gray-800">
-          <Link to="/collection/bank">
-            <Button
-              variant="ghost"
-              className="w-full sm:w-auto flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 justify-start px-4 py-3"
-            >
-              <ArrowLeft className="h-4 w-4 flex-shrink-0"/>
-              <div className="text-left min-w-0">
-                <div className="text-xs text-gray-500 uppercase tracking-wide">Previous</div>
-                <div className="text-sm font-medium truncate">Bank Collections</div>
-              </div>
-            </Button>
-          </Link>
-
-          <Link to="/collection/bank/direct">
-            <Button
-              variant="ghost"
-              className="w-full sm:w-auto flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 justify-between sm:justify-end px-4 py-3"
-            >
-              <div className="text-right min-w-0">
-                <div className="text-xs text-gray-500 uppercase tracking-wide">Next</div>
-                <div className="text-sm font-medium truncate">Direct Bank Options</div>
-              </div>
-              <ArrowRight className="h-4 w-4 flex-shrink-0"/>
-            </Button>
-          </Link>
-        </div>
+        <PaginationNavigation
+          previousPage={{
+            title: "Bank Collections",
+            href: "/collection/bank"
+          }}
+          nextPage={{
+            title: "Direct Bank Options",
+            href: "/collection/bank/direct"
+          }}
+        />
 
         {/* Footer */}
         <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">

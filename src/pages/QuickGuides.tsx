@@ -1,5 +1,4 @@
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import PaginationNavigation from "@/components/PaginationNavigation";
 
 const QuickGuides = () => {
   return (
@@ -132,29 +131,16 @@ const QuickGuides = () => {
       </div>
 
       {/* Pagination Navigation */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4 pt-6 sm:pt-8 mt-6 sm:mt-8 border-t border-gray-200 dark:border-gray-800">
-        <Button
-          variant="ghost"
-          className="w-full sm:w-auto flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 justify-start px-4 py-3"
-        >
-          <ArrowLeft className="h-4 w-4 flex-shrink-0" />
-          <div className="text-left min-w-0">
-            <div className="text-xs text-gray-500 uppercase tracking-wide">Previous</div>
-            <div className="text-sm font-medium truncate">API Rate Limits</div>
-          </div>
-        </Button>
-
-        <Button
-          variant="ghost"
-          className="w-full sm:w-auto flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 justify-between sm:justify-end px-4 py-3"
-        >
-          <div className="text-right min-w-0">
-            <div className="text-xs text-gray-500 uppercase tracking-wide">Next</div>
-            <div className="text-sm font-medium truncate">Transaction Dynamics on Passpoint</div>
-          </div>
-          <ArrowRight className="h-4 w-4 flex-shrink-0" />
-        </Button>
-      </div>
+      <PaginationNavigation
+        previousPage={{
+          title: "API Rate Limits",
+          href: "/api-rate-limits"
+        }}
+        nextPage={{
+          title: "Transaction Dynamics on Passpoint",
+          href: "/status-responses"
+        }}
+      />
 
       {/* Footer */}
       <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">

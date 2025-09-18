@@ -20,6 +20,12 @@ import PayoutBankLocal from "@/pages/payout/PayoutBankLocal.tsx";
 import PayoutBankForeign from "@/pages/payout/PayoutBankForeign.tsx";
 import PayoutConvertFunds from "@/pages/payout/PayoutConvertFunds.tsx";
 
+// Payout Momo Pages
+import PayoutMomoGetNetwork from "@/pages/payout/momo/PayoutMomoGetNetwork.tsx";
+import PayoutMomoGetCurrency from "@/pages/payout/momo/PayoutMomoGetCurrency.tsx";
+import PayoutMomoValidateMsisdn from "@/pages/payout/momo/PayoutMomoValidateMsisdn.tsx";
+import PayoutMomoTransfer from "@/pages/payout/momo/PayoutMomoTransfer.tsx";
+
 // Collection Bank Pages
 import CollectionBank from "@/pages/collection/CollectionBank.tsx";
 import CollectionBankOpenBanking from "@/pages/collection/CollectionBankOpenBanking.tsx";
@@ -52,10 +58,10 @@ const Routes = () => {
 
                 // Payout Routes
                 {path: "payout", element: <Payout/>},
-                {path: "payout/momo/get-network", element: <Home/>},
-                {path: "payout/momo/get-payout-network", element: <Home/>},
-                {path: "payout/momo/validate-msisdn", element: <Home/>},
-                {path: "payout/momo/transfer", element: <Home/>},
+                {path: "payout/momo/get-network", element: <PayoutMomoGetNetwork/>},
+                {path: "payout/momo/get-payout-network", element: <PayoutMomoGetCurrency/>},
+                {path: "payout/momo/validate-msisdn", element: <PayoutMomoValidateMsisdn/>},
+                {path: "payout/momo/transfer", element: <PayoutMomoTransfer/>},
                 {path: "payout/bank", element: <PayoutBank/>},
                 {path: "payout/bank/local", element: <PayoutBankLocal/>},
                 {path: "payout/bank/local/get-banks", element: <Home/>},

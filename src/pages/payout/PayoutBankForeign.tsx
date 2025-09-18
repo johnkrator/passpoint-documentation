@@ -8,8 +8,6 @@ import {
     Globe,
     AlertTriangle
 } from "lucide-react";
-import {Button} from "@/components/ui/button";
-import {Link} from "react-router-dom";
 import CodeBlock from "@/components/CodeBlock";
 import PaginationNavigation from "@/components/PaginationNavigation";
 
@@ -488,14 +486,14 @@ const PayoutBankForeign = () => {
 
                 {/* Pagination Navigation */}
                 <PaginationNavigation
-                  previousPage={{
-                    title: "Local Bank Transfers",
-                    href: "/payout/bank/local"
-                  }}
-                  nextPage={{
-                    title: "Rates & Fees",
-                    href: "/payout/rate"
-                  }}
+                    previousPage={{
+                        title: "Local Bank Transfers",
+                        href: "/payout/bank/local"
+                    }}
+                    nextPage={{
+                        title: "Rates & Fees",
+                        href: "/payout/rate"
+                    }}
                 />
 
                 {/* Footer */}

@@ -1,6 +1,4 @@
 import {Building2, BarChart3, ArrowRightLeft, CheckCircle} from "lucide-react";
-import {Button} from "@/components/ui/button";
-import {Link} from "react-router-dom";
 import CodeBlock from "@/components/CodeBlock";
 import PaginationNavigation from "@/components/PaginationNavigation";
 
@@ -444,14 +442,14 @@ const PayoutBankLocal = () => {
 
                 {/* Pagination Navigation */}
                 <PaginationNavigation
-                  previousPage={{
-                    title: "Bank Payouts",
-                    href: "/payout/bank"
-                  }}
-                  nextPage={{
-                    title: "Foreign Bank Transfers",
-                    href: "/payout/bank/foreign"
-                  }}
+                    previousPage={{
+                        title: "Bank Payouts",
+                        href: "/payout/bank"
+                    }}
+                    nextPage={{
+                        title: "Foreign Bank Transfers",
+                        href: "/payout/bank/foreign"
+                    }}
                 />
 
                 {/* Footer */}

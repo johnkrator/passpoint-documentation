@@ -23,9 +23,8 @@ import PayoutConvertFunds from "@/pages/payout/PayoutConvertFunds.tsx";
 // Collection Bank Pages
 import CollectionBank from "@/pages/collection/CollectionBank.tsx";
 import CollectionBankOpenBanking from "@/pages/collection/CollectionBankOpenBanking.tsx";
-import CollectionBankDirect from "@/pages/collection/CollectionBankDirect.tsx";
 
-import ErrorBoundary, { RouterErrorBoundary } from "@/components/ErrorBoundary.tsx";
+import ErrorBoundary, {RouterErrorBoundary} from "@/components/ErrorBoundary.tsx";
 
 const Routes = () => {
     return createBrowserRouter([
@@ -39,7 +38,7 @@ const Routes = () => {
                     </ErrorBoundary>
                 </>
             ),
-            errorElement: <RouterErrorBoundary />,
+            errorElement: <RouterErrorBoundary/>,
             children: [
                 {path: "", element: <Home/>},
                 {path: "api-rate-limits", element: <ApiRateLimits/>},
@@ -119,7 +118,7 @@ const Routes = () => {
                 {path: "user-roles", element: <UserRoles/>},
                 {path: "status-responses", element: <StatusResponses/>},
                 // Catch-all route for 404 errors
-                {path: "*", element: <RouterErrorBoundary />}
+                {path: "*", element: <RouterErrorBoundary/>}
             ]
         }
     ]);

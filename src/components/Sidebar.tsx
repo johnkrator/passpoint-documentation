@@ -101,7 +101,7 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                     children: [
                         {
                             icon: MessageSquare,
-                            label: "momo",
+                            label: "Momo",
                             href: "/payout/momo",
                             children: [
                                 {
@@ -124,12 +124,12 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                         },
                         {
                             icon: Building2,
-                            label: "bank",
+                            label: "Bank",
                             href: "/payout/bank",
                             children: [
                                 {
                                     icon: MapPin,
-                                    label: "local",
+                                    label: "Local",
                                     href: "/payout/bank/local",
                                     children: [
                                         {
@@ -161,77 +161,77 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                 },
                                 {
                                     icon: Globe,
-                                    label: "foreign",
+                                    label: "Foreign",
                                     href: "/payout/bank/foreign",
                                     children: [
                                         {
                                             icon: Globe,
-                                            label: "Get available countries",
+                                            label: "Get Available Countries",
                                             href: "/payout/bank/foreign/get-available-countries"
                                         },
                                         {
                                             icon: CreditCard,
-                                            label: "Get payment methods",
+                                            label: "Get Payment Methods",
                                             href: "/payout/bank/foreign/get-payment-methods"
                                         },
                                         {
                                             icon: DollarSign,
-                                            label: "ach - usd",
+                                            label: "ACH - USD",
                                             href: "/payout/bank/foreign/ach-usd"
                                         },
                                         {
                                             icon: Send,
-                                            label: "wire - usd",
+                                            label: "WIRE - USD",
                                             href: "/payout/bank/foreign/wire-usd"
                                         },
                                         {
                                             icon: Send,
-                                            label: "rtp - usd",
+                                            label: "RTP - USD",
                                             href: "/payout/bank/foreign/rtp-usd"
                                         },
                                         {
                                             icon: Send,
-                                            label: "fednow - usd",
+                                            label: "FEDNOW - USD",
                                             href: "/payout/bank/foreign/fednow-usd"
                                         },
                                         {
                                             icon: BarChart3,
-                                            label: "account deposit - usd",
+                                            label: "Account Deposit - USD",
                                             href: "/payout/bank/foreign/account-deposit-usd"
                                         },
                                         {
                                             icon: BarChart3,
-                                            label: "account deposit - gbp",
+                                            label: "Account Deposit - GBP",
                                             href: "/payout/bank/foreign/account-deposit-gbp"
                                         },
                                         {
                                             icon: BarChart3,
-                                            label: "account deposit - eur",
+                                            label: "Account Deposit - EUR",
                                             href: "/payout/bank/foreign/account-deposit-eur"
                                         },
                                         {
                                             icon: BarChart3,
-                                            label: "account deposit - cny",
+                                            label: "Account Deposit - CNY",
                                             href: "/payout/bank/foreign/account-deposit-cny"
                                         },
                                         {
                                             icon: MessageSquare,
-                                            label: "momo deposit - cny",
+                                            label: "Momo Deposit - CNY",
                                             href: "/payout/bank/foreign/momo-deposit-cny"
                                         },
                                         {
                                             icon: Send,
-                                            label: "b2b transfer - cny",
+                                            label: "B2B Transfer - CNY",
                                             href: "/payout/bank/foreign/b2b-transfer-cny"
                                         },
                                         {
                                             icon: Send,
-                                            label: "b2c transfer - cny",
+                                            label: "B2C Transfer - CNY",
                                             href: "/payout/bank/foreign/b2c-transfer-cny"
                                         },
                                         {
                                             icon: Send,
-                                            label: "b2b transfer - usd",
+                                            label: "B2B Transfer - USD",
                                             href: "/payout/bank/foreign/b2b-transfer-usd"
                                         }
                                     ]
@@ -240,17 +240,17 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                         },
                         {
                             icon: TrendingUp,
-                            label: "rate",
+                            label: "Rate",
                             href: "/payout/rate"
                         },
                         {
                             icon: History,
-                            label: "report",
+                            label: "Report",
                             href: "/payout/report"
                         },
                         {
                             icon: RefreshCw,
-                            label: "convert funds",
+                            label: "Convert Funds",
                             href: "/payout/convert-funds"
                         }
                     ]
@@ -262,7 +262,7 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                     children: [
                         {
                             icon: MessageSquare,
-                            label: "momo",
+                            label: "Momo",
                             href: "/collection/momo",
                             children: [
                                 {
@@ -284,12 +284,12 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                         },
                         {
                             icon: Building2,
-                            label: "bank",
+                            label: "Bank",
                             href: "/collection/bank",
                             children: [
                                 {
                                     icon: Shield,
-                                    label: "open banking",
+                                    label: "Open Banking",
                                     href: "/collection/bank/open-banking",
                                     children: [
                                         {
@@ -348,7 +348,7 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                         },
                         {
                             icon: History,
-                            label: "report",
+                            label: "Report",
                             href: "/collection/report"
                         },
                         {

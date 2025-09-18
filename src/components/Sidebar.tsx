@@ -388,9 +388,132 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                         }
                     ]
                 },
-                {icon: Settings, label: "Global Callback Setup", href: "/global-callback-setup"},
-                {icon: FileText, label: "Virtual Card v2", href: "/virtual-card-v2"},
-                {icon: BarChart3, label: "Card Acquiring", href: "/card-acquiring"},
+                {
+                    icon: Settings,
+                    label: "Global Callback Setup",
+                    href: "/global-callback-setup",
+                    children: [
+                        {
+                            icon: Settings,
+                            label: "Update Merchant Callback Url",
+                            href: "/global-callback-setup/update-merchant-callback-url"
+                        }
+                    ]
+                },
+                {
+                    icon: FileText,
+                    label: "Virtual Card v2",
+                    href: "/virtual-card-v2",
+                    children: [
+                        {
+                            icon: Send,
+                            label: "Issue Card (Default Billing Details)",
+                            href: "/virtual-card-v2/issue-card-default-billing"
+                        },
+                        {
+                            icon: Send,
+                            label: "Issue Card (Client Billing Details)",
+                            href: "/virtual-card-v2/issue-card-client-billing"
+                        },
+                        {
+                            icon: Send,
+                            label: "Issue And Fund Card (Client Billing Details)",
+                            href: "/virtual-card-v2/issue-and-fund-card-client-billing"
+                        },
+                        {
+                            icon: FileText,
+                            label: "Card Details",
+                            href: "/virtual-card-v2/card-details"
+                        },
+                        {
+                            icon: FileText,
+                            label: "Card Full Pan",
+                            href: "/virtual-card-v2/card-full-pan"
+                        },
+                        {
+                            icon: DollarSign,
+                            label: "Card Balance",
+                            href: "/virtual-card-v2/card-balance"
+                        },
+                        {
+                            icon: CheckCircle,
+                            label: "Card Profile Status",
+                            href: "/virtual-card-v2/card-profile-status"
+                        },
+                        {
+                            icon: Settings,
+                            label: "Freeze Card",
+                            href: "/virtual-card-v2/freeze-card"
+                        },
+                        {
+                            icon: Settings,
+                            label: "Unfreeze Card",
+                            href: "/virtual-card-v2/unfreeze-card"
+                        },
+                        {
+                            icon: Send,
+                            label: "Fund Card",
+                            href: "/virtual-card-v2/fund-card"
+                        },
+                        {
+                            icon: ArrowUpToLine,
+                            label: "Withdraw from Card",
+                            href: "/virtual-card-v2/withdraw-from-card"
+                        },
+                        {
+                            icon: History,
+                            label: "Card Transaction",
+                            href: "/virtual-card-v2/card-transaction"
+                        },
+                        {
+                            icon: History,
+                            label: "Card Transactions List",
+                            href: "/virtual-card-v2/card-transactions-list"
+                        },
+                        {
+                            icon: Settings,
+                            label: "Terminate Card",
+                            href: "/virtual-card-v2/terminate-card"
+                        },
+                        {
+                            icon: Settings,
+                            label: "Update Card Callback Details",
+                            href: "/virtual-card-v2/update-card-callback-details"
+                        },
+                        {
+                            icon: FileText,
+                            label: "Card Statement",
+                            href: "/virtual-card-v2/card-statement"
+                        },
+                        {
+                            icon: FileText,
+                            label: "Card Statement by Transaction Id",
+                            href: "/virtual-card-v2/card-statement-by-transaction-id"
+                        },
+                        {
+                            icon: CheckCircle,
+                            label: "Realtime Authorization Decision Maker",
+                            href: "/virtual-card-v2/realtime-authorization-decision-maker"
+                        }
+                    ]
+                },
+                {
+                    icon: BarChart3,
+                    label: "Card Acquiring",
+                    href: "/card-acquiring",
+                    children: [
+                        {
+                            icon: Send,
+                            label: "Initiate Payment (New Customer)",
+                            href: "/card-acquiring/initiate-payment-new-customer"
+                        },
+                        {
+                            icon: Send,
+                            label: "Initiate Payment (Existing Customer)",
+                            href: "/card-acquiring/initiate-payment-existing-customer"
+                        }
+                    ]
+                },
             ]
         },
         {

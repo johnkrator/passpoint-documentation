@@ -112,9 +112,35 @@ const Routes = () => {
                 {path: "transfer/payout", element: <Payout/>},
                 {path: "transfer/collection", element: <Collection/>},
 
+                // Global Callback Setup Routes
                 {path: "global-callback-setup", element: <GlobalCallbackSetup/>},
-                {path: "virtual-card-v2", element: <Home/>}, // Placeholder for Virtual Card v2 page
-                {path: "card-acquiring", element: <Home/>}, // Placeholder for Card Acquiring page
+                {path: "global-callback-setup/update-merchant-callback-url", element: <Home/>},
+
+                // Virtual Card v2 Routes
+                {path: "virtual-card-v2", element: <Home/>}, // Main Virtual Card v2 page
+                {path: "virtual-card-v2/issue-card-default-billing", element: <Home/>},
+                {path: "virtual-card-v2/issue-card-client-billing", element: <Home/>},
+                {path: "virtual-card-v2/issue-and-fund-card-client-billing", element: <Home/>},
+                {path: "virtual-card-v2/card-details", element: <Home/>},
+                {path: "virtual-card-v2/card-full-pan", element: <Home/>},
+                {path: "virtual-card-v2/card-balance", element: <Home/>},
+                {path: "virtual-card-v2/card-profile-status", element: <Home/>},
+                {path: "virtual-card-v2/freeze-card", element: <Home/>},
+                {path: "virtual-card-v2/unfreeze-card", element: <Home/>},
+                {path: "virtual-card-v2/fund-card", element: <Home/>},
+                {path: "virtual-card-v2/withdraw-from-card", element: <Home/>},
+                {path: "virtual-card-v2/card-transaction", element: <Home/>},
+                {path: "virtual-card-v2/card-transactions-list", element: <Home/>},
+                {path: "virtual-card-v2/terminate-card", element: <Home/>},
+                {path: "virtual-card-v2/update-card-callback-details", element: <Home/>},
+                {path: "virtual-card-v2/card-statement", element: <Home/>},
+                {path: "virtual-card-v2/card-statement-by-transaction-id", element: <Home/>},
+                {path: "virtual-card-v2/realtime-authorization-decision-maker", element: <Home/>},
+
+                // Card Acquiring Routes
+                {path: "card-acquiring", element: <Home/>}, // Main Card Acquiring page
+                {path: "card-acquiring/initiate-payment-new-customer", element: <Home/>},
+                {path: "card-acquiring/initiate-payment-existing-customer", element: <Home/>},
                 {path: "user-roles", element: <UserRoles/>},
                 {path: "status-responses", element: <StatusResponses/>},
                 // Catch-all route for 404 errors

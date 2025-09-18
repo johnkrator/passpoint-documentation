@@ -95,294 +95,296 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                 {icon: Settings, label: "Authentication", href: "/authentication"},
                 {icon: BarChart3, label: "Wallet", href: "/wallet"},
                 {
-                    icon: Send,
-                    label: "Transfer",
-                    href: "/transfer",
+                    icon: ArrowUpToLine,
+                    label: "Payout",
+                    href: "/payout",
                     children: [
                         {
-                            icon: ArrowUpToLine,
-                            label: "Payout",
-                            href: "/payout",
+                            icon: MessageSquare,
+                            label: "momo",
+                            href: "/payout/momo",
                             children: [
                                 {
-                                    icon: MessageSquare,
-                                    label: "Momo",
-                                    href: "/payout/momo",
+                                    icon: Globe,
+                                    label: "Get Momo Payout Network",
+                                    href: "/payout/momo/get-network"
+                                },
+                                {
+                                    icon: Globe,
+                                    label: "Get Momo Payout Currency",
+                                    href: "/payout/momo/get-payout-network"
+                                },
+                                {
+                                    icon: CheckCircle,
+                                    label: "Validate Momo Msisdn",
+                                    href: "/payout/momo/validate-msisdn"
+                                },
+                                {icon: Send, label: "Momo Transfer", href: "/payout/momo/transfer"}
+                            ]
+                        },
+                        {
+                            icon: Building2,
+                            label: "bank",
+                            href: "/payout/bank",
+                            children: [
+                                {
+                                    icon: MapPin,
+                                    label: "local",
+                                    href: "/payout/bank/local",
                                     children: [
                                         {
-                                            icon: Globe,
-                                            label: "Get Momo Payout Network",
-                                            href: "/payout/momo/get-network"
-                                        },
-                                        {
-                                            icon: Globe,
-                                            label: "Get Momo Payout Currency",
-                                            href: "/payout/momo/get-payout-network"
+                                            icon: Building2,
+                                            label: "Get Banks",
+                                            href: "/payout/bank/local/get-banks"
                                         },
                                         {
                                             icon: CheckCircle,
-                                            label: "Validate Momo Msisdn",
-                                            href: "/payout/momo/validate-msisdn"
+                                            label: "Account Enquiry",
+                                            href: "/payout/bank/local/account-enquiry"
                                         },
-                                        {icon: Send, label: "Momo Transfer", href: "/payout/momo/transfer"}
+                                        {
+                                            icon: Send,
+                                            label: "Account Transfer - NGN",
+                                            href: "/payout/bank/local/account-transfer-ngn"
+                                        },
+                                        {
+                                            icon: CheckCircle,
+                                            label: "Passpoint Enquiry",
+                                            href: "/payout/bank/local/passpoint-enquiry"
+                                        },
+                                        {
+                                            icon: Send,
+                                            label: "Passpoint Wallet Transfer",
+                                            href: "/payout/bank/local/passpoint-wallet-transfer"
+                                        }
                                     ]
                                 },
                                 {
-                                    icon: Building2,
-                                    label: "Bank",
-                                    href: "/payout/bank",
+                                    icon: Globe,
+                                    label: "foreign",
+                                    href: "/payout/bank/foreign",
                                     children: [
-                                        {
-                                            icon: MapPin,
-                                            label: "Local",
-                                            href: "/payout/bank/local",
-                                            children: [
-                                                {
-                                                    icon: Globe,
-                                                    label: "Get Momo Payout Network",
-                                                    href: "/payout/bank/local/get-network"
-                                                },
-                                                {
-                                                    icon: Globe,
-                                                    label: "Get Momo Payout Network",
-                                                    href: "/payout/bank/local/get-payout-network"
-                                                },
-                                                {
-                                                    icon: CheckCircle,
-                                                    label: "Validate Momo Msisdn",
-                                                    href: "/payout/bank/local/validate-msisdn"
-                                                },
-                                                {
-                                                    icon: Send,
-                                                    label: "Momo Transfer",
-                                                    href: "/payout/bank/local/transfer"
-                                                }
-                                            ]
-                                        },
                                         {
                                             icon: Globe,
-                                            label: "Foreign",
-                                            href: "/payout/bank/foreign",
-                                            children: [
-                                                {
-                                                    icon: Globe,
-                                                    label: "Get Momo Payout Network",
-                                                    href: "/payout/bank/foreign/get-network"
-                                                },
-                                                {
-                                                    icon: Globe,
-                                                    label: "Get Momo Payout Network",
-                                                    href: "/payout/bank/foreign/get-payout-network"
-                                                },
-                                                {
-                                                    icon: CheckCircle,
-                                                    label: "Validate Momo Msisdn",
-                                                    href: "/payout/bank/foreign/validate-msisdn"
-                                                },
-                                                {
-                                                    icon: Send,
-                                                    label: "Momo Transfer",
-                                                    href: "/payout/bank/foreign/transfer"
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    icon: TrendingUp,
-                                    label: "Rate",
-                                    href: "/payout/rate",
-                                    children: [
+                                            label: "Get available countries",
+                                            href: "/payout/bank/foreign/get-available-countries"
+                                        },
+                                        {
+                                            icon: CreditCard,
+                                            label: "Get payment methods",
+                                            href: "/payout/bank/foreign/get-payment-methods"
+                                        },
                                         {
                                             icon: DollarSign,
-                                            label: "Get Transfer Fee",
-                                            href: "/payout/rate/get-transfer-fee"
+                                            label: "ach - usd",
+                                            href: "/payout/bank/foreign/ach-usd"
                                         },
                                         {
-                                            icon: TrendingUp,
-                                            label: "Get Exchange Rate",
-                                            href: "/payout/rate/get-exchange-rate"
+                                            icon: Send,
+                                            label: "wire - usd",
+                                            href: "/payout/bank/foreign/wire-usd"
                                         },
                                         {
-                                            icon: Webhook,
-                                            label: "Funds Transfer Callback Sample",
-                                            href: "/payout/rate/funds-transfer-callback"
+                                            icon: Send,
+                                            label: "rtp - usd",
+                                            href: "/payout/bank/foreign/rtp-usd"
+                                        },
+                                        {
+                                            icon: Send,
+                                            label: "fednow - usd",
+                                            href: "/payout/bank/foreign/fednow-usd"
+                                        },
+                                        {
+                                            icon: BarChart3,
+                                            label: "account deposit - usd",
+                                            href: "/payout/bank/foreign/account-deposit-usd"
+                                        },
+                                        {
+                                            icon: BarChart3,
+                                            label: "account deposit - gbp",
+                                            href: "/payout/bank/foreign/account-deposit-gbp"
+                                        },
+                                        {
+                                            icon: BarChart3,
+                                            label: "account deposit - eur",
+                                            href: "/payout/bank/foreign/account-deposit-eur"
+                                        },
+                                        {
+                                            icon: BarChart3,
+                                            label: "account deposit - cny",
+                                            href: "/payout/bank/foreign/account-deposit-cny"
+                                        },
+                                        {
+                                            icon: MessageSquare,
+                                            label: "momo deposit - cny",
+                                            href: "/payout/bank/foreign/momo-deposit-cny"
+                                        },
+                                        {
+                                            icon: Send,
+                                            label: "b2b transfer - cny",
+                                            href: "/payout/bank/foreign/b2b-transfer-cny"
+                                        },
+                                        {
+                                            icon: Send,
+                                            label: "b2c transfer - cny",
+                                            href: "/payout/bank/foreign/b2c-transfer-cny"
+                                        },
+                                        {
+                                            icon: Send,
+                                            label: "b2b transfer - usd",
+                                            href: "/payout/bank/foreign/b2b-transfer-usd"
                                         }
                                     ]
-                                },
-                                {
-                                    icon: History,
-                                    label: "Report",
-                                    href: "/payout/report",
-                                    children: [
-                                        {
-                                            icon: History,
-                                            label: "Transaction History - Payout - All Currencies",
-                                            href: "/payout/report/transaction-history-all"
-                                        },
-                                        {
-                                            icon: History,
-                                            label: "Transaction History - Payout - NGN",
-                                            href: "/payout/report/transaction-history-ngn"
-                                        },
-                                        {
-                                            icon: History,
-                                            label: "Transaction History - Payout - All Currencies",
-                                            href: "/payout/report/transaction-history-all-2"
-                                        },
-                                        {
-                                            icon: History,
-                                            label: "Transaction History - Payout - NGN - Network",
-                                            href: "/payout/report/transaction-history-ngn-network"
-                                        }
-                                    ]
-                                },
-                                {
-                                    icon: RefreshCw,
-                                    label: "Convert Funds",
-                                    href: "/payout/convert-funds"
                                 }
                             ]
                         },
                         {
-                            icon: ArrowDownToLine,
-                            label: "Collection",
-                            href: "/collection",
+                            icon: TrendingUp,
+                            label: "rate",
+                            href: "/payout/rate"
+                        },
+                        {
+                            icon: History,
+                            label: "report",
+                            href: "/payout/report"
+                        },
+                        {
+                            icon: RefreshCw,
+                            label: "convert funds",
+                            href: "/payout/convert-funds"
+                        }
+                    ]
+                },
+                {
+                    icon: ArrowDownToLine,
+                    label: "Collection",
+                    href: "/collection",
+                    children: [
+                        {
+                            icon: MessageSquare,
+                            label: "momo",
+                            href: "/collection/momo",
                             children: [
                                 {
-                                    icon: MessageSquare,
-                                    label: "Momo",
-                                    href: "/collection/momo",
+                                    icon: Globe,
+                                    label: "Get Momo Collection Currency",
+                                    href: "/collection/momo/get-currency"
+                                },
+                                {
+                                    icon: Globe,
+                                    label: "Get Momo Collection Network",
+                                    href: "/collection/momo/get-network"
+                                },
+                                {
+                                    icon: Send,
+                                    label: "Momo Request to Pay",
+                                    href: "/collection/momo/request-to-pay"
+                                }
+                            ]
+                        },
+                        {
+                            icon: Building2,
+                            label: "bank",
+                            href: "/collection/bank",
+                            children: [
+                                {
+                                    icon: Shield,
+                                    label: "open banking",
+                                    href: "/collection/bank/open-banking",
                                     children: [
                                         {
-                                            icon: Globe,
-                                            label: "Get Momo Collection Currency",
-                                            href: "/collection/momo/get-currency"
-                                        },
-                                        {
-                                            icon: Globe,
-                                            label: "Get Momo Collection Network",
-                                            href: "/collection/momo/get-network"
+                                            icon: Building2,
+                                            label: "Get Banks",
+                                            href: "/collection/bank/open-banking/get-banks"
                                         },
                                         {
                                             icon: Send,
-                                            label: "Momo Request to Pay",
-                                            href: "/collection/momo/request-to-pay"
-                                        }
-                                    ]
-                                },
-                                {
-                                    icon: Building2,
-                                    label: "Bank",
-                                    href: "/collection/bank",
-                                    children: [
-                                        {
-                                            icon: Shield,
-                                            label: "Open Banking",
-                                            href: "/collection/bank/open-banking",
-                                            children: [
-                                                {
-                                                    icon: Building2,
-                                                    label: "Get Banks",
-                                                    href: "/collection/bank/open-banking/get-banks"
-                                                },
-                                                {
-                                                    icon: Send,
-                                                    label: "Request Payment - Foreign",
-                                                    href: "/collection/bank/open-banking/request-payment-foreign"
-                                                },
-                                                {
-                                                    icon: CreditCard,
-                                                    label: "Request Payment - Foreign [with Tokenization]",
-                                                    href: "/collection/bank/open-banking/request-payment-foreign-tokenization"
-                                                },
-                                                {
-                                                    icon: CreditCard,
-                                                    label: "Request Payment - Foreign [with Tokenization - New Payer]",
-                                                    href: "/collection/bank/open-banking/request-payment-foreign-tokenization-new-payer"
-                                                }
-                                            ]
+                                            label: "Request payment - foreign",
+                                            href: "/collection/bank/open-banking/request-payment-foreign"
                                         },
                                         {
-                                            icon: Building2,
-                                            label: "Direct bank options",
-                                            href: "/collection/bank/direct",
-                                            children: [
-                                                {
-                                                    icon: DollarSign,
-                                                    label: "Get Collection Currency",
-                                                    href: "/collection/bank/direct/get-collection-currency"
-                                                },
-                                                {
-                                                    icon: BarChart3,
-                                                    label: "Generate NGN Static Virtual Account",
-                                                    href: "/collection/bank/direct/generate-ngn-static-virtual-account"
-                                                },
-                                                {
-                                                    icon: BarChart3,
-                                                    label: "Generate USD Virtual Account - Individual",
-                                                    href: "/collection/bank/direct/generate-usd-virtual-account-individual"
-                                                },
-                                                {
-                                                    icon: BarChart3,
-                                                    label: "Generate USD Virtual Account - Business",
-                                                    href: "/collection/bank/direct/generate-usd-virtual-account-business"
-                                                },
-                                                {
-                                                    icon: BarChart3,
-                                                    label: "List Virtual Accounts - NGN - Paginated",
-                                                    href: "/collection/bank/direct/list-virtual-accounts-ngn-paginated"
-                                                },
-                                                {
-                                                    icon: BarChart3,
-                                                    label: "Get Virtual Account",
-                                                    href: "/collection/bank/direct/get-virtual-account"
-                                                }
-                                            ]
+                                            icon: CreditCard,
+                                            label: "Request payment - foreign [with tokenization]",
+                                            href: "/collection/bank/open-banking/request-payment-foreign-tokenization"
+                                        },
+                                        {
+                                            icon: CreditCard,
+                                            label: "Request payment - foreign [with tokenization - new payer]",
+                                            href: "/collection/bank/open-banking/request-payment-foreign-tokenization-new-payer"
                                         }
                                     ]
                                 },
                                 {
-                                    icon: History,
-                                    label: "Report",
-                                    href: "/collection/report"
-                                },
-                                {
-                                    icon: Webhook,
-                                    label: "Wallet Credit Callback Sample",
-                                    href: "/collection/wallet-credit-callback"
+                                    icon: DollarSign,
+                                    label: "Get collection currency",
+                                    href: "/collection/bank/get-collection-currency"
                                 },
                                 {
                                     icon: BarChart3,
-                                    label: "List Countries",
-                                    href: "/collection/list-countries"
+                                    label: "Generate NGN static virtual account",
+                                    href: "/collection/bank/generate-ngn-static-virtual-account"
                                 },
                                 {
                                     icon: BarChart3,
-                                    label: "Transfer Status",
-                                    href: "/collection/transfer-status"
+                                    label: "Generate USD virtual account - individual",
+                                    href: "/collection/bank/generate-usd-virtual-account-individual"
                                 },
                                 {
                                     icon: BarChart3,
-                                    label: "Payment Status Report",
-                                    href: "/collection/payment-status"
+                                    label: "Generate USD virtual account - business",
+                                    href: "/collection/bank/generate-usd-virtual-account-business"
                                 },
                                 {
-                                    icon: Send,
-                                    label: "Resend Single Webhook",
-                                    href: "/collection/resend-single-webhook"
+                                    icon: BarChart3,
+                                    label: "List virtual accounts - NGN - paginated",
+                                    href: "/collection/bank/list-virtual-accounts-ngn-paginated"
                                 },
                                 {
-                                    icon: Send,
-                                    label: "Resend Bulk Webhook",
-                                    href: "/collection/resend-bulk-webhook"
-                                },
-                                {
-                                    icon: CheckCircle,
-                                    label: "Confirm Momo Payment",
-                                    href: "/collection/confirm-momo-payment"
+                                    icon: BarChart3,
+                                    label: "Get virtual account",
+                                    href: "/collection/bank/get-virtual-account"
                                 }
                             ]
+                        },
+                        {
+                            icon: History,
+                            label: "report",
+                            href: "/collection/report"
+                        },
+                        {
+                            icon: Webhook,
+                            label: "Wallet credit callback sample",
+                            href: "/collection/wallet-credit-callback-sample"
+                        },
+                        {
+                            icon: BarChart3,
+                            label: "List countries",
+                            href: "/collection/list-countries"
+                        },
+                        {
+                            icon: BarChart3,
+                            label: "Transfer status",
+                            href: "/collection/transfer-status"
+                        },
+                        {
+                            icon: BarChart3,
+                            label: "Payment status report",
+                            href: "/collection/payment-status-report"
+                        },
+                        {
+                            icon: Send,
+                            label: "Resend single webhook",
+                            href: "/collection/resend-single-webhook"
+                        },
+                        {
+                            icon: Send,
+                            label: "Resend bulk webhook",
+                            href: "/collection/resend-bulk-webhook"
+                        },
+                        {
+                            icon: CheckCircle,
+                            label: "Confirm momo payment",
+                            href: "/collection/confirm-momo-payment"
                         }
                     ]
                 },

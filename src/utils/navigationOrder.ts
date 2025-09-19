@@ -68,6 +68,7 @@ const getNavigationSections = (): NavSection[] => [
                                 label: "Foreign",
                                 href: "/payout/bank/foreign",
                                 children: [
+                                    { icon: null, label: "API Summary", href: "/payout/bank/foreign/summary" },
                                     { icon: null, label: "Get Available Countries", href: "/payout/bank/foreign/get-available-countries" },
                                     { icon: null, label: "Get Payment Methods", href: "/payout/bank/foreign/get-payment-methods" },
                                     { icon: null, label: "ACH - USD", href: "/payout/bank/foreign/ach-usd" },

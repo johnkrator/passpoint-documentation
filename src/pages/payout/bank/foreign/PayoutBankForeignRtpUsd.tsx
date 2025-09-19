@@ -78,6 +78,115 @@ const PayoutBankForeignRtpUsd = () => {
                             </div>
                         </div>
                     </section>
+
+                    {/* Request Body */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Request Body</h2>
+                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
+                            <div className="space-y-4">
+                                <div>
+                                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Body (JSON)</h4>
+                                    <CodeBlock language="json">{`{
+    "clientReference": "1736193968183",
+    "amount": "50.00",
+    "narration": "real-time payment",
+    "transactionCurrency": "USD",
+    "baseCurrency": "USD",
+    "countryCode": "US",
+    "paymentInfo": {
+        "remitterType": "I",
+        "senderFirstName": "David",
+        "senderLastName": "Brown",
+        "senderAddress": "456 Tech Street",
+        "senderCity": "San Francisco",
+        "senderIdType": "01",
+        "senderIdNumber": "555666777",
+        "senderIdIssueCountry": "USA",
+        "senderBeneficiaryRelationship": "01",
+        "beneficiaryType": "I",
+        "receiverFirstName": "Emily",
+        "receiverLastName": "Davis",
+        "receiverAddress": "789 Innovation Drive",
+        "bankAccountNumber": "5554443333",
+        "bankRoutingNumber": "021000089",
+        "purposeOfRemittance": "01",
+        "senderSourceOfFund": "01",
+        "payoutCurrency": "USD"
+    }
+}`}</CodeBlock>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Example Request */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Example Request</h2>
+                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
+                            <div className="space-y-4">
+                                <div>
+                                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">CURL Example</h4>
+                                    <CodeBlock language="bash">{`curl --location 'https://dev.mypasspoint.com/paypass/foreign-ft-app/make-payment/rtp' \\
+--header 'x-channel-id: 2' \\
+--header 'x-channel-code: passpoint-merchant-user' \\
+--header 'x-merchant-id: pass your merchant id' \\
+--header 'Authorization: Bearer YOUR_TOKEN' \\
+--header 'Content-Type: application/json' \\
+--data '{
+    "clientReference": "1736193968183",
+    "amount": "50.00",
+    "narration": "real-time payment",
+    "transactionCurrency": "USD",
+    "baseCurrency": "USD",
+    "countryCode": "US",
+    "paymentInfo": {
+        "remitterType": "I",
+        "senderFirstName": "David",
+        "senderLastName": "Brown",
+        "senderAddress": "456 Tech Street",
+        "senderCity": "San Francisco",
+        "senderIdType": "01",
+        "senderIdNumber": "555666777",
+        "senderIdIssueCountry": "USA",
+        "senderBeneficiaryRelationship": "01",
+        "beneficiaryType": "I",
+        "receiverFirstName": "Emily",
+        "receiverLastName": "Davis",
+        "receiverAddress": "789 Innovation Drive",
+        "bankAccountNumber": "5554443333",
+        "bankRoutingNumber": "021000089",
+        "purposeOfRemittance": "01",
+        "senderSourceOfFund": "01",
+        "payoutCurrency": "USD"
+    }
+}'`}</CodeBlock>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Example Response */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Example Response</h2>
+                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
+                            <div className="space-y-4">
+                                <div>
+                                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">200 OK Response</h4>
+                                    <CodeBlock language="json">{`{
+  "responseCode": "00",
+  "responseDescription": "Successful",
+  "responseMessage": "Your RTP payment is being processed instantly",
+  "data": {
+    "status": "NEW",
+    "transactionId": "f7g8h9i0-j1k2-3456-lmno-pqr789stuv01",
+    "amount": 50.00,
+    "charges": 1.50
+  }
+}`}</CodeBlock>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
 
                 {/* Pagination Navigation */}

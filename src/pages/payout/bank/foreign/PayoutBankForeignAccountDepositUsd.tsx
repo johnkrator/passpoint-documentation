@@ -78,6 +78,115 @@ const PayoutBankForeignAccountDepositUsd = () => {
                             </div>
                         </div>
                     </section>
+
+                    {/* Request Body */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Request Body</h2>
+                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
+                            <div className="space-y-4">
+                                <div>
+                                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Body (JSON)</h4>
+                                    <CodeBlock language="json">{`{
+    "clientReference": "1736193968185",
+    "amount": "200.00",
+    "narration": "account deposit USD",
+    "transactionCurrency": "USD",
+    "baseCurrency": "USD",
+    "countryCode": "US",
+    "paymentInfo": {
+        "remitterType": "I",
+        "senderFirstName": "Robert",
+        "senderLastName": "Anderson",
+        "senderAddress": "789 Deposit Lane",
+        "senderCity": "Miami",
+        "senderIdType": "01",
+        "senderIdNumber": "444555666",
+        "senderIdIssueCountry": "USA",
+        "senderBeneficiaryRelationship": "04",
+        "beneficiaryType": "I",
+        "receiverFirstName": "Jennifer",
+        "receiverLastName": "Martin",
+        "receiverAddress": "321 Savings Street",
+        "bankAccountNumber": "4445556666",
+        "bankRoutingNumber": "021000777",
+        "purposeOfRemittance": "04",
+        "senderSourceOfFund": "04",
+        "payoutCurrency": "USD"
+    }
+}`}</CodeBlock>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Example Request */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Example Request</h2>
+                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
+                            <div className="space-y-4">
+                                <div>
+                                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">CURL Example</h4>
+                                    <CodeBlock language="bash">{`curl --location 'https://dev.mypasspoint.com/paypass/foreign-ft-app/account-deposit/usd' \\
+--header 'x-channel-id: 2' \\
+--header 'x-channel-code: passpoint-merchant-user' \\
+--header 'x-merchant-id: pass your merchant id' \\
+--header 'Authorization: Bearer YOUR_TOKEN' \\
+--header 'Content-Type: application/json' \\
+--data '{
+    "clientReference": "1736193968185",
+    "amount": "200.00",
+    "narration": "account deposit USD",
+    "transactionCurrency": "USD",
+    "baseCurrency": "USD",
+    "countryCode": "US",
+    "paymentInfo": {
+        "remitterType": "I",
+        "senderFirstName": "Robert",
+        "senderLastName": "Anderson",
+        "senderAddress": "789 Deposit Lane",
+        "senderCity": "Miami",
+        "senderIdType": "01",
+        "senderIdNumber": "444555666",
+        "senderIdIssueCountry": "USA",
+        "senderBeneficiaryRelationship": "04",
+        "beneficiaryType": "I",
+        "receiverFirstName": "Jennifer",
+        "receiverLastName": "Martin",
+        "receiverAddress": "321 Savings Street",
+        "bankAccountNumber": "4445556666",
+        "bankRoutingNumber": "021000777",
+        "purposeOfRemittance": "04",
+        "senderSourceOfFund": "04",
+        "payoutCurrency": "USD"
+    }
+}'`}</CodeBlock>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Example Response */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Example Response</h2>
+                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
+                            <div className="space-y-4">
+                                <div>
+                                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">200 OK Response</h4>
+                                    <CodeBlock language="json">{`{
+  "responseCode": "00",
+  "responseDescription": "Successful",
+  "responseMessage": "Your USD account deposit is being processed",
+  "data": {
+    "status": "NEW",
+    "transactionId": "j1k2l3m4-n5o6-7890-pqrs-tuv123wxy456",
+    "amount": 200.00,
+    "charges": 5.00
+  }
+}`}</CodeBlock>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
 
                 {/* Pagination Navigation */}

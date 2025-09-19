@@ -78,6 +78,115 @@ const PayoutBankForeignAccountDepositGbp = () => {
                             </div>
                         </div>
                     </section>
+
+                    {/* Request Body */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Request Body</h2>
+                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
+                            <div className="space-y-4">
+                                <div>
+                                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Body (JSON)</h4>
+                                    <CodeBlock language="json">{`{
+    "clientReference": "1736193968186",
+    "amount": "150.00",
+    "narration": "account deposit GBP",
+    "transactionCurrency": "GBP",
+    "baseCurrency": "GBP",
+    "countryCode": "GB",
+    "paymentInfo": {
+        "remitterType": "I",
+        "senderFirstName": "William",
+        "senderLastName": "Thompson",
+        "senderAddress": "123 London Street",
+        "senderCity": "London",
+        "senderIdType": "02",
+        "senderIdNumber": "GB123456789",
+        "senderIdIssueCountry": "GBR",
+        "senderBeneficiaryRelationship": "01",
+        "beneficiaryType": "I",
+        "receiverFirstName": "Emma",
+        "receiverLastName": "Johnson",
+        "receiverAddress": "456 Manchester Road",
+        "bankAccountNumber": "12345678",
+        "sortCode": "123456",
+        "purposeOfRemittance": "01",
+        "senderSourceOfFund": "01",
+        "payoutCurrency": "GBP"
+    }
+}`}</CodeBlock>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Example Request */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Example Request</h2>
+                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
+                            <div className="space-y-4">
+                                <div>
+                                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">CURL Example</h4>
+                                    <CodeBlock language="bash">{`curl --location 'https://dev.mypasspoint.com/paypass/foreign-ft-app/account-deposit/gbp' \\
+--header 'x-channel-id: 2' \\
+--header 'x-channel-code: passpoint-merchant-user' \\
+--header 'x-merchant-id: pass your merchant id' \\
+--header 'Authorization: Bearer YOUR_TOKEN' \\
+--header 'Content-Type: application/json' \\
+--data '{
+    "clientReference": "1736193968186",
+    "amount": "150.00",
+    "narration": "account deposit GBP",
+    "transactionCurrency": "GBP",
+    "baseCurrency": "GBP",
+    "countryCode": "GB",
+    "paymentInfo": {
+        "remitterType": "I",
+        "senderFirstName": "William",
+        "senderLastName": "Thompson",
+        "senderAddress": "123 London Street",
+        "senderCity": "London",
+        "senderIdType": "02",
+        "senderIdNumber": "GB123456789",
+        "senderIdIssueCountry": "GBR",
+        "senderBeneficiaryRelationship": "01",
+        "beneficiaryType": "I",
+        "receiverFirstName": "Emma",
+        "receiverLastName": "Johnson",
+        "receiverAddress": "456 Manchester Road",
+        "bankAccountNumber": "12345678",
+        "sortCode": "123456",
+        "purposeOfRemittance": "01",
+        "senderSourceOfFund": "01",
+        "payoutCurrency": "GBP"
+    }
+}'`}</CodeBlock>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Example Response */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Example Response</h2>
+                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
+                            <div className="space-y-4">
+                                <div>
+                                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">200 OK Response</h4>
+                                    <CodeBlock language="json">{`{
+  "responseCode": "00",
+  "responseDescription": "Successful",
+  "responseMessage": "Your GBP account deposit is being processed",
+  "data": {
+    "status": "NEW",
+    "transactionId": "l3m4n5o6-p7q8-9012-stuv-wxy789zab012",
+    "amount": 150.00,
+    "charges": 3.50
+  }
+}`}</CodeBlock>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
 
                 {/* Pagination Navigation */}

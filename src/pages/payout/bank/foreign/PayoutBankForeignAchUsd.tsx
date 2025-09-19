@@ -78,6 +78,115 @@ const PayoutBankForeignAchUsd = () => {
                             </div>
                         </div>
                     </section>
+
+                    {/* Request Body */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Request Body</h2>
+                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
+                            <div className="space-y-4">
+                                <div>
+                                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Body (JSON)</h4>
+                                    <CodeBlock language="json">{`{
+    "clientReference": "1736193968181",
+    "amount": "10.00",
+    "narration": "test ach transfer",
+    "transactionCurrency": "USD",
+    "baseCurrency": "USD",
+    "countryCode": "US",
+    "paymentInfo": {
+        "remitterType": "I",
+        "senderFirstName": "John",
+        "senderLastName": "Doe",
+        "senderAddress": "123 Main Street",
+        "senderCity": "New York",
+        "senderIdType": "01",
+        "senderIdNumber": "123456789",
+        "senderIdIssueCountry": "USA",
+        "senderBeneficiaryRelationship": "01",
+        "beneficiaryType": "I",
+        "receiverFirstName": "Jane",
+        "receiverLastName": "Smith",
+        "receiverAddress": "456 Oak Avenue",
+        "bankAccountNumber": "1234567890",
+        "bankRoutingNumber": "021000021",
+        "purposeOfRemittance": "01",
+        "senderSourceOfFund": "01",
+        "payoutCurrency": "USD"
+    }
+}`}</CodeBlock>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Example Request */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Example Request</h2>
+                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
+                            <div className="space-y-4">
+                                <div>
+                                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">CURL Example</h4>
+                                    <CodeBlock language="bash">{`curl --location 'https://dev.mypasspoint.com/paypass/foreign-ft-app/make-payment/ach' \\
+--header 'x-channel-id: 2' \\
+--header 'x-channel-code: passpoint-merchant-user' \\
+--header 'x-merchant-id: pass your merchant id' \\
+--header 'Authorization: Bearer YOUR_TOKEN' \\
+--header 'Content-Type: application/json' \\
+--data '{
+    "clientReference": "1736193968181",
+    "amount": "10.00",
+    "narration": "test ach transfer",
+    "transactionCurrency": "USD",
+    "baseCurrency": "USD",
+    "countryCode": "US",
+    "paymentInfo": {
+        "remitterType": "I",
+        "senderFirstName": "John",
+        "senderLastName": "Doe",
+        "senderAddress": "123 Main Street",
+        "senderCity": "New York",
+        "senderIdType": "01",
+        "senderIdNumber": "123456789",
+        "senderIdIssueCountry": "USA",
+        "senderBeneficiaryRelationship": "01",
+        "beneficiaryType": "I",
+        "receiverFirstName": "Jane",
+        "receiverLastName": "Smith",
+        "receiverAddress": "456 Oak Avenue",
+        "bankAccountNumber": "1234567890",
+        "bankRoutingNumber": "021000021",
+        "purposeOfRemittance": "01",
+        "senderSourceOfFund": "01",
+        "payoutCurrency": "USD"
+    }
+}'`}</CodeBlock>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Example Response */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Example Response</h2>
+                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
+                            <div className="space-y-4">
+                                <div>
+                                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">200 OK Response</h4>
+                                    <CodeBlock language="json">{`{
+  "responseCode": "00",
+  "responseDescription": "Successful",
+  "responseMessage": "Your ACH transfer is being processed",
+  "data": {
+    "status": "NEW",
+    "transactionId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "amount": 10.00,
+    "charges": 2.50
+  }
+}`}</CodeBlock>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
 
                 {/* Pagination Navigation */}

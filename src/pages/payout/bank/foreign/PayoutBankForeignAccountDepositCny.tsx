@@ -78,6 +78,123 @@ const PayoutBankForeignAccountDepositCny = () => {
                             </div>
                         </div>
                     </section>
+
+                    {/* Request Body */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Request Body</h2>
+                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
+                            <div className="space-y-4">
+                                <div>
+                                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Body (JSON)</h4>
+                                    <CodeBlock language="json">{`{
+    "clientReference": "1736193968188",
+    "amount": "1000.00",
+    "narration": "account deposit CNY",
+    "transactionCurrency": "CNY",
+    "baseCurrency": "CNY",
+    "countryCode": "CN",
+    "paymentInfo": {
+        "remitterType": "I",
+        "senderFirstName": "张",
+        "senderLastName": "伟",
+        "senderAddress": "上海市浦东新区陆家嘴环路1000号",
+        "senderCity": "上海",
+        "senderIdType": "01",
+        "senderIdNumber": "310104198501011234",
+        "senderIdIssueCountry": "CHN",
+        "senderBeneficiaryRelationship": "01",
+        "beneficiaryType": "I",
+        "receiverFirstName": "李",
+        "receiverLastName": "娜",
+        "receiverNativeFirstname": "李",
+        "receiverNativeLastname": "娜",
+        "receiverIdType": "01",
+        "receiverIdNumber": "440301199003031234",
+        "receiverIdIssueCountry": "CHN",
+        "bankAccountNumber": "6217003090002505421",
+        "bankBranchCode": "102100099996",
+        "purposeOfRemittance": "01",
+        "senderSourceOfFund": "01",
+        "payoutCurrency": "CNY"
+    }
+}`}</CodeBlock>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Example Request */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Example Request</h2>
+                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
+                            <div className="space-y-4">
+                                <div>
+                                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">CURL Example</h4>
+                                    <CodeBlock language="bash">{`curl --location 'https://dev.mypasspoint.com/paypass/foreign-ft-app/account-deposit/cny' \\
+--header 'x-channel-id: 2' \\
+--header 'x-channel-code: passpoint-merchant-user' \\
+--header 'x-merchant-id: pass your merchant id' \\
+--header 'Authorization: Bearer YOUR_TOKEN' \\
+--header 'Content-Type: application/json' \\
+--data '{
+    "clientReference": "1736193968188",
+    "amount": "1000.00",
+    "narration": "account deposit CNY",
+    "transactionCurrency": "CNY",
+    "baseCurrency": "CNY",
+    "countryCode": "CN",
+    "paymentInfo": {
+        "remitterType": "I",
+        "senderFirstName": "张",
+        "senderLastName": "伟",
+        "senderAddress": "上海市浦东新区陆家嘴环路1000号",
+        "senderCity": "上海",
+        "senderIdType": "01",
+        "senderIdNumber": "310104198501011234",
+        "senderIdIssueCountry": "CHN",
+        "senderBeneficiaryRelationship": "01",
+        "beneficiaryType": "I",
+        "receiverFirstName": "李",
+        "receiverLastName": "娜",
+        "receiverNativeFirstname": "李",
+        "receiverNativeLastname": "娜",
+        "receiverIdType": "01",
+        "receiverIdNumber": "440301199003031234",
+        "receiverIdIssueCountry": "CHN",
+        "bankAccountNumber": "6217003090002505421",
+        "bankBranchCode": "102100099996",
+        "purposeOfRemittance": "01",
+        "senderSourceOfFund": "01",
+        "payoutCurrency": "CNY"
+    }
+}'`}</CodeBlock>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Example Response */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Example Response</h2>
+                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
+                            <div className="space-y-4">
+                                <div>
+                                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">200 OK Response</h4>
+                                    <CodeBlock language="json">{`{
+  "responseCode": "00",
+  "responseDescription": "Successful",
+  "responseMessage": "Your CNY account deposit is being processed",
+  "data": {
+    "status": "NEW",
+    "transactionId": "p9q0r1s2-t3u4-5678-vwxy-z012abc345def",
+    "amount": 1000.00,
+    "charges": 10.00
+  }
+}`}</CodeBlock>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
 
                 {/* Pagination Navigation */}

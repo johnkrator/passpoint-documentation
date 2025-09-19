@@ -78,6 +78,115 @@ const PayoutBankForeignFednowUsd = () => {
                             </div>
                         </div>
                     </section>
+
+                    {/* Request Body */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Request Body</h2>
+                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
+                            <div className="space-y-4">
+                                <div>
+                                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Body (JSON)</h4>
+                                    <CodeBlock language="json">{`{
+    "clientReference": "1736193968184",
+    "amount": "75.00",
+    "narration": "fednow instant payment",
+    "transactionCurrency": "USD",
+    "baseCurrency": "USD",
+    "countryCode": "US",
+    "paymentInfo": {
+        "remitterType": "I",
+        "senderFirstName": "Lisa",
+        "senderLastName": "Wilson",
+        "senderAddress": "123 Federal Ave",
+        "senderCity": "Washington",
+        "senderIdType": "01",
+        "senderIdNumber": "111222333",
+        "senderIdIssueCountry": "USA",
+        "senderBeneficiaryRelationship": "03",
+        "beneficiaryType": "I",
+        "receiverFirstName": "Mark",
+        "receiverLastName": "Taylor",
+        "receiverAddress": "456 Capitol Street",
+        "bankAccountNumber": "1112223333",
+        "bankRoutingNumber": "021000055",
+        "purposeOfRemittance": "03",
+        "senderSourceOfFund": "03",
+        "payoutCurrency": "USD"
+    }
+}`}</CodeBlock>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Example Request */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Example Request</h2>
+                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
+                            <div className="space-y-4">
+                                <div>
+                                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">CURL Example</h4>
+                                    <CodeBlock language="bash">{`curl --location 'https://dev.mypasspoint.com/paypass/foreign-ft-app/make-payment/fednow' \\
+--header 'x-channel-id: 2' \\
+--header 'x-channel-code: passpoint-merchant-user' \\
+--header 'x-merchant-id: pass your merchant id' \\
+--header 'Authorization: Bearer YOUR_TOKEN' \\
+--header 'Content-Type: application/json' \\
+--data '{
+    "clientReference": "1736193968184",
+    "amount": "75.00",
+    "narration": "fednow instant payment",
+    "transactionCurrency": "USD",
+    "baseCurrency": "USD",
+    "countryCode": "US",
+    "paymentInfo": {
+        "remitterType": "I",
+        "senderFirstName": "Lisa",
+        "senderLastName": "Wilson",
+        "senderAddress": "123 Federal Ave",
+        "senderCity": "Washington",
+        "senderIdType": "01",
+        "senderIdNumber": "111222333",
+        "senderIdIssueCountry": "USA",
+        "senderBeneficiaryRelationship": "03",
+        "beneficiaryType": "I",
+        "receiverFirstName": "Mark",
+        "receiverLastName": "Taylor",
+        "receiverAddress": "456 Capitol Street",
+        "bankAccountNumber": "1112223333",
+        "bankRoutingNumber": "021000055",
+        "purposeOfRemittance": "03",
+        "senderSourceOfFund": "03",
+        "payoutCurrency": "USD"
+    }
+}'`}</CodeBlock>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Example Response */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Example Response</h2>
+                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
+                            <div className="space-y-4">
+                                <div>
+                                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">200 OK Response</h4>
+                                    <CodeBlock language="json">{`{
+  "responseCode": "00",
+  "responseDescription": "Successful",
+  "responseMessage": "Your FedNow payment is being processed instantly",
+  "data": {
+    "status": "NEW",
+    "transactionId": "h9i0j1k2-l3m4-5678-nopq-rst012uvw345",
+    "amount": 75.00,
+    "charges": 2.00
+  }
+}`}</CodeBlock>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
 
                 {/* Pagination Navigation */}

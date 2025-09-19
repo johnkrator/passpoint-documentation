@@ -165,6 +165,11 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                     href: "/payout/bank/foreign",
                                     children: [
                                         {
+                                            icon: FileText,
+                                            label: "API Summary",
+                                            href: "/payout/bank/foreign/summary"
+                                        },
+                                        {
                                             icon: Globe,
                                             label: "Get Available Countries",
                                             href: "/payout/bank/foreign/get-available-countries"

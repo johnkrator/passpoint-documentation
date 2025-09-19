@@ -35,6 +35,7 @@ import PayoutBankLocalPasspointWalletTransfer
     from "@/pages/payout/bank/local/PayoutBankLocalPasspointWalletTransfer.tsx";
 
 // Payout Bank Foreign Pages
+import PayoutBankForeignSummary from "@/pages/payout/bank/foreign/PayoutBankForeignSummary.tsx";
 import PayoutBankForeignGetAvailableCountries
     from "@/pages/payout/bank/foreign/PayoutBankForeignGetAvailableCountries.tsx";
 import PayoutBankForeignGetPaymentMethods from "@/pages/payout/bank/foreign/PayoutBankForeignGetPaymentMethods.tsx";
@@ -98,6 +99,7 @@ const Routes = () => {
                     element: <PayoutBankLocalPasspointWalletTransfer/>
                 },
                 {path: "payout/bank/foreign", element: <PayoutBankForeign/>},
+                {path: "payout/bank/foreign/summary", element: <PayoutBankForeignSummary/>},
                 {
                     path: "payout/bank/foreign/get-available-countries",
                     element: <PayoutBankForeignGetAvailableCountries/>

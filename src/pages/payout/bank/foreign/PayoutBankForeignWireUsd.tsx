@@ -78,6 +78,117 @@ const PayoutBankForeignWireUsd = () => {
                             </div>
                         </div>
                     </section>
+
+                    {/* Request Body */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Request Body</h2>
+                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
+                            <div className="space-y-4">
+                                <div>
+                                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Body (JSON)</h4>
+                                    <CodeBlock language="json">{`{
+    "clientReference": "1736193968182",
+    "amount": "100.00",
+    "narration": "wire transfer payment",
+    "transactionCurrency": "USD",
+    "baseCurrency": "USD",
+    "countryCode": "US",
+    "paymentInfo": {
+        "remitterType": "I",
+        "senderFirstName": "Michael",
+        "senderLastName": "Johnson",
+        "senderAddress": "789 Business Ave",
+        "senderCity": "Chicago",
+        "senderIdType": "01",
+        "senderIdNumber": "987654321",
+        "senderIdIssueCountry": "USA",
+        "senderBeneficiaryRelationship": "02",
+        "beneficiaryType": "I",
+        "receiverFirstName": "Sarah",
+        "receiverLastName": "Williams",
+        "receiverAddress": "321 Corporate Blvd",
+        "bankAccountNumber": "9876543210",
+        "bankRoutingNumber": "021000322",
+        "swiftCode": "CHASUS33",
+        "purposeOfRemittance": "02",
+        "senderSourceOfFund": "02",
+        "payoutCurrency": "USD"
+    }
+}`}</CodeBlock>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Example Request */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Example Request</h2>
+                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
+                            <div className="space-y-4">
+                                <div>
+                                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">CURL Example</h4>
+                                    <CodeBlock language="bash">{`curl --location 'https://dev.mypasspoint.com/paypass/foreign-ft-app/make-payment/wire' \\
+--header 'x-channel-id: 2' \\
+--header 'x-channel-code: passpoint-merchant-user' \\
+--header 'x-merchant-id: pass your merchant id' \\
+--header 'Authorization: Bearer YOUR_TOKEN' \\
+--header 'Content-Type: application/json' \\
+--data '{
+    "clientReference": "1736193968182",
+    "amount": "100.00",
+    "narration": "wire transfer payment",
+    "transactionCurrency": "USD",
+    "baseCurrency": "USD",
+    "countryCode": "US",
+    "paymentInfo": {
+        "remitterType": "I",
+        "senderFirstName": "Michael",
+        "senderLastName": "Johnson",
+        "senderAddress": "789 Business Ave",
+        "senderCity": "Chicago",
+        "senderIdType": "01",
+        "senderIdNumber": "987654321",
+        "senderIdIssueCountry": "USA",
+        "senderBeneficiaryRelationship": "02",
+        "beneficiaryType": "I",
+        "receiverFirstName": "Sarah",
+        "receiverLastName": "Williams",
+        "receiverAddress": "321 Corporate Blvd",
+        "bankAccountNumber": "9876543210",
+        "bankRoutingNumber": "021000322",
+        "swiftCode": "CHASUS33",
+        "purposeOfRemittance": "02",
+        "senderSourceOfFund": "02",
+        "payoutCurrency": "USD"
+    }
+}'`}</CodeBlock>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Example Response */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Example Response</h2>
+                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
+                            <div className="space-y-4">
+                                <div>
+                                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">200 OK Response</h4>
+                                    <CodeBlock language="json">{`{
+  "responseCode": "00",
+  "responseDescription": "Successful",
+  "responseMessage": "Your wire transfer is being processed",
+  "data": {
+    "status": "NEW",
+    "transactionId": "d4e5f6g7-h8i9-0123-jklm-nop456789qrs",
+    "amount": 100.00,
+    "charges": 15.00
+  }
+}`}</CodeBlock>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
 
                 {/* Pagination Navigation */}

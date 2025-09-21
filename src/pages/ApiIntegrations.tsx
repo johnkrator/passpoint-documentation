@@ -3,6 +3,97 @@ import CodeBlock from "@/components/CodeBlock";
 import PaginationNavigation from "@/components/PaginationNavigation.tsx";
 
 const ApiIntegrations = () => {
+    const getRestApiExampleCode = () => {
+        return `curl -X POST https://dev.mypasspoint.com/paypass/api/v1/wallet/create \\
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \\
+  -H "Content-Type: application/json" \\
+  -H "x-channel-id: 3" \\
+  -H "x-channel-code: legacy-api-user" \\
+  -H "x-merchant-id: YOUR_MERCHANT_ID" \\
+  -d '{
+    "customerReference": "CUST001",
+    "currency": "USD",
+    "initialBalance": 0
+  }'`;
+    };
+
+    const getRequiredHeadersCode = () => {
+        return `Authorization: Bearer YOUR_ACCESS_TOKEN
+Content-Type: application/json
+x-channel-id: 3
+x-channel-code: legacy-api-user
+x-merchant-id: YOUR_MERCHANT_ID`;
+    };
+
+    const getAuthenticationExampleCode = () => {
+        return `const axios = require('axios');
+
+// Get access token
+async function getAccessToken() {
+  try {
+    const response = await axios.post('https://dev.mypasspoint.com/userapp/merchant-app/get-auth-token', {
+      merchantId: process.env.MERCHANT_ID,
+      apiKey: process.env.API_KEY
+    });
+
+    const { accessToken, expiresIn } = response.data.data;
+    console.log('Access token obtained, expires in:', expiresIn, 'seconds');
+    return accessToken;
+  } catch (error) {
+    console.error('Authentication failed:', error.response.data);
+  }
+}`;
+    };
+
+    const getCreateWalletExampleCode = () => {
+        return `// Create a wallet
+async function createWallet(accessToken) {
+  try {
+    const response = await axios.post('https://dev.mypasspoint.com/paypass/api/v1/wallet/create', {
+      customerReference: 'CUST' + Date.now(),
+      currency: 'USD',
+      initialBalance: 0
+    }, {
+      headers: {
+        'Authorization': \`Bearer \${accessToken}\`,
+        'Content-Type': 'application/json',
+        'x-channel-id': '3',
+        'x-channel-code': 'legacy-api-user',
+        'x-merchant-id': process.env.MERCHANT_ID
+      }
+    });
+
+    const wallet = response.data.data;
+    console.log('Wallet created:', wallet);
+    return wallet;
+  } catch (error) {
+    console.error('Wallet creation failed:', error.response.data);
+  }
+}`;
+    };
+
+    const getCompleteIntegrationCode = () => {
+        return `// Complete integration example
+async function integratePasspoint() {
+  try {
+    // Step 1: Authenticate
+    const accessToken = await getAccessToken();
+
+    // Step 2: Create wallet
+    const wallet = await createWallet(accessToken);
+
+    // Step 3: Perform operations (transfer, payout, etc.)
+    console.log('Integration complete. Wallet ID:', wallet.walletId);
+
+  } catch (error) {
+    console.error('Integration error:', error.message);
+  }
+}
+
+// Start integration
+integratePasspoint();`;
+    };
+
     return (
         <div className="min-h-screen bg-white dark:bg-gray-900">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
@@ -74,18 +165,7 @@ const ApiIntegrations = () => {
                                             Direct HTTP calls to Passpoint Payment Service RESTful endpoints with JSON
                                             payloads. Perfect for custom integrations and server-side applications.
                                         </p>
-                                        <CodeBlock language="bash">{`curl -X POST https://dev.mypasspoint.com/paypass/api/v1/wallet/create \\
-  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \\
-  -H "Content-Type: application/json" \\
-  -H "x-channel-id: 3" \\
-  -H "x-channel-code: legacy-api-user" \\
-  -H "x-merchant-id: YOUR_MERCHANT_ID" \\
-  -d '{
-    "customerReference": "CUST001",
-    "currency": "USD",
-    "initialBalance": 0
-  }'`}
-                                        </CodeBlock>
+                                        <CodeBlock language="bash">{getRestApiExampleCode()}</CodeBlock>
                                     </div>
                                 </div>
                             </div>
@@ -237,11 +317,7 @@ const ApiIntegrations = () => {
                                 <p className="text-gray-700 dark:text-gray-300 mb-4">
                                     Every API request to Passpoint Payment Service must include these headers:
                                 </p>
-                                <CodeBlock>{`Authorization: Bearer YOUR_ACCESS_TOKEN
-Content-Type: application/json
-x-channel-id: 3
-x-channel-code: legacy-api-user
-x-merchant-id: YOUR_MERCHANT_ID`}</CodeBlock>
+                                <CodeBlock>{getRequiredHeadersCode()}</CodeBlock>
                             </div>
 
                             <div>
@@ -289,23 +365,7 @@ x-merchant-id: YOUR_MERCHANT_ID`}</CodeBlock>
                                 <CodeBlock
                                     title="Authentication (Node.js)"
                                     language="javascript"
-                                >{`const axios = require('axios');
-
-// Get access token
-async function getAccessToken() {
-  try {
-    const response = await axios.post('https://dev.mypasspoint.com/userapp/merchant-app/get-auth-token', {
-      merchantId: process.env.MERCHANT_ID,
-      apiKey: process.env.API_KEY
-    });
-
-    const { accessToken, expiresIn } = response.data.data;
-    console.log('Access token obtained, expires in:', expiresIn, 'seconds');
-    return accessToken;
-  } catch (error) {
-    console.error('Authentication failed:', error.response.data);
-  }
-}`}</CodeBlock>
+                                >{getAuthenticationExampleCode()}</CodeBlock>
                             </div>
 
                             <div>
@@ -314,30 +374,7 @@ async function getAccessToken() {
                                 <CodeBlock
                                     title="Create Wallet (Node.js)"
                                     language="javascript"
-                                >{`// Create a wallet
-async function createWallet(accessToken) {
-  try {
-    const response = await axios.post('https://dev.mypasspoint.com/paypass/api/v1/wallet/create', {
-      customerReference: 'CUST' + Date.now(),
-      currency: 'USD',
-      initialBalance: 0
-    }, {
-      headers: {
-        'Authorization': \`Bearer \${accessToken}\`,
-        'Content-Type': 'application/json',
-        'x-channel-id': '3',
-        'x-channel-code': 'legacy-api-user',
-        'x-merchant-id': process.env.MERCHANT_ID
-      }
-    });
-
-    const wallet = response.data.data;
-    console.log('Wallet created:', wallet);
-    return wallet;
-  } catch (error) {
-    console.error('Wallet creation failed:', error.response.data);
-  }
-}`}</CodeBlock>
+                                >{getCreateWalletExampleCode()}</CodeBlock>
                             </div>
 
                             <div>
@@ -346,32 +383,14 @@ async function createWallet(accessToken) {
                                 <CodeBlock
                                     title="Full Integration Example (Node.js)"
                                     language="javascript"
-                                >{`// Complete integration example
-async function integratePasspoint() {
-  try {
-    // Step 1: Authenticate
-    const accessToken = await getAccessToken();
-
-    // Step 2: Create wallet
-    const wallet = await createWallet(accessToken);
-
-    // Step 3: Perform operations (transfer, payout, etc.)
-    console.log('Integration complete. Wallet ID:', wallet.walletId);
-
-  } catch (error) {
-    console.error('Integration error:', error.message);
-  }
-}
-
-// Start integration
-integratePasspoint();`}</CodeBlock>
+                                >{getCompleteIntegrationCode()}</CodeBlock>
                             </div>
                         </div>
                     </section>
                 </div>
 
                 {/* Pagination Navigation */}
-                <PaginationNavigation />
+                <PaginationNavigation/>
 
                 {/* Footer */}
                 <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
@@ -383,3 +402,4 @@ integratePasspoint();`}</CodeBlock>
 };
 
 export default ApiIntegrations;
+

@@ -1,42 +1,14 @@
-import { Webhook, Globe, Shield, Settings, CheckCircle, Clock, AlertTriangle } from "lucide-react";
+import {Webhook, Globe, Shield, Settings, CheckCircle, AlertTriangle} from "lucide-react";
 import CodeBlock from "@/components/CodeBlock";
 import PaginationNavigation from "@/components/PaginationNavigation";
 
 const GlobalCallbackSetup = () => {
-  return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-        <div className="max-w-none">
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Global Callback Setup</h1>
+    const getCreateGlobalWebhookEndpointCode = () => {
+        return `POST /api/v1/webhooks/global`;
+    };
 
-          <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
-            Configure global webhook endpoints to receive real-time notifications for all Passpoint events. Set up secure callback URLs with authentication, retry logic, and comprehensive event filtering.
-          </p>
-
-          {/* Create Global Webhook */}
-          <section className="mb-16">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Create Global Webhook</h2>
-
-            <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
-                <div className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
-                  <Webhook className="h-12 w-12 text-brand-500"/>
-                  <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Create Global Webhook Endpoint</h3>
-                </div>
-                <div className="flex-1 min-w-0 lg:max-w-4xl">
-                  <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
-                    Register a global webhook endpoint that will receive notifications for all events across your Passpoint account.
-                  </p>
-
-                  <div className="space-y-4">
-                    <div>
-                      <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                      <CodeBlock>{`POST /api/v1/webhooks/global`}</CodeBlock>
-                    </div>
-
-                    <div>
-                      <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request Body</h4>
-                      <CodeBlock language="json">{`{
+    const getCreateGlobalWebhookRequestBodyCode = () => {
+        return `{
   "url": "https://yourapp.com/webhooks/passpoint",
   "description": "Main webhook endpoint for all Passpoint events",
   "events": [
@@ -86,12 +58,11 @@ const GlobalCallbackSetup = () => {
     "team": "backend",
     "priority": "high"
   }
-}`}</CodeBlock>
-                    </div>
+}`;
+    };
 
-                    <div>
-                      <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                      <CodeBlock language="json">{`{
+    const getCreateGlobalWebhookResponseCode = () => {
+        return `{
   "id": "webhook_global_abc123def456",
   "url": "https://yourapp.com/webhooks/passpoint",
   "description": "Main webhook endpoint for all Passpoint events",
@@ -113,323 +84,392 @@ const GlobalCallbackSetup = () => {
     "compliance.review_required",
     "fraud.alert_created"
   ],
-  "secret_key": "whsec_1234567890abcdef",
-  "verification_url": "https://yourapp.com/webhooks/passpoint/verify",
-  "deliveries": {
-    "total": 0,
-    "successful": 0,
-    "failed": 0,
-    "pending": 0
+  "filters": {
+    "amount_threshold": {
+      "min": 0,
+      "max": 50000
+    },
+    "currencies": ["USD", "EUR", "GBP"],
+    "environments": ["live", "test"],
+    "risk_levels": ["low", "medium", "high"]
   },
   "created_at": "2024-01-15T10:30:00Z",
-  "updated_at": "2024-01-15T10:30:00Z"
-}`}</CodeBlock>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+  "last_triggered": null,
+  "success_count": 0,
+  "failure_count": 0
+}`;
+    };
 
-          {/* Webhook Events */}
-          <section className="mb-16">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Webhook Events</h2>
+    const getWebhookPayloadExampleCode = () => {
+        return `{
+  "id": "evt_abc123def456",
+  "type": "payment.succeeded",
+  "data": {
+    "object": {
+      "id": "payment_xyz789",
+      "amount": 1500.00,
+      "currency": "USD",
+      "status": "succeeded",
+      "created_at": "2024-01-15T10:30:00Z",
+      "merchant_id": "merchant_123",
+      "customer": {
+        "id": "customer_456",
+        "email": "customer@example.com"
+      },
+      "metadata": {
+        "order_id": "order_789",
+        "invoice_number": "INV-2024-001"
+      }
+    },
+    "previous_attributes": {
+      "status": "processing"
+    }
+  },
+  "created": 1642248600,
+  "livemode": true,
+  "pending_webhooks": 1,
+  "request": {
+    "id": "req_abc123",
+    "idempotency_key": "idem_xyz789"
+  }
+}`;
+    };
 
-            <div className="space-y-6">
-              {/* Payment Events */}
-              <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex items-center mb-4">
-                  <CheckCircle className="h-6 w-6 text-green-500 mr-3"/>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Payment Events</h3>
-                </div>
-                <div className="grid gap-3 sm:grid-cols-2">
-                  <div className="bg-gray-50 dark:bg-gray-800 rounded p-3">
-                    <div className="font-mono text-sm font-medium text-gray-900 dark:text-white">payment.created</div>
-                    <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">Payment initiated by customer</div>
-                  </div>
-                  <div className="bg-gray-50 dark:bg-gray-800 rounded p-3">
-                    <div className="font-mono text-sm font-medium text-gray-900 dark:text-white">payment.succeeded</div>
-                    <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">Payment completed successfully</div>
-                  </div>
-                  <div className="bg-gray-50 dark:bg-gray-800 rounded p-3">
-                    <div className="font-mono text-sm font-medium text-gray-900 dark:text-white">payment.failed</div>
-                    <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">Payment declined or failed</div>
-                  </div>
-                  <div className="bg-gray-50 dark:bg-gray-800 rounded p-3">
-                    <div className="font-mono text-sm font-medium text-gray-900 dark:text-white">payment.refunded</div>
-                    <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">Payment refunded to customer</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Transfer Events */}
-              <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex items-center mb-4">
-                  <Globe className="h-6 w-6 text-blue-500 mr-3"/>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Transfer Events</h3>
-                </div>
-                <div className="grid gap-3 sm:grid-cols-2">
-                  <div className="bg-gray-50 dark:bg-gray-800 rounded p-3">
-                    <div className="font-mono text-sm font-medium text-gray-900 dark:text-white">transfer.created</div>
-                    <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">Transfer initiated</div>
-                  </div>
-                  <div className="bg-gray-50 dark:bg-gray-800 rounded p-3">
-                    <div className="font-mono text-sm font-medium text-gray-900 dark:text-white">transfer.processing</div>
-                    <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">Transfer in progress</div>
-                  </div>
-                  <div className="bg-gray-50 dark:bg-gray-800 rounded p-3">
-                    <div className="font-mono text-sm font-medium text-gray-900 dark:text-white">transfer.completed</div>
-                    <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">Transfer delivered successfully</div>
-                  </div>
-                  <div className="bg-gray-50 dark:bg-gray-800 rounded p-3">
-                    <div className="font-mono text-sm font-medium text-gray-900 dark:text-white">transfer.failed</div>
-                    <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">Transfer failed, funds returned</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Compliance Events */}
-              <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex items-center mb-4">
-                  <Shield className="h-6 w-6 text-purple-500 mr-3"/>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Compliance & Security Events</h3>
-                </div>
-                <div className="grid gap-3 sm:grid-cols-2">
-                  <div className="bg-gray-50 dark:bg-gray-800 rounded p-3">
-                    <div className="font-mono text-sm font-medium text-gray-900 dark:text-white">compliance.review_required</div>
-                    <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">Manual compliance review needed</div>
-                  </div>
-                  <div className="bg-gray-50 dark:bg-gray-800 rounded p-3">
-                    <div className="font-mono text-sm font-medium text-gray-900 dark:text-white">fraud.alert_created</div>
-                    <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">Suspicious activity detected</div>
-                  </div>
-                  <div className="bg-gray-50 dark:bg-gray-800 rounded p-3">
-                    <div className="font-mono text-sm font-medium text-gray-900 dark:text-white">kyc.verification_required</div>
-                    <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">Customer verification needed</div>
-                  </div>
-                  <div className="bg-gray-50 dark:bg-gray-800 rounded p-3">
-                    <div className="font-mono text-sm font-medium text-gray-900 dark:text-white">account.suspended</div>
-                    <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">Account temporarily suspended</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Webhook Security */}
-          <section className="mb-16">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Webhook Security</h2>
-
-            <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-xl p-6 lg:p-8 shadow-sm mb-6">
-              <div className="flex">
-                <AlertTriangle className="h-5 w-5 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5 mr-3"/>
-                <div>
-                  <h3 className="text-sm font-semibold text-red-800 dark:text-red-200">Security Notice</h3>
-                  <p className="text-red-700 dark:text-red-300 text-sm mt-1">
-                    Always verify webhook signatures to ensure requests are from Passpoint. Implement proper authentication and use HTTPS endpoints only.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-8">
-              <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
-                  <div className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
-                    <Shield className="h-12 w-12 text-brand-500"/>
-                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Signature Verification</h3>
-                  </div>
-                  <div className="flex-1 min-w-0 lg:max-w-4xl">
-                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
-                      Verify webhook authenticity using HMAC-SHA256 signatures included in request headers.
-                    </p>
-
-                    <div className="space-y-4">
-                      <div>
-                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Signature Header</h4>
-                        <CodeBlock>{`X-Passpoint-Signature: t=1642676400,v1=a2114d57b48eac39b9ad189dd8316235a7b4a8d21a10bd27519666489c69b503`}</CodeBlock>
-                      </div>
-
-                      <div>
-                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Verification Example (Node.js)</h4>
-                        <CodeBlock language="javascript">{`const crypto = require('crypto');
+    const getSignatureVerificationCode = () => {
+        return `const crypto = require('crypto');
+const express = require('express');
 
 function verifyWebhookSignature(payload, signature, secret) {
-  const elements = signature.split(',');
-  const timestamp = elements[0].split('=')[1];
-  const signatures = elements.slice(1);
+  const hmac = crypto.createHmac('sha256', secret);
+  hmac.update(payload, 'utf8');
+  const expectedSignature = 'sha256=' + hmac.digest('hex');
+  
+  return crypto.timingSafeEqual(
+    Buffer.from(signature),
+    Buffer.from(expectedSignature)
+  );
+}
 
-  // Create expected signature
-  const signedPayload = timestamp + '.' + payload;
-  const expectedSignature = crypto
-    .createHmac('sha256', secret)
-    .update(signedPayload, 'utf8')
-    .digest('hex');
-
-  // Verify signature
-  for (const sig of signatures) {
-    const [version, signature] = sig.split('=');
-    if (version === 'v1' && crypto.timingSafeEqual(
-      Buffer.from(expectedSignature, 'hex'),
-      Buffer.from(signature, 'hex')
-    )) {
-      return true;
-    }
+app.post('/webhooks/passpoint', express.raw({type: 'application/json'}), (req, res) => {
+  const signature = req.headers['x-passpoint-signature'];
+  const payload = req.body;
+  
+  if (!verifyWebhookSignature(payload, signature, process.env.WEBHOOK_SECRET)) {
+    return res.status(401).send('Invalid signature');
   }
+  
+  const event = JSON.parse(payload);
+  
+  // Process the webhook event
+  switch (event.type) {
+    case 'payment.succeeded':
+      handlePaymentSucceeded(event.data.object);
+      break;
+    case 'transfer.completed':
+      handleTransferCompleted(event.data.object);
+      break;
+    default:
+      console.log('Unhandled event type:', event.type);
+  }
+  
+  res.status(200).send('OK');
+});`;
+    };
 
-  return false;
-}`}</CodeBlock>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+    const getUpdateWebhookEndpointCode = () => {
+        return `PUT /api/v1/webhooks/global/{webhook_id}`;
+    };
 
-          {/* Webhook Management */}
-          <section className="mb-16">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Webhook Management</h2>
-
-            <div className="space-y-8">
-              <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
-                  <div className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
-                    <Settings className="h-12 w-12 text-brand-500"/>
-                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Update Webhook Configuration</h3>
-                  </div>
-                  <div className="flex-1 min-w-0 lg:max-w-4xl">
-                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
-                      Modify webhook settings, event subscriptions, and security configurations without recreating the webhook.
-                    </p>
-
-                    <div className="space-y-4">
-                      <div>
-                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                        <CodeBlock>{`PUT /api/v1/webhooks/global/{webhook_id}`}</CodeBlock>
-                      </div>
-
-                      <div>
-                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request Body</h4>
-                        <CodeBlock language="json">{`{
+    const getUpdateWebhookRequestBodyCode = () => {
+        return `{
   "url": "https://yourapp.com/webhooks/passpoint-v2",
-  "description": "Updated webhook endpoint with enhanced security",
+  "description": "Updated webhook endpoint with enhanced filtering",
   "events": [
     "payment.created",
     "payment.succeeded",
     "payment.failed",
     "transfer.completed",
     "payout.completed",
-    "compliance.review_required"
+    "fraud.alert_created"
   ],
   "filters": {
     "amount_threshold": {
       "min": 100,
       "max": 25000
     },
-    "currencies": ["USD", "EUR"]
+    "currencies": ["USD", "EUR"],
+    "risk_levels": ["medium", "high"]
   },
-  "security": {
-    "signature_verification": true,
-    "ip_whitelist": [
-      "203.0.113.0/24"
-    ]
-  }
-}`}</CodeBlock>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+  "status": "active"
+}`;
+    };
 
-              {/* Webhook Monitoring */}
-              <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
-                  <div className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
-                    <Clock className="h-12 w-12 text-brand-500"/>
-                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Webhook Delivery Monitoring</h3>
-                  </div>
-                  <div className="flex-1 min-w-0 lg:max-w-4xl">
-                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
-                      Monitor webhook delivery status, retry attempts, and failure reasons with detailed logs.
-                    </p>
+    const getDeleteWebhookEndpointCode = () => {
+        return `DELETE /api/v1/webhooks/global/{webhook_id}`;
+    };
 
-                    <div className="space-y-4">
-                      <div>
-                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                        <CodeBlock>{`GET /api/v1/webhooks/global/{webhook_id}/deliveries`}</CodeBlock>
-                      </div>
+    const getListWebhooksEndpointCode = () => {
+        return `GET /api/v1/webhooks/global`;
+    };
 
-                      <div>
-                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                        <CodeBlock language="json">{`{
-  "webhook_id": "webhook_global_abc123def456",
-  "deliveries": [
+    const getListWebhooksResponseCode = () => {
+        return `{
+  "webhooks": [
     {
-      "id": "delivery_xyz789",
-      "event_type": "payment.succeeded",
-      "event_id": "payment_abc123",
-      "status": "delivered",
-      "attempts": 1,
-      "response_code": 200,
-      "response_time_ms": 245,
-      "delivered_at": "2024-01-15T14:22:30Z",
-      "created_at": "2024-01-15T14:22:25Z"
-    },
-    {
-      "id": "delivery_def456",
-      "event_type": "transfer.failed",
-      "event_id": "transfer_xyz789",
-      "status": "failed",
-      "attempts": 3,
-      "last_error": "Connection timeout",
-      "response_code": 0,
-      "next_retry_at": "2024-01-15T14:30:00Z",
-      "created_at": "2024-01-15T14:20:15Z"
+      "id": "webhook_global_abc123",
+      "url": "https://yourapp.com/webhooks/passpoint",
+      "description": "Main webhook endpoint",
+      "status": "active",
+      "events_count": 15,
+      "success_count": 1250,
+      "failure_count": 3,
+      "last_triggered": "2024-01-15T10:30:00Z",
+      "created_at": "2024-01-01T00:00:00Z"
     }
   ],
-  "pagination": {
-    "current_page": 1,
-    "per_page": 50,
-    "total_pages": 5,
-    "total_deliveries": 247
-  },
-  "statistics": {
-    "total_deliveries": 1000,
-    "successful_deliveries": 987,
-    "failed_deliveries": 13,
-    "success_rate": 98.7,
-    "average_response_time_ms": 156
-  }
-}`}</CodeBlock>
-                      </div>
-                    </div>
-                  </div>
+  "total": 1,
+  "has_more": false
+}`;
+    };
+
+    return (
+        <div className="min-h-screen bg-white dark:bg-gray-900">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+                <div className="max-w-none">
+                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Global Callback
+                        Setup</h1>
+
+                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+                        Configure global webhook endpoints to receive real-time notifications for all Passpoint events.
+                        Set up secure callback URLs with authentication, retry logic, and comprehensive event filtering.
+                    </p>
+
+                    {/* Create Global Webhook */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Create Global
+                            Webhook</h2>
+
+                        <div
+                            className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
+                            <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
+                                <div
+                                    className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
+                                    <Webhook className="h-12 w-12 text-brand-500"/>
+                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Create
+                                        Global Webhook Endpoint</h3>
+                                </div>
+                                <div className="flex-1 min-w-0 lg:max-w-4xl">
+                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                        Register a global webhook endpoint that will receive notifications for all
+                                        events across your Passpoint account.
+                                    </p>
+
+                                    <div className="space-y-4">
+                                        <div>
+                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
+                                            <CodeBlock>{getCreateGlobalWebhookEndpointCode()}</CodeBlock>
+                                        </div>
+
+                                        <div>
+                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request
+                                                Body</h4>
+                                            <CodeBlock
+                                                language="json">{getCreateGlobalWebhookRequestBodyCode()}</CodeBlock>
+                                        </div>
+
+                                        <div>
+                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
+                                            <CodeBlock
+                                                language="json">{getCreateGlobalWebhookResponseCode()}</CodeBlock>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Webhook Event Payload */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Webhook Event
+                            Payload</h2>
+
+                        <div
+                            className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
+                            <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
+                                <div
+                                    className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
+                                    <Globe className="h-12 w-12 text-blue-500"/>
+                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Event
+                                        Structure</h3>
+                                </div>
+                                <div className="flex-1 min-w-0 lg:max-w-4xl">
+                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                        All webhook events follow a consistent structure with event metadata, data
+                                        objects, and contextual information.
+                                    </p>
+
+                                    <div className="space-y-4">
+                                        <div>
+                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Example
+                                                Event Payload</h4>
+                                            <CodeBlock language="json">{getWebhookPayloadExampleCode()}</CodeBlock>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Security and Verification */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Security and
+                            Verification</h2>
+
+                        <div
+                            className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
+                            <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
+                                <div
+                                    className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
+                                    <Shield className="h-12 w-12 text-green-500"/>
+                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Signature
+                                        Verification</h3>
+                                </div>
+                                <div className="flex-1 min-w-0 lg:max-w-4xl">
+                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                        Verify webhook authenticity using HMAC signatures to ensure events are genuinely
+                                        from Passpoint.
+                                    </p>
+
+                                    <div className="space-y-4">
+                                        <div>
+                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Node.js
+                                                Example</h4>
+                                            <CodeBlock
+                                                language="javascript">{getSignatureVerificationCode()}</CodeBlock>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Webhook Management */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Webhook
+                            Management</h2>
+
+                        <div className="space-y-8">
+                            {/* Update Webhook */}
+                            <div
+                                className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
+                                <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
+                                    <div
+                                        className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
+                                        <Settings className="h-12 w-12 text-purple-500"/>
+                                        <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Update
+                                            Webhook</h3>
+                                    </div>
+                                    <div className="flex-1 min-w-0 lg:max-w-4xl">
+                                        <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                            Modify existing webhook configurations including URL, events, and filtering
+                                            criteria.
+                                        </p>
+
+                                        <div className="space-y-4">
+                                            <div>
+                                                <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
+                                                <CodeBlock>{getUpdateWebhookEndpointCode()}</CodeBlock>
+                                            </div>
+
+                                            <div>
+                                                <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request
+                                                    Body</h4>
+                                                <CodeBlock
+                                                    language="json">{getUpdateWebhookRequestBodyCode()}</CodeBlock>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Delete Webhook */}
+                            <div
+                                className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
+                                <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
+                                    <div
+                                        className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
+                                        <AlertTriangle className="h-12 w-12 text-red-500"/>
+                                        <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Delete
+                                            Webhook</h3>
+                                    </div>
+                                    <div className="flex-1 min-w-0 lg:max-w-4xl">
+                                        <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                            Permanently remove a webhook endpoint. This action cannot be undone.
+                                        </p>
+
+                                        <div className="space-y-4">
+                                            <div>
+                                                <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
+                                                <CodeBlock>{getDeleteWebhookEndpointCode()}</CodeBlock>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* List Webhooks */}
+                            <div
+                                className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
+                                <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
+                                    <div
+                                        className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
+                                        <CheckCircle className="h-12 w-12 text-green-500"/>
+                                        <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">List
+                                            Webhooks</h3>
+                                    </div>
+                                    <div className="flex-1 min-w-0 lg:max-w-4xl">
+                                        <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                            Retrieve all configured webhook endpoints with their current status and
+                                            statistics.
+                                        </p>
+
+                                        <div className="space-y-4">
+                                            <div>
+                                                <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
+                                                <CodeBlock>{getListWebhooksEndpointCode()}</CodeBlock>
+                                            </div>
+
+                                            <div>
+                                                <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
+                                                <CodeBlock language="json">{getListWebhooksResponseCode()}</CodeBlock>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
-              </div>
+
+                {/* Pagination Navigation */}
+                <PaginationNavigation
+                    previousPage={{
+                        title: "API Rate Limits",
+                        href: "/api-rate-limits"
+                    }}
+                    nextPage={{
+                        title: "Status Responses",
+                        href: "/status-responses"
+                    }}
+                />
+
+                {/* Footer */}
+                <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
+                    <p className="text-gray-500 text-sm">All rights reserved</p>
+                </footer>
             </div>
-          </section>
         </div>
-
-        {/* Pagination Navigation */}
-        <PaginationNavigation
-          previousPage={{
-            title: "Collection",
-            href: "/transfer/collection"
-          }}
-          nextPage={{
-            title: "Virtual Card v2",
-            href: "/virtual-card-v2"
-          }}
-        />
-
-        {/* Footer */}
-        <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
-          <p className="text-gray-500 text-sm">All rights reserved</p>
-        </footer>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default GlobalCallbackSetup;

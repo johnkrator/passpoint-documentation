@@ -3,6 +3,32 @@ import CodeBlock from "@/components/CodeBlock";
 import PaginationNavigation from "@/components/PaginationNavigation";
 
 const Introduction = () => {
+    const getSampleApiRequestCode = () => {
+        return `curl -X POST https://dev.mypasspoint.com/paypass/api/v1/wallet/create \\
+  -H "Content-Type: application/json" \\
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \\
+  -d '{
+    "customerReference": "CUST001",
+    "currency": "USD",
+    "initialBalance": 0
+  }'`;
+    };
+
+    const getStandardResponseCode = () => {
+        return `{
+  "responseCode": "00",
+  "responseDescription": "Success",
+  "responseMessage": "Wallet created successfully",
+  "data": {
+    "success": true,
+    "status": "00",
+    "walletId": "WLT_12345",
+    "balance": 0,
+    "currency": "USD"
+  }
+}`;
+    };
+
     return (
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
             {/* Main content */}
@@ -178,29 +204,11 @@ const Introduction = () => {
 
                     <div className="space-y-4">
                         <h4 className="text-lg font-semibold text-gray-900 dark:text-white">Sample API Request</h4>
-                        <CodeBlock language="bash">{`curl -X POST https://dev.mypasspoint.com/paypass/api/v1/wallet/create \\
-  -H "Content-Type: application/json" \\
-  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \\
-  -d '{
-    "customerReference": "CUST001",
-    "currency": "USD",
-    "initialBalance": 0
-  }'`}</CodeBlock>
+                        <CodeBlock language="bash">{getSampleApiRequestCode()}</CodeBlock>
 
                         <h4 className="text-lg font-semibold text-gray-900 dark:text-white mt-6">Standard Response
                             Format</h4>
-                        <CodeBlock language="json">{`{
-  "responseCode": "00",
-  "responseDescription": "Success",
-  "responseMessage": "Wallet created successfully",
-  "data": {
-    "success": true,
-    "status": "00",
-    "walletId": "WLT_12345",
-    "balance": 0,
-    "currency": "USD"
-  }
-}`}</CodeBlock>
+                        <CodeBlock language="json">{getStandardResponseCode()}</CodeBlock>
                     </div>
                 </section>
 
@@ -604,7 +612,7 @@ const Introduction = () => {
             </div>
 
             {/* Pagination Navigation */}
-            <PaginationNavigation />
+            <PaginationNavigation/>
 
             {/* Footer */}
             <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
@@ -615,3 +623,4 @@ const Introduction = () => {
 };
 
 export default Introduction;
+

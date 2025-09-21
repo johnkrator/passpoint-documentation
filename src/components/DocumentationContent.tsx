@@ -3,6 +3,18 @@ import CodeBlock from "@/components/CodeBlock";
 import PaginationNavigation from "@/components/PaginationNavigation";
 
 const DocumentationContent = () => {
+    // Code block methods
+    const getStandardResponseFormat = () => `{
+  "responseCode": "00",
+  "responseDescription": "Success",
+  "responseMessage": "Operation completed successfully",
+  "data": {
+    "success": true,
+    "status": "00",
+    // ... additional response data
+  }
+}`;
+
     return (
         <div className="min-h-screen bg-white dark:bg-gray-900">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
@@ -133,16 +145,7 @@ const DocumentationContent = () => {
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Standard
                                                 Response Format</h4>
-                                            <CodeBlock language="json">{`{
-  "responseCode": "00",
-  "responseDescription": "Success",
-  "responseMessage": "Operation completed successfully",
-  "data": {
-    "success": true,
-    "status": "00",
-    // ... additional response data
-  }
-}`}</CodeBlock>
+                                            <CodeBlock language="json">{getStandardResponseFormat()}</CodeBlock>
                                         </div>
 
                                         <div>
@@ -237,7 +240,16 @@ const DocumentationContent = () => {
                 </div>
 
                 {/* Pagination Navigation */}
-                <PaginationNavigation/>
+                <PaginationNavigation
+                    previousPage={{
+                        title: "Introduction",
+                        href: "/introduction"
+                    }}
+                    nextPage={{
+                        title: "Authentication",
+                        href: "/authentication"
+                    }}
+                />
 
                 {/* Footer */}
                 <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
@@ -249,3 +261,4 @@ const DocumentationContent = () => {
 };
 
 export default DocumentationContent;
+

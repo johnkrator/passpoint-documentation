@@ -3,6 +3,52 @@ import CodeBlock from "@/components/CodeBlock";
 import PaginationNavigation from "@/components/PaginationNavigation";
 
 const PayoutBankLocalPasspointWalletTransfer = () => {
+    const getEndpointCode = () => {
+        return `POST https://dev.mypasspoint.com/paypass/ft-app/account-transfer`;
+    };
+
+    const getRequestBodyCode = () => {
+        return `{
+    "clientReference":"12344354534534545423",
+    "amount":"10000",
+    "narration":"test wallet to wallet credit notification",
+    "transactionCurrency":"NGN",
+    "accountName":"MERCHANT(Victor Spicey)",
+    "bankCode":"000000",
+    "accountId":"victor@mypasspoint.com",
+    "channel":"3"
+}`;
+    };
+
+    const getCurlExampleCode = () => {
+        return `curl --location 'https://dev.mypasspoint.com/paypass/ft-app/account-transfer' \\
+--header 'x-merchant-id: pass your merchant id' \\
+--header 'x-channel-id: 2' \\
+--header 'x-channel-code: passpoint-merchant-user' \\
+--data-raw '{
+    "clientReference":"12344354534534545423",
+    "amount":"10000",
+    "narration":"test wallet to wallet credit notification",
+    "transactionCurrency":"NGN",
+    "accountName":"MERCHANT(Victor Spicey)",
+    "bankCode":"000000",
+    "accountId":"victor@mypasspoint.com",
+    "channel":"3"
+}'`;
+    };
+
+    const getExampleResponseCode = () => {
+        return `{
+  "responseCode": "00",
+  "responseDescription": "Successful",
+  "responseMessage": "Transfer successful to MERCHANT(Josh Merchant)",
+  "data": {
+    "status": "NEW",
+    "transactionId": "65eef400-fa65-46da-b5f9-e68c6d8d9b85"
+  }
+}`;
+    };
+
     return (
         <div className="min-h-screen bg-white dark:bg-gray-900">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
@@ -46,7 +92,7 @@ const PayoutBankLocalPasspointWalletTransfer = () => {
                                     <div className="space-y-4">
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                            <CodeBlock>{`POST https://dev.mypasspoint.com/paypass/ft-app/account-transfer`}</CodeBlock>
+                                            <CodeBlock>{getEndpointCode()}</CodeBlock>
                                         </div>
                                     </div>
                                 </div>
@@ -115,16 +161,7 @@ const PayoutBankLocalPasspointWalletTransfer = () => {
                                 <div>
                                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Body
                                         (JSON)</h4>
-                                    <CodeBlock language="json">{`{
-    "clientReference":"12344354534534545423",
-    "amount":"10000",
-    "narration":"test wallet to wallet credit notification",
-    "transactionCurrency":"NGN",
-    "accountName":"MERCHANT(Victor Spicey)",
-    "bankCode":"000000",
-    "accountId":"victor@mypasspoint.com",
-    "channel":"3"
-}`}</CodeBlock>
+                                    <CodeBlock language="json">{getRequestBodyCode()}</CodeBlock>
                                 </div>
                             </div>
                         </div>
@@ -140,20 +177,7 @@ const PayoutBankLocalPasspointWalletTransfer = () => {
                                 <div>
                                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">CURL
                                         Example</h4>
-                                    <CodeBlock language="bash">{`curl --location 'https://dev.mypasspoint.com/paypass/ft-app/account-transfer' \\
---header 'x-merchant-id: pass your merchant id' \\
---header 'x-channel-id: 2' \\
---header 'x-channel-code: passpoint-merchant-user' \\
---data-raw '{
-    "clientReference":"12344354534534545423",
-    "amount":"10000",
-    "narration":"test wallet to wallet credit notification",
-    "transactionCurrency":"NGN",
-    "accountName":"MERCHANT(Victor Spicey)",
-    "bankCode":"000000",
-    "accountId":"victor@mypasspoint.com",
-    "channel":"3"
-}'`}</CodeBlock>
+                                    <CodeBlock language="bash">{getCurlExampleCode()}</CodeBlock>
                                 </div>
                             </div>
                         </div>
@@ -169,15 +193,7 @@ const PayoutBankLocalPasspointWalletTransfer = () => {
                                 <div>
                                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">200 OK
                                         Response</h4>
-                                    <CodeBlock language="json">{`{
-  "responseCode": "00",
-  "responseDescription": "Successful",
-  "responseMessage": "Transfer successful to MERCHANT(Josh Merchant)",
-  "data": {
-    "status": "NEW",
-    "transactionId": "65eef400-fa65-46da-b5f9-e68c6d8d9b85"
-  }
-}`}</CodeBlock>
+                                    <CodeBlock language="json">{getExampleResponseCode()}</CodeBlock>
                                 </div>
                             </div>
                         </div>
@@ -206,4 +222,3 @@ const PayoutBankLocalPasspointWalletTransfer = () => {
 };
 
 export default PayoutBankLocalPasspointWalletTransfer;
-

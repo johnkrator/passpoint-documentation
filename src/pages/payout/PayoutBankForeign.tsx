@@ -12,6 +12,145 @@ import CodeBlock from "@/components/CodeBlock";
 import PaginationNavigation from "@/components/PaginationNavigation";
 
 const PayoutBankForeign = () => {
+    const getAvailableCountriesEndpointCode = () => {
+        return `GET /api/v1/countries/payout`;
+    };
+
+    const getAvailableCountriesQueryParamsCode = () => {
+        return `{
+  "region": "europe",
+  "currency": "EUR",
+  "payment_method": "wire",
+  "limit": 50
+}`;
+    };
+
+    const getAvailableCountriesResponseCode = () => {
+        return `{
+  "countries": [
+    {
+      "country_code": "GB",
+      "country_name": "United Kingdom",
+      "region": "europe",
+      "currencies": ["GBP", "EUR", "USD"],
+      "payment_methods": ["wire", "faster_payments", "sepa"],
+      "processing_times": {
+        "wire": "1-2 business days",
+        "faster_payments": "instant",
+        "sepa": "1 business day"
+      },
+      "compliance_level": "standard",
+      "status": "active"
+    }
+  ],
+  "total_countries": 247,
+  "supported_currencies": 40
+}`;
+    };
+
+    const getPaymentMethodsEndpointCode = () => {
+        return `GET /api/v1/payment-methods/international`;
+    };
+
+    const getPaymentMethodsQueryParamsCode = () => {
+        return `{
+  "country": "GB",
+  "currency": "GBP",
+  "amount": 1000.00
+}`;
+    };
+
+    const getPaymentMethodsResponseCode = () => {
+        return `{
+  "payment_methods": [
+    {
+      "method_id": "wire_gbp",
+      "name": "Wire Transfer",
+      "type": "wire",
+      "currency": "GBP",
+      "processing_time": "1-2 business days",
+      "fees": {
+        "fixed_fee": 25.00,
+        "percentage_fee": 0.0015,
+        "total_estimated_fee": 26.50
+      },
+      "limits": {
+        "min_amount": 1.00,
+        "max_amount": 1000000.00
+      },
+      "required_fields": ["iban", "swift_code", "beneficiary_name"],
+      "status": "active"
+    }
+  ]
+}`;
+    };
+
+    const getInternationalTransferEndpointCode = () => {
+        return `POST /api/v1/payouts/international`;
+    };
+
+    const getInternationalTransferRequestBodyCode = () => {
+        return `{
+  "recipient": {
+    "country": "GB",
+    "currency": "GBP",
+    "payment_method": "wire",
+    "bank_details": {
+      "iban": "GB29NWBK60161331926819",
+      "swift_code": "NWBKGB2L",
+      "account_holder_name": "John Smith",
+      "bank_name": "NatWest Bank"
+    },
+    "address": {
+      "street": "123 High Street",
+      "city": "London",
+      "postal_code": "SW1A 1AA",
+      "country": "GB"
+    }
+  },
+  "amount": 1000.00,
+  "source_currency": "USD",
+  "target_currency": "GBP",
+  "purpose": "freelancer_payment",
+  "description": "Website development services",
+  "reference": "INV-2024-001",
+  "callback_url": "https://yourapp.com/webhooks/payout"
+}`;
+    };
+
+    const getInternationalTransferResponseCode = () => {
+        return `{
+  "transfer_id": "transfer_intl_abc123",
+  "status": "pending_compliance",
+  "recipient": {
+    "country": "GB",
+    "currency": "GBP",
+    "bank_details": {
+      "iban": "GB29****1331926819",
+      "swift_code": "NWBKGB2L",
+      "account_holder_name": "John Smith",
+      "bank_name": "NatWest Bank"
+    }
+  },
+  "amount": 1000.00,
+  "source_currency": "USD",
+  "target_currency": "GBP",
+  "exchange_rate": 0.7850,
+  "target_amount": 785.00,
+  "fees": {
+    "transfer_fee": 25.00,
+    "fx_spread": 0.0025,
+    "total_fees": 26.96
+  },
+  "compliance_checks": {
+    "aml_status": "pending",
+    "sanctions_check": "clear"
+  },
+  "estimated_delivery": "2024-01-17T16:00:00Z",
+  "created_at": "2024-01-15T14:30:00Z"
+}`;
+    };
+
     return (
         <div className="min-h-screen bg-white dark:bg-gray-900">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
@@ -47,42 +186,19 @@ const PayoutBankForeign = () => {
                                     <div className="space-y-4">
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                            <CodeBlock>{`GET /api/v1/countries/payout`}</CodeBlock>
+                                            <CodeBlock>{getAvailableCountriesEndpointCode()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Query
                                                 Parameters</h4>
-                                            <CodeBlock language="json">{`{
-  "region": "europe",
-  "currency": "EUR",
-  "payment_method": "wire",
-  "limit": 50
-}`}</CodeBlock>
+                                            <CodeBlock
+                                                language="json">{getAvailableCountriesQueryParamsCode()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                                            <CodeBlock language="json">{`{
-  "countries": [
-    {
-      "country_code": "GB",
-      "country_name": "United Kingdom",
-      "region": "europe",
-      "currencies": ["GBP", "EUR", "USD"],
-      "payment_methods": ["wire", "faster_payments", "sepa"],
-      "processing_times": {
-        "wire": "1-2 business days",
-        "faster_payments": "instant",
-        "sepa": "1 business day"
-      },
-      "compliance_level": "standard",
-      "status": "active"
-    }
-  ],
-  "total_countries": 247,
-  "supported_currencies": 40
-}`}</CodeBlock>
+                                            <CodeBlock language="json">{getAvailableCountriesResponseCode()}</CodeBlock>
                                         </div>
                                     </div>
                                 </div>
@@ -100,50 +216,31 @@ const PayoutBankForeign = () => {
                             <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
-                                    <CreditCard className="h-12 w-12 text-blue-500"/>
+                                    <CreditCard className="h-12 w-12 text-green-500"/>
                                     <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Payment
                                         Methods</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
                                     <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
-                                        Get available payment methods for a specific country, including fees, processing
-                                        times, and required recipient information.
+                                        Get available payment methods for a specific country and currency combination
+                                        with detailed fee structures and processing times.
                                     </p>
 
                                     <div className="space-y-4">
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                            <CodeBlock>{`GET /api/v1/countries/{country_code}/payment-methods`}</CodeBlock>
+                                            <CodeBlock>{getPaymentMethodsEndpointCode()}</CodeBlock>
+                                        </div>
+
+                                        <div>
+                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Query
+                                                Parameters</h4>
+                                            <CodeBlock language="json">{getPaymentMethodsQueryParamsCode()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                                            <CodeBlock language="json">{`{
-  "country_code": "US",
-  "country_name": "United States",
-  "payment_methods": [
-    {
-      "method_id": "ach_usd",
-      "name": "ACH Transfer",
-      "currency": "USD",
-      "processing_time": "1-3 business days",
-      "fee_structure": {
-        "fixed_fee": 5.00,
-        "percentage_fee": 0.0
-      },
-      "limits": {
-        "min_amount": 1.00,
-        "max_amount": 25000.00
-      },
-      "required_fields": [
-        "account_number",
-        "routing_number",
-        "account_holder_name",
-        "account_type"
-      ]
-    }
-  ]
-}`}</CodeBlock>
+                                            <CodeBlock language="json">{getPaymentMethodsResponseCode()}</CodeBlock>
                                         </div>
                                     </div>
                                 </div>
@@ -151,241 +248,43 @@ const PayoutBankForeign = () => {
                         </div>
                     </section>
 
-                    {/* Payment Method Options */}
-                    <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Payment Method
-                            Options</h2>
-
-                        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                            {/* ACH - USD */}
-                            <div
-                                className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
-                                <div className="flex items-center mb-4">
-                                    <Banknote className="h-8 w-8 text-blue-500 mr-3"/>
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">ACH - USD</h3>
-                                </div>
-                                <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
-                                    Automated Clearing House transfers for US dollar payments with cost-effective
-                                    processing.
-                                </p>
-                                <div className="space-y-2 text-sm">
-                                    <div className="flex justify-between">
-                                        <span className="text-gray-600 dark:text-gray-400">Fee:</span>
-                                        <span className="text-gray-900 dark:text-white">$5.00</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span className="text-gray-600 dark:text-gray-400">Time:</span>
-                                        <span className="text-gray-900 dark:text-white">1-3 days</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Wire - USD */}
-                            <div
-                                className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
-                                <div className="flex items-center mb-4">
-                                    <Banknote className="h-8 w-8 text-green-500 mr-3"/>
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Wire - USD</h3>
-                                </div>
-                                <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
-                                    SWIFT wire transfers for high-value USD payments with same-day processing available.
-                                </p>
-                                <div className="space-y-2 text-sm">
-                                    <div className="flex justify-between">
-                                        <span className="text-gray-600 dark:text-gray-400">Fee:</span>
-                                        <span className="text-gray-900 dark:text-white">$45.00</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span className="text-gray-600 dark:text-gray-400">Time:</span>
-                                        <span className="text-gray-900 dark:text-white">Same day</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* RTP - USD */}
-                            <div
-                                className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
-                                <div className="flex items-center mb-4">
-                                    <Zap className="h-8 w-8 text-yellow-500 mr-3"/>
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">RTP - USD</h3>
-                                </div>
-                                <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
-                                    Real-Time Payments network for instant USD transfers 24/7/365 with immediate
-                                    settlement.
-                                </p>
-                                <div className="space-y-2 text-sm">
-                                    <div className="flex justify-between">
-                                        <span className="text-gray-600 dark:text-gray-400">Fee:</span>
-                                        <span className="text-gray-900 dark:text-white">$1.00</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span className="text-gray-600 dark:text-gray-400">Time:</span>
-                                        <span className="text-gray-900 dark:text-white">Instant</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* FedNow - USD */}
-                            <div
-                                className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
-                                <div className="flex items-center mb-4">
-                                    <Zap className="h-8 w-8 text-purple-500 mr-3"/>
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">FedNow -
-                                        USD</h3>
-                                </div>
-                                <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
-                                    Federal Reserve's instant payment service for immediate USD transfers between banks.
-                                </p>
-                                <div className="space-y-2 text-sm">
-                                    <div className="flex justify-between">
-                                        <span className="text-gray-600 dark:text-gray-400">Fee:</span>
-                                        <span className="text-gray-900 dark:text-white">$0.50</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span className="text-gray-600 dark:text-gray-400">Time:</span>
-                                        <span className="text-gray-900 dark:text-white">Instant</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Account Deposits */}
-                            <div
-                                className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
-                                <div className="flex items-center mb-4">
-                                    <ArrowDownToLine className="h-8 w-8 text-teal-500 mr-3"/>
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Account
-                                        Deposits</h3>
-                                </div>
-                                <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
-                                    Direct deposits to bank accounts in USD, GBP, EUR, and CNY with local clearing
-                                    systems.
-                                </p>
-                                <div className="space-y-2 text-sm">
-                                    <div className="flex justify-between">
-                                        <span className="text-gray-600 dark:text-gray-400">Currencies:</span>
-                                        <span className="text-gray-900 dark:text-white">USD, GBP, EUR, CNY</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span className="text-gray-600 dark:text-gray-400">Time:</span>
-                                        <span className="text-gray-900 dark:text-white">1-3 days</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* B2B/B2C Transfers */}
-                            <div
-                                className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
-                                <div className="flex items-center mb-4">
-                                    <ArrowRightLeft className="h-8 w-8 text-indigo-500 mr-3"/>
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">B2B/B2C
-                                        Transfers</h3>
-                                </div>
-                                <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
-                                    Business-to-business and business-to-consumer transfers in CNY and USD with enhanced
-                                    compliance.
-                                </p>
-                                <div className="space-y-2 text-sm">
-                                    <div className="flex justify-between">
-                                        <span className="text-gray-600 dark:text-gray-400">Types:</span>
-                                        <span className="text-gray-900 dark:text-white">B2B, B2C</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span className="text-gray-600 dark:text-gray-400">Currencies:</span>
-                                        <span className="text-gray-900 dark:text-white">CNY, USD</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* International Transfer Example */}
+                    {/* International Transfer */}
                     <section className="mb-16">
                         <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">International
-                            Transfer Example</h2>
+                            Transfer</h2>
 
                         <div
                             className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
                             <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
-                                    <Globe className="h-12 w-12 text-green-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Wire
-                                        Transfer</h3>
+                                    <Globe className="h-12 w-12 text-blue-500"/>
+                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Send
+                                        Internationally</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
                                     <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
-                                        Process international wire transfers with full SWIFT network integration and
-                                        comprehensive compliance checking.
+                                        Execute international bank transfers with automatic currency conversion,
+                                        compliance checks, and real-time status tracking.
                                     </p>
 
                                     <div className="space-y-4">
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                            <CodeBlock>{`POST /api/v1/payouts/international/wire`}</CodeBlock>
+                                            <CodeBlock>{getInternationalTransferEndpointCode()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request
                                                 Body</h4>
-                                            <CodeBlock language="json">{`{
-  "recipient": {
-    "type": "bank_account",
-    "bank_details": {
-      "iban": "GB29NWBK60161331926819",
-      "swift_code": "NWBKGB2L",
-      "account_holder_name": "John Doe",
-      "bank_name": "NatWest Bank",
-      "bank_address": {
-        "street": "123 High Street",
-        "city": "London",
-        "postal_code": "SW1A 1AA",
-        "country": "GB"
-      }
-    },
-    "address": {
-      "street": "456 Oxford Street",
-      "city": "London",
-      "postal_code": "W1A 0AX",
-      "country": "GB"
-    }
-  },
-  "amount": 5000.00,
-  "currency": "GBP",
-  "source_currency": "USD",
-  "purpose": "goods_payment",
-  "description": "Payment for imported goods",
-  "reference": "INV-UK-2024-001",
-  "compliance": {
-    "trade_document_id": "TD-2024-001",
-    "source_of_funds": "business_revenue"
-  }
-}`}</CodeBlock>
+                                            <CodeBlock
+                                                language="json">{getInternationalTransferRequestBodyCode()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                                            <CodeBlock language="json">{`{
-  "transfer_id": "wire_intl_abc123",
-  "status": "pending_compliance",
-  "amount": 5000.00,
-  "currency": "GBP",
-  "source_amount": 6250.00,
-  "source_currency": "USD",
-  "exchange_rate": 0.8000,
-  "fees": {
-    "transfer_fee": 45.00,
-    "fx_spread": 125.00,
-    "total_fees": 170.00
-  },
-  "recipient": {
-    "iban": "GB29****6819",
-    "swift_code": "NWBKGB2L",
-    "bank_name": "NatWest Bank"
-  },
-  "estimated_delivery": "2024-01-17T16:00:00Z",
-  "compliance_reference": "CMP-2024-001",
-  "created_at": "2024-01-15T14:30:00Z"
-}`}</CodeBlock>
+                                            <CodeBlock
+                                                language="json">{getInternationalTransferResponseCode()}</CodeBlock>
                                         </div>
                                     </div>
                                 </div>
@@ -393,92 +292,98 @@ const PayoutBankForeign = () => {
                         </div>
                     </section>
 
-                    {/* Compliance Requirements */}
+                    {/* Payment Methods Grid */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">International
-                            Compliance</h2>
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Supported
+                            Payment Methods</h2>
 
-                        <div
-                            className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-xl p-6 lg:p-8 shadow-sm mb-6">
-                            <div className="flex">
-                                <AlertTriangle
-                                    className="h-6 w-6 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5 mr-4"/>
-                                <div>
-                                    <h3 className="text-sm font-semibold text-red-800 dark:text-red-200">Enhanced Due
-                                        Diligence</h3>
-                                    <p className="text-red-700 dark:text-red-300 text-sm mt-1">
-                                        International transfers require additional compliance checks including purpose
-                                        documentation, beneficiary verification, and sanctions screening.
-                                    </p>
+                        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                            {/* Wire Transfer */}
+                            <div
+                                className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                                <div className="flex items-center mb-4">
+                                    <Banknote className="h-8 w-8 text-blue-500 mr-3"/>
+                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Wire
+                                        Transfer</h3>
+                                </div>
+                                <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">Traditional bank-to-bank
+                                    transfers</p>
+                                <div className="text-xs text-gray-500 dark:text-gray-500">
+                                    <p>• 1-3 business days</p>
+                                    <p>• $15-50 fee</p>
+                                    <p>• Global coverage</p>
+                                </div>
+                            </div>
+
+                            {/* ACH */}
+                            <div
+                                className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                                <div className="flex items-center mb-4">
+                                    <ArrowRightLeft className="h-8 w-8 text-green-500 mr-3"/>
+                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">ACH</h3>
+                                </div>
+                                <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">US domestic automated
+                                    transfers</p>
+                                <div className="text-xs text-gray-500 dark:text-gray-500">
+                                    <p>• Same day - 1 business day</p>
+                                    <p>• $0.75-2.50 fee</p>
+                                    <p>• US only</p>
+                                </div>
+                            </div>
+
+                            {/* RTP */}
+                            <div
+                                className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                                <div className="flex items-center mb-4">
+                                    <Zap className="h-8 w-8 text-yellow-500 mr-3"/>
+                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">RTP</h3>
+                                </div>
+                                <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">Real-time payments
+                                    network</p>
+                                <div className="text-xs text-gray-500 dark:text-gray-500">
+                                    <p>• Instant</p>
+                                    <p>• $1.25 fee</p>
+                                    <p>• US real-time network</p>
+                                </div>
+                            </div>
+
+                            {/* FedNow */}
+                            <div
+                                className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                                <div className="flex items-center mb-4">
+                                    <ArrowDownToLine className="h-8 w-8 text-purple-500 mr-3"/>
+                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">FedNow</h3>
+                                </div>
+                                <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">Federal Reserve instant
+                                    payments</p>
+                                <div className="text-xs text-gray-500 dark:text-gray-500">
+                                    <p>• Instant</p>
+                                    <p>• $1.25 fee</p>
+                                    <p>• US Fed network</p>
                                 </div>
                             </div>
                         </div>
+                    </section>
 
+                    {/* Compliance Notice */}
+                    <section className="mb-16">
                         <div
-                            className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
-                            <div className="overflow-x-auto">
-                                <table className="w-full">
-                                    <thead>
-                                    <tr className="bg-gray-50 dark:bg-gray-800">
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Amount
-                                            Range
-                                        </th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Documentation
-                                            Required
-                                        </th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Processing
-                                            Time
-                                        </th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Additional
-                                            Checks
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                                    <tr>
-                                        <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">Under
-                                            $3,000
-                                        </td>
-                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Basic
-                                            recipient info, purpose
-                                        </td>
-                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">1-3 business
-                                            days
-                                        </td>
-                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Automated
-                                            screening
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">$3,000
-                                            - $10,000
-                                        </td>
-                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">ID
-                                            verification, trade documents
-                                        </td>
-                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">2-5 business
-                                            days
-                                        </td>
-                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Enhanced due
-                                            diligence
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">Over
-                                            $10,000
-                                        </td>
-                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Full KYC,
-                                            business registration, contracts
-                                        </td>
-                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">3-10 business
-                                            days
-                                        </td>
-                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Manual
-                                            review, regulatory reporting
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                            className="bg-orange-50 dark:bg-orange-950/20 border border-orange-200 dark:border-orange-800 rounded-xl p-6 lg:p-8 shadow-sm">
+                            <div className="flex">
+                                <AlertTriangle
+                                    className="h-6 w-6 text-orange-600 dark:text-orange-400 flex-shrink-0 mt-0.5 mr-4"/>
+                                <div>
+                                    <h3 className="text-base font-semibold text-orange-800 dark:text-orange-200 mb-2">Compliance
+                                        Requirements</h3>
+                                    <div className="text-orange-700 dark:text-orange-300 space-y-2">
+                                        <p><strong>High-Value Transfers:</strong> Transfers over $3,000 USD may require
+                                            additional documentation and compliance review.</p>
+                                        <p><strong>Sanctions Screening:</strong> All international transfers are
+                                            screened against global sanctions lists.</p>
+                                        <p><strong>Documentation:</strong> Purpose of payment and beneficiary
+                                            information required for all international transfers.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </section>
@@ -491,8 +396,8 @@ const PayoutBankForeign = () => {
                         href: "/payout/bank/local"
                     }}
                     nextPage={{
-                        title: "Rates & Fees",
-                        href: "/payout/rate"
+                        title: "Bank Payout Options",
+                        href: "/payout/bank"
                     }}
                 />
 
@@ -506,3 +411,4 @@ const PayoutBankForeign = () => {
 };
 
 export default PayoutBankForeign;
+

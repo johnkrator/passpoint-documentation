@@ -54,6 +54,7 @@ import PayoutBankForeignMomoDepositCny from "@/pages/payout/bank/foreign/PayoutB
 
 // Collection Bank Pages
 import CollectionBank from "@/pages/collection/CollectionBank.tsx";
+import CollectionBankDirect from "@/pages/collection/CollectionBankDirect.tsx";
 import CollectionBankOpenBanking from "@/pages/collection/CollectionBankOpenBanking.tsx";
 
 import ErrorBoundary, {RouterErrorBoundary} from "@/components/ErrorBoundary.tsx";
@@ -127,6 +128,7 @@ const Routes = () => {
                 {path: "collection/momo/get-network", element: <Home/>},
                 {path: "collection/momo/request-to-pay", element: <Home/>},
                 {path: "collection/bank", element: <CollectionBank/>},
+                {path: "collection/bank/direct", element: <CollectionBankDirect/>},
                 {path: "collection/bank/open-banking", element: <CollectionBankOpenBanking/>},
                 {path: "collection/bank/open-banking/get-banks", element: <Home/>},
                 {path: "collection/bank/open-banking/request-payment-foreign", element: <Home/>},

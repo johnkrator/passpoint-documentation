@@ -13,7 +13,7 @@ const Header = ({onMenuClick}: HeaderProps) => {
     const {theme, setTheme} = useTheme();
 
     return (
-        <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-50">
+        <header className="bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-50">
             <div className="flex items-center justify-between px-3 sm:px-4 py-3">
                 {/* Left section - Logo and menu toggle */}
                 <div className="flex items-center gap-2 sm:gap-3 min-w-0">

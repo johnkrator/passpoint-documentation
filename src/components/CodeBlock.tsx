@@ -28,10 +28,10 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
     };
 
     return (
-        <div className={`bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden ${className}`}>
+        <div className={`bg-gray-100 dark:bg-gray-950 rounded-lg overflow-hidden ${className}`}>
             {title && (
                 <div
-                    className="flex items-center justify-between px-4 py-3 bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+                    className="flex items-center justify-between px-4 py-3 bg-gray-50 dark:bg-gray-950 border-b border-gray-200 dark:border-gray-700">
                     <div className="text-sm font-semibold text-gray-900 dark:text-white">
                         {title}
                     </div>

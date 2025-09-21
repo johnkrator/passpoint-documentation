@@ -551,7 +551,7 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
             {/* Sidebar */}
             <aside
                 className={cn(
-                    "h-screen w-96 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800", // Increased width from w-72 to w-96
+                    "h-screen w-96 bg-white dark:bg-gray-950 border-r border-gray-200 dark:border-gray-800", // Increased width from w-72 to w-96
                     // Mobile: fixed position with slide animation
                     "lg:sticky lg:top-0 lg:transform-none lg:transition-none",
                     "fixed left-0 top-0 z-50 transform transition-transform duration-200 ease-in-out lg:z-auto",

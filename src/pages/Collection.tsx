@@ -178,6 +178,65 @@ const Collection = () => {
 }`;
     };
 
+    // Add missing subscription code block methods
+    const getSubscriptionEndpoint = () => `POST /api/v1/collections/subscriptions`;
+
+    const getSubscriptionRequestBody = () => `{
+  "customer": {
+    "email": "subscriber@example.com",
+    "name": "Jane Smith",
+    "phone": "+1234567890"
+  },
+  "payment_method": {
+    "type": "card",
+    "card": {
+      "number": "4111111111111111",
+      "exp_month": "12",
+      "exp_year": "2025",
+      "cvc": "123",
+      "cardholder_name": "Jane Smith"
+    }
+  },
+  "plan": {
+    "amount": 29.99,
+    "currency": "USD",
+    "interval": "monthly",
+    "interval_count": 1,
+    "description": "Pro Plan Monthly Subscription"
+  },
+  "trial_period_days": 14,
+  "start_date": "2024-01-29T00:00:00Z",
+  "metadata": {
+    "plan_id": "pro_monthly",
+    "customer_segment": "enterprise",
+    "signup_source": "website"
+  },
+  "callback_url": "https://yourapp.com/webhooks/subscription"
+}`;
+
+    const getSubscriptionResponse = () => `{
+  "id": "sub_def456ghi789",
+  "status": "trialing",
+  "customer": {
+    "email": "subscriber@example.com",
+    "name": "Jane Smith"
+  },
+  "plan": {
+    "amount": 29.99,
+    "currency": "USD",
+    "interval": "monthly",
+    "interval_count": 1,
+    "description": "Pro Plan Monthly Subscription"
+  },
+  "current_period_start": "2024-01-15T10:30:00Z",
+  "current_period_end": "2024-01-29T10:30:00Z",
+  "trial_end": "2024-01-29T10:30:00Z",
+  "next_billing_date": "2024-01-29T10:30:00Z",
+  "payments_count": 0,
+  "total_collected": 0.00,
+  "created_at": "2024-01-15T10:30:00Z"
+}`;
+
     return (
         <div className="min-h-screen bg-white dark:bg-gray-900">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
@@ -469,70 +528,18 @@ const Collection = () => {
                                     <div className="space-y-4">
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                            <CodeBlock>{`POST /api/v1/collections/subscriptions`}</CodeBlock>
+                                            <CodeBlock>{getSubscriptionEndpoint()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request
                                                 Body</h4>
-                                            <CodeBlock language="json">{`{
-  "customer": {
-    "email": "subscriber@example.com",
-    "name": "Jane Smith",
-    "phone": "+1234567890"
-  },
-  "payment_method": {
-    "type": "card",
-    "card": {
-      "number": "4111111111111111",
-      "exp_month": "12",
-      "exp_year": "2025",
-      "cvc": "123",
-      "cardholder_name": "Jane Smith"
-    }
-  },
-  "plan": {
-    "amount": 29.99,
-    "currency": "USD",
-    "interval": "monthly",
-    "interval_count": 1,
-    "description": "Pro Plan Monthly Subscription"
-  },
-  "trial_period_days": 14,
-  "start_date": "2024-01-29T00:00:00Z",
-  "metadata": {
-    "plan_id": "pro_monthly",
-    "customer_segment": "enterprise",
-    "signup_source": "website"
-  },
-  "callback_url": "https://yourapp.com/webhooks/subscription"
-}`}</CodeBlock>
+                                            <CodeBlock language="json">{getSubscriptionRequestBody()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                                            <CodeBlock language="json">{`{
-  "id": "sub_def456ghi789",
-  "status": "trialing",
-  "customer": {
-    "email": "subscriber@example.com",
-    "name": "Jane Smith"
-  },
-  "plan": {
-    "amount": 29.99,
-    "currency": "USD",
-    "interval": "monthly",
-    "interval_count": 1,
-    "description": "Pro Plan Monthly Subscription"
-  },
-  "current_period_start": "2024-01-15T10:30:00Z",
-  "current_period_end": "2024-01-29T10:30:00Z",
-  "trial_end": "2024-01-29T10:30:00Z",
-  "next_billing_date": "2024-01-29T10:30:00Z",
-  "payments_count": 0,
-  "total_collected": 0.00,
-  "created_at": "2024-01-15T10:30:00Z"
-}`}</CodeBlock>
+                                            <CodeBlock language="json">{getSubscriptionResponse()}</CodeBlock>
                                         </div>
                                     </div>
                                 </div>

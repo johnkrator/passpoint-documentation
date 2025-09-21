@@ -3,6 +3,214 @@ import CodeBlock from "@/components/CodeBlock";
 import PaginationNavigation from "@/components/PaginationNavigation";
 
 const Wallet = () => {
+    const getWalletBalanceAllEndpointCode = () => {
+        return `GET https://dev.mypasspoint.com/paypass/wallet-app/get-wallet-balance/all`;
+    };
+
+    const getWalletBalanceAllHeadersCode = () => {
+        return `x-channel-id: 2
+x-channel-code: passpoint-merchant-user
+x-merchant-id: [your-merchant-id]
+Authorization: Bearer [your-access-token]`;
+    };
+
+    const getWalletBalanceAllCurlCode = () => {
+        return `curl -X GET "https://dev.mypasspoint.com/paypass/wallet-app/get-wallet-balance/all" \\
+  -H "x-channel-id: 2" \\
+  -H "x-channel-code: passpoint-merchant-user" \\
+  -H "x-merchant-id: your-merchant-id" \\
+  -H "Authorization: Bearer your-access-token"`;
+    };
+
+    const getWalletBalanceAllResponseCode = () => {
+        return `{
+  "responseCode": "00",
+  "responseDescription": "Success",
+  "responseMessage": "Operation completed successfully",
+  "data": {
+    "success": true,
+    "status": "00",
+    "balances": [
+      {
+        "currency": "USD",
+        "balance": 15420.50,
+        "available": 15420.50
+      },
+      {
+        "currency": "EUR",
+        "balance": 8930.25,
+        "available": 8930.25
+      }
+    ]
+  }
+}`;
+    };
+
+    const getWalletDetailsEndpointCode = () => {
+        return `GET https://dev.mypasspoint.com/paypass/wallet-app/get-wallet-details`;
+    };
+
+    const getWalletDetailsHeadersCode = () => {
+        return `x-channel-id: 2
+x-channel-code: passpoint-merchant-user
+x-merchant-id: [your-merchant-id]
+Authorization: Bearer [your-access-token]`;
+    };
+
+    const getWalletDetailsCurlCode = () => {
+        return `curl -X GET "https://dev.mypasspoint.com/paypass/wallet-app/get-wallet-details" \\
+  -H "x-channel-id: 2" \\
+  -H "x-channel-code: passpoint-merchant-user" \\
+  -H "x-merchant-id: your-merchant-id" \\
+  -H "Authorization: Bearer your-access-token"`;
+    };
+
+    const getWalletDetailsResponseCode = () => {
+        return `{
+  "responseCode": "00",
+  "responseDescription": "Success",
+  "responseMessage": "Operation completed successfully",
+  "data": {
+    "success": true,
+    "status": "00",
+    "wallets": [
+      {
+        "currency": "USD",
+        "balance": 15420.50,
+        "currencySymbol": "$",
+        "accountNumber": "1234567890",
+        "accountName": "Merchant USD Wallet"
+      },
+      {
+        "currency": "EUR",
+        "balance": 8930.25,
+        "currencySymbol": "€",
+        "accountNumber": "0987654321",
+        "accountName": "Merchant EUR Wallet"
+      }
+    ]
+  }
+}`;
+    };
+
+    const getWalletHistoryEndpointCode = () => {
+        return `GET https://dev.mypasspoint.com/paypass/wallet-app/get-wallet-history`;
+    };
+
+    const getWalletHistoryHeadersCode = () => {
+        return `x-channel-id: 2
+x-channel-code: passpoint-merchant-user
+x-merchant-id: [your-merchant-id]
+Authorization: Bearer [your-access-token]`;
+    };
+
+    const getWalletHistoryQueryParamsCode = () => {
+        return `{
+  "currency": "USD",
+  "startDate": "2024-01-01",
+  "endDate": "2024-01-31",
+  "page": 1,
+  "limit": 50,
+  "transactionType": "all"
+}`;
+    };
+
+    const getWalletHistoryCurlCode = () => {
+        return `curl -X GET "https://dev.mypasspoint.com/paypass/wallet-app/get-wallet-history?currency=USD&startDate=2024-01-01&endDate=2024-01-31&page=1&limit=50" \\
+  -H "x-channel-id: 2" \\
+  -H "x-channel-code: passpoint-merchant-user" \\
+  -H "x-merchant-id: your-merchant-id" \\
+  -H "Authorization: Bearer your-access-token"`;
+    };
+
+    const getWalletHistoryResponseCode = () => {
+        return `{
+  "responseCode": "00",
+  "responseDescription": "Success",
+  "responseMessage": "Transaction history retrieved successfully",
+  "data": {
+    "success": true,
+    "status": "00",
+    "transactions": [
+      {
+        "transactionId": "TXN123456789",
+        "type": "credit",
+        "amount": 1000.00,
+        "currency": "USD",
+        "description": "Payment received",
+        "timestamp": "2024-01-15T10:30:00Z",
+        "reference": "REF123456"
+      }
+    ],
+    "pagination": {
+      "current_page": 1,
+      "total_pages": 5,
+      "total_records": 125,
+      "per_page": 50
+    }
+  }
+}`;
+    };
+
+    const getWalletStatementEndpointCode = () => {
+        return `GET https://dev.mypasspoint.com/paypass/wallet-app/get-wallet-statement`;
+    };
+
+    const getWalletStatementHeadersCode = () => {
+        return `x-channel-id: 2
+x-channel-code: passpoint-merchant-user
+x-merchant-id: [your-merchant-id]
+Authorization: Bearer [your-access-token]`;
+    };
+
+    const getWalletStatementQueryParamsCode = () => {
+        return `{
+  "currency": "USD",
+  "startDate": "2024-01-01",
+  "endDate": "2024-01-31",
+  "format": "json"
+}`;
+    };
+
+    const getWalletStatementCurlCode = () => {
+        return `curl -X GET "https://dev.mypasspoint.com/paypass/wallet-app/get-wallet-statement?currency=USD&startDate=2024-01-01&endDate=2024-01-31&format=json" \\
+  -H "x-channel-id: 2" \\
+  -H "x-channel-code: passpoint-merchant-user" \\
+  -H "x-merchant-id: your-merchant-id" \\
+  -H "Authorization: Bearer your-access-token"`;
+    };
+
+    const getWalletStatementResponseCode = () => {
+        return `{
+  "responseCode": "00",
+  "responseDescription": "Success",
+  "responseMessage": "Statement generated successfully",
+  "data": {
+    "success": true,
+    "status": "00",
+    "statement": {
+      "currency": "USD",
+      "period": "2024-01-01 to 2024-01-31",
+      "opening_balance": 14420.50,
+      "closing_balance": 15420.50,
+      "total_credits": 2500.00,
+      "total_debits": 1500.00,
+      "net_change": 1000.00,
+      "transactions": [
+        {
+          "date": "2024-01-15",
+          "description": "Payment received",
+          "credit": 1000.00,
+          "debit": 0.00,
+          "balance": 15420.50,
+          "reference": "REF123456"
+        }
+      ]
+    }
+  }
+}`;
+    };
+
     return (
         <div className="min-h-screen bg-white dark:bg-gray-900">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
@@ -57,50 +265,23 @@ const Wallet = () => {
                                     <div className="space-y-4">
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                            <CodeBlock>{`GET https://dev.mypasspoint.com/paypass/wallet-app/get-wallet-balance/all`}</CodeBlock>
+                                            <CodeBlock>{getWalletBalanceAllEndpointCode()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Headers</h4>
-                                            <CodeBlock language="bash">{`x-channel-id: 2
-x-channel-code: passpoint-merchant-user
-x-merchant-id: [your-merchant-id]
-Authorization: Bearer [your-access-token]`}</CodeBlock>
+                                            <CodeBlock language="bash">{getWalletBalanceAllHeadersCode()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">cURL
                                                 Example</h4>
-                                            <CodeBlock language="bash">{`curl -X GET "https://dev.mypasspoint.com/paypass/wallet-app/get-wallet-balance/all" \
-  -H "x-channel-id: 2" \
-  -H "x-channel-code: passpoint-merchant-user" \
-  -H "x-merchant-id: your-merchant-id" \
-  -H "Authorization: Bearer your-access-token"`}</CodeBlock>
+                                            <CodeBlock language="bash">{getWalletBalanceAllCurlCode()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                                            <CodeBlock language="json">{`{
-  "responseCode": "00",
-  "responseDescription": "Success",
-  "responseMessage": "Operation completed successfully",
-  "data": {
-    "success": true,
-    "status": "00",
-    "balances": [
-      {
-        "currency": "USD",
-        "balance": 15420.50,
-        "available": 15420.50
-      },
-      {
-        "currency": "EUR",
-        "balance": 8930.25,
-        "available": 8930.25
-      }
-    ]
-  }
-}`}</CodeBlock>
+                                            <CodeBlock language="json">{getWalletBalanceAllResponseCode()}</CodeBlock>
                                         </div>
                                     </div>
                                 </div>
@@ -132,54 +313,23 @@ Authorization: Bearer [your-access-token]`}</CodeBlock>
                                         <div className="space-y-4">
                                             <div>
                                                 <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                                <CodeBlock>{`GET https://dev.mypasspoint.com/paypass/wallet-app/get-wallet-details`}</CodeBlock>
+                                                <CodeBlock>{getWalletDetailsEndpointCode()}</CodeBlock>
                                             </div>
 
                                             <div>
                                                 <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Headers</h4>
-                                                <CodeBlock language="bash">{`x-channel-id: 2
-x-channel-code: passpoint-merchant-user
-x-merchant-id: [your-merchant-id]
-Authorization: Bearer [your-access-token]`}</CodeBlock>
+                                                <CodeBlock language="bash">{getWalletDetailsHeadersCode()}</CodeBlock>
                                             </div>
 
                                             <div>
                                                 <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">cURL
                                                     Example</h4>
-                                                <CodeBlock language="bash">{`curl -X GET "https://dev.mypasspoint.com/paypass/wallet-app/get-wallet-details" \
-  -H "x-channel-id: 2" \
-  -H "x-channel-code: passpoint-merchant-user" \
-  -H "x-merchant-id: your-merchant-id" \
-  -H "Authorization: Bearer your-access-token"`}</CodeBlock>
+                                                <CodeBlock language="bash">{getWalletDetailsCurlCode()}</CodeBlock>
                                             </div>
 
                                             <div>
                                                 <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                                                <CodeBlock language="json">{`{
-  "responseCode": "00",
-  "responseDescription": "Success",
-  "responseMessage": "Operation completed successfully",
-  "data": {
-    "success": true,
-    "status": "00",
-    "wallets": [
-      {
-        "currency": "USD",
-        "balance": 15420.50,
-        "currencySymbol": "$",
-        "accountNumber": "1234567890",
-        "accountName": "Merchant USD Wallet"
-      },
-      {
-        "currency": "EUR",
-        "balance": 8930.25,
-        "currencySymbol": "€",
-        "accountNumber": "0987654321",
-        "accountName": "Merchant EUR Wallet"
-      }
-    ]
-  }
-}`}</CodeBlock>
+                                                <CodeBlock language="json">{getWalletDetailsResponseCode()}</CodeBlock>
                                             </div>
                                         </div>
                                     </div>
@@ -204,83 +354,36 @@ Authorization: Bearer [your-access-token]`}</CodeBlock>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
                                     <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
-                                        Get paginated transaction history for all currencies or filter by specific
-                                        currency with date range support.
+                                        Retrieve paginated transaction history with filtering options by currency, date
+                                        range, and transaction type.
                                     </p>
 
                                     <div className="space-y-4">
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                            <CodeBlock>{`POST https://dev.mypasspoint.com/paypass/wallet-app/wallet-history?type=all`}</CodeBlock>
+                                            <CodeBlock>{getWalletHistoryEndpointCode()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Headers</h4>
-                                            <CodeBlock language="bash">{`x-channel-id: 2
-x-channel-code: passpoint-merchant-user
-x-merchant-id: [your-merchant-id]
-Authorization: Bearer [your-access-token]
-Content-Type: application/json`}</CodeBlock>
+                                            <CodeBlock language="bash">{getWalletHistoryHeadersCode()}</CodeBlock>
                                         </div>
 
                                         <div>
-                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request
-                                                Body</h4>
-                                            <CodeBlock language="json">{`{
-  "currency": "USD",
-  "pageNumber": 1,
-  "pageSize": 20,
-  "fromDate": "2024-01-01",
-  "toDate": "2024-01-31"
-}`}</CodeBlock>
+                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Query
+                                                Parameters</h4>
+                                            <CodeBlock language="json">{getWalletHistoryQueryParamsCode()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">cURL
                                                 Example</h4>
-                                            <CodeBlock language="bash">{`curl -X POST "https://dev.mypasspoint.com/paypass/wallet-app/wallet-history?type=all" \
-  -H "x-channel-id: 2" \
-  -H "x-channel-code: passpoint-merchant-user" \
-  -H "x-merchant-id: your-merchant-id" \
-  -H "Authorization: Bearer your-access-token" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "currency": "USD",
-    "pageNumber": 1,
-    "pageSize": 20,
-    "fromDate": "2024-01-01",
-    "toDate": "2024-01-31"
-  }'`}</CodeBlock>
+                                            <CodeBlock language="bash">{getWalletHistoryCurlCode()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                                            <CodeBlock language="json">{`{
-  "responseCode": "00",
-  "responseDescription": "Success",
-  "responseMessage": "Transaction history retrieved successfully",
-  "data": {
-    "success": true,
-    "status": "00",
-    "transactions": [
-      {
-        "id": "tx_1234567890",
-        "amount": 500.00,
-        "type": "credit",
-        "description": "Payment received",
-        "date": "2024-01-15T10:30:00Z",
-        "currency": "USD",
-        "reference": "PAY_12345"
-      }
-    ],
-    "pagination": {
-      "currentPage": 1,
-      "pageSize": 20,
-      "totalPages": 5,
-      "totalRecords": 98
-    }
-  }
-}`}</CodeBlock>
+                                            <CodeBlock language="json">{getWalletHistoryResponseCode()}</CodeBlock>
                                         </div>
                                     </div>
                                 </div>
@@ -288,9 +391,9 @@ Content-Type: application/json`}</CodeBlock>
                         </div>
                     </section>
 
-                    {/* Get Wallet Statement */}
+                    {/* Wallet Statement */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Get Wallet
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Wallet
                             Statement</h2>
 
                         <div
@@ -299,446 +402,60 @@ Content-Type: application/json`}</CodeBlock>
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <FileText className="h-12 w-12 text-purple-500 flex-shrink-0"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Detailed
+                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Generate
                                         Statement</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
                                     <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
-                                        Get comprehensive wallet statement with detailed transaction information,
-                                        running balances, and transaction modes.
+                                        Generate detailed wallet statements with opening/closing balances, transaction
+                                        summaries, and complete transaction lists for accounting purposes.
                                     </p>
 
                                     <div className="space-y-4">
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                            <CodeBlock>{`POST https://dev.mypasspoint.com/paypass/wallet-app/get-wallet-statement`}</CodeBlock>
+                                            <CodeBlock>{getWalletStatementEndpointCode()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Headers</h4>
-                                            <CodeBlock language="bash">{`x-channel-id: 2
-x-channel-code: passpoint-merchant-user
-x-merchant-id: [your-merchant-id]
-Authorization: Bearer [your-access-token]
-Content-Type: application/json`}</CodeBlock>
+                                            <CodeBlock language="bash">{getWalletStatementHeadersCode()}</CodeBlock>
                                         </div>
 
                                         <div>
-                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request
-                                                Body</h4>
-                                            <CodeBlock language="json">{`{
-  "currency": "USD",
-  "pageNumber": 1,
-  "pageSize": 20,
-  "fromDate": "2024-01-01",
-  "toDate": "2024-01-31"
-}`}</CodeBlock>
+                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Query
+                                                Parameters</h4>
+                                            <CodeBlock language="json">{getWalletStatementQueryParamsCode()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">cURL
                                                 Example</h4>
-                                            <CodeBlock language="bash">{`curl -X POST "https://dev.mypasspoint.com/paypass/wallet-app/get-wallet-statement" \
-  -H "x-channel-id: 2" \
-  -H "x-channel-code: passpoint-merchant-user" \
-  -H "x-merchant-id: your-merchant-id" \
-  -H "Authorization: Bearer your-access-token" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "currency": "USD",
-    "pageNumber": 1,
-    "pageSize": 20,
-    "fromDate": "2024-01-01",
-    "toDate": "2024-01-31"
-  }'`}</CodeBlock>
+                                            <CodeBlock language="bash">{getWalletStatementCurlCode()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                                            <CodeBlock language="json">{`{
-  "responseCode": "00",
-  "responseDescription": "Successful",
-  "responseMessage": "12 wallet statement item(s) found.",
-  "totalCount": 12,
-  "currentBalance": 54015.77,
-  "pageCount": 1,
-  "pageSize": 20,
-  "currentPage": 1,
-  "data": [
-    {
-      "accountName": "Merchant USD Wallet",
-      "currency": "USD",
-      "transactionId": "TXN_2024011512345",
-      "runningBalance": 54015.77,
-      "narration": "Payment received from customer",
-      "amount": 500.00,
-      "transactionType": "Credit",
-      "transactionDate": "2024-01-15T14:30:00Z",
-      "debit": false,
-      "credit": true,
-      "transMode": "Online Payment"
-    },
-    {
-      "accountName": "Merchant USD Wallet",
-      "currency": "USD",
-      "transactionId": "TXN_2024011512346",
-      "runningBalance": 53515.77,
-      "narration": "Transfer to partner account",
-      "amount": 500.00,
-      "transactionType": "Debit",
-      "transactionDate": "2024-01-15T16:45:00Z",
-      "debit": true,
-      "credit": false,
-      "transMode": "Wallet Transfer"
-    }
-  ]
-}`}</CodeBlock>
+                                            <CodeBlock language="json">{getWalletStatementResponseCode()}</CodeBlock>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section>
-
-                    {/* API Parameters Summary */}
-                    <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">API Parameters
-                            Summary</h2>
-
-                        <div
-                            className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
-                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
-                                Summary of key parameters used across the wallet endpoints for quick reference and
-                                integration.
-                            </p>
-
-                            <div className="space-y-8">
-                                {/* Path Parameters */}
-                                <div>
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Path
-                                        Parameters</h3>
-                                    <div className="overflow-x-auto">
-                                        <table className="w-full text-sm border-collapse">
-                                            <thead>
-                                            <tr className="border-b-2 border-gray-200 dark:border-gray-700">
-                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Parameter</th>
-                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Type</th>
-                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Required</th>
-                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Description</th>
-                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Default
-                                                    Value
-                                                </th>
-                                            </tr>
-                                            </thead>
-                                            <tbody className="text-gray-700 dark:text-gray-300">
-                                            <tr className="border-b border-gray-100 dark:border-gray-800">
-                                                <td className="py-3 px-4 font-mono text-xs">currency</td>
-                                                <td className="py-3 px-4">string</td>
-                                                <td className="py-3 px-4">Optional</td>
-                                                <td className="py-3 px-4">The currency of the wallet. When currency =
-                                                    "all", it
-                                                    retrieves the balance of all wallets
-                                                </td>
-                                                <td className="py-3 px-4">"all"</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                                {/* Request Body Parameters */}
-                                <div>
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Request
-                                        Body
-                                        Parameters</h3>
-                                    <div className="overflow-x-auto">
-                                        <table className="w-full text-sm border-collapse">
-                                            <thead>
-                                            <tr className="border-b-2 border-gray-200 dark:border-gray-700">
-                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Parameter</th>
-                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Type</th>
-                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Required</th>
-                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Description</th>
-                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Used
-                                                    In
-                                                </th>
-                                            </tr>
-                                            </thead>
-                                            <tbody className="text-gray-700 dark:text-gray-300">
-                                            <tr className="border-b border-gray-100 dark:border-gray-800">
-                                                <td className="py-3 px-4 font-mono text-xs">currency</td>
-                                                <td className="py-3 px-4">string</td>
-                                                <td className="py-3 px-4">Yes</td>
-                                                <td className="py-3 px-4">Currency code for the wallet (USD, EUR,
-                                                    etc.)
-                                                </td>
-                                                <td className="py-3 px-4">History, Statement</td>
-                                            </tr>
-                                            <tr className="border-b border-gray-100 dark:border-gray-800">
-                                                <td className="py-3 px-4 font-mono text-xs">pageNumber</td>
-                                                <td className="py-3 px-4">number</td>
-                                                <td className="py-3 px-4">Yes</td>
-                                                <td className="py-3 px-4">Page number for pagination (starts from 1)
-                                                </td>
-                                                <td className="py-3 px-4">History, Statement</td>
-                                            </tr>
-                                            <tr className="border-b border-gray-100 dark:border-gray-800">
-                                                <td className="py-3 px-4 font-mono text-xs">pageSize</td>
-                                                <td className="py-3 px-4">number</td>
-                                                <td className="py-3 px-4">Yes</td>
-                                                <td className="py-3 px-4">Number of records per page (maximum 100)</td>
-                                                <td className="py-3 px-4">History, Statement</td>
-                                            </tr>
-                                            <tr className="border-b border-gray-100 dark:border-gray-800">
-                                                <td className="py-3 px-4 font-mono text-xs">fromDate</td>
-                                                <td className="py-3 px-4">string</td>
-                                                <td className="py-3 px-4">Optional</td>
-                                                <td className="py-3 px-4">Start date for filtering (YYYY-MM-DD format)
-                                                </td>
-                                                <td className="py-3 px-4">History, Statement</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="py-3 px-4 font-mono text-xs">toDate</td>
-                                                <td className="py-3 px-4">string</td>
-                                                <td className="py-3 px-4">Optional</td>
-                                                <td className="py-3 px-4">End date for filtering (YYYY-MM-DD format)
-                                                </td>
-                                                <td className="py-3 px-4">History, Statement</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                                {/* Response Parameters */}
-                                <div>
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Response
-                                        Parameters</h3>
-                                    <div className="overflow-x-auto">
-                                        <table className="w-full text-sm border-collapse">
-                                            <thead>
-                                            <tr className="border-b-2 border-gray-200 dark:border-gray-700">
-                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Parameter</th>
-                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Type</th>
-                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Description</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody className="text-gray-700 dark:text-gray-300">
-                                            <tr className="border-b border-gray-100 dark:border-gray-800">
-                                                <td className="py-3 px-4 font-mono text-xs">responseCode</td>
-                                                <td className="py-3 px-4">string</td>
-                                                <td className="py-3 px-4">The response code indicating success ("00") or
-                                                    failure
-                                                </td>
-                                            </tr>
-                                            <tr className="border-b border-gray-100 dark:border-gray-800">
-                                                <td className="py-3 px-4 font-mono text-xs">responseDescription</td>
-                                                <td className="py-3 px-4">string</td>
-                                                <td className="py-3 px-4">Human-readable description of the response
-                                                    code
-                                                </td>
-                                            </tr>
-                                            <tr className="border-b border-gray-100 dark:border-gray-800">
-                                                <td className="py-3 px-4 font-mono text-xs">responseMessage</td>
-                                                <td className="py-3 px-4">string</td>
-                                                <td className="py-3 px-4">Detailed message about the operation result
-                                                </td>
-                                            </tr>
-                                            <tr className="border-b border-gray-100 dark:border-gray-800">
-                                                <td className="py-3 px-4 font-mono text-xs">data</td>
-                                                <td className="py-3 px-4">object/array</td>
-                                                <td className="py-3 px-4">The main response data containing wallet
-                                                    information
-                                                </td>
-                                            </tr>
-                                            <tr className="border-b border-gray-100 dark:border-gray-800">
-                                                <td className="py-3 px-4 font-mono text-xs">data.currency</td>
-                                                <td className="py-3 px-4">string</td>
-                                                <td className="py-3 px-4">The wallet currency code</td>
-                                            </tr>
-                                            <tr className="border-b border-gray-100 dark:border-gray-800">
-                                                <td className="py-3 px-4 font-mono text-xs">data.balance</td>
-                                                <td className="py-3 px-4">decimal</td>
-                                                <td className="py-3 px-4">The current wallet balance</td>
-                                            </tr>
-                                            <tr className="border-b border-gray-100 dark:border-gray-800">
-                                                <td className="py-3 px-4 font-mono text-xs">data.availableBalance</td>
-                                                <td className="py-3 px-4">decimal</td>
-                                                <td className="py-3 px-4">The available balance of the wallet for
-                                                    transactions
-                                                </td>
-                                            </tr>
-                                            <tr className="border-b border-gray-100 dark:border-gray-800">
-                                                <td className="py-3 px-4 font-mono text-xs">currentBalance</td>
-                                                <td className="py-3 px-4">decimal</td>
-                                                <td className="py-3 px-4">Current wallet balance (in statement
-                                                    response)
-                                                </td>
-                                            </tr>
-                                            <tr className="border-b border-gray-100 dark:border-gray-800">
-                                                <td className="py-3 px-4 font-mono text-xs">totalCount</td>
-                                                <td className="py-3 px-4">number</td>
-                                                <td className="py-3 px-4">Total number of records available</td>
-                                            </tr>
-                                            <tr className="border-b border-gray-100 dark:border-gray-800">
-                                                <td className="py-3 px-4 font-mono text-xs">pageCount</td>
-                                                <td className="py-3 px-4">number</td>
-                                                <td className="py-3 px-4">Total number of pages available</td>
-                                            </tr>
-                                            <tr className="border-b border-gray-100 dark:border-gray-800">
-                                                <td className="py-3 px-4 font-mono text-xs">transactionId</td>
-                                                <td className="py-3 px-4">string</td>
-                                                <td className="py-3 px-4">Unique identifier for each transaction</td>
-                                            </tr>
-                                            <tr className="border-b border-gray-100 dark:border-gray-800">
-                                                <td className="py-3 px-4 font-mono text-xs">runningBalance</td>
-                                                <td className="py-3 px-4">decimal</td>
-                                                <td className="py-3 px-4">Balance after the transaction was processed
-                                                </td>
-                                            </tr>
-                                            <tr className="border-b border-gray-100 dark:border-gray-800">
-                                                <td className="py-3 px-4 font-mono text-xs">transactionType</td>
-                                                <td className="py-3 px-4">string</td>
-                                                <td className="py-3 px-4">Type of transaction (Credit, Debit)</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="py-3 px-4 font-mono text-xs">transMode</td>
-                                                <td className="py-3 px-4">string</td>
-                                                <td className="py-3 px-4">Mode of transaction (Online Payment, Wallet
-                                                    Transfer, etc.)
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                                {/* Required Headers */}
-                                <div>
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Required
-                                        Headers
-                                        (All Endpoints)</h3>
-                                    <div className="overflow-x-auto">
-                                        <table className="w-full text-sm border-collapse">
-                                            <thead>
-                                            <tr className="border-b-2 border-gray-200 dark:border-gray-700">
-                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Header</th>
-                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Value</th>
-                                                <th className="text-left py-3 px-4 text-gray-900 dark:text-white font-semibold">Description</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody className="text-gray-700 dark:text-gray-300">
-                                            <tr className="border-b border-gray-100 dark:border-gray-800">
-                                                <td className="py-3 px-4 font-mono text-xs">x-channel-id</td>
-                                                <td className="py-3 px-4 font-mono text-xs">2</td>
-                                                <td className="py-3 px-4">Channel identifier for wallet operations</td>
-                                            </tr>
-                                            <tr className="border-b border-gray-100 dark:border-gray-800">
-                                                <td className="py-3 px-4 font-mono text-xs">x-channel-code</td>
-                                                <td className="py-3 px-4 font-mono text-xs">passpoint-merchant-user</td>
-                                                <td className="py-3 px-4">Channel code for merchant user operations</td>
-                                            </tr>
-                                            <tr className="border-b border-gray-100 dark:border-gray-800">
-                                                <td className="py-3 px-4 font-mono text-xs">x-merchant-id</td>
-                                                <td className="py-3 px-4 font-mono text-xs">[your-merchant-id]</td>
-                                                <td className="py-3 px-4">Your unique merchant identifier</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="py-3 px-4 font-mono text-xs">Authorization</td>
-                                                <td className="py-3 px-4 font-mono text-xs">Bearer [token]</td>
-                                                <td className="py-3 px-4">Bearer token obtained from authentication</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* Code Examples */}
-                    <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Integration
-                            Examples</h2>
-
-                        <div className="space-y-8">
-                            <CodeBlock
-                                title="Node.js - Get Wallet Balance"
-                                language="javascript"
-                            >{`const axios = require('axios');
-
-class PasspointWallet {
-  constructor(merchantId, accessToken) {
-    this.merchantId = merchantId;
-    this.accessToken = accessToken;
-    this.baseUrl = 'https://dev.mypasspoint.com/paypass';
-  }
-
-  getHeaders() {
-    return {
-      'x-channel-id': '2',
-      'x-channel-code': 'passpoint-merchant-user',
-      'x-merchant-id': this.merchantId,
-      'Authorization': \`Bearer \${this.accessToken}\`,
-      'Content-Type': 'application/json'
-    };
-  }
-
-  async getWalletBalance() {
-    try {
-      const response = await axios.get(
-        \`\${this.baseUrl}/wallet-app/get-wallet-balance/all\`,
-        { headers: this.getHeaders() }
-      );
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching wallet balance:', error.response?.data || error.message);
-      throw error;
-    }
-  }
-
-  async getWalletStatement(currency, pageNumber = 1, pageSize = 20, fromDate, toDate) {
-    try {
-      const requestBody = {
-        currency,
-        pageNumber,
-        pageSize,
-        fromDate,
-        toDate
-      };
-
-      const response = await axios.post(
-        \`\${this.baseUrl}/wallet-app/get-wallet-statement\`,
-        requestBody,
-        { headers: this.getHeaders() }
-      );
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching wallet statement:', error.response?.data || error.message);
-      throw error;
-    }
-  }
-}
-
-// Usage
-const wallet = new PasspointWallet('your-merchant-id', 'your-access-token');
-
-// Get balance for all currencies
-wallet.getWalletBalance()
-  .then(balance => console.log('Wallet Balance:', balance))
-  .catch(err => console.error('Balance Error:', err));
-
-// Get USD wallet statement for January 2024
-wallet.getWalletStatement('USD', 1, 20, '2024-01-01', '2024-01-31')
-  .then(statement => console.log('Wallet Statement:', statement))
-  .catch(err => console.error('Statement Error:', err));`}</CodeBlock>
-                        </div>
-                    </section>
-
                 </div>
 
                 {/* Pagination Navigation */}
-                <PaginationNavigation />
+                <PaginationNavigation
+                    previousPage={{
+                        title: "Transfer",
+                        href: "/transfer"
+                    }}
+                    nextPage={{
+                        title: "Collection",
+                        href: "/collection"
+                    }}
+                />
 
                 {/* Footer */}
                 <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
@@ -750,3 +467,4 @@ wallet.getWalletStatement('USD', 1, 20, '2024-01-01', '2024-01-31')
 };
 
 export default Wallet;
+

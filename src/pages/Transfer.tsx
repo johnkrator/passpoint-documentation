@@ -3,48 +3,12 @@ import CodeBlock from "@/components/CodeBlock";
 import PaginationNavigation from "@/components/PaginationNavigation";
 
 const Transfer = () => {
-    return (
-        <div className="min-h-screen bg-white dark:bg-gray-900">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-                <div className="max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Transfer</h1>
+    const getCreateTransferEndpointCode = () => {
+        return `POST /api/v1/transfers`;
+    };
 
-                    <p className="text-lg mb-12 leading-relaxed max-w-4xl">
-                        Process secure fund transfers between wallets, bank accounts, and external payment systems.
-                        Manage both internal and external transfers with real-time status tracking.
-                    </p>
-
-                    {/* Create Transfer */}
-                    <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">
-                            Create Transfer
-                        </h2>
-                        <div
-                            className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
-                            <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
-                                <div
-                                    className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
-                                    <Send className="h-12 w-12 text-brand-500 flex-shrink-0"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">
-                                        Create New Transfer
-                                    </h3>
-                                </div>
-                                <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-lg mb-6 leading-relaxed">
-                                        Initiate a transfer between wallets, bank accounts, or external payment
-                                        providers with comprehensive validation and fraud detection.
-                                    </p>
-
-                                    <div className="space-y-4">
-                                        <div>
-                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                            <CodeBlock>{`POST /api/v1/transfers`}</CodeBlock>
-                                        </div>
-
-                                        <div>
-                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request
-                                                Body</h4>
-                                            <CodeBlock language="json">{`{
+    const getCreateTransferRequestBodyCode = () => {
+        return `{
   "source": {
     "type": "wallet",
     "id": "wallet_1234567890"
@@ -66,12 +30,11 @@ const Transfer = () => {
     "transfer_type": "salary"
   },
   "callback_url": "https://yourapp.com/webhooks/transfer"
-}`}</CodeBlock>
-                                        </div>
+}`;
+    };
 
-                                        <div>
-                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                                            <CodeBlock language="json">{`{
+    const getCreateTransferResponseCode = () => {
+        return `{
   "id": "transfer_abcdef123456",
   "status": "pending",
   "source": {
@@ -94,45 +57,15 @@ const Transfer = () => {
   },
   "estimated_completion": "2024-01-16T14:00:00Z",
   "created_at": "2024-01-15T10:30:00Z"
-}`}</CodeBlock>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+}`;
+    };
 
-                    {/* Get Transfer Status */}
-                    <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Transfer
-                            Status</h2>
+    const getTransferStatusEndpointCode = () => {
+        return `GET /api/v1/transfers/{transfer_id}`;
+    };
 
-                        <div className="space-y-8">
-                            <div
-                                className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
-                                <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
-                                    <div
-                                        className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
-                                        <Clock className="h-12 w-12 text-blue-500 flex-shrink-0"/>
-                                        <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">
-                                            Get Transfer Status
-                                        </h3>
-                                    </div>
-                                    <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                        <p className="text-lg mb-6 leading-relaxed">
-                                            Check the current status and details of a transfer including processing
-                                            updates and completion information.
-                                        </p>
-
-                                        <div className="space-y-4">
-                                            <div>
-                                                <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                                <CodeBlock>{`GET /api/v1/transfers/{transfer_id}`}</CodeBlock>
-                                            </div>
-
-                                            <div>
-                                                <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                                                <CodeBlock language="json">{`{
+    const getTransferStatusResponseCode = () => {
+        return `{
   "id": "transfer_abcdef123456",
   "status": "completed",
   "source": {
@@ -171,7 +104,164 @@ const Transfer = () => {
   ],
   "created_at": "2024-01-15T10:30:00Z",
   "completed_at": "2024-01-16T14:22:00Z"
-}`}</CodeBlock>
+}`;
+    };
+
+    const getBulkTransferEndpointCode = () => {
+        return `POST /api/v1/transfers/bulk`;
+    };
+
+    const getBulkTransferRequestBodyCode = () => {
+        return `{
+  "batch_reference": "payroll_batch_202401_15",
+  "description": "Monthly payroll batch",
+  "transfers": [
+    {
+      "source": {
+        "type": "wallet",
+        "id": "company_wallet_main"
+      },
+      "destination": {
+        "type": "bank_account",
+        "account_number": "1234567890",
+        "routing_number": "021000021",
+        "account_holder_name": "John Doe"
+      },
+      "amount": 3000.00,
+      "reference": "salary_john_doe_202401"
+    },
+    {
+      "source": {
+        "type": "wallet",
+        "id": "company_wallet_main"
+      },
+      "destination": {
+        "type": "bank_account",
+        "account_number": "9876543210",
+        "routing_number": "021000021",
+        "account_holder_name": "Jane Smith"
+      },
+      "amount": 2800.00,
+      "reference": "salary_jane_smith_202401"
+    }
+  ],
+  "currency": "USD",
+  "callback_url": "https://yourapp.com/webhooks/bulk-transfer"
+}`;
+    };
+
+    const getBulkTransferResponseCode = () => {
+        return `{
+  "batch_id": "batch_xyz789abc123",
+  "batch_reference": "payroll_batch_202401_15",
+  "status": "processing",
+  "total_transfers": 2,
+  "total_amount": 5800.00,
+  "currency": "USD",
+  "transfers": [
+    {
+      "id": "transfer_def456ghi789",
+      "status": "pending",
+      "amount": 3000.00,
+      "reference": "salary_john_doe_202401"
+    },
+    {
+      "id": "transfer_jkl012mno345",
+      "status": "pending",
+      "amount": 2800.00,
+      "reference": "salary_jane_smith_202401"
+    }
+  ],
+  "estimated_completion": "2024-01-16T16:00:00Z",
+  "created_at": "2024-01-15T14:30:00Z"
+}`;
+    };
+
+    return (
+        <div className="min-h-screen bg-white dark:bg-gray-900">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+                <div className="max-w-none">
+                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Transfer</h1>
+
+                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+                        Process secure fund transfers between wallets, bank accounts, and external payment systems.
+                        Manage both internal and external transfers with real-time status tracking.
+                    </p>
+
+                    {/* Create Transfer */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">
+                            Create Transfer
+                        </h2>
+                        <div
+                            className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
+                            <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
+                                <div
+                                    className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
+                                    <Send className="h-12 w-12 text-brand-500 flex-shrink-0"/>
+                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">
+                                        Create New Transfer
+                                    </h3>
+                                </div>
+                                <div className="flex-1 min-w-0 lg:max-w-4xl">
+                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                        Initiate a transfer between wallets, bank accounts, or external payment
+                                        providers with comprehensive validation and fraud detection.
+                                    </p>
+
+                                    <div className="space-y-4">
+                                        <div>
+                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
+                                            <CodeBlock>{getCreateTransferEndpointCode()}</CodeBlock>
+                                        </div>
+
+                                        <div>
+                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request
+                                                Body</h4>
+                                            <CodeBlock language="json">{getCreateTransferRequestBodyCode()}</CodeBlock>
+                                        </div>
+
+                                        <div>
+                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
+                                            <CodeBlock language="json">{getCreateTransferResponseCode()}</CodeBlock>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Get Transfer Status */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Transfer
+                            Status</h2>
+
+                        <div className="space-y-8">
+                            <div
+                                className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
+                                <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
+                                    <div
+                                        className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
+                                        <Clock className="h-12 w-12 text-blue-500 flex-shrink-0"/>
+                                        <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">
+                                            Get Transfer Status
+                                        </h3>
+                                    </div>
+                                    <div className="flex-1 min-w-0 lg:max-w-4xl">
+                                        <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                            Check the current status and details of a transfer including processing
+                                            updates and completion information.
+                                        </p>
+
+                                        <div className="space-y-4">
+                                            <div>
+                                                <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
+                                                <CodeBlock>{getTransferStatusEndpointCode()}</CodeBlock>
+                                            </div>
+
+                                            <div>
+                                                <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
+                                                <CodeBlock language="json">{getTransferStatusResponseCode()}</CodeBlock>
                                             </div>
                                         </div>
                                     </div>
@@ -243,7 +333,7 @@ const Transfer = () => {
                                     </h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-lg mb-6 leading-relaxed">
+                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
                                         Execute multiple transfers in a single batch operation with atomic processing
                                         and comprehensive error handling.
                                     </p>
@@ -267,369 +357,37 @@ const Transfer = () => {
                                     <div className="space-y-4">
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                            <CodeBlock>{`POST /api/v1/transfers/bulk`}</CodeBlock>
+                                            <CodeBlock>{getBulkTransferEndpointCode()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request
                                                 Body</h4>
-                                            <CodeBlock language="json">{`{
-  "batch_reference": "payroll_batch_202401_15",
-  "description": "Monthly payroll batch",
-  "transfers": [
-    {
-      "source": {
-        "type": "wallet",
-        "id": "company_wallet_main"
-      },
-      "destination": {
-        "type": "bank_account",
-        "account_number": "1234567890",
-        "routing_number": "021000021",
-        "account_holder_name": "John Doe"
-      },
-      "amount": 3000.00,
-      "reference": "salary_john_doe_202401"
-    },
-    {
-      "source": {
-        "type": "wallet",
-        "id": "company_wallet_main"
-      },
-      "destination": {
-        "type": "bank_account",
-        "account_number": "9876543210",
-        "routing_number": "021000021",
-        "account_holder_name": "Jane Smith"
-      },
-      "amount": 3500.00,
-      "reference": "salary_jane_smith_202401"
-    }
-  ],
-  "callback_url": "https://yourapp.com/webhooks/bulk-transfer"
-}`}</CodeBlock>
+                                            <CodeBlock language="json">{getBulkTransferRequestBodyCode()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                                            <CodeBlock language="json">{`{
-  "batch_id": "batch_xyz789abc123",
-  "batch_reference": "payroll_batch_202401_15",
-  "status": "processing",
-  "total_transfers": 2,
-  "total_amount": 6500.00,
-  "currency": "USD",
-  "transfers": [
-    {
-      "id": "transfer_001",
-      "reference": "salary_john_doe_202401",
-      "amount": 3000.00,
-      "status": "pending"
-    },
-    {
-      "id": "transfer_002",
-      "reference": "salary_jane_smith_202401",
-      "amount": 3500.00,
-      "status": "pending"
-    }
-  ],
-  "estimated_completion": "2024-01-16T16:00:00Z",
-  "created_at": "2024-01-15T14:30:00Z"
-}`}</CodeBlock>
+                                            <CodeBlock language="json">{getBulkTransferResponseCode()}</CodeBlock>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section>
-
-                    {/* Transfer Fees */}
-                    <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Transfer
-                            Fees</h2>
-
-                        <div
-                            className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
-                            <div className="overflow-x-auto">
-                                <table className="w-full">
-                                    <thead>
-                                    <tr className="bg-gray-50 dark:bg-gray-800">
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Transfer
-                                            Type
-                                        </th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Processing
-                                            Time
-                                        </th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Fee
-                                            Structure
-                                        </th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Daily
-                                            Limit
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                                    <tr>
-                                        <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">Wallet
-                                            to Wallet
-                                        </td>
-                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Instant</td>
-                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Free</td>
-                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">$100,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">Wallet
-                                            to Bank (ACH)
-                                        </td>
-                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">1-3 business
-                                            days
-                                        </td>
-                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">$5.00 flat
-                                            fee
-                                        </td>
-                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">$25,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">Wallet
-                                            to Bank (Wire)
-                                        </td>
-                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Same day</td>
-                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">$25.00 flat
-                                            fee
-                                        </td>
-                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">$100,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">International
-                                            Transfer
-                                        </td>
-                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">2-5 business
-                                            days
-                                        </td>
-                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">3.5% +
-                                            $15.00
-                                        </td>
-                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">$50,000</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* Code Examples */}
-                    <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Code
-                            Examples</h2>
-
-                        <div className="space-y-6">
-                            <CodeBlock
-                                title="Node.js - Create Transfer with Status Tracking"
-                                language="javascript"
-                            >{`const passpoint = require('@passpoint/sdk');
-
-const client = new passpoint.Client({
-  apiKey: process.env.PASSPOINT_API_KEY
-});
-
-async function createTransferWithTracking(transferData) {
-  try {
-    // Create transfer
-    const transfer = await client.transfers.create({
-      source: {
-        type: 'wallet',
-        id: transferData.sourceWalletId
-      },
-      destination: {
-        type: 'bank_account',
-        account_number: transferData.accountNumber,
-        routing_number: transferData.routingNumber,
-        account_holder_name: transferData.holderName
-      },
-      amount: transferData.amount,
-      currency: 'USD',
-      description: transferData.description,
-      reference: transferData.reference,
-      callback_url: 'https://yourapp.com/webhooks/transfer'
-    });
-
-    console.log('Transfer created:', transfer.id);
-
-    // Poll for status updates
-    const pollStatus = async () => {
-      const status = await client.transfers.get(transfer.id);
-      console.log(\`Transfer \${transfer.id} status: \${status.status}\`);
-
-      if (['completed', 'failed', 'cancelled'].includes(status.status)) {
-        console.log('Transfer finished:', status);
-        return status;
-      }
-
-      // Continue polling every 30 seconds
-      setTimeout(pollStatus, 30000);
-    };
-
-    // Start status polling
-    setTimeout(pollStatus, 30000);
-
-    return transfer;
-  } catch (error) {
-    console.error('Transfer creation failed:', error.message);
-    throw error;
-  }
-}
-
-// Usage
-createTransferWithTracking({
-  sourceWalletId: 'wallet_1234567890',
-  accountNumber: '1234567890',
-  routingNumber: '021000021',
-  holderName: 'John Doe',
-  amount: 1500.00,
-  description: 'Monthly salary transfer',
-  reference: 'payroll_202401_001'
-});`}</CodeBlock>
-
-                            <CodeBlock
-                                title="Java - Bulk Transfer Processing"
-                                language="java"
-                            >{`import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.net.URI;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.*;
-import java.time.Instant;
-import java.util.concurrent.TimeUnit;
-
-public class PasspointTransfer {
-    private final String apiKey;
-    private final String baseUrl;
-    private final HttpClient httpClient;
-    private final ObjectMapper objectMapper;
-
-    public PasspointTransfer(String apiKey) {
-        this.apiKey = apiKey;
-        this.baseUrl = "https://api.passpoint.com/v1";
-        this.httpClient = HttpClient.newHttpClient();
-        this.objectMapper = new ObjectMapper();
-    }
-
-    private HttpRequest.Builder getRequestBuilder() {
-        return HttpRequest.newBuilder()
-            .header("Authorization", "Bearer " + apiKey)
-            .header("Content-Type", "application/json");
-    }
-
-    public Map<String, Object> createBulkTransfer(List<Map<String, Object>> transfers, String batchReference)
-            throws Exception {
-        Map<String, Object> data = new HashMap<>();
-        data.put("batch_reference", batchReference);
-        data.put("description", "Bulk transfer batch " + batchReference);
-        data.put("transfers", transfers);
-        data.put("callback_url", "https://yourapp.com/webhooks/bulk-transfer");
-
-        String requestBody = objectMapper.writeValueAsString(data);
-
-        HttpRequest request = getRequestBuilder()
-            .uri(URI.create(baseUrl + "/transfers/bulk"))
-            .POST(HttpRequest.BodyPublishers.ofString(requestBody))
-            .build();
-
-        HttpResponse<String> response = httpClient.send(request,
-            HttpResponse.BodyHandlers.ofString());
-
-        if (response.statusCode() == 200) {
-            return objectMapper.readValue(response.body(), Map.class);
-        } else {
-            throw new Exception("Bulk transfer failed: " + response.body());
-        }
-    }
-
-    public Map<String, Object> monitorBatchStatus(String batchId, int maxWaitTimeSeconds)
-            throws Exception {
-        long startTime = System.currentTimeMillis();
-        long maxWaitTimeMillis = maxWaitTimeSeconds * 1000L;
-
-        while (System.currentTimeMillis() - startTime < maxWaitTimeMillis) {
-            HttpRequest request = getRequestBuilder()
-                .uri(URI.create(baseUrl + "/transfers/bulk/" + batchId))
-                .GET()
-                .build();
-
-            HttpResponse<String> response = httpClient.send(request,
-                HttpResponse.BodyHandlers.ofString());
-
-            Map<String, Object> batch = objectMapper.readValue(response.body(), Map.class);
-            String status = (String) batch.get("status");
-
-            System.out.println("Batch " + batchId + " status: " + status);
-
-            if (Arrays.asList("completed", "failed", "partially_completed").contains(status)) {
-                return batch;
-            }
-
-            TimeUnit.SECONDS.sleep(30); // Wait 30 seconds before next check
-        }
-
-        throw new RuntimeException("Batch " + batchId + " did not complete within " + maxWaitTimeSeconds + " seconds");
-    }
-
-    // Usage
-    public static void main(String[] args) throws Exception {
-        PasspointTransfer transferClient = new PasspointTransfer("your_api_key");
-
-        // Prepare transfers
-        List<Map<String, Object>> payrollTransfers = Arrays.asList(
-            Map.of(
-                "source", Map.of("type", "wallet", "id", "company_wallet_main"),
-                "destination", Map.of(
-                    "type", "bank_account",
-                    "account_number", "1234567890",
-                    "routing_number", "021000021",
-                    "account_holder_name", "John Doe"
-                ),
-                "amount", 3000.00,
-                "reference", "salary_john_202401"
-            ),
-            Map.of(
-                "source", Map.of("type", "wallet", "id", "company_wallet_main"),
-                "destination", Map.of(
-                    "type", "bank_account",
-                    "account_number", "9876543210",
-                    "routing_number", "021000021",
-                    "account_holder_name", "Jane Smith"
-                ),
-                "amount", 3500.00,
-                "reference", "salary_jane_202401"
-            )
-        );
-
-        try {
-            // Create bulk transfer
-            Map<String, Object> batch = transferClient.createBulkTransfer(
-                payrollTransfers,
-                "payroll_202401_15"
-            );
-
-            System.out.println("Bulk transfer created: " + batch.get("batch_id"));
-
-            // Monitor completion
-            Map<String, Object> finalStatus = transferClient.monitorBatchStatus(
-                (String) batch.get("batch_id"), 3600);
-            System.out.println("Batch completed with status: " + finalStatus.get("status"));
-
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
-        }
-    }
-}`}</CodeBlock>
-                        </div>
-                    </section>
                 </div>
 
                 {/* Pagination Navigation */}
-                <PaginationNavigation/>
+                <PaginationNavigation
+                    previousPage={{
+                        title: "Payout",
+                        href: "/payout"
+                    }}
+                    nextPage={{
+                        title: "Wallet",
+                        href: "/wallet"
+                    }}
+                />
 
                 {/* Footer */}
                 <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
@@ -641,3 +399,4 @@ public class PasspointTransfer {
 };
 
 export default Transfer;
+

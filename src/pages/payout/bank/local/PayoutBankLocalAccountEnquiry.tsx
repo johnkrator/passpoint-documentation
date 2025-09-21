@@ -3,6 +3,43 @@ import CodeBlock from "@/components/CodeBlock";
 import PaginationNavigation from "@/components/PaginationNavigation";
 
 const PayoutBankLocalAccountEnquiry = () => {
+    const getEndpointCode = () => {
+        return `POST https://dev.mypasspoint.com/paypass/ft-app/account-enquiry`;
+    };
+
+    const getRequestBodyCode = () => {
+        return `{
+    "accountNumber": "0690000032",
+    "bankCode": "044",
+    "channel": "3"
+}`;
+    };
+
+    const getCurlExampleCode = () => {
+        return `curl --location 'https://dev.mypasspoint.com/paypass/ft-app/account-enquiry' \\
+--header 'x-merchant-id: pass your merchant id' \\
+--header 'x-channel-id: 2' \\
+--header 'x-channel-code: passpoint-merchant-user' \\
+--data '{
+    "accountNumber": "0690000032",
+    "bankCode": "044",
+    "channel": "3"
+}'`;
+    };
+
+    const getExampleResponseCode = () => {
+        return `{
+  "responseCode": "00",
+  "responseDescription": "Successful",
+  "responseMessage": "Account enquiry successful",
+  "data": {
+    "accountName": "JOHN DOE",
+    "accountNumber": "0690000032",
+    "bankCode": "044",
+    "bankName": "ACCESS BANK PLC"
+}`;
+    };
+
     return (
         <div className="min-h-screen bg-white dark:bg-gray-900">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
@@ -29,7 +66,7 @@ const PayoutBankLocalAccountEnquiry = () => {
                                     <div className="space-y-4">
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                            <CodeBlock>{`POST https://dev.mypasspoint.com/paypass/ft-app/account-enquiry`}</CodeBlock>
+                                            <CodeBlock>{getEndpointCode()}</CodeBlock>
                                         </div>
                                     </div>
                                 </div>
@@ -98,11 +135,7 @@ const PayoutBankLocalAccountEnquiry = () => {
                                 <div>
                                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Body
                                         (JSON)</h4>
-                                    <CodeBlock language="json">{`{
-    "bankCode":"035",
-    "accountNumber":"7433170834",
-    "countryCode":"NG"
-}`}</CodeBlock>
+                                    <CodeBlock language="json">{getRequestBodyCode()}</CodeBlock>
                                 </div>
                             </div>
                         </div>
@@ -118,15 +151,7 @@ const PayoutBankLocalAccountEnquiry = () => {
                                 <div>
                                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">CURL
                                         Example</h4>
-                                    <CodeBlock language="bash">{`curl --location 'https://dev.mypasspoint.com/paypass/ft-app/account-enquiry' \\
---header 'x-merchant-id: 22f36327-493c-492d-a390-5bf321ff51ba' \\
---header 'x-channel-id: 2' \\
---header 'x-channel-code: passpoint-infra-user' \\
---data '{
-    "bankCode":"035",
-    "accountNumber":"7433170834",
-    "countryCode":"NG"
-}'`}</CodeBlock>
+                                    <CodeBlock language="bash">{getCurlExampleCode()}</CodeBlock>
                                 </div>
                             </div>
                         </div>
@@ -142,14 +167,7 @@ const PayoutBankLocalAccountEnquiry = () => {
                                 <div>
                                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">200 OK
                                         Response</h4>
-                                    <CodeBlock language="json">{`{
-  "responseCode": "00",
-  "responseDescription": "Successful",
-  "responseMessage": "account enquiry successful",
-  "data": {
-    "accountName": "MFY / ByteLabs Technologies Limited"
-  }
-}`}</CodeBlock>
+                                    <CodeBlock language="json">{getExampleResponseCode()}</CodeBlock>
                                 </div>
                             </div>
                         </div>

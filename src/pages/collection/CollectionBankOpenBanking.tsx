@@ -3,59 +3,17 @@ import CodeBlock from "@/components/CodeBlock";
 import PaginationNavigation from "@/components/PaginationNavigation";
 
 const CollectionBankOpenBanking = () => {
-    return (
-        <div className="min-h-screen bg-white dark:bg-gray-900">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-                <div className="max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Open Banking
-                        Collections</h1>
+    // Code block methods
+    const getBanksEndpoint = () => `GET /api/v1/open-banking/banks`;
 
-                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
-                        Secure bank-to-bank payments using Open Banking APIs with instant account verification,
-                        real-time payment confirmation, and optional tokenization for recurring payments. Supported
-                        across EU, UK, and US markets.
-                    </p>
-
-                    {/* Get Banks */}
-                    <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Get Supported
-                            Banks</h2>
-
-                        <div
-                            className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
-                            <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
-                                <div
-                                    className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
-                                    <Building2 className="h-12 w-12 text-brand-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Get
-                                        Banks</h3>
-                                </div>
-                                <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
-                                        Retrieve a comprehensive list of banks that support Open Banking payments,
-                                        including their capabilities and processing times.
-                                    </p>
-
-                                    <div className="space-y-4">
-                                        <div>
-                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                            <CodeBlock>{`GET /api/v1/open-banking/banks`}</CodeBlock>
-                                        </div>
-
-                                        <div>
-                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Query
-                                                Parameters</h4>
-                                            <CodeBlock language="json">{`{
+    const getBanksParams = () => `{
   "country": "GB",
   "supports_instant_payments": true,
   "supports_recurring": true,
   "limit": 50
-}`}</CodeBlock>
-                                        </div>
+}`;
 
-                                        <div>
-                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                                            <CodeBlock language="json">{`{
+    const getBanksResponse = () => `{
   "banks": [
     {
       "bank_id": "gb_hsbc",
@@ -96,7 +54,183 @@ const CollectionBankOpenBanking = () => {
   ],
   "total_banks": 147,
   "supported_countries": ["GB", "IE", "DE", "FR", "NL", "ES"]
-}`}</CodeBlock>
+}`;
+
+    const getPaymentRequestEndpoint = () => `POST /api/v1/open-banking/payment-requests`;
+
+    const getPaymentRequestBody = () => `{
+  "amount": 150.00,
+  "currency": "GBP",
+  "description": "Monthly subscription payment",
+  "customer": {
+    "email": "customer@example.com",
+    "name": "John Smith",
+    "phone": "+447700900123"
+  },
+  "bank_id": "gb_hsbc",
+  "payment_reference": "SUB-2024-003",
+  "return_url": "https://yourapp.com/payment/success",
+  "webhook_url": "https://yourapp.com/webhooks/open-banking",
+  "expires_at": "2024-01-22T14:30:00Z",
+  "metadata": {
+    "customer_id": "cust_789",
+    "subscription_plan": "premium"
+  }
+}`;
+
+    const getPaymentRequestResponse = () => `{
+  "payment_request_id": "preq_ob_abc123",
+  "status": "pending_authorization",
+  "amount": 150.00,
+  "currency": "GBP",
+  "bank": {
+    "bank_id": "gb_hsbc",
+    "name": "HSBC UK"
+  },
+  "authorization_url": "https://banking.hsbc.co.uk/openbanking/authorize?token=xyz789",
+  "expires_at": "2024-01-22T14:30:00Z",
+  "created_at": "2024-01-15T14:30:00Z"
+}`;
+
+    const getTokenizedPaymentEndpoint = () => `POST /api/v1/open-banking/payment-requests/tokenized`;
+
+    const getTokenizedPaymentBody = () => `{
+  "amount": 75.00,
+  "currency": "EUR",
+  "description": "Weekly service payment",
+  "customer_token": "token_cust_abc123",
+  "bank_token": "bank_token_hsbc_456",
+  "payment_reference": "WEEKLY-2024-012",
+  "webhook_url": "https://yourapp.com/webhooks/recurring",
+  "metadata": {
+    "service_period": "2024-01-15_to_2024-01-21",
+    "auto_renewal": true
+  }
+}`;
+
+    const getTokenizedPaymentResponse = () => `{
+  "payment_request_id": "preq_token_def456",
+  "status": "processing",
+  "amount": 75.00,
+  "currency": "EUR",
+  "estimated_completion": "2024-01-15T14:32:00Z",
+  "customer": {
+    "name": "John Smith",
+    "customer_token": "token_cust_abc123"
+  },
+  "bank": {
+    "bank_id": "gb_hsbc",
+    "name": "HSBC UK"
+  },
+  "created_at": "2024-01-15T14:30:00Z"
+}`;
+
+    const getOnboardAndPayEndpoint = () => `POST /api/v1/open-banking/onboard-and-pay`;
+
+    const getOnboardAndPayBody = () => `{
+  "customer": {
+    "first_name": "Sarah",
+    "last_name": "Johnson",
+    "email": "sarah.johnson@example.com",
+    "phone": "+447700900456",
+    "address": {
+      "line1": "123 High Street",
+      "city": "London",
+      "postal_code": "SW1A 1AA",
+      "country": "GB"
+    }
+  },
+  "payment": {
+    "amount": 299.99,
+    "currency": "GBP",
+    "description": "First-time purchase + setup",
+    "reference": "ONBOARD-2024-001"
+  },
+  "bank_preference": {
+    "country": "GB",
+    "instant_payment_preferred": true
+  },
+  "tokenization": {
+    "enabled": true,
+    "purpose": "recurring_subscriptions",
+    "max_amount_per_payment": 500.00,
+    "frequency": "monthly"
+  },
+  "return_url": "https://yourapp.com/onboarding/complete",
+  "webhook_url": "https://yourapp.com/webhooks/onboarding"
+}`;
+
+    const getOnboardAndPayResponse = () => `{
+  "onboarding_id": "onboard_ghi789",
+  "customer_id": "cust_new_012",
+  "payment_request_id": "preq_onboard_345",
+  "status": "pending_bank_selection",
+  "customer_token": "token_cust_new_012",
+  "onboarding_url": "https://pay.passpoint.com/onboard/ghi789",
+  "available_banks": [
+    {
+      "bank_id": "gb_hsbc",
+      "name": "HSBC UK",
+      "supports_instant": true
+    },
+    {
+      "bank_id": "gb_lloyds", 
+      "name": "Lloyds Bank",
+      "supports_instant": true
+    }
+  ],
+  "expires_at": "2024-01-16T14:30:00Z",
+  "created_at": "2024-01-15T14:30:00Z"
+}`;
+
+    return (
+        <div className="min-h-screen bg-white dark:bg-gray-900">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+                <div className="max-w-none">
+                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Open Banking
+                        Collections</h1>
+
+                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+                        Secure bank-to-bank payments using Open Banking APIs with instant account verification,
+                        real-time payment confirmation, and optional tokenization for recurring payments. Supported
+                        across EU, UK, and US markets.
+                    </p>
+
+                    {/* Get Banks */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Get Supported
+                            Banks</h2>
+
+                        <div
+                            className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
+                            <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
+                                <div
+                                    className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
+                                    <Building2 className="h-12 w-12 text-brand-500"/>
+                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Get
+                                        Banks</h3>
+                                </div>
+                                <div className="flex-1 min-w-0 lg:max-w-4xl">
+                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                        Retrieve a comprehensive list of banks that support Open Banking payments,
+                                        including their capabilities and processing times.
+                                    </p>
+
+                                    <div className="space-y-4">
+                                        <div>
+                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
+                                            <CodeBlock>{getBanksEndpoint()}</CodeBlock>
+                                        </div>
+
+                                        <div>
+                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Query
+                                                Parameters</h4>
+                                            <CodeBlock language="json">{getBanksParams()}</CodeBlock>
+                                        </div>
+
+                                        <div>
+                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
+                                            <CodeBlock language="json">{getBanksResponse()}</CodeBlock>
                                         </div>
                                     </div>
                                 </div>
@@ -104,77 +238,83 @@ const CollectionBankOpenBanking = () => {
                         </div>
                     </section>
 
-                    {/* Request Payment - Standard */}
+                    {/* Create Payment Request */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Request
-                            Payment - Standard</h2>
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Create Payment
+                            Request</h2>
 
                         <div
                             className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
                             <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
-                                    <Send className="h-12 w-12 text-blue-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Request
+                                    <Send className="h-12 w-12 text-brand-500"/>
+                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Payment
+                                        Request</h3>
+                                </div>
+                                <div className="flex-1 min-w-0 lg:max-w-4xl">
+                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                        Create a secure Open Banking payment request with bank selection and customer
+                                        authorization flow.
+                                    </p>
+
+                                    <div className="space-y-4">
+                                        <div>
+                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
+                                            <CodeBlock>{getPaymentRequestEndpoint()}</CodeBlock>
+                                        </div>
+
+                                        <div>
+                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request
+                                                Body</h4>
+                                            <CodeBlock language="json">{getPaymentRequestBody()}</CodeBlock>
+                                        </div>
+
+                                        <div>
+                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
+                                            <CodeBlock language="json">{getPaymentRequestResponse()}</CodeBlock>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Tokenized Payments */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Tokenized
+                            Payments</h2>
+
+                        <div
+                            className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
+                            <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
+                                <div
+                                    className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
+                                    <CreditCard className="h-12 w-12 text-brand-500"/>
+                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Tokenized
                                         Payment</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
                                     <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
-                                        Create a secure Open Banking payment request that allows customers to pay
-                                        directly from their bank account with instant confirmation.
+                                        Process payments using previously authorized customer and bank tokens for
+                                        seamless recurring payments.
                                     </p>
 
                                     <div className="space-y-4">
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                            <CodeBlock>{`POST /api/v1/open-banking/payment-requests`}</CodeBlock>
+                                            <CodeBlock>{getTokenizedPaymentEndpoint()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request
                                                 Body</h4>
-                                            <CodeBlock language="json">{`{
-  "amount": 125.50,
-  "currency": "GBP",
-  "description": "E-commerce purchase",
-  "reference": "ORDER-2024-001",
-  "customer": {
-    "email": "john.doe@example.com",
-    "name": "John Doe",
-    "phone": "+44 7700 900123"
-  },
-  "bank_id": "gb_hsbc",
-  "redirect_urls": {
-    "success": "https://yourstore.com/payment/success",
-    "cancel": "https://yourstore.com/payment/cancel",
-    "error": "https://yourstore.com/payment/error"
-  },
-  "webhook_url": "https://yourstore.com/webhooks/payment",
-  "expires_in": 900,
-  "metadata": {
-    "order_id": "ORD-12345",
-    "customer_id": "CUST-67890"
-  }
-}`}</CodeBlock>
+                                            <CodeBlock language="json">{getTokenizedPaymentBody()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                                            <CodeBlock language="json">{`{
-  "payment_request_id": "preq_ob_abc123",
-  "status": "pending_authorization",
-  "amount": 125.50,
-  "currency": "GBP",
-  "authorization_url": "https://api.passpoint.com/open-banking/authorize/preq_ob_abc123",
-  "qr_code": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...",
-  "bank_details": {
-    "bank_id": "gb_hsbc",
-    "bank_name": "HSBC UK",
-    "supports_mobile": true
-  },
-  "expires_at": "2024-01-15T14:45:00Z",
-  "created_at": "2024-01-15T14:30:00Z"
-}`}</CodeBlock>
+                                            <CodeBlock language="json">{getTokenizedPaymentResponse()}</CodeBlock>
                                         </div>
                                     </div>
                                 </div>
@@ -182,189 +322,41 @@ const CollectionBankOpenBanking = () => {
                         </div>
                     </section>
 
-                    {/* Request Payment - With Tokenization */}
+                    {/* Onboard and Pay */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Request
-                            Payment - With Tokenization</h2>
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Onboard and
+                            Pay</h2>
 
                         <div
                             className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
                             <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
-                                    <CreditCard className="h-12 w-12 text-green-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">With
-                                        Tokenization</h3>
+                                    <Shield className="h-12 w-12 text-brand-500"/>
+                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Onboard
+                                        & Pay</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
                                     <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
-                                        Create payment requests with tokenization for recurring payments, allowing
-                                        future charges without re-authorization from the customer.
+                                        Streamlined customer onboarding with immediate payment processing and optional
+                                        tokenization for future transactions.
                                     </p>
 
                                     <div className="space-y-4">
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                            <CodeBlock>{`POST /api/v1/open-banking/payment-requests/tokenized`}</CodeBlock>
+                                            <CodeBlock>{getOnboardAndPayEndpoint()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request
                                                 Body</h4>
-                                            <CodeBlock language="json">{`{
-  "amount": 29.99,
-  "currency": "GBP",
-  "description": "Monthly subscription",
-  "reference": "SUB-2024-001",
-  "customer": {
-    "email": "john.doe@example.com",
-    "name": "John Doe",
-    "phone": "+44 7700 900123",
-    "customer_id": "cust_existing_123"
-  },
-  "bank_id": "gb_hsbc",
-  "tokenization": {
-    "enabled": true,
-    "recurring_type": "variable",
-    "max_amount": 100.00,
-    "frequency": "monthly",
-    "consent_text": "I authorize monthly subscription charges up to £100"
-  },
-  "redirect_urls": {
-    "success": "https://yourapp.com/subscription/success",
-    "cancel": "https://yourapp.com/subscription/cancel"
-  },
-  "webhook_url": "https://yourapp.com/webhooks/payment"
-}`}</CodeBlock>
+                                            <CodeBlock language="json">{getOnboardAndPayBody()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                                            <CodeBlock language="json">{`{
-  "payment_request_id": "preq_token_def456",
-  "status": "pending_authorization",
-  "amount": 29.99,
-  "currency": "GBP",
-  "authorization_url": "https://api.passpoint.com/open-banking/authorize/preq_token_def456",
-  "tokenization": {
-    "consent_id": "consent_ghi789",
-    "max_amount": 100.00,
-    "frequency": "monthly",
-    "expires_at": "2025-01-15T14:30:00Z"
-  },
-  "bank_details": {
-    "bank_id": "gb_hsbc",
-    "bank_name": "HSBC UK",
-    "supports_recurring": true
-  },
-  "expires_at": "2024-01-15T14:45:00Z",
-  "created_at": "2024-01-15T14:30:00Z"
-}`}</CodeBlock>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* Request Payment - New Payer with Tokenization */}
-                    <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Request
-                            Payment - New Payer with Tokenization</h2>
-
-                        <div
-                            className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
-                            <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
-                                <div
-                                    className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
-                                    <Lock className="h-12 w-12 text-purple-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">New
-                                        Payer Token</h3>
-                                </div>
-                                <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
-                                        Onboard new customers with payment and tokenization in a single flow, including
-                                        KYC verification and consent management.
-                                    </p>
-
-                                    <div className="space-y-4">
-                                        <div>
-                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                            <CodeBlock>{`POST /api/v1/open-banking/onboard-and-pay`}</CodeBlock>
-                                        </div>
-
-                                        <div>
-                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request
-                                                Body</h4>
-                                            <CodeBlock language="json">{`{
-  "amount": 99.00,
-  "currency": "GBP",
-  "description": "Initial subscription payment",
-  "reference": "ONBOARD-2024-001",
-  "customer": {
-    "email": "jane.smith@example.com",
-    "name": "Jane Smith",
-    "phone": "+44 7700 900456",
-    "address": {
-      "line1": "123 High Street",
-      "line2": "Apt 4B",
-      "city": "London",
-      "postal_code": "SW1A 1AA",
-      "country": "GB"
-    },
-    "date_of_birth": "1990-05-15"
-  },
-  "preferred_bank_id": "gb_hsbc",
-  "tokenization": {
-    "enabled": true,
-    "recurring_type": "fixed",
-    "amount": 99.00,
-    "frequency": "monthly",
-    "consent_text": "I authorize monthly charges of £99 for my subscription"
-  },
-  "kyc_verification": {
-    "required": true,
-    "document_types": ["passport", "driving_license"],
-    "verification_level": "enhanced"
-  },
-  "redirect_urls": {
-    "success": "https://yourapp.com/onboarding/success",
-    "cancel": "https://yourapp.com/onboarding/cancel",
-    "kyc_required": "https://yourapp.com/kyc/verify"
-  },
-  "webhook_url": "https://yourapp.com/webhooks/onboarding"
-}`}</CodeBlock>
-                                        </div>
-
-                                        <div>
-                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                                            <CodeBlock language="json">{`{
-  "onboarding_id": "onboard_jkl012",
-  "payment_request_id": "preq_onboard_mno345",
-  "customer_id": "cust_new_pqr678",
-  "status": "kyc_required",
-  "amount": 99.00,
-  "currency": "GBP",
-  "kyc_verification": {
-    "verification_id": "kyc_stu901",
-    "status": "pending",
-    "verification_url": "https://verify.passpoint.com/kyc_stu901",
-    "required_documents": ["passport", "proof_of_address"],
-    "expires_at": "2024-01-22T14:30:00Z"
-  },
-  "tokenization": {
-    "consent_id": "consent_pending_vwx234",
-    "status": "pending_kyc",
-    "amount": 99.00,
-    "frequency": "monthly"
-  },
-  "next_steps": [
-    "Complete KYC verification",
-    "Authorize bank payment",
-    "Confirm recurring payment consent"
-  ],
-  "created_at": "2024-01-15T14:30:00Z"
-}`}</CodeBlock>
+                                            <CodeBlock language="json">{getOnboardAndPayResponse()}</CodeBlock>
                                         </div>
                                     </div>
                                 </div>
@@ -587,12 +579,12 @@ const CollectionBankOpenBanking = () => {
                 {/* Pagination Navigation */}
                 <PaginationNavigation
                     previousPage={{
-                        title: "Bank Collections",
-                        href: "/collection/bank"
-                    }}
-                    nextPage={{
                         title: "Direct Bank Options",
                         href: "/collection/bank/direct"
+                    }}
+                    nextPage={{
+                        title: "Collections Overview",
+                        href: "/collection"
                     }}
                 />
 
@@ -606,3 +598,4 @@ const CollectionBankOpenBanking = () => {
 };
 
 export default CollectionBankOpenBanking;
+

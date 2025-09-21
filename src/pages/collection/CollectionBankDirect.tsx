@@ -3,6 +3,133 @@ import CodeBlock from "@/components/CodeBlock";
 import PaginationNavigation from "@/components/PaginationNavigation";
 
 const CollectionBankDirect = () => {
+    // Code block methods
+    const getCollectionCurrencyEndpoint = () => `GET /api/v1/collection/currencies`;
+
+    const getCollectionCurrencyParams = () => `{
+  "country": "US",
+  "account_type": "virtual",
+  "settlement_method": "real_time"
+}`;
+
+    const getCollectionCurrencyResponse = () => `{
+  "currencies": [
+    {
+      "currency": "USD",
+      "country": "US",
+      "name": "US Dollar",
+      "symbol": "$",
+      "collection_methods": ["ach", "wire", "rtp", "fednow"],
+      "virtual_account_support": true,
+      "settlement_times": {
+        "ach": "1-3 business days",
+        "wire": "same day",
+        "rtp": "instant",
+        "fednow": "instant"
+      },
+      "fees": {
+        "virtual_account_monthly": 0.00,
+        "ach_collection": 0.75,
+        "wire_collection": 15.00,
+        "instant_collection": 1.25
+      },
+      "limits": {
+        "min_amount": 0.01,
+        "max_amount_ach": 500000.00,
+        "max_amount_wire": 10000000.00
+      },
+      "status": "active"
+    }
+  ],
+  "total_currencies": 12,
+  "supported_regions": ["US", "EU", "UK", "NG"]
+}`;
+
+    const getNgnStaticVirtualAccountEndpoint = () => `POST /api/v1/virtual-accounts/ngn/static`;
+
+    const getNgnStaticVirtualAccountRequest = () => `{
+  "account_name": "John Doe Collections",
+  "account_reference": "JD-STATIC-001",
+  "customer": {
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "john.doe@example.com",
+    "phone": "+234801234567",
+    "address": {
+      "street": "123 Victoria Island",
+      "city": "Lagos",
+      "state": "Lagos",
+      "postal_code": "101001",
+      "country": "NG"
+    }
+  },
+  "webhook_url": "https://yourapp.com/webhooks/collections",
+  "auto_settlement": true,
+  "settlement_account": "settlement_acc_123"
+}`;
+
+    const getNgnStaticVirtualAccountResponse = () => `{
+  "virtual_account_id": "va_ngn_static_abc123",
+  "account_name": "John Doe Collections",
+  "account_number": "2234567890",
+  "bank_name": "Passpoint Microfinance Bank",
+  "bank_code": "50746",
+  "currency": "NGN",
+  "type": "static",
+  "status": "active",
+  "reference": "JD-STATIC-001",
+  "settlement_account": "settlement_acc_123",
+  "auto_settlement_enabled": true,
+  "created_at": "2024-01-15T14:30:00Z",
+  "expires_at": null
+}`;
+
+    const getUsdIndividualVirtualAccountEndpoint = () => `POST /api/v1/virtual-accounts/usd/individual`;
+
+    const getUsdIndividualVirtualAccountRequest = () => `{
+  "customer": {
+    "first_name": "Jane",
+    "last_name": "Smith",
+    "email": "jane.smith@example.com",
+    "phone": "+15551234567",
+    "date_of_birth": "1990-05-15",
+    "ssn_last_4": "1234"
+  },
+  "account_purpose": "personal_savings",
+  "expected_monthly_volume": 50000.00,
+  "webhook_url": "https://yourapp.com/webhooks/collections"
+}`;
+
+    const getUsdBusinessVirtualAccountEndpoint = () => `POST /api/v1/virtual-accounts/usd/business`;
+
+    const getUsdBusinessVirtualAccountRequest = () => `{
+  "business": {
+    "legal_name": "Tech Innovations LLC",
+    "dba_name": "TechInno",
+    "ein": "12-3456789",
+    "industry": "technology",
+    "business_type": "llc"
+  },
+  "authorized_representative": {
+    "first_name": "Michael",
+    "last_name": "Johnson",
+    "title": "CEO",
+    "email": "michael@techinno.com",
+    "phone": "+15551234567"
+  },
+  "expected_monthly_volume": 500000.00,
+  "webhook_url": "https://yourapp.com/webhooks/collections"
+}`;
+
+    const getManageNgnVirtualAccountsEndpoint = () => `GET /api/v1/virtual-accounts/ngn`;
+
+    const getManageNgnVirtualAccountsParams = () => `{
+  "customer_id": "cust_123",
+  "status": "active",
+  "limit": 50,
+  "offset": 0
+}`;
+
     return (
         <div className="min-h-screen bg-white dark:bg-gray-900">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
@@ -39,53 +166,18 @@ const CollectionBankDirect = () => {
                                     <div className="space-y-4">
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                            <CodeBlock>{`GET /api/v1/collection/currencies`}</CodeBlock>
+                                            <CodeBlock>{getCollectionCurrencyEndpoint()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Query
                                                 Parameters</h4>
-                                            <CodeBlock language="json">{`{
-  "country": "US",
-  "account_type": "virtual",
-  "settlement_method": "real_time"
-}`}</CodeBlock>
+                                            <CodeBlock language="json">{getCollectionCurrencyParams()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                                            <CodeBlock language="json">{`{
-  "currencies": [
-    {
-      "currency": "USD",
-      "country": "US",
-      "name": "US Dollar",
-      "symbol": "$",
-      "collection_methods": ["ach", "wire", "rtp", "fednow"],
-      "virtual_account_support": true,
-      "settlement_times": {
-        "ach": "1-3 business days",
-        "wire": "same day",
-        "rtp": "instant",
-        "fednow": "instant"
-      },
-      "fees": {
-        "virtual_account_monthly": 0.00,
-        "ach_collection": 0.75,
-        "wire_collection": 15.00,
-        "instant_collection": 1.25
-      },
-      "limits": {
-        "min_amount": 0.01,
-        "max_amount_ach": 500000.00,
-        "max_amount_wire": 10000000.00
-      },
-      "status": "active"
-    }
-  ],
-  "total_currencies": 12,
-  "supported_regions": ["US", "EU", "UK", "NG"]
-}`}</CodeBlock>
+                                            <CodeBlock language="json">{getCollectionCurrencyResponse()}</CodeBlock>
                                         </div>
                                     </div>
                                 </div>
@@ -103,73 +195,33 @@ const CollectionBankDirect = () => {
                             <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
-                                    <BarChart3 className="h-12 w-12 text-green-500"/>
+                                    <Building2 className="h-12 w-12 text-brand-500"/>
                                     <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">NGN
                                         Virtual Account</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
                                     <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
-                                        Generate a dedicated Nigerian Naira (NGN) virtual account number for automated
-                                        collection of payments with instant settlement via NIP network.
+                                        Generate a static NGN virtual account for collecting Nigerian Naira payments
+                                        with
+                                        automatic settlement to your designated account.
                                     </p>
 
                                     <div className="space-y-4">
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                            <CodeBlock>{`POST /api/v1/virtual-accounts/ngn/static`}</CodeBlock>
+                                            <CodeBlock>{getNgnStaticVirtualAccountEndpoint()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request
                                                 Body</h4>
-                                            <CodeBlock language="json">{`{
-  "customer": {
-    "name": "John Doe",
-    "email": "john.doe@example.com",
-    "phone": "+2348012345678",
-    "customer_id": "cust_ngn_001"
-  },
-  "account_name": "John Doe Collections",
-  "reference": "NGN_VIRTUAL_001",
-  "webhook_url": "https://yourapp.com/webhooks/ngn-collection",
-  "auto_settlement": {
-    "enabled": true,
-    "settlement_account": "main_wallet"
-  },
-  "metadata": {
-    "business_unit": "marketplace",
-    "region": "nigeria"
-  }
-}`}</CodeBlock>
+                                            <CodeBlock language="json">{getNgnStaticVirtualAccountRequest()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                                            <CodeBlock language="json">{`{
-  "virtual_account_id": "va_ngn_abc123",
-  "account_number": "2034567890",
-  "account_name": "John Doe Collections",
-  "bank_name": "Passpoint Bank",
-  "bank_code": "999999",
-  "currency": "NGN",
-  "status": "active",
-  "customer": {
-    "name": "John Doe",
-    "email": "john.doe@example.com",
-    "customer_id": "cust_ngn_001"
-  },
-  "collection_details": {
-    "accepts_instant_payments": true,
-    "settlement_method": "real_time",
-    "fee_structure": {
-      "collection_fee": "0.75%",
-      "min_fee": 10.00,
-      "max_fee": 2000.00
-    }
-  },
-  "created_at": "2024-01-15T14:30:00Z",
-  "expires_at": null
-}`}</CodeBlock>
+                                            <CodeBlock
+                                                language="json">{getNgnStaticVirtualAccountResponse()}</CodeBlock>
                                         </div>
                                     </div>
                                 </div>
@@ -645,12 +697,12 @@ const CollectionBankDirect = () => {
                 {/* Pagination Navigation */}
                 <PaginationNavigation
                     previousPage={{
-                        title: "Open Banking",
-                        href: "/collection/bank/open-banking"
+                        title: "Bank Collections",
+                        href: "/collection/bank"
                     }}
                     nextPage={{
-                        title: "Collection Reports",
-                        href: "/collection/report"
+                        title: "Open Banking Collections",
+                        href: "/collection/bank/open-banking"
                     }}
                 />
 
@@ -664,3 +716,4 @@ const CollectionBankDirect = () => {
 };
 
 export default CollectionBankDirect;
+

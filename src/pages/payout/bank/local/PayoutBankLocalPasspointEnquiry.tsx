@@ -3,6 +3,32 @@ import CodeBlock from "@/components/CodeBlock";
 import PaginationNavigation from "@/components/PaginationNavigation";
 
 const PayoutBankLocalPasspointEnquiry = () => {
+    // Code block methods
+    const getPasspointEnquiryEndpoint = () => `POST https://dev.mypasspoint.com/paypass/ft-app/passpoint-enquiry`;
+
+    const getPasspointEnquiryRequestBody = () => `{
+    "walletId":"josh@mypasspoint.com",
+    "currency":"NGN"
+}`;
+
+    const getPasspointEnquiryCurlExample = () => `curl --location 'https://dev.mypasspoint.com/paypass/ft-app/passpoint-enquiry' \\
+--header 'x-merchant-id: 22f36327-493c-492d-a390-5bf321ff51ba' \\
+--header 'x-channel-id: 2' \\
+--header 'x-channel-code: passpoint-infra-user' \\
+--data-raw '{
+    "walletId":"josh@mypasspoint.com",
+    "currency":"NGN"
+}'`;
+
+    const getPasspointEnquiryResponse = () => `{
+  "responseCode": "00",
+  "responseDescription": "Successful",
+  "responseMessage": "passpoint enquiry successful",
+  "data": {
+    "accountName": "MERCHANT(Josh Merchant)"
+  }
+}`;
+
     return (
         <div className="min-h-screen bg-white dark:bg-gray-900">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
@@ -29,7 +55,7 @@ const PayoutBankLocalPasspointEnquiry = () => {
                                     <div className="space-y-4">
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                            <CodeBlock>{`POST https://dev.mypasspoint.com/paypass/ft-app/passpoint-enquiry`}</CodeBlock>
+                                            <CodeBlock>{getPasspointEnquiryEndpoint()}</CodeBlock>
                                         </div>
                                     </div>
                                 </div>
@@ -98,10 +124,7 @@ const PayoutBankLocalPasspointEnquiry = () => {
                                 <div>
                                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Body
                                         (JSON)</h4>
-                                    <CodeBlock language="json">{`{
-    "walletId":"josh@mypasspoint.com",
-    "currency":"NGN"
-}`}</CodeBlock>
+                                    <CodeBlock language="json">{getPasspointEnquiryRequestBody()}</CodeBlock>
                                 </div>
                             </div>
                         </div>
@@ -117,14 +140,7 @@ const PayoutBankLocalPasspointEnquiry = () => {
                                 <div>
                                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">CURL
                                         Example</h4>
-                                    <CodeBlock language="bash">{`curl --location 'https://dev.mypasspoint.com/paypass/ft-app/passpoint-enquiry' \\
---header 'x-merchant-id: 22f36327-493c-492d-a390-5bf321ff51ba' \\
---header 'x-channel-id: 2' \\
---header 'x-channel-code: passpoint-infra-user' \\
---data-raw '{
-    "walletId":"josh@mypasspoint.com",
-    "currency":"NGN"
-}'`}</CodeBlock>
+                                    <CodeBlock language="bash">{getPasspointEnquiryCurlExample()}</CodeBlock>
                                 </div>
                             </div>
                         </div>
@@ -140,14 +156,7 @@ const PayoutBankLocalPasspointEnquiry = () => {
                                 <div>
                                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">200 OK
                                         Response</h4>
-                                    <CodeBlock language="json">{`{
-  "responseCode": "00",
-  "responseDescription": "Successful",
-  "responseMessage": "passpoint enquiry successful",
-  "data": {
-    "accountName": "MERCHANT(Josh Merchant)"
-  }
-}`}</CodeBlock>
+                                    <CodeBlock language="json">{getPasspointEnquiryResponse()}</CodeBlock>
                                 </div>
                             </div>
                         </div>

@@ -88,46 +88,133 @@ const CollectionBankDirect = () => {
 
     const getUsdIndividualVirtualAccountRequest = () => `{
   "customer": {
-    "first_name": "Jane",
-    "last_name": "Smith",
-    "email": "jane.smith@example.com",
-    "phone": "+15551234567",
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "john.doe@example.com",
+    "ssn_last_4": "1234",
     "date_of_birth": "1990-05-15",
-    "ssn_last_4": "1234"
+    "address": {
+      "street": "123 Main St",
+      "city": "New York",
+      "state": "NY",
+      "zip": "10001"
+    }
   },
-  "account_purpose": "personal_savings",
-  "expected_monthly_volume": 50000.00,
-  "webhook_url": "https://yourapp.com/webhooks/collections"
+  "account_purpose": "freelancer_payments"
 }`;
 
     const getUsdBusinessVirtualAccountEndpoint = () => `POST /api/v1/virtual-accounts/usd/business`;
 
     const getUsdBusinessVirtualAccountRequest = () => `{
   "business": {
-    "legal_name": "Tech Innovations LLC",
-    "dba_name": "TechInno",
+    "name": "Doe Consulting LLC",
     "ein": "12-3456789",
-    "industry": "technology",
-    "business_type": "llc"
+    "address": {
+      "street": "456 Business Ave",
+      "city": "New York",
+      "state": "NY",
+      "zip": "10002"
+    },
+    "business_type": "llc",
+    "industry": "consulting"
   },
-  "authorized_representative": {
-    "first_name": "Michael",
-    "last_name": "Johnson",
-    "title": "CEO",
-    "email": "michael@techinno.com",
-    "phone": "+15551234567"
-  },
-  "expected_monthly_volume": 500000.00,
-  "webhook_url": "https://yourapp.com/webhooks/collections"
+  "account_purpose": "client_payments"
 }`;
 
-    const getManageNgnVirtualAccountsEndpoint = () => `GET /api/v1/virtual-accounts/ngn`;
+    const getListVirtualAccountsEndpoint = () => `GET /api/v1/virtual-accounts/ngn`;
 
-    const getManageNgnVirtualAccountsParams = () => `{
-  "customer_id": "cust_123",
+    const getListVirtualAccountsParams = () => `{
+  "limit": 25,
+  "offset": 0,
   "status": "active",
-  "limit": 50,
-  "offset": 0
+  "customer_id": "cust_ngn_001",
+  "created_after": "2024-01-01T00:00:00Z",
+  "sort": "created_at",
+  "order": "desc"
+}`;
+
+    const getListVirtualAccountsResponse = () => `{
+  "virtual_accounts": [
+    {
+      "virtual_account_id": "va_ngn_abc123",
+      "account_number": "2034567890",
+      "account_name": "John Doe Collections",
+      "bank_name": "Passpoint Bank",
+      "currency": "NGN",
+      "status": "active",
+      "balance": 150000.00,
+      "customer": {
+        "name": "John Doe",
+        "customer_id": "cust_ngn_001"
+      },
+      "stats": {
+        "total_collections": 45,
+        "total_amount_collected": 2500000.00,
+        "last_collection": "2024-01-14T16:22:00Z"
+      },
+      "created_at": "2024-01-10T14:30:00Z"
+    }
+  ],
+  "pagination": {
+    "total_count": 237,
+    "limit": 25,
+    "offset": 0,
+    "has_more": true
+  }
+}`;
+
+    const getVirtualAccountDetailsEndpoint = () => `GET /api/v1/virtual-accounts/{account_id}`;
+
+    const getVirtualAccountDetailsResponse = () => `{
+  "virtual_account_id": "va_ngn_abc123",
+  "account_number": "2034567890",
+  "account_name": "John Doe Collections",
+  "bank_name": "Passpoint Bank",
+  "bank_code": "999999",
+  "currency": "NGN",
+  "status": "active",
+  "balance": {
+    "available": 150000.00,
+    "pending": 25000.00,
+    "total": 175000.00
+  },
+  "customer": {
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "phone": "+2348012345678",
+    "customer_id": "cust_ngn_001"
+  },
+  "settings": {
+    "auto_settlement": {
+      "enabled": true,
+      "threshold": 100000.00,
+      "settlement_account": "main_wallet"
+    },
+    "webhook_url": "https://yourapp.com/webhooks/ngn-collection"
+  },
+  "statistics": {
+    "total_collections": 45,
+    "total_amount_collected": 2500000.00,
+    "average_collection_amount": 55555.56,
+    "last_collection": "2024-01-14T16:22:00Z",
+    "this_month": {
+      "collections_count": 12,
+      "collections_amount": 650000.00
+    }
+  },
+  "recent_transactions": [
+    {
+      "transaction_id": "txn_ngn_xyz789",
+      "amount": 75000.00,
+      "description": "Customer payment",
+      "sender_name": "Jane Smith",
+      "sender_account": "****6789",
+      "status": "completed",
+      "created_at": "2024-01-14T16:22:00Z"
+    }
+  ],
+  "created_at": "2024-01-10T14:30:00Z",
+  "updated_at": "2024-01-14T16:22:00Z"
 }`;
 
     return (
@@ -251,28 +338,13 @@ const CollectionBankDirect = () => {
                                 <div className="space-y-4">
                                     <div>
                                         <h4 className="text-xs font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                        <CodeBlock>{`POST /api/v1/virtual-accounts/usd/individual`}</CodeBlock>
+                                        <CodeBlock>{getUsdIndividualVirtualAccountEndpoint()}</CodeBlock>
                                     </div>
 
                                     <div>
                                         <h4 className="text-xs font-semibold text-gray-900 dark:text-white mb-2">Request
                                             Body</h4>
-                                        <CodeBlock language="json">{`{
-  "customer": {
-    "first_name": "John",
-    "last_name": "Doe",
-    "email": "john.doe@example.com",
-    "ssn_last_4": "1234",
-    "date_of_birth": "1990-05-15",
-    "address": {
-      "street": "123 Main St",
-      "city": "New York",
-      "state": "NY",
-      "zip": "10001"
-    }
-  },
-  "account_purpose": "freelancer_payments"
-}`}</CodeBlock>
+                                        <CodeBlock language="json">{getUsdIndividualVirtualAccountRequest()}</CodeBlock>
                                     </div>
                                 </div>
                             </div>
@@ -293,27 +365,13 @@ const CollectionBankDirect = () => {
                                 <div className="space-y-4">
                                     <div>
                                         <h4 className="text-xs font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                        <CodeBlock>{`POST /api/v1/virtual-accounts/usd/business`}</CodeBlock>
+                                        <CodeBlock>{getUsdBusinessVirtualAccountEndpoint()}</CodeBlock>
                                     </div>
 
                                     <div>
                                         <h4 className="text-xs font-semibold text-gray-900 dark:text-white mb-2">Request
                                             Body</h4>
-                                        <CodeBlock language="json">{`{
-  "business": {
-    "name": "Doe Consulting LLC",
-    "ein": "12-3456789",
-    "address": {
-      "street": "456 Business Ave",
-      "city": "New York",
-      "state": "NY",
-      "zip": "10002"
-    },
-    "business_type": "llc",
-    "industry": "consulting"
-  },
-  "account_purpose": "client_payments"
-}`}</CodeBlock>
+                                        <CodeBlock language="json">{getUsdBusinessVirtualAccountRequest()}</CodeBlock>
                                     </div>
                                 </div>
                             </div>
@@ -343,54 +401,18 @@ const CollectionBankDirect = () => {
                                     <div className="space-y-4">
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                            <CodeBlock>{`GET /api/v1/virtual-accounts/ngn`}</CodeBlock>
+                                            <CodeBlock>{getListVirtualAccountsEndpoint()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Query
                                                 Parameters</h4>
-                                            <CodeBlock language="json">{`{
-  "limit": 25,
-  "offset": 0,
-  "status": "active",
-  "customer_id": "cust_ngn_001",
-  "created_after": "2024-01-01T00:00:00Z",
-  "sort": "created_at",
-  "order": "desc"
-}`}</CodeBlock>
+                                            <CodeBlock language="json">{getListVirtualAccountsParams()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                                            <CodeBlock language="json">{`{
-  "virtual_accounts": [
-    {
-      "virtual_account_id": "va_ngn_abc123",
-      "account_number": "2034567890",
-      "account_name": "John Doe Collections",
-      "bank_name": "Passpoint Bank",
-      "currency": "NGN",
-      "status": "active",
-      "balance": 150000.00,
-      "customer": {
-        "name": "John Doe",
-        "customer_id": "cust_ngn_001"
-      },
-      "stats": {
-        "total_collections": 45,
-        "total_amount_collected": 2500000.00,
-        "last_collection": "2024-01-14T16:22:00Z"
-      },
-      "created_at": "2024-01-10T14:30:00Z"
-    }
-  ],
-  "pagination": {
-    "total_count": 237,
-    "limit": 25,
-    "offset": 0,
-    "has_more": true
-  }
-}`}</CodeBlock>
+                                            <CodeBlock language="json">{getListVirtualAccountsResponse()}</CodeBlock>
                                         </div>
                                     </div>
                                 </div>
@@ -421,62 +443,12 @@ const CollectionBankDirect = () => {
                                     <div className="space-y-4">
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                            <CodeBlock>{`GET /api/v1/virtual-accounts/{account_id}`}</CodeBlock>
+                                            <CodeBlock>{getVirtualAccountDetailsEndpoint()}</CodeBlock>
                                         </div>
 
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4>
-                                            <CodeBlock language="json">{`{
-  "virtual_account_id": "va_ngn_abc123",
-  "account_number": "2034567890",
-  "account_name": "John Doe Collections",
-  "bank_name": "Passpoint Bank",
-  "bank_code": "999999",
-  "currency": "NGN",
-  "status": "active",
-  "balance": {
-    "available": 150000.00,
-    "pending": 25000.00,
-    "total": 175000.00
-  },
-  "customer": {
-    "name": "John Doe",
-    "email": "john.doe@example.com",
-    "phone": "+2348012345678",
-    "customer_id": "cust_ngn_001"
-  },
-  "settings": {
-    "auto_settlement": {
-      "enabled": true,
-      "threshold": 100000.00,
-      "settlement_account": "main_wallet"
-    },
-    "webhook_url": "https://yourapp.com/webhooks/ngn-collection"
-  },
-  "statistics": {
-    "total_collections": 45,
-    "total_amount_collected": 2500000.00,
-    "average_collection_amount": 55555.56,
-    "last_collection": "2024-01-14T16:22:00Z",
-    "this_month": {
-      "collections_count": 12,
-      "collections_amount": 650000.00
-    }
-  },
-  "recent_transactions": [
-    {
-      "transaction_id": "txn_ngn_xyz789",
-      "amount": 75000.00,
-      "description": "Customer payment",
-      "sender_name": "Jane Smith",
-      "sender_account": "****6789",
-      "status": "completed",
-      "created_at": "2024-01-14T16:22:00Z"
-    }
-  ],
-  "created_at": "2024-01-10T14:30:00Z",
-  "updated_at": "2024-01-14T16:22:00Z"
-}`}</CodeBlock>
+                                            <CodeBlock language="json">{getVirtualAccountDetailsResponse()}</CodeBlock>
                                         </div>
                                     </div>
                                 </div>

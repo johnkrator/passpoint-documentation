@@ -1,4 +1,4 @@
-import {Building2, BarChart3, ArrowRightLeft, CheckCircle} from "lucide-react";
+import {Building2, ArrowRightLeft, CheckCircle} from "lucide-react";
 import CodeBlock from "@/components/CodeBlock";
 import PaginationNavigation from "@/components/PaginationNavigation";
 

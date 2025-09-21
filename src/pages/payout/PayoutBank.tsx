@@ -1,4 +1,4 @@
-import {Building2, MapPin, Globe, Shield, CheckCircle, AlertTriangle} from "lucide-react";
+import {MapPin, Globe, Shield, CheckCircle, AlertTriangle} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {Link} from "react-router-dom";
 import CodeBlock from "@/components/CodeBlock";
@@ -311,4 +311,3 @@ const PayoutBank = () => {
 };
 
 export default PayoutBank;
-

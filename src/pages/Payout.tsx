@@ -1,4 +1,4 @@
-import {DollarSign, CreditCard, Banknote, Clock, CheckCircle, AlertTriangle, Building} from "lucide-react";
+import {DollarSign, CreditCard, Banknote, Clock, CheckCircle, Building} from "lucide-react";
 import CodeBlock from "@/components/CodeBlock";
 import PaginationNavigation from "@/components/PaginationNavigation";
 
@@ -439,4 +439,3 @@ const Payout = () => {
 };
 
 export default Payout;
-

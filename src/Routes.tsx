@@ -13,6 +13,7 @@ import Transfer from "@/pages/Transfer.tsx";
 import Payout from "@/pages/Payout.tsx";
 import Collection from "@/pages/Collection.tsx";
 import GlobalCallbackSetup from "@/pages/GlobalCallbackSetup.tsx";
+import SandboxPlayground from "@/pages/SandboxPlayground.tsx";
 
 // Payout Bank Pages
 import PayoutBank from "@/pages/payout/PayoutBank.tsx";
@@ -184,6 +185,7 @@ const Routes = () => {
                 {path: "card-acquiring/initiate-payment-existing-customer", element: <Home/>},
                 {path: "user-roles", element: <UserRoles/>},
                 {path: "status-responses", element: <StatusResponses/>},
+                {path: "sandbox-playground", element: <SandboxPlayground/>},
                 // Catch-all route for 404 errors
                 {path: "*", element: <RouterErrorBoundary/>}
             ]

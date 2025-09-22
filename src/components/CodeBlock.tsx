@@ -154,11 +154,11 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
                     .replace(/^(curl|wget|ssh|scp|git|npm|yarn|pnpm|node|python|ruby|go)/gm, '<span class="text-white">$1</span>')
                     // Flags in cyan
                     .replace(/(\s)(-[a-zA-Z]|--[a-zA-Z-]+)/g, '$1<span class="text-cyan-400">$2</span>')
-                    // URLs in blue
-                    .replace(/(https?:\/\/[^\s\\"]+)/g, '<span class="text-sky-400">$1</span>')
+                    // URLs in sky blue
+                    .replace(/(https?:\/\/[^\s"\\]+)/g, '<span class="text-sky-400">$1</span>')
                     // Strings in green
-                    .replace(/("([^"\\]|\\.)*")/g, '<span class="text-emerald-400">$1</span>')
-                    .replace(/('([^'\\]|\\.)*')/g, '<span class="text-emerald-400">$1</span>')
+                    .replace(/("([^"\\]|\\.)*")/g, '<span class="text-green-400">$1</span>')
+                    .replace(/('([^'\\]|\\.)*')/g, '<span class="text-green-400">$1</span>')
                     // Comments in gray italic
                     .replace(/(#.*$)/gm, '<span class="text-gray-500 italic">$1</span>');
 
@@ -171,22 +171,24 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
                     .replace(/\b(const|let|var|function|class|if|else|for|while|do|switch|case|break|continue|return|try|catch|finally|throw|async|await|import|export|from|default|extends|implements|interface|type|enum|namespace|module|declare|abstract|static|public|private|protected|readonly|override)\b/g, '<span class="text-purple-400">$1</span>')
                     // Function/method calls in cyan
                     .replace(/\b([a-zA-Z_$][a-zA-Z0-9_$]*)\s*(?=\()/g, '<span class="text-cyan-400">$1</span>')
-                    // Property access in white
-                    .replace(/\.([a-zA-Z_$][a-zA-Z0-9_$]*)/g, '.<span class="text-white">$1</span>')
+                    // Property access in cyan
+                    .replace(/\.([a-zA-Z_$][a-zA-Z0-9_$]*)/g, '.<span class="text-cyan-400">$1</span>')
                     // Strings in green
-                    .replace(/("([^"\\]|\\.)*")/g, '<span class="text-emerald-400">$1</span>')
-                    .replace(/('([^'\\]|\\.)*')/g, '<span class="text-emerald-400">$1</span>')
-                    .replace(/(`([^`\\]|\\.)*`)/g, '<span class="text-emerald-400">$1</span>')
+                    .replace(/("([^"\\]|\\.)*")/g, '<span class="text-green-400">$1</span>')
+                    .replace(/('([^'\\]|\\.)*')/g, '<span class="text-green-400">$1</span>')
+                    .replace(/(`([^`\\]|\\.)*`)/g, '<span class="text-green-400">$1</span>')
                     // Numbers in orange
                     .replace(/\b(\d+(?:\.\d+)?)\b/g, '<span class="text-orange-400">$1</span>')
                     // Booleans and null in orange
                     .replace(/\b(true|false|null|undefined|NaN|Infinity)\b/g, '<span class="text-orange-400">$1</span>')
                     // This, super, new in orange
                     .replace(/\b(this|super|new)\b/g, '<span class="text-orange-400">$1</span>')
-                    // Operators in cyan
-                    .replace(/(===|!==|==|!=|<=|>=|<|>|\|\||&&|\+\+|--|\+=|-=|\*=|\/=|%=|&=|\|=|\^=|<<=|>>=|>>>=)/g, '<span class="text-cyan-300">$1</span>')
-                    // Arrow functions in cyan
-                    .replace(/(=>)/g, '<span class="text-cyan-300">$1</span>')
+                    // Operators in white
+                    .replace(/(===|!==|==|!=|<=|>=|<|>|\|\||&&|\+\+|--|\+=|-=|\*=|\/=|%=|&=|\|=|\^=|<<=|>>=|>>>=)/g, '<span class="text-white">$1</span>')
+                    // Arrow functions in white
+                    .replace(/(=>)/g, '<span class="text-white">$1</span>')
+                    // Brackets and braces in white
+                    .replace(/([{}[\]()])/g, '<span class="text-white">$1</span>')
                     // Comments in gray italic
                     .replace(/(\/\/.*$)/gm, '<span class="text-gray-500 italic">$1</span>')
                     .replace(/(\/\*[\s\S]*?\*\/)/g, '<span class="text-gray-500 italic">$1</span>');
@@ -202,10 +204,10 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
                     // Decorators in yellow
                     .replace(/(@[a-zA-Z_][a-zA-Z0-9_]*)/g, '<span class="text-yellow-400">$1</span>')
                     // Strings in green
-                    .replace(/("""[\s\S]*?""")/g, '<span class="text-emerald-400">$1</span>')
-                    .replace(/('''[\s\S]*?''')/g, '<span class="text-emerald-400">$1</span>')
-                    .replace(/("([^"\\]|\\.)*")/g, '<span class="text-emerald-400">$1</span>')
-                    .replace(/('([^'\\]|\\.)*')/g, '<span class="text-emerald-400">$1</span>')
+                    .replace(/("""[\s\S]*?""")/g, '<span class="text-green-400">$1</span>')
+                    .replace(/('''[\s\S]*?''')/g, '<span class="text-green-400">$1</span>')
+                    .replace(/("([^"\\]|\\.)*")/g, '<span class="text-green-400">$1</span>')
+                    .replace(/('([^'\\]|\\.)*')/g, '<span class="text-green-400">$1</span>')
                     // Numbers in orange
                     .replace(/\b(\d+(?:\.\d+)?)\b/g, '<span class="text-orange-400">$1</span>')
                     // Booleans and None in orange
@@ -228,8 +230,8 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
                             // Attribute names in orange
                             .replace(/\s([a-zA-Z][a-zA-Z0-9-]*)=/g, ' <span class="text-orange-400">$1</span>=')
                             // Attribute values in green
-                            .replace(/="([^"]*)"/g, '=<span class="text-emerald-400">"$1"</span>')
-                            .replace(/='([^']*)'/g, '=<span class="text-emerald-400">\'$1\'</span>');
+                            .replace(/="([^"]*)"/g, '=<span class="text-green-400">"$1"</span>')
+                            .replace(/='([^']*)'/g, '=<span class="text-green-400">\'$1\'</span>');
                     })
                     // Comments in gray italic
                     .replace(/(<!--[\s\S]*?-->)/g, '<span class="text-gray-500 italic">$1</span>');
@@ -243,7 +245,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
                     // Property names in sky blue
                     .replace(/([a-zA-Z-]+)\s*:/g, '<span class="text-sky-400">$1</span>:')
                     // Values in green
-                    .replace(/:\s*([^;}\s]+)/g, ': <span class="text-emerald-400">$1</span>')
+                    .replace(/:\s*([^;}\s]+)/g, ': <span class="text-green-400">$1</span>')
                     // Important in red
                     .replace(/!important/g, '<span class="text-red-400">!important</span>')
                     // Units in orange
@@ -251,6 +253,31 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
                     // Comments in gray italic
                     .replace(/(\/\*[\s\S]*?\*\/)/g, '<span class="text-gray-500 italic">$1</span>')
                     .replace(/(\/\/.*$)/gm, '<span class="text-gray-500 italic">$1</span>');
+
+            case 'java':
+                return code
+                    // Keywords in purple
+                    .replace(/\b(public|private|protected|static|final|abstract|class|interface|extends|implements|package|import|return|if|else|for|while|do|switch|case|break|continue|try|catch|finally|throw|throws|new|this|super|void|int|double|float|long|short|byte|char|boolean|String|Object)\b/g, '<span class="text-purple-400">$1</span>')
+                    // Method/function calls in cyan
+                    .replace(/\b([a-zA-Z_$][a-zA-Z0-9_$]*)\s*(?=\()/g, '<span class="text-cyan-400">$1</span>')
+                    // Property access in cyan
+                    .replace(/\.([a-zA-Z_$][a-zA-Z0-9_$]*)/g, '.<span class="text-cyan-400">$1</span>')
+                    // Strings in green
+                    .replace(/("([^"\\]|\\.)*")/g, '<span class="text-green-400">$1</span>')
+                    .replace(/('([^'\\]|\\.)*')/g, '<span class="text-green-400">$1</span>')
+                    // Numbers in orange
+                    .replace(/\b(\d+(?:\.\d+)?[fFdDlL]?)\b/g, '<span class="text-orange-400">$1</span>')
+                    // Booleans and null in orange
+                    .replace(/\b(true|false|null)\b/g, '<span class="text-orange-400">$1</span>')
+                    // Annotations in yellow
+                    .replace(/(@[a-zA-Z_][a-zA-Z0-9_]*)/g, '<span class="text-yellow-400">$1</span>')
+                    // Brackets and braces in white
+                    .replace(/([{}[\]()])/g, '<span class="text-white">$1</span>')
+                    // Operators in white
+                    .replace(/(==|!=|<=|>=|<|>|\|\||&&|\+\+|--|\+=|-=|\*=|\/=|%=)/g, '<span class="text-white">$1</span>')
+                    // Comments in gray italic
+                    .replace(/(\/\/.*$)/gm, '<span class="text-gray-500 italic">$1</span>')
+                    .replace(/(\/\*[\s\S]*?\*\/)/g, '<span class="text-gray-500 italic">$1</span>');
 
             default:
                 return code;
@@ -279,6 +306,8 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
             case 'scss':
             case 'sass':
                 return 'CSS';
+            case 'java':
+                return 'JAVA';
             default:
                 return '<>';
         }

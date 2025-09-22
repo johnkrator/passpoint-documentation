@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Play, Code, Settings, Zap, AlertCircle, CheckCircle, Clock} from "lucide-react";
 import {Button} from "@/components/ui/button";
-import InteractiveCodeBlock from "@/components/InteractiveCodeBlock";
+import CodeBlock from "@/components/CodeBlock";
 import PaginationNavigation from "@/components/PaginationNavigation";
 
 interface ApiResponse {
@@ -330,14 +330,14 @@ const SandboxPlayground = () => {
                                         <label className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
                                             Headers
                                         </label>
-                                        <InteractiveCodeBlock
+                                        <CodeBlock
                                             value={headers}
                                             onChange={setHeaders}
                                             language="json"
                                             placeholder="Enter request headers..."
                                             title="Request Headers"
                                             minHeight="150px"
-                                            readOnly={false}
+                                            interactive={true}
                                         />
                                     </div>
 
@@ -348,14 +348,14 @@ const SandboxPlayground = () => {
                                                 className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
                                                 Request Body
                                             </label>
-                                            <InteractiveCodeBlock
+                                            <CodeBlock
                                                 value={requestBody}
                                                 onChange={setRequestBody}
                                                 language="json"
                                                 placeholder="Enter request body..."
                                                 title="Request Body"
                                                 minHeight="150px"
-                                                readOnly={false}
+                                                interactive={true}
                                             />
                                         </div>
                                     )}
@@ -440,7 +440,7 @@ const SandboxPlayground = () => {
                                     <div>
                                         <h4 className="text-sm font-medium text-gray-900 dark:text-white mb-2">Response
                                             Headers</h4>
-                                        <InteractiveCodeBlock
+                                        <CodeBlock
                                             value={JSON.stringify(response.headers, null, 2)}
                                             readOnly
                                             language="json"
@@ -453,7 +453,7 @@ const SandboxPlayground = () => {
                                     <div>
                                         <h4 className="text-sm font-medium text-gray-900 dark:text-white mb-2">Response
                                             Body</h4>
-                                        <InteractiveCodeBlock
+                                        <CodeBlock
                                             value={JSON.stringify(response.data, null, 2)}
                                             readOnly
                                             language="json"

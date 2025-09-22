@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Copy, Check, FileText, Edit3, Eye } from "lucide-react";
+import { Copy, Check, FileText, Edit3, Eye, Maximize2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface CodeBlockProps {
@@ -13,6 +13,8 @@ interface CodeBlockProps {
     readOnly?: boolean;
     minHeight?: string;
     interactive?: boolean;
+    fixedHeight?: boolean;
+    maxHeight?: string;
 }
 
 const CodeBlock: React.FC<CodeBlockProps> = ({
@@ -25,11 +27,14 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
     placeholder = "Enter code...",
     readOnly = false,
     minHeight = "200px",
-    interactive = false
+    interactive = false,
+    fixedHeight = true,
+    maxHeight = "400px"
 }) => {
     const [copied, setCopied] = useState(false);
     const [isEditing, setIsEditing] = useState(!readOnly && interactive);
     const [localValue, setLocalValue] = useState(value || children || "");
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
     // Use value prop for controlled components, children for static content
@@ -313,40 +318,72 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
         }
     };
 
-    // Auto-resize textarea
+    // Auto-resize textarea only for interactive mode when not using fixed height
     useEffect(() => {
-        if (textareaRef.current && isEditing) {
+        if (textareaRef.current && isEditing && !fixedHeight) {
             textareaRef.current.style.height = 'auto';
             textareaRef.current.style.height = Math.max(
                 textareaRef.current.scrollHeight,
                 parseInt(minHeight)
             ) + 'px';
         }
-    }, [localValue, isEditing, minHeight]);
+    }, [localValue, isEditing, minHeight, fixedHeight]);
+
+    // Modal component
+    const Modal = ({ isOpen, onClose, children }: { isOpen: boolean; onClose: () => void; children: React.ReactNode }) => {
+        if (!isOpen) return null;
+
+        return (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50" onClick={onClose}>
+                <div
+                    className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 shadow-xl max-w-5xl w-full max-h-[90vh] overflow-hidden"
+                    onClick={(e) => e.stopPropagation()}
+                >
+                    <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+                        <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                            {title || `example.${language}`} - Full View
+                        </h3>
+                        <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={onClose}
+                            className="h-8 w-8 p-0 hover:bg-gray-200 dark:hover:bg-gray-700"
+                        >
+                            <X className="h-4 w-4" />
+                        </Button>
+                    </div>
+                    <div className="overflow-auto max-h-[calc(90vh-80px)]">
+                        {children}
+                    </div>
+                </div>
+            </div>
+        );
+    };
 
     return (
+        <>
         <div className={`bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm ${className}`}>
             {/* Editor Header */}
-            <div className="flex items-center justify-between px-4 py-3 bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-                <div className="flex items-center gap-3">
+            <div className="flex items-center justify-between px-2 sm:px-4 py-2 sm:py-3 bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+                <div className="flex items-center gap-1 sm:gap-3 min-w-0 flex-1">
                     {/* Traffic Light Buttons */}
-                    <div className="flex items-center gap-2">
+                    <div className="hidden sm:flex items-center gap-2">
                         <div className="w-3 h-3 rounded-full bg-red-400"></div>
                         <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
                         <div className="w-3 h-3 rounded-full bg-green-400"></div>
                     </div>
 
                     {/* File Info */}
-                    <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
-                        <FileText className="h-4 w-4"/>
-                        <span className="font-medium">
+                    <div className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-gray-600 dark:text-gray-300 min-w-0">
+                        <FileText className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0"/>
+                        <span className="font-medium truncate max-w-[80px] sm:max-w-none">
                             {title || `example.${language}`}
                         </span>
-                        <span className="px-2 py-1 text-xs bg-gray-200 dark:bg-gray-700 rounded text-gray-600 dark:text-gray-300 font-mono">
+                        <span className="px-1 sm:px-2 py-0.5 sm:py-1 text-xs bg-gray-200 dark:bg-gray-700 rounded text-gray-600 dark:text-gray-300 font-mono flex-shrink-0">
                             {getLanguageIcon(language)}
                         </span>
                         {interactive && !readOnly && (
-                            <span className={`px-2 py-1 text-xs rounded ${
+                            <span className={`hidden sm:inline px-2 py-1 text-xs rounded ${
                                 isEditing
                                     ? "bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-300"
                                     : "bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-300"
@@ -358,24 +395,24 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
                     {interactive && !readOnly && (
                         <Button
                             variant="ghost"
                             size="sm"
                             onClick={toggleEditMode}
-                            className="h-8 px-3 text-xs cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                            className="h-6 w-6 sm:h-8 sm:w-auto p-0 sm:px-3 text-xs cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
                             title={isEditing ? "Switch to view mode" : "Switch to edit mode"}
                         >
                             {isEditing ? (
                                 <>
-                                    <Eye className="h-4 w-4 mr-1"/>
-                                    <span>View</span>
+                                    <Eye className="h-3 w-3 sm:h-4 sm:w-4 sm:mr-1"/>
+                                    <span className="hidden sm:inline">View</span>
                                 </>
                             ) : (
                                 <>
-                                    <Edit3 className="h-4 w-4 mr-1"/>
-                                    <span>Edit</span>
+                                    <Edit3 className="h-3 w-3 sm:h-4 sm:w-4 sm:mr-1"/>
+                                    <span className="hidden sm:inline">Edit</span>
                                 </>
                             )}
                         </Button>
@@ -386,10 +423,23 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
                             variant="ghost"
                             size="sm"
                             onClick={formatJSON}
-                            className="h-8 px-3 text-xs cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                            className="hidden sm:flex h-8 px-3 text-xs cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
                             title="Format JSON"
                         >
                             Format
+                        </Button>
+                    )}
+
+                    {fixedHeight && (
+                        <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => setIsModalOpen(true)}
+                            className="h-6 w-6 sm:h-8 sm:w-auto p-0 sm:px-3 text-xs cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                            title="View full code"
+                        >
+                            <Maximize2 className="h-3 w-3 sm:h-4 sm:w-4 sm:mr-1"/>
+                            <span className="hidden sm:inline">Expand</span>
                         </Button>
                     )}
 
@@ -397,18 +447,18 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
                         variant="ghost"
                         size="sm"
                         onClick={handleCopy}
-                        className="h-8 px-3 text-xs cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                        className="h-6 w-6 sm:h-8 sm:w-auto p-0 sm:px-3 text-xs cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
                         title={copied ? "Copied!" : "Copy code"}
                     >
                         {copied ? (
                             <>
-                                <Check className="h-4 w-4 text-green-600 dark:text-green-400 mr-1"/>
-                                <span className="text-green-600 dark:text-green-400">Copied</span>
+                                <Check className="h-3 w-3 sm:h-4 sm:w-4 text-green-600 dark:text-green-400 sm:mr-1"/>
+                                <span className="hidden sm:inline text-green-600 dark:text-green-400">Copied</span>
                             </>
                         ) : (
                             <>
-                                <Copy className="h-4 w-4 text-gray-600 dark:text-gray-400 mr-1"/>
-                                <span>Copy</span>
+                                <Copy className="h-3 w-3 sm:h-4 sm:w-4 text-gray-600 dark:text-gray-400 sm:mr-1"/>
+                                <span className="hidden sm:inline">Copy</span>
                             </>
                         )}
                     </Button>
@@ -416,7 +466,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
             </div>
 
             {/* Editor Content */}
-            <div className="flex bg-slate-900 dark:bg-gray-950 overflow-hidden">
+            <div className={`flex bg-slate-900 dark:bg-gray-950 overflow-hidden ${fixedHeight ? `max-h-[${maxHeight}]` : ''}`} style={fixedHeight ? { maxHeight } : {}}>
                 {/* Line Numbers */}
                 <div className="flex-shrink-0 px-2 sm:px-4 py-4 bg-slate-800/50 dark:bg-gray-900 border-r border-slate-700 dark:border-gray-700 select-none">
                     <div className="text-xs sm:text-sm font-mono text-slate-500 dark:text-gray-500 leading-5 sm:leading-6">
@@ -439,12 +489,12 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
                             onKeyDown={handleKeyDown}
                             placeholder={placeholder}
                             className="w-full p-2 sm:p-4 text-xs sm:text-sm font-mono leading-5 sm:leading-6 text-slate-100 dark:text-gray-100 bg-transparent border-none outline-none resize-none overflow-auto"
-                            style={{ minHeight }}
+                            style={fixedHeight ? { height: maxHeight } : { minHeight }}
                             spellCheck={false}
                         />
                     ) : (
                         /* View Mode - Syntax Highlighted */
-                        <div className="w-full h-full overflow-x-auto overflow-y-auto">
+                        <div className={`w-full h-full overflow-x-auto ${fixedHeight ? 'overflow-y-auto' : 'overflow-y-auto'}`}>
                             <pre className="p-2 sm:p-4 text-xs sm:text-sm font-mono leading-5 sm:leading-6 text-slate-100 dark:text-gray-100 whitespace-pre-wrap">
                                 <code
                                     className={language ? `language-${language}` : ""}
@@ -476,6 +526,39 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
                 </div>
             )}
         </div>
+
+        {/* Full Screen Modal */}
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+            <div className="bg-slate-900 dark:bg-gray-950">
+                {/* Line Numbers */}
+                <div className="flex">
+                    <div className="flex-shrink-0 px-2 sm:px-4 py-4 bg-slate-800/50 dark:bg-gray-900 border-r border-slate-700 dark:border-gray-700 select-none">
+                        <div className="text-xs sm:text-sm font-mono text-slate-500 dark:text-gray-500 leading-5 sm:leading-6">
+                            {lineNumbers.map((num) => (
+                                <div key={num} className="text-right min-w-[1.5rem] sm:min-w-[2rem] h-5 sm:h-6">
+                                    {num}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Full Code Content */}
+                    <div className="flex-1 relative">
+                        <div className="w-full h-full overflow-x-auto overflow-y-auto">
+                            <pre className="p-2 sm:p-4 text-xs sm:text-sm font-mono leading-5 sm:leading-6 text-slate-100 dark:text-gray-100 whitespace-pre-wrap">
+                                <code
+                                    className={language ? `language-${language}` : ""}
+                                    dangerouslySetInnerHTML={{
+                                        __html: highlightSyntax(localValue || placeholder, language)
+                                    }}
+                                />
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </Modal>
+        </>
     );
 };
 

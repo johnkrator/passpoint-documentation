@@ -1,5 +1,6 @@
 import {Globe, Shield, Zap, CreditCard, Smartphone, DollarSign, CheckCircle} from "lucide-react";
 import CodeBlock from "@/components/CodeBlock";
+import LikeFeature from "@/components/LikeFeature";
 import PaginationNavigation from "@/components/PaginationNavigation";
 
 const Introduction = () => {
@@ -611,13 +612,13 @@ const Introduction = () => {
                 </section>
             </div>
 
+            {/* Like Feature */}
+            <div className="mt-8 border-t border-gray-200 dark:border-gray-700">
+                <LikeFeature pageId="introduction"/>
+            </div>
+
             {/* Pagination Navigation */}
             <PaginationNavigation/>
-
-            {/* Footer */}
-            <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
-                <p className="text-gray-500 text-sm">All rights reserved</p>
-            </footer>
         </div>
     );
 };

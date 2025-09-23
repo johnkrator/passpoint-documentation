@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Play, Code, Settings, Zap, AlertCircle, CheckCircle, Clock} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import CodeBlock from "@/components/CodeBlock";
+import LikeFeature from "@/components/LikeFeature";
 import PaginationNavigation from "@/components/PaginationNavigation";
 
 interface ApiResponse {
@@ -145,7 +146,7 @@ const SandboxPlayground = () => {
                 method: selectedEndpointData.method,
                 headers: {
                     ...parsedHeaders,
-                    // Ensure content-type is set for POST requests
+                    // Ensure the content-type is set for POST requests
                     ...(selectedEndpointData.method === "POST" && !parsedHeaders["Content-Type"] && {
                         "Content-Type": "application/json"
                     })
@@ -481,6 +482,11 @@ const SandboxPlayground = () => {
                             )}
                         </div>
                     </div>
+                </div>
+
+                {/* Like Feature */}
+                <div className="mt-6 sm:mt-8 border-t border-gray-200 dark:border-gray-700">
+                    <LikeFeature pageId="sandbox-playground"/>
                 </div>
 
                 {/* Pagination Navigation */}

@@ -23,7 +23,7 @@ const PaginationNavigation: React.FC<PaginationNavigationProps> = ({
                                                                    }) => {
     const location = useLocation();
 
-    // Get automatic navigation info based on current location
+    // Get automatic navigation info based on the current location
     const {previousPage: autoPreviousPage, nextPage: autoNextPage} = getNavigationInfo(location.pathname);
 
     // Use manual props if provided, otherwise use automatic detection

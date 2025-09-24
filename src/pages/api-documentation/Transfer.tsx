@@ -1,6 +1,5 @@
 import {Send, ArrowRightLeft, Clock, CheckCircle, XCircle, AlertTriangle} from "lucide-react";
 import CodeBlock from "@/components/CodeBlock.tsx";
-import PaginationNavigation from "@/components/PaginationNavigation.tsx";
 
 const Transfer = () => {
     const getCreateTransferEndpointCode = () => {
@@ -377,17 +376,6 @@ const Transfer = () => {
                     </section>
                 </div>
 
-                {/* Pagination Navigation */}
-                <PaginationNavigation
-                    previousPage={{
-                        title: "Payout",
-                        href: "/payout"
-                    }}
-                    nextPage={{
-                        title: "Wallet",
-                        href: "/wallet"
-                    }}
-                />
 
                 {/* Footer */}
                 <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">

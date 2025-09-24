@@ -1,6 +1,5 @@
 import {Terminal, Key, Globe, AlertTriangle, CheckCircle} from "lucide-react";
 import CodeBlock from "@/components/CodeBlock.tsx";
-import PaginationNavigation from "@/components/PaginationNavigation.tsx";
 
 const ApiIntegrations = () => {
     const getRestApiExampleCode = () => {
@@ -389,8 +388,6 @@ integratePasspoint();`;
                     </section>
                 </div>
 
-                {/* Pagination Navigation */}
-                <PaginationNavigation/>
 
                 {/* Footer */}
                 <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">

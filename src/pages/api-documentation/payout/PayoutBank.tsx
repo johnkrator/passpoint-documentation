@@ -2,7 +2,6 @@ import {MapPin, Globe, Shield, CheckCircle, AlertTriangle} from "lucide-react";
 import {Button} from "@/components/ui/button.tsx";
 import {Link} from "react-router-dom";
 import CodeBlock from "@/components/CodeBlock.tsx";
-import PaginationNavigation from "@/components/PaginationNavigation.tsx";
 
 const PayoutBank = () => {
     const getVerifyBankAccountEndpointCode = () => {
@@ -288,23 +287,6 @@ const PayoutBank = () => {
                         </div>
                     </section>
                 </div>
-
-                {/* Pagination Navigation */}
-                <PaginationNavigation
-                    previousPage={{
-                        title: "Convert Funds",
-                        href: "/payout/convert-funds"
-                    }}
-                    nextPage={{
-                        title: "Local Bank Transfers",
-                        href: "/payout/bank/local"
-                    }}
-                />
-
-                {/* Footer */}
-                <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
-                    <p className="text-gray-500 text-sm">All rights reserved</p>
-                </footer>
             </div>
         </div>
     );

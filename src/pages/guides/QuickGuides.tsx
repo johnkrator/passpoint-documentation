@@ -1,4 +1,3 @@
-import PaginationNavigation from "@/components/PaginationNavigation.tsx";
 
 const QuickGuides = () => {
     return (
@@ -152,17 +151,6 @@ const QuickGuides = () => {
                 </section>
             </div>
 
-            {/* Pagination Navigation */}
-            <PaginationNavigation
-                previousPage={{
-                    title: "API Rate Limits",
-                    href: "/api-rate-limits"
-                }}
-                nextPage={{
-                    title: "Transaction Dynamics on Passpoint",
-                    href: "/status-responses"
-                }}
-            />
 
             {/* Footer */}
             <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">

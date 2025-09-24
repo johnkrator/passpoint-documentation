@@ -1,6 +1,5 @@
 import {Globe} from "lucide-react";
 import CodeBlock from "@/components/CodeBlock.tsx";
-import PaginationNavigation from "@/components/PaginationNavigation.tsx";
 
 const PayoutMomoGetCurrency = () => {
     const getEndpointCode = () => {
@@ -180,23 +179,6 @@ const PayoutMomoGetCurrency = () => {
                         </div>
                     </section>
                 </div>
-
-                {/* Pagination Navigation */}
-                <PaginationNavigation
-                    previousPage={{
-                        title: "Get Momo Payout Network",
-                        href: "/payout/momo/get-network"
-                    }}
-                    nextPage={{
-                        title: "Validate Momo Msisdn",
-                        href: "/payout/momo/validate-msisdn"
-                    }}
-                />
-
-                {/* Footer */}
-                <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
-                    <p className="text-gray-500 text-sm">All rights reserved</p>
-                </footer>
             </div>
         </div>
     );

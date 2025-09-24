@@ -2,8 +2,6 @@ import React, {useState} from "react";
 import {Play, Code, Settings, Zap, AlertCircle, CheckCircle, Clock} from "lucide-react";
 import {Button} from "@/components/ui/button.tsx";
 import CodeBlock from "@/components/CodeBlock.tsx";
-import LikeFeature from "@/components/LikeFeature.tsx";
-import PaginationNavigation from "@/components/PaginationNavigation.tsx";
 
 interface ApiResponse {
     status: number;
@@ -482,25 +480,6 @@ const SandboxPlayground = () => {
                             )}
                         </div>
                     </div>
-                </div>
-
-                {/* Like Feature */}
-                <div className="mt-6 sm:mt-8 border-t border-gray-200 dark:border-gray-700">
-                    <LikeFeature pageId="sandbox-playground"/>
-                </div>
-
-                {/* Pagination Navigation */}
-                <div className="mt-6 sm:mt-8">
-                    <PaginationNavigation
-                        previousPage={{
-                            title: "Status Responses",
-                            href: "/status-responses"
-                        }}
-                        nextPage={{
-                            title: "API Rate Limits",
-                            href: "/api-rate-limits"
-                        }}
-                    />
                 </div>
             </div>
         </div>

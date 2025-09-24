@@ -1,6 +1,5 @@
 import {CheckCircle, XCircle, Clock, AlertTriangle} from "lucide-react";
 import CodeBlock from "@/components/CodeBlock.tsx";
-import PaginationNavigation from "@/components/PaginationNavigation.tsx";
 
 const StatusResponses = () => {
     const getErrorResponseCode = () => {
@@ -339,17 +338,6 @@ const StatusResponses = () => {
                 </section>
             </div>
 
-            {/* Pagination Navigation */}
-            <PaginationNavigation
-                previousPage={{
-                    title: "User Roles and Permissions",
-                    href: "/user-roles"
-                }}
-                nextPage={{
-                    title: "Transaction Dynamics",
-                    href: "/transaction-dynamics"
-                }}
-            />
 
             {/* Footer */}
             <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">

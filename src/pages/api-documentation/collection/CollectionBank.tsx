@@ -2,7 +2,6 @@ import {Building2, Shield, CreditCard, CheckCircle, AlertTriangle, Globe} from "
 import {Button} from "@/components/ui/button.tsx";
 import {Link} from "react-router-dom";
 import CodeBlock from "@/components/CodeBlock.tsx";
-import PaginationNavigation from "@/components/PaginationNavigation.tsx";
 
 const CollectionBank = () => {
     // Code block methods
@@ -479,23 +478,6 @@ const CollectionBank = () => {
                         </div>
                     </section>
                 </div>
-
-                {/* Pagination Navigation */}
-                <PaginationNavigation
-                    previousPage={{
-                        title: "Collections Overview",
-                        href: "/collection"
-                    }}
-                    nextPage={{
-                        title: "Open Banking Collections",
-                        href: "/collection/bank/open-banking"
-                    }}
-                />
-
-                {/* Footer */}
-                <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
-                    <p className="text-gray-500 text-sm">All rights reserved</p>
-                </footer>
             </div>
         </div>
     );

@@ -1,77 +1,160 @@
 import React, {useState, useEffect} from "react";
-import {Heart} from "lucide-react";
+import {ThumbsUp, ThumbsDown} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {cn} from "@/lib/utils";
+import FeedbackModal from "./FeedbackModal";
 
 interface LikeFeatureProps {
     pageId: string;
     className?: string;
 }
 
-interface LikeData {
-    count: number;
-    userHasLiked: boolean;
+interface FeedbackData {
+    likes: number;
+    dislikes: number;
+    userFeedback: 'like' | 'dislike' | null;
 }
 
 const LikeFeature: React.FC<LikeFeatureProps> = ({pageId, className = ""}) => {
-    const [likeData, setLikeData] = useState<LikeData>({count: 0, userHasLiked: false});
-    const [isAnimating, setIsAnimating] = useState(false);
+    const [feedbackData, setFeedbackData] = useState<FeedbackData>({
+        likes: 0,
+        dislikes: 0,
+        userFeedback: null
+    });
+    const [isAnimating, setIsAnimating] = useState<'like' | 'dislike' | null>(null);
+    const [modalState, setModalState] = useState<{
+        isOpen: boolean;
+        type: 'like' | 'dislike' | null;
+    }>({ isOpen: false, type: null });
 
     // Storage keys for persistence
-    const storageKey = `page_likes_${pageId}`;
-    const userLikeKey = `user_liked_${pageId}`;
+    const likesStorageKey = `page_likes_${pageId}`;
+    const dislikesStorageKey = `page_dislikes_${pageId}`;
+    const userFeedbackKey = `user_feedback_${pageId}`;
 
-    // Load like data from localStorage on component mount
+    // Load feedback data from localStorage on component mount
     useEffect(() => {
-        const loadLikeData = () => {
+        const loadFeedbackData = () => {
             try {
-                const savedCount = localStorage.getItem(storageKey);
-                const userHasLiked = localStorage.getItem(userLikeKey) === "true";
+                const savedLikes = localStorage.getItem(likesStorageKey);
+                const savedDislikes = localStorage.getItem(dislikesStorageKey);
+                const userFeedback = localStorage.getItem(userFeedbackKey) as 'like' | 'dislike' | null;
 
-                setLikeData({
-                    count: savedCount ? parseInt(savedCount, 10) : 0,
-                    userHasLiked
+                setFeedbackData({
+                    likes: savedLikes ? parseInt(savedLikes, 10) : 0,
+                    dislikes: savedDislikes ? parseInt(savedDislikes, 10) : 0,
+                    userFeedback: userFeedback || null
                 });
             } catch (error) {
-                console.error("Error loading like data:", error);
-                // Fallback to default values if localStorage fails
-                setLikeData({count: 0, userHasLiked: false});
+                console.error("Error loading feedback data:", error);
+                setFeedbackData({ likes: 0, dislikes: 0, userFeedback: null });
             }
         };
 
-        loadLikeData();
-    }, [pageId, storageKey, userLikeKey]);
+        loadFeedbackData();
+    }, [pageId, likesStorageKey, dislikesStorageKey, userFeedbackKey]);
 
-    // Handle like/unlike action
-    const handleLike = () => {
+    // Handle feedback action (like/dislike)
+    const handleFeedback = (type: 'like' | 'dislike') => {
         if (isAnimating) return; // Prevent spam clicking
 
-        setIsAnimating(true);
+        // If user already gave this feedback, remove it
+        if (feedbackData.userFeedback === type) {
+            setIsAnimating(type);
 
-        try {
-            const newUserHasLiked = !likeData.userHasLiked;
-            const newCount = newUserHasLiked ? likeData.count + 1 : likeData.count - 1;
+            try {
+                const newFeedbackData = {
+                    ...feedbackData,
+                    [type === 'like' ? 'likes' : 'dislikes']: Math.max(0, feedbackData[type === 'like' ? 'likes' : 'dislikes'] - 1),
+                    userFeedback: null
+                };
 
-            // Update state
-            const newLikeData = {
-                count: Math.max(0, newCount), // Ensure count doesn't go below 0
-                userHasLiked: newUserHasLiked
-            };
+                setFeedbackData(newFeedbackData);
 
-            setLikeData(newLikeData);
+                // Persist to localStorage
+                localStorage.setItem(likesStorageKey, newFeedbackData.likes.toString());
+                localStorage.setItem(dislikesStorageKey, newFeedbackData.dislikes.toString());
+                localStorage.removeItem(userFeedbackKey);
 
-            // Persist to localStorage
-            localStorage.setItem(storageKey, newLikeData.count.toString());
-            localStorage.setItem(userLikeKey, newLikeData.userHasLiked.toString());
+            } catch (error) {
+                console.error("Error saving feedback data:", error);
+                setFeedbackData(feedbackData);
+            }
 
-        } catch (error) {
-            console.error("Error saving like data:", error);
-            // Revert state if storage fails
-            setLikeData(likeData);
+            setTimeout(() => setIsAnimating(null), 200);
+            return;
         }
 
-        // Reset animation after a short delay
-        setTimeout(() => setIsAnimating(false), 200);
+        // If user previously gave opposite feedback, adjust counts
+        if (feedbackData.userFeedback && feedbackData.userFeedback !== type) {
+            try {
+                const oppositeType = feedbackData.userFeedback;
+                const newFeedbackData = {
+                    ...feedbackData,
+                    [oppositeType === 'like' ? 'likes' : 'dislikes']: Math.max(0, feedbackData[oppositeType === 'like' ? 'likes' : 'dislikes'] - 1),
+                    [type === 'like' ? 'likes' : 'dislikes']: feedbackData[type === 'like' ? 'likes' : 'dislikes'] + 1,
+                    userFeedback: type
+                };
+
+                setFeedbackData(newFeedbackData);
+
+                // Persist to localStorage
+                localStorage.setItem(likesStorageKey, newFeedbackData.likes.toString());
+                localStorage.setItem(dislikesStorageKey, newFeedbackData.dislikes.toString());
+                localStorage.setItem(userFeedbackKey, type);
+
+            } catch (error) {
+                console.error("Error saving feedback data:", error);
+                setFeedbackData(feedbackData);
+            }
+        } else {
+            // First time feedback - show modal
+            setModalState({ isOpen: true, type });
+        }
+    };
+
+    // Handle modal feedback submission
+    const handleModalSubmit = async (feedback: string) => {
+        if (!modalState.type) return;
+
+        const type = modalState.type;
+        setIsAnimating(type);
+
+        try {
+            const newFeedbackData = {
+                ...feedbackData,
+                [type === 'like' ? 'likes' : 'dislikes']: feedbackData[type === 'like' ? 'likes' : 'dislikes'] + 1,
+                userFeedback: type
+            };
+
+            setFeedbackData(newFeedbackData);
+
+            // Persist to localStorage
+            localStorage.setItem(likesStorageKey, newFeedbackData.likes.toString());
+            localStorage.setItem(dislikesStorageKey, newFeedbackData.dislikes.toString());
+            localStorage.setItem(userFeedbackKey, type);
+
+            // Store feedback text if provided
+            if (feedback.trim()) {
+                const feedbackStorageKey = `feedback_${pageId}_${Date.now()}`;
+                localStorage.setItem(feedbackStorageKey, JSON.stringify({
+                    type,
+                    feedback: feedback.trim(),
+                    timestamp: new Date().toISOString()
+                }));
+            }
+
+        } catch (error) {
+            console.error("Error saving feedback data:", error);
+            setFeedbackData(feedbackData);
+        }
+
+        setTimeout(() => setIsAnimating(null), 200);
+    };
+
+    // Handle modal close
+    const handleModalClose = () => {
+        setModalState({ isOpen: false, type: null });
     };
 
     // Format count for display (e.g., 1000 -> 1k)
@@ -86,68 +169,119 @@ const LikeFeature: React.FC<LikeFeatureProps> = ({pageId, className = ""}) => {
     };
 
     return (
-        <div className={cn(
-            "flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-3 sm:gap-4 py-4 sm:py-6",
-            className
-        )}>
-            {/* Like Question */}
-            <div className="text-center sm:text-left">
-                <h3 className="text-base sm:text-lg font-medium text-gray-900 dark:text-white mb-1">
-                    Was this helpful?
-                </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Let us know if this documentation helped you
-                </p>
-            </div>
+        <>
+            <div className={cn(
+                "flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-3 sm:gap-4 py-4 sm:py-6",
+                className
+            )}>
+                {/* Question */}
+                <div className="text-center sm:text-left">
+                    <h3 className="text-base sm:text-lg font-medium text-gray-900 dark:text-white mb-1">
+                        Was this helpful?
+                    </h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                        Let us know if this documentation helped you
+                    </p>
+                </div>
 
-            {/* Like Button and Counter */}
-            <div className="flex items-center gap-2 sm:gap-3">
-                <Button
-                    onClick={handleLike}
-                    variant={likeData.userHasLiked ? "default" : "outline"}
-                    size="lg"
-                    disabled={isAnimating}
-                    className={cn(
-                        "group relative overflow-hidden transition-all duration-200",
-                        likeData.userHasLiked
-                            ? "bg-red-500 hover:bg-red-600 text-white border-red-500"
-                            : "hover:border-red-300 hover:text-red-600 dark:hover:border-red-400 dark:hover:text-red-400",
-                        isAnimating && "scale-95"
-                    )}
-                >
-                    <Heart
-                        className={cn(
-                            "h-4 w-4 sm:h-5 sm:w-5 transition-all duration-200",
-                            likeData.userHasLiked ? "fill-current" : "group-hover:fill-current",
-                            isAnimating && "scale-110"
-                        )}
-                    />
-                    <span className="text-sm sm:text-base font-medium">
-                        {likeData.userHasLiked ? "Liked" : "Helpful"}
-                    </span>
+                {/* Feedback Buttons */}
+                <div className="flex items-center gap-3">
+                    {/* Like Button */}
+                    <div className="flex items-center gap-2">
+                        <Button
+                            onClick={() => handleFeedback('like')}
+                            variant={feedbackData.userFeedback === 'like' ? "default" : "outline"}
+                            size="lg"
+                            disabled={isAnimating !== null}
+                            className={cn(
+                                "group relative overflow-hidden transition-all duration-200",
+                                feedbackData.userFeedback === 'like'
+                                    ? "bg-green-500 hover:bg-green-600 text-white border-green-500"
+                                    : "hover:border-green-300 hover:text-green-600 dark:hover:border-green-400 dark:hover:text-green-400",
+                                isAnimating === 'like' && "scale-95"
+                            )}
+                        >
+                            <ThumbsUp
+                                className={cn(
+                                    "h-4 w-4 sm:h-5 sm:w-5 transition-all duration-200",
+                                    feedbackData.userFeedback === 'like' ? "fill-current" : "group-hover:fill-current",
+                                    isAnimating === 'like' && "scale-110"
+                                )}
+                            />
+                            <span className="text-sm sm:text-base font-medium">
+                                {feedbackData.userFeedback === 'like' ? "Liked" : "Helpful"}
+                            </span>
 
-                    {/* Animation overlay for like action */}
-                    {isAnimating && likeData.userHasLiked && (
-                        <div className="absolute inset-0 bg-red-400 opacity-30 animate-pulse rounded-md"/>
-                    )}
-                </Button>
+                            {/* Animation overlay */}
+                            {isAnimating === 'like' && feedbackData.userFeedback === 'like' && (
+                                <div className="absolute inset-0 bg-green-400 opacity-30 animate-pulse rounded-md"/>
+                            )}
+                        </Button>
 
-                {/* Like Counter */}
-                <div className="flex flex-col items-center gap-1">
-                    <div className={cn(
-                        "px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 transition-all duration-200",
-                        isAnimating && "scale-105"
-                    )}>
-                        <span className="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
-                            {formatCount(likeData.count)}
-                        </span>
+                        {/* Like Counter */}
+                        <div className={cn(
+                            "px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 transition-all duration-200 min-w-[40px] text-center",
+                            isAnimating === 'like' && "scale-105"
+                        )}>
+                            <span className="text-xs font-semibold text-gray-700 dark:text-gray-300">
+                                {formatCount(feedbackData.likes)}
+                            </span>
+                        </div>
                     </div>
-                    <span className="text-xs text-gray-500 dark:text-gray-400">
-                        {likeData.count === 1 ? "person" : "people"} found this helpful
-                    </span>
+
+                    {/* Dislike Button */}
+                    <div className="flex items-center gap-2">
+                        <Button
+                            onClick={() => handleFeedback('dislike')}
+                            variant={feedbackData.userFeedback === 'dislike' ? "default" : "outline"}
+                            size="lg"
+                            disabled={isAnimating !== null}
+                            className={cn(
+                                "group relative overflow-hidden transition-all duration-200",
+                                feedbackData.userFeedback === 'dislike'
+                                    ? "bg-red-500 hover:bg-red-600 text-white border-red-500"
+                                    : "hover:border-red-300 hover:text-red-600 dark:hover:border-red-400 dark:hover:text-red-400",
+                                isAnimating === 'dislike' && "scale-95"
+                            )}
+                        >
+                            <ThumbsDown
+                                className={cn(
+                                    "h-4 w-4 sm:h-5 sm:w-5 transition-all duration-200",
+                                    feedbackData.userFeedback === 'dislike' ? "fill-current" : "group-hover:fill-current",
+                                    isAnimating === 'dislike' && "scale-110"
+                                )}
+                            />
+                            <span className="text-sm sm:text-base font-medium">
+                                {feedbackData.userFeedback === 'dislike' ? "Disliked" : "Not helpful"}
+                            </span>
+
+                            {/* Animation overlay */}
+                            {isAnimating === 'dislike' && feedbackData.userFeedback === 'dislike' && (
+                                <div className="absolute inset-0 bg-red-400 opacity-30 animate-pulse rounded-md"/>
+                            )}
+                        </Button>
+
+                        {/* Dislike Counter */}
+                        <div className={cn(
+                            "px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 transition-all duration-200 min-w-[40px] text-center",
+                            isAnimating === 'dislike' && "scale-105"
+                        )}>
+                            <span className="text-xs font-semibold text-gray-700 dark:text-gray-300">
+                                {formatCount(feedbackData.dislikes)}
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+
+            {/* Feedback Modal */}
+            <FeedbackModal
+                isOpen={modalState.isOpen}
+                type={modalState.type || 'like'}
+                onClose={handleModalClose}
+                onSubmit={handleModalSubmit}
+            />
+        </>
     );
 };
 

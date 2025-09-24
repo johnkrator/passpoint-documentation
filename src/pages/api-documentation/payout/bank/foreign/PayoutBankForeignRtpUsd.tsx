@@ -1,6 +1,5 @@
 import {Clock} from "lucide-react";
 import CodeBlock from "@/components/CodeBlock.tsx";
-import PaginationNavigation from "@/components/PaginationNavigation.tsx";
 
 const PayoutBankForeignRtpUsd = () => {
     const getEndpointCode = () => {
@@ -221,23 +220,6 @@ const PayoutBankForeignRtpUsd = () => {
                         </div>
                     </section>
                 </div>
-
-                {/* Pagination Navigation */}
-                <PaginationNavigation
-                    previousPage={{
-                        title: "Wire - USD",
-                        href: "/payout/bank/foreign/wire-usd"
-                    }}
-                    nextPage={{
-                        title: "FedNow - USD",
-                        href: "/payout/bank/foreign/fednow-usd"
-                    }}
-                />
-
-                {/* Footer */}
-                <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
-                    <p className="text-gray-500 text-sm">All rights reserved</p>
-                </footer>
             </div>
         </div>
     );

@@ -1,6 +1,5 @@
 import {PiggyBank} from "lucide-react";
 import CodeBlock from "@/components/CodeBlock.tsx";
-import PaginationNavigation from "@/components/PaginationNavigation.tsx";
 
 const PayoutBankForeignAccountDepositCny = () => {
     const getEndpointCode = () => {
@@ -230,23 +229,6 @@ const PayoutBankForeignAccountDepositCny = () => {
                         </div>
                     </section>
                 </div>
-
-                {/* Pagination Navigation */}
-                <PaginationNavigation
-                    previousPage={{
-                        title: "Account Deposit - EUR",
-                        href: "/payout/bank/foreign/account-deposit-eur"
-                    }}
-                    nextPage={{
-                        title: "MoMo Deposit - CNY",
-                        href: "/payout/bank/foreign/momo-deposit-cny"
-                    }}
-                />
-
-                {/* Footer */}
-                <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
-                    <p className="text-gray-500 text-sm">All rights reserved</p>
-                </footer>
             </div>
         </div>
     );

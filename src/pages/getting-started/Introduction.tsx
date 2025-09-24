@@ -1,7 +1,5 @@
 import {Globe, Shield, Zap, CreditCard, Smartphone, DollarSign, CheckCircle} from "lucide-react";
 import CodeBlock from "@/components/CodeBlock.tsx";
-import LikeFeature from "@/components/LikeFeature.tsx";
-import PaginationNavigation from "@/components/PaginationNavigation.tsx";
 
 const Introduction = () => {
     const getSampleApiRequestCode = () => {
@@ -611,14 +609,6 @@ const Introduction = () => {
                     </div>
                 </section>
             </div>
-
-            {/* Like Feature */}
-            <div className="mt-8 border-t border-gray-200 dark:border-gray-700">
-                <LikeFeature pageId="introduction"/>
-            </div>
-
-            {/* Pagination Navigation */}
-            <PaginationNavigation/>
         </div>
     );
 };

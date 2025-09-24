@@ -1,6 +1,5 @@
 import {Zap} from "lucide-react";
 import CodeBlock from "@/components/CodeBlock.tsx";
-import PaginationNavigation from "@/components/PaginationNavigation.tsx";
 
 const PayoutBankForeignWireUsd = () => {
     const getEndpointCode = () => {
@@ -223,23 +222,6 @@ const PayoutBankForeignWireUsd = () => {
                         </div>
                     </section>
                 </div>
-
-                {/* Pagination Navigation */}
-                <PaginationNavigation
-                    previousPage={{
-                        title: "ACH - USD",
-                        href: "/payout/bank/foreign/ach-usd"
-                    }}
-                    nextPage={{
-                        title: "RTP - USD",
-                        href: "/payout/bank/foreign/rtp-usd"
-                    }}
-                />
-
-                {/* Footer */}
-                <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
-                    <p className="text-gray-500 text-sm">All rights reserved</p>
-                </footer>
             </div>
         </div>
     );

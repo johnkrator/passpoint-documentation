@@ -1,6 +1,5 @@
 import {Webhook, Globe, Shield, Settings, CheckCircle, AlertTriangle} from "lucide-react";
 import CodeBlock from "@/components/CodeBlock.tsx";
-import PaginationNavigation from "@/components/PaginationNavigation.tsx";
 
 const GlobalCallbackSetup = () => {
     const getCreateGlobalWebhookEndpointCode = () => {
@@ -450,23 +449,6 @@ app.post('/webhooks/passpoint', express.raw({type: 'application/json'}), (req, r
                         </div>
                     </section>
                 </div>
-
-                {/* Pagination Navigation */}
-                <PaginationNavigation
-                    previousPage={{
-                        title: "API Rate Limits",
-                        href: "/api-rate-limits"
-                    }}
-                    nextPage={{
-                        title: "Status Responses",
-                        href: "/status-responses"
-                    }}
-                />
-
-                {/* Footer */}
-                <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
-                    <p className="text-gray-500 text-sm">All rights reserved</p>
-                </footer>
             </div>
         </div>
     );

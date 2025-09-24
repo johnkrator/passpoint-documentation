@@ -1,6 +1,5 @@
 import {Send} from "lucide-react";
 import CodeBlock from "@/components/CodeBlock.tsx";
-import PaginationNavigation from "@/components/PaginationNavigation.tsx";
 
 const PayoutBankForeignB2bTransferUsd = () => {
     const getEndpointCode = () => {
@@ -226,23 +225,6 @@ const PayoutBankForeignB2bTransferUsd = () => {
                         </div>
                     </section>
                 </div>
-
-                {/* Pagination Navigation */}
-                <PaginationNavigation
-                    previousPage={{
-                        title: "B2C Transfer - CNY",
-                        href: "/payout/bank/foreign/b2c-transfer-cny"
-                    }}
-                    nextPage={{
-                        title: "Rate Information",
-                        href: "/payout/rate"
-                    }}
-                />
-
-                {/* Footer */}
-                <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
-                    <p className="text-gray-500 text-sm">All rights reserved</p>
-                </footer>
             </div>
         </div>
     );

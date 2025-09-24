@@ -1,6 +1,5 @@
 import {Key, Shield, Lock, AlertTriangle, CheckCircle} from "lucide-react";
 import CodeBlock from "@/components/CodeBlock.tsx";
-import PaginationNavigation from "@/components/PaginationNavigation.tsx";
 
 const Authentication = () => {
     const getAuthClientEndpointCode = () => {
@@ -517,19 +516,6 @@ x-merchant-id: YOUR_MERCHANT_ID`;
                         </div>
                     </section>
                 </div>
-
-                {/* Pagination Navigation */}
-                <PaginationNavigation
-                    nextPage={{
-                        title: "User Roles",
-                        href: "/user-roles"
-                    }}
-                />
-
-                {/* Footer */}
-                <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
-                    <p className="text-gray-500 text-sm">All rights reserved</p>
-                </footer>
             </div>
         </div>
     );

@@ -1,6 +1,5 @@
 import {DollarSign, CreditCard, Banknote, Clock, CheckCircle, Building} from "lucide-react";
 import CodeBlock from "@/components/CodeBlock.tsx";
-import PaginationNavigation from "@/components/PaginationNavigation.tsx";
 
 const Payout = () => {
     const getCreatePayoutEndpointCode = () => {
@@ -416,23 +415,6 @@ const Payout = () => {
                         </div>
                     </section>
                 </div>
-
-                {/* Pagination Navigation */}
-                <PaginationNavigation
-                    previousPage={{
-                        title: "Transfer",
-                        href: "/transfer"
-                    }}
-                    nextPage={{
-                        title: "Wallet",
-                        href: "/wallet"
-                    }}
-                />
-
-                {/* Footer */}
-                <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
-                    <p className="text-gray-500 text-sm">All rights reserved</p>
-                </footer>
             </div>
         </div>
     );

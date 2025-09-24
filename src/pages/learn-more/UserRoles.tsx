@@ -1,5 +1,4 @@
 import {Users, Shield, Settings} from "lucide-react";
-import PaginationNavigation from "@/components/PaginationNavigation.tsx";
 
 const UserRoles = () => {
     return (
@@ -241,17 +240,6 @@ const UserRoles = () => {
                 </section>
             </div>
 
-            {/* Pagination Navigation */}
-            <PaginationNavigation
-                previousPage={{
-                    title: "API Integrations",
-                    href: "/api-integrations"
-                }}
-                nextPage={{
-                    title: "Status Responses",
-                    href: "/status-responses"
-                }}
-            />
 
             {/* Footer */}
             <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">

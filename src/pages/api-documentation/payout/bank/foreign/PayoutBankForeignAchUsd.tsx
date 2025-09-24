@@ -1,6 +1,5 @@
 import {CreditCard} from "lucide-react";
 import CodeBlock from "@/components/CodeBlock.tsx";
-import PaginationNavigation from "@/components/PaginationNavigation.tsx";
 
 const PayoutBankForeignAchUsd = () => {
     const getEndpointCode = () => {
@@ -221,23 +220,6 @@ const PayoutBankForeignAchUsd = () => {
                         </div>
                     </section>
                 </div>
-
-                {/* Pagination Navigation */}
-                <PaginationNavigation
-                    previousPage={{
-                        title: "Get Payment Methods",
-                        href: "/payout/bank/foreign/get-payment-methods"
-                    }}
-                    nextPage={{
-                        title: "Wire - USD",
-                        href: "/payout/bank/foreign/wire-usd"
-                    }}
-                />
-
-                {/* Footer */}
-                <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
-                    <p className="text-gray-500 text-sm">All rights reserved</p>
-                </footer>
             </div>
         </div>
     );

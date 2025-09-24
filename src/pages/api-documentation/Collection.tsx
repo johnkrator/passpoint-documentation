@@ -1,6 +1,5 @@
 import {Download, CreditCard, Banknote, Clock, CheckCircle, XCircle, AlertTriangle, QrCode} from "lucide-react";
 import CodeBlock from "@/components/CodeBlock.tsx";
-import PaginationNavigation from "@/components/PaginationNavigation.tsx";
 
 const Collection = () => {
     const getCreatePaymentLinkEndpoint = () => {
@@ -646,8 +645,6 @@ const Collection = () => {
                     </section>
                 </div>
 
-                {/* Pagination Navigation */}
-                <PaginationNavigation/>
 
                 {/* Footer */}
                 <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">

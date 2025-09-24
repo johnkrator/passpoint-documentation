@@ -1,6 +1,5 @@
 import {Globe} from "lucide-react";
 import CodeBlock from "@/components/CodeBlock.tsx";
-import PaginationNavigation from "@/components/PaginationNavigation.tsx";
 
 const PayoutBankForeignGetAvailableCountries = () => {
     const getEndpointCode = () => {
@@ -223,23 +222,6 @@ const PayoutBankForeignGetAvailableCountries = () => {
                         </div>
                     </section>
                 </div>
-
-                {/* Pagination Navigation */}
-                <PaginationNavigation
-                    previousPage={{
-                        title: "Foreign Bank Transfers",
-                        href: "/payout/bank/foreign"
-                    }}
-                    nextPage={{
-                        title: "Get Payment Methods",
-                        href: "/payout/bank/foreign/get-payment-methods"
-                    }}
-                />
-
-                {/* Footer */}
-                <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
-                    <p className="text-gray-500 text-sm">All rights reserved</p>
-                </footer>
             </div>
         </div>
     );

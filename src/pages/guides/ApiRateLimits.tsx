@@ -1,4 +1,3 @@
-import PaginationNavigation from "@/components/PaginationNavigation.tsx";
 
 const ApiRateLimits = () => {
     return (
@@ -160,17 +159,6 @@ const ApiRateLimits = () => {
                 </section>
             </div>
 
-            {/* Pagination Navigation */}
-            <PaginationNavigation
-                previousPage={{
-                    title: "Introduction",
-                    href: "/introduction"
-                }}
-                nextPage={{
-                    title: "Quick Guides",
-                    href: "/quick-guides"
-                }}
-            />
 
             {/* Footer */}
             <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">

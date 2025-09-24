@@ -1,6 +1,5 @@
 import {RefreshCw, DollarSign, TrendingUp, Globe, CheckCircle, Clock} from "lucide-react";
 import CodeBlock from "@/components/CodeBlock.tsx";
-import PaginationNavigation from "@/components/PaginationNavigation.tsx";
 
 const PayoutConvertFunds = () => {
     const getConvertCurrencyEndpointCode = () => {
@@ -308,23 +307,6 @@ const PayoutConvertFunds = () => {
                         </div>
                     </section>
                 </div>
-
-                {/* Pagination Navigation */}
-                <PaginationNavigation
-                    previousPage={{
-                        title: "Payout",
-                        href: "/payout"
-                    }}
-                    nextPage={{
-                        title: "Bank Payouts",
-                        href: "/payout/bank"
-                    }}
-                />
-
-                {/* Footer */}
-                <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
-                    <p className="text-gray-500 text-sm">All rights reserved</p>
-                </footer>
             </div>
         </div>
     );

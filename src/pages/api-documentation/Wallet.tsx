@@ -1,6 +1,5 @@
 import {Wallet as WalletIcon, BarChart3, AlertCircle, History, FileText} from "lucide-react";
 import CodeBlock from "@/components/CodeBlock.tsx";
-import PaginationNavigation from "@/components/PaginationNavigation.tsx";
 
 const Wallet = () => {
     const getWalletBalanceAllEndpointCode = () => {
@@ -444,23 +443,6 @@ Authorization: Bearer [your-access-token]`;
                         </div>
                     </section>
                 </div>
-
-                {/* Pagination Navigation */}
-                <PaginationNavigation
-                    previousPage={{
-                        title: "Transfer",
-                        href: "/transfer"
-                    }}
-                    nextPage={{
-                        title: "Collection",
-                        href: "/collection"
-                    }}
-                />
-
-                {/* Footer */}
-                <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
-                    <p className="text-gray-500 text-sm">All rights reserved</p>
-                </footer>
             </div>
         </div>
     );

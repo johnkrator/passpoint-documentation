@@ -1,5 +1,3 @@
-import PaginationNavigation from "@/components/PaginationNavigation.tsx";
-
 const PayoutBankForeignSummary = () => {
     return (
         <div className="min-h-screen bg-white dark:bg-gray-950">
@@ -871,23 +869,6 @@ const PayoutBankForeignSummary = () => {
                         </div>
                     </section>
                 </div>
-
-                {/* Pagination Navigation */}
-                <PaginationNavigation
-                    previousPage={{
-                        title: "Foreign Bank Transfers",
-                        href: "/payout/bank/foreign"
-                    }}
-                    nextPage={{
-                        title: "Get Available Countries",
-                        href: "/payout/bank/foreign/get-available-countries"
-                    }}
-                />
-
-                {/* Footer */}
-                <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
-                    <p className="text-gray-500 text-sm">All rights reserved</p>
-                </footer>
             </div>
         </div>
     );

@@ -1,6 +1,5 @@
 import {Banknote} from "lucide-react";
 import CodeBlock from "@/components/CodeBlock.tsx";
-import PaginationNavigation from "@/components/PaginationNavigation.tsx";
 
 const PayoutBankForeignFednowUsd = () => {
     const getEndpointCode = () => {
@@ -221,23 +220,6 @@ const PayoutBankForeignFednowUsd = () => {
                         </div>
                     </section>
                 </div>
-
-                {/* Pagination Navigation */}
-                <PaginationNavigation
-                    previousPage={{
-                        title: "RTP - USD",
-                        href: "/payout/bank/foreign/rtp-usd"
-                    }}
-                    nextPage={{
-                        title: "Account Deposit - USD",
-                        href: "/payout/bank/foreign/account-deposit-usd"
-                    }}
-                />
-
-                {/* Footer */}
-                <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
-                    <p className="text-gray-500 text-sm">All rights reserved</p>
-                </footer>
             </div>
         </div>
     );

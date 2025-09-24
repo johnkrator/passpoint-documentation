@@ -117,7 +117,7 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({
                                 "w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md",
                                 "bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100",
                                 "placeholder-gray-500 dark:placeholder-gray-400",
-                                "focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent",
+                                "focus:outline-none focus:ring-2 focus:ring-[#0099c2] dark:focus:ring-[#0099c2] focus:border-transparent",
                                 "resize-none transition-colors duration-200"
                             )}
                             rows={4}
@@ -132,7 +132,7 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({
                         Submitting this report will send the entire current conversation to
                         Passpoint for future improvements to our documentation.{" "}
                         <button
-                            className="text-blue-600 dark:text-blue-400 cursor-pointer hover:underline focus:outline-none focus:underline"
+                            className="text-[#0099c2] dark:text-[#0099c2] cursor-pointer hover:underline focus:outline-none focus:underline"
                             onClick={() => window.open("https://mypasspoint.com/", "_blank")}
                         >
                             Learn More

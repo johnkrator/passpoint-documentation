@@ -1,62 +1,74 @@
 import {createBrowserRouter, ScrollRestoration} from "react-router-dom";
 import Layout from "@/Layout.tsx";
-import Home from "@/pages/Home.tsx";
-import ApiRateLimits from "@/pages/ApiRateLimits.tsx";
-import QuickGuides from "@/pages/QuickGuides.tsx";
-import Introduction from "@/pages/Introduction.tsx";
-import ApiIntegrations from "@/pages/ApiIntegrations.tsx";
-import UserRoles from "@/pages/UserRoles.tsx";
-import StatusResponses from "@/pages/StatusResponses.tsx";
-import Authentication from "@/pages/Authentication.tsx";
-import Wallet from "@/pages/Wallet.tsx";
-import Transfer from "@/pages/Transfer.tsx";
-import Payout from "@/pages/Payout.tsx";
-import Collection from "@/pages/Collection.tsx";
-import GlobalCallbackSetup from "@/pages/GlobalCallbackSetup.tsx";
-import SandboxPlayground from "@/pages/SandboxPlayground.tsx";
+import Home from "@/pages/getting-started/Home.tsx";
+import ApiRateLimits from "@/pages/guides/ApiRateLimits.tsx";
+import QuickGuides from "@/pages/guides/QuickGuides.tsx";
+import Introduction from "@/pages/getting-started/Introduction.tsx";
+import ApiIntegrations from "@/pages/getting-started/ApiIntegrations.tsx";
+import UserRoles from "@/pages/learn-more/UserRoles.tsx";
+import StatusResponses from "@/pages/learn-more/StatusResponses.tsx";
+import Authentication from "@/pages/api-documentation/Authentication.tsx";
+import Wallet from "@/pages/api-documentation/Wallet.tsx";
+import Transfer from "@/pages/api-documentation/Transfer.tsx";
+import Payout from "@/pages/api-documentation/Payout.tsx";
+import Collection from "@/pages/api-documentation/Collection.tsx";
+import GlobalCallbackSetup from "@/pages/api-documentation/GlobalCallbackSetup.tsx";
+import SandboxPlayground from "@/pages/learn-more/SandboxPlayground.tsx";
 
 // Payout Bank Pages
-import PayoutBank from "@/pages/payout/PayoutBank.tsx";
-import PayoutBankLocal from "@/pages/payout/PayoutBankLocal.tsx";
-import PayoutBankForeign from "@/pages/payout/PayoutBankForeign.tsx";
-import PayoutConvertFunds from "@/pages/payout/PayoutConvertFunds.tsx";
+import PayoutBank from "@/pages/api-documentation/payout/PayoutBank.tsx";
+import PayoutBankLocal from "@/pages/api-documentation/payout/PayoutBankLocal.tsx";
+import PayoutBankForeign from "@/pages/api-documentation/payout/PayoutBankForeign.tsx";
+import PayoutConvertFunds from "@/pages/api-documentation/payout/PayoutConvertFunds.tsx";
 
 // Payout Momo Pages
-import PayoutMomoGetNetwork from "@/pages/payout/momo/PayoutMomoGetNetwork.tsx";
-import PayoutMomoGetCurrency from "@/pages/payout/momo/PayoutMomoGetCurrency.tsx";
-import PayoutMomoValidateMsisdn from "@/pages/payout/momo/PayoutMomoValidateMsisdn.tsx";
-import PayoutMomoTransfer from "@/pages/payout/momo/PayoutMomoTransfer.tsx";
+import PayoutMomoGetNetwork from "@/pages/api-documentation/payout/momo/PayoutMomoGetNetwork.tsx";
+import PayoutMomoGetCurrency from "@/pages/api-documentation/payout/momo/PayoutMomoGetCurrency.tsx";
+import PayoutMomoValidateMsisdn from "@/pages/api-documentation/payout/momo/PayoutMomoValidateMsisdn.tsx";
+import PayoutMomoTransfer from "@/pages/api-documentation/payout/momo/PayoutMomoTransfer.tsx";
 
 // Payout Bank Local Pages
-import PayoutBankLocalGetBanks from "@/pages/payout/bank/local/PayoutBankLocalGetBanks.tsx";
-import PayoutBankLocalAccountEnquiry from "@/pages/payout/bank/local/PayoutBankLocalAccountEnquiry.tsx";
-import PayoutBankLocalAccountTransferNgn from "@/pages/payout/bank/local/PayoutBankLocalAccountTransferNgn.tsx";
-import PayoutBankLocalPasspointEnquiry from "@/pages/payout/bank/local/PayoutBankLocalPasspointEnquiry.tsx";
+import PayoutBankLocalGetBanks from "@/pages/api-documentation/payout/bank/local/PayoutBankLocalGetBanks.tsx";
+import PayoutBankLocalAccountEnquiry
+    from "@/pages/api-documentation/payout/bank/local/PayoutBankLocalAccountEnquiry.tsx";
+import PayoutBankLocalAccountTransferNgn
+    from "@/pages/api-documentation/payout/bank/local/PayoutBankLocalAccountTransferNgn.tsx";
+import PayoutBankLocalPasspointEnquiry
+    from "@/pages/api-documentation/payout/bank/local/PayoutBankLocalPasspointEnquiry.tsx";
 import PayoutBankLocalPasspointWalletTransfer
-    from "@/pages/payout/bank/local/PayoutBankLocalPasspointWalletTransfer.tsx";
+    from "@/pages/api-documentation/payout/bank/local/PayoutBankLocalPasspointWalletTransfer.tsx";
 
 // Payout Bank Foreign Pages
-import PayoutBankForeignSummary from "@/pages/payout/bank/foreign/PayoutBankForeignSummary.tsx";
+import PayoutBankForeignSummary from "@/pages/api-documentation/payout/bank/foreign/PayoutBankForeignSummary.tsx";
 import PayoutBankForeignGetAvailableCountries
-    from "@/pages/payout/bank/foreign/PayoutBankForeignGetAvailableCountries.tsx";
-import PayoutBankForeignGetPaymentMethods from "@/pages/payout/bank/foreign/PayoutBankForeignGetPaymentMethods.tsx";
-import PayoutBankForeignB2cTransferCny from "@/pages/payout/bank/foreign/PayoutBankForeignB2cTransferCny.tsx";
-import PayoutBankForeignB2bTransferUsd from "@/pages/payout/bank/foreign/PayoutBankForeignB2bTransferUsd.tsx";
-import PayoutBankForeignB2bTransferCny from "@/pages/payout/bank/foreign/PayoutBankForeignB2bTransferCny.tsx";
-import PayoutBankForeignAchUsd from "@/pages/payout/bank/foreign/PayoutBankForeignAchUsd.tsx";
-import PayoutBankForeignWireUsd from "@/pages/payout/bank/foreign/PayoutBankForeignWireUsd.tsx";
-import PayoutBankForeignRtpUsd from "@/pages/payout/bank/foreign/PayoutBankForeignRtpUsd.tsx";
-import PayoutBankForeignFednowUsd from "@/pages/payout/bank/foreign/PayoutBankForeignFednowUsd.tsx";
-import PayoutBankForeignAccountDepositUsd from "@/pages/payout/bank/foreign/PayoutBankForeignAccountDepositUsd.tsx";
-import PayoutBankForeignAccountDepositGbp from "@/pages/payout/bank/foreign/PayoutBankForeignAccountDepositGbp.tsx";
-import PayoutBankForeignAccountDepositEur from "@/pages/payout/bank/foreign/PayoutBankForeignAccountDepositEur.tsx";
-import PayoutBankForeignAccountDepositCny from "@/pages/payout/bank/foreign/PayoutBankForeignAccountDepositCny.tsx";
-import PayoutBankForeignMomoDepositCny from "@/pages/payout/bank/foreign/PayoutBankForeignMomoDepositCny.tsx";
+    from "@/pages/api-documentation/payout/bank/foreign/PayoutBankForeignGetAvailableCountries.tsx";
+import PayoutBankForeignGetPaymentMethods
+    from "@/pages/api-documentation/payout/bank/foreign/PayoutBankForeignGetPaymentMethods.tsx";
+import PayoutBankForeignB2cTransferCny
+    from "@/pages/api-documentation/payout/bank/foreign/PayoutBankForeignB2cTransferCny.tsx";
+import PayoutBankForeignB2bTransferUsd
+    from "@/pages/api-documentation/payout/bank/foreign/PayoutBankForeignB2bTransferUsd.tsx";
+import PayoutBankForeignB2bTransferCny
+    from "@/pages/api-documentation/payout/bank/foreign/PayoutBankForeignB2bTransferCny.tsx";
+import PayoutBankForeignAchUsd from "@/pages/api-documentation/payout/bank/foreign/PayoutBankForeignAchUsd.tsx";
+import PayoutBankForeignWireUsd from "@/pages/api-documentation/payout/bank/foreign/PayoutBankForeignWireUsd.tsx";
+import PayoutBankForeignRtpUsd from "@/pages/api-documentation/payout/bank/foreign/PayoutBankForeignRtpUsd.tsx";
+import PayoutBankForeignFednowUsd from "@/pages/api-documentation/payout/bank/foreign/PayoutBankForeignFednowUsd.tsx";
+import PayoutBankForeignAccountDepositUsd
+    from "@/pages/api-documentation/payout/bank/foreign/PayoutBankForeignAccountDepositUsd.tsx";
+import PayoutBankForeignAccountDepositGbp
+    from "@/pages/api-documentation/payout/bank/foreign/PayoutBankForeignAccountDepositGbp.tsx";
+import PayoutBankForeignAccountDepositEur
+    from "@/pages/api-documentation/payout/bank/foreign/PayoutBankForeignAccountDepositEur.tsx";
+import PayoutBankForeignAccountDepositCny
+    from "@/pages/api-documentation/payout/bank/foreign/PayoutBankForeignAccountDepositCny.tsx";
+import PayoutBankForeignMomoDepositCny
+    from "@/pages/api-documentation/payout/bank/foreign/PayoutBankForeignMomoDepositCny.tsx";
 
 // Collection Bank Pages
-import CollectionBank from "@/pages/collection/CollectionBank.tsx";
-import CollectionBankDirect from "@/pages/collection/CollectionBankDirect.tsx";
-import CollectionBankOpenBanking from "@/pages/collection/CollectionBankOpenBanking.tsx";
+import CollectionBank from "@/pages/api-documentation/collection/CollectionBank.tsx";
+import CollectionBankDirect from "@/pages/api-documentation/collection/CollectionBankDirect.tsx";
+import CollectionBankOpenBanking from "@/pages/api-documentation/collection/CollectionBankOpenBanking.tsx";
 
 import ErrorBoundary, {RouterErrorBoundary} from "@/components/ErrorBoundary.tsx";
 

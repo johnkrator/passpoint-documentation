@@ -114,11 +114,12 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({
                                     : "What could be improved about this response?"
                             }
                             className={cn(
-                                "w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md",
+                                "w-full px-3 py-2 text-base sm:text-sm border border-gray-300 dark:border-gray-600 rounded-md",
                                 "bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100",
                                 "placeholder-gray-500 dark:placeholder-gray-400",
                                 "focus:outline-none focus:ring-2 focus:ring-[#0099c2] dark:focus:ring-[#0099c2] focus:border-transparent",
-                                "resize-none transition-colors duration-200"
+                                "resize-none transition-colors duration-200",
+                                "touch-manipulation"
                             )}
                             rows={4}
                             maxLength={500}

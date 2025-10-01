@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Play, Code, Settings, Zap, AlertCircle, CheckCircle, Clock} from "lucide-react";
 import {Button} from "@/components/ui/button.tsx";
-import CodeBlock from "@/components/CodeBlock.tsx";
+import SandboxTextEditor from "@/components/SandboxTextEditor.tsx";
 
 interface ApiResponse {
     status: number;
@@ -292,18 +292,19 @@ const SandboxPlayground = () => {
                 <div className="space-y-4 sm:space-y-6">
                     {/* Request Panel */}
                     <div className="w-full">
-                        <div
-                            className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm">
-                            <div className="flex items-center gap-2 mb-3 sm:mb-4">
+                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden shadow-sm">
+                            {/* Request Header */}
+                            <div className="flex items-center gap-2 px-4 sm:px-6 py-3 sm:py-4 bg-gray-50 dark:bg-gray-800/30 border-b border-gray-200 dark:border-gray-700">
                                 <Settings className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600 dark:text-gray-400"/>
-                                <h2 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">Request
-                                    Configuration</h2>
+                                <h2 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">
+                                    Request Configuration
+                                </h2>
                             </div>
 
                             {selectedEndpointData && (
-                                <div className="space-y-3 sm:space-y-4">
+                                <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
                                     {/* Endpoint Info */}
-                                    <div className="p-3 sm:p-4 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
+                                    <div className="p-3 sm:p-4 bg-gray-50 dark:bg-gray-900/50 rounded-lg border border-gray-200 dark:border-gray-700">
                                         <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
                                             <div className="flex items-center gap-2">
                                                 <span className={`px-2 py-1 text-xs font-medium rounded ${
@@ -318,67 +319,62 @@ const SandboxPlayground = () => {
                                                 </span>
                                             </div>
                                         </div>
-                                        <code
-                                            className="text-xs text-gray-600 dark:text-gray-400 break-all block overflow-x-auto">
+                                        <code className="text-xs text-gray-600 dark:text-gray-400 break-all block overflow-x-auto">
                                             {selectedEndpointData.url}
                                         </code>
                                     </div>
 
-                                    {/* Headers */}
+                                    {/* Headers Section */}
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
-                                            Headers
-                                        </label>
-                                        <CodeBlock
+                                        <h3 className="text-sm font-medium text-gray-900 dark:text-white mb-3">Headers</h3>
+                                        <SandboxTextEditor
                                             value={headers}
                                             onChange={setHeaders}
                                             language="json"
                                             placeholder="Enter request headers..."
                                             title="Request Headers"
-                                            minHeight="150px"
-                                            interactive={true}
+                                            minHeight="200px"
+                                            maxHeight="300px"
                                         />
                                     </div>
 
                                     {/* Request Body (for POST requests) */}
                                     {selectedEndpointData.method === "POST" && (
                                         <div>
-                                            <label
-                                                className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
-                                                Request Body
-                                            </label>
-                                            <CodeBlock
+                                            <h3 className="text-sm font-medium text-gray-900 dark:text-white mb-3">Request Body</h3>
+                                            <SandboxTextEditor
                                                 value={requestBody}
                                                 onChange={setRequestBody}
                                                 language="json"
                                                 placeholder="Enter request body..."
                                                 title="Request Body"
-                                                minHeight="150px"
-                                                interactive={true}
+                                                minHeight="200px"
+                                                maxHeight="300px"
                                             />
                                         </div>
                                     )}
 
                                     {/* Execute Button */}
-                                    <Button
-                                        onClick={executeRequest}
-                                        disabled={isLoading}
-                                        className="w-full bg-[#0099c2] hover:bg-[#0087a8] disabled:opacity-50 h-10 sm:h-12"
-                                        size="lg"
-                                    >
-                                        {isLoading ? (
-                                            <>
-                                                <div
-                                                    className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"/>
-                                                <span className="text-sm sm:text-base">Executing...</span>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <Play className="h-4 w-4 mr-2"/>
-                                                <span className="text-sm sm:text-base">Execute Request</span>
-                                            </>
-                                        )}
-                                    </Button>
+                                    <div className="pt-2">
+                                        <Button
+                                            onClick={executeRequest}
+                                            disabled={isLoading}
+                                            className="w-full bg-[#0099c2] hover:bg-[#0087a8] disabled:opacity-50 h-12 text-base font-medium transition-all"
+                                            size="lg"
+                                        >
+                                            {isLoading ? (
+                                                <div className="flex items-center justify-center gap-3">
+                                                    <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"/>
+                                                    <span>Executing Request...</span>
+                                                </div>
+                                            ) : (
+                                                <div className="flex items-center justify-center gap-3">
+                                                    <Play className="h-5 w-5 fill-current"/>
+                                                    <span>Execute Request</span>
+                                                </div>
+                                            )}
+                                        </Button>
+                                    </div>
                                 </div>
                             )}
                         </div>
@@ -386,98 +382,94 @@ const SandboxPlayground = () => {
 
                     {/* Response Panel */}
                     <div className="w-full">
-                        <div
-                            className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm">
-                            <div className="flex items-center gap-2 mb-3 sm:mb-4">
+                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden shadow-sm">
+                            {/* Response Header */}
+                            <div className="flex items-center gap-2 px-4 sm:px-6 py-3 sm:py-4 bg-gray-50 dark:bg-gray-800/30 border-b border-gray-200 dark:border-gray-700">
                                 <Zap className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600 dark:text-gray-400"/>
                                 <h2 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">Response</h2>
                             </div>
 
-                            {/* Loading State */}
-                            {isLoading && (
-                                <div className="flex items-center justify-center py-8 sm:py-12">
-                                    <div className="text-center">
-                                        <div
-                                            className="animate-spin rounded-full h-8 w-8 sm:h-12 sm:w-12 border-b-2 border-blue-600 mx-auto mb-3 sm:mb-4"/>
-                                        <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">Executing
-                                            request...</p>
+                            <div className="p-4 sm:p-6">
+                                {/* Loading State */}
+                                {isLoading && (
+                                    <div className="flex items-center justify-center py-12">
+                                        <div className="text-center">
+                                            <div className="animate-spin rounded-full h-12 w-12 border-2 border-blue-600 border-t-transparent mx-auto mb-4"/>
+                                            <p className="text-base text-gray-600 dark:text-gray-400">Executing request...</p>
+                                        </div>
                                     </div>
-                                </div>
-                            )}
+                                )}
 
-                            {/* Error State */}
-                            {error && (
-                                <div
-                                    className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-3 sm:p-4">
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <AlertCircle className="h-4 w-4 sm:h-5 sm:w-5 text-red-600 dark:text-red-400"/>
-                                        <h3 className="font-medium text-red-900 dark:text-red-100 text-sm sm:text-base">Error</h3>
+                                {/* Error State */}
+                                {error && (
+                                    <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <AlertCircle className="h-5 w-5 text-red-600 dark:text-red-400"/>
+                                            <h3 className="font-medium text-red-900 dark:text-red-100">Error</h3>
+                                        </div>
+                                        <p className="text-red-700 dark:text-red-300 text-sm">{error.message}</p>
                                     </div>
-                                    <p className="text-red-700 dark:text-red-300 text-xs sm:text-sm">{error.message}</p>
-                                </div>
-                            )}
+                                )}
 
-                            {/* Success Response */}
-                            {response && (
-                                <div className="space-y-3 sm:space-y-4">
-                                    {/* Response Status */}
-                                    <div
-                                        className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
-                                        <div className="flex items-center gap-2">
-                                            {getStatusIcon(response.status)}
-                                            <span
-                                                className={`font-medium text-sm sm:text-base ${getStatusColor(response.status)}`}>
-                                                {response.status} {response.statusText}
+                                {/* Success Response */}
+                                {response && (
+                                    <div className="space-y-6">
+                                        {/* Response Status */}
+                                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 bg-gray-50 dark:bg-gray-900/50 rounded-lg border border-gray-200 dark:border-gray-700">
+                                            <div className="flex items-center gap-2">
+                                                {getStatusIcon(response.status)}
+                                                <span className={`font-medium text-base ${getStatusColor(response.status)}`}>
+                                                    {response.status} {response.statusText}
+                                                </span>
+                                            </div>
+                                            <span className="text-sm text-gray-600 dark:text-gray-400 font-mono">
+                                                {response.responseTime}ms
                                             </span>
                                         </div>
-                                        <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-                                            {response.responseTime}ms
-                                        </span>
-                                    </div>
 
-                                    {/* Response Headers */}
-                                    <div>
-                                        <h4 className="text-sm font-medium text-gray-900 dark:text-white mb-2">Response
-                                            Headers</h4>
-                                        <CodeBlock
-                                            value={JSON.stringify(response.headers, null, 2)}
-                                            readOnly
-                                            language="json"
-                                            title="Response Headers"
-                                            minHeight="120px"
-                                        />
-                                    </div>
+                                        {/* Response Headers */}
+                                        <div>
+                                            <h4 className="text-sm font-medium text-gray-900 dark:text-white mb-3">Response Headers</h4>
+                                            <SandboxTextEditor
+                                                value={JSON.stringify(response.headers, null, 2)}
+                                                readOnly
+                                                language="json"
+                                                title="Response Headers"
+                                                minHeight="200px"
+                                                maxHeight="300px"
+                                            />
+                                        </div>
 
-                                    {/* Response Body */}
-                                    <div>
-                                        <h4 className="text-sm font-medium text-gray-900 dark:text-white mb-2">Response
-                                            Body</h4>
-                                        <CodeBlock
-                                            value={JSON.stringify(response.data, null, 2)}
-                                            readOnly
-                                            language="json"
-                                            title="Response Body"
-                                            minHeight="200px"
-                                        />
+                                        {/* Response Body */}
+                                        <div>
+                                            <h4 className="text-sm font-medium text-gray-900 dark:text-white mb-3">Response Body</h4>
+                                            <SandboxTextEditor
+                                                value={typeof response.data === 'string' ? response.data : JSON.stringify(response.data, null, 2)}
+                                                readOnly
+                                                language="json"
+                                                title="Response Body"
+                                                minHeight="300px"
+                                                maxHeight="500px"
+                                            />
+                                        </div>
                                     </div>
-                                </div>
-                            )}
+                                )}
 
-                            {/* Empty State */}
-                            {!isLoading && !error && !response && (
-                                <div className="text-center py-8 sm:py-12">
-                                    <div
-                                        className="p-3 sm:p-4 bg-gray-100 dark:bg-gray-800 rounded-full w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 flex items-center justify-center">
-                                        <Play className="h-6 w-6 sm:h-8 sm:w-8 text-gray-400"/>
+                                {/* Empty State */}
+                                {!isLoading && !error && !response && (
+                                    <div className="text-center py-12">
+                                        <div className="p-4 bg-gray-100 dark:bg-gray-800 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                                            <Play className="h-8 w-8 text-gray-400"/>
+                                        </div>
+                                        <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
+                                            Ready to test
+                                        </h3>
+                                        <p className="text-base text-gray-600 dark:text-gray-400 max-w-md mx-auto">
+                                            Configure your request and click "Execute Request" to see the response
+                                        </p>
                                     </div>
-                                    <h3 className="text-base sm:text-lg font-medium text-gray-900 dark:text-white mb-2">
-                                        Ready to test
-                                    </h3>
-                                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 px-4">
-                                        Configure your request and click "Execute Request" to see the response
-                                    </p>
-                                </div>
-                            )}
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -487,4 +479,3 @@ const SandboxPlayground = () => {
 };
 
 export default SandboxPlayground;
-

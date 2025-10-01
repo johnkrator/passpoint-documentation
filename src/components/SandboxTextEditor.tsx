@@ -2,18 +2,18 @@ import React, {useState, useEffect, useCallback, useRef} from "react";
 import {Play, X, Settings, Share, Lightbulb, Copy, Check} from "lucide-react";
 import {Button} from "@/components/ui/button";
 
-// Lexical imports - using RichTextPlugin instead of PlainTextPlugin for better editing
-import {$getRoot, $createTextNode, type EditorState} from "lexical";
+// Lexical imports for editing
+import {$getRoot, $createParagraphNode, $createTextNode, type EditorState} from "lexical";
 import {LexicalComposer} from "@lexical/react/LexicalComposer";
-import {RichTextPlugin} from "@lexical/react/LexicalRichTextPlugin";
+import {PlainTextPlugin} from "@lexical/react/LexicalPlainTextPlugin";
 import {ContentEditable} from "@lexical/react/LexicalContentEditable";
 import {HistoryPlugin} from "@lexical/react/LexicalHistoryPlugin";
-import {AutoFocusPlugin} from "@lexical/react/LexicalAutoFocusPlugin";
+import {OnChangePlugin} from "@lexical/react/LexicalOnChangePlugin";
 import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext";
 import {LexicalErrorBoundary} from "@lexical/react/LexicalErrorBoundary";
-import {CodeHighlightNode, CodeNode} from "@lexical/code";
-import {$createCodeNode} from "@lexical/code";
-import {registerCodeHighlighting} from "@lexical/code";
+
+// Monaco imports for syntax highlighting display
+import Editor from "@monaco-editor/react";
 
 interface SandboxTextEditorProps {
     value?: string;
@@ -26,116 +26,215 @@ interface SandboxTextEditorProps {
     className?: string;
 }
 
-// Custom OnChange Plugin following Lexical best practices
-function MyOnChangePlugin({onChange}: { onChange: (editorState: EditorState) => void }) {
+// Plugin to set initial content in Lexical and keep it synced
+function SyncContentPlugin({content, onContentChange}: {
+    content: string;
+    onContentChange: (content: string) => void
+}) {
     const [editor] = useLexicalComposerContext();
+    const [isUpdating, setIsUpdating] = useState(false);
 
     useEffect(() => {
-        return editor.registerUpdateListener(({editorState}) => {
-            onChange(editorState);
-        });
-    }, [editor, onChange]);
-
-    return null;
-}
-
-// Code Highlighting Plugin for syntax highlighting
-function CodeHighlightPlugin() {
-    const [editor] = useLexicalComposerContext();
-
-    useEffect(() => {
-        return registerCodeHighlighting(editor);
-    }, [editor]);
-
-    return null;
-}
-
-// Format JSON Plugin that works within editor context
-function FormatJSONPlugin({onFormat}: { onFormat: () => void }) {
-    const [editor] = useLexicalComposerContext();
-
-    const formatJSON = useCallback(() => {
-        editor.update(() => {
-            const root = $getRoot();
-            const textContent = root.getTextContent();
-
-            try {
-                const parsed = JSON.parse(textContent);
-                const formatted = JSON.stringify(parsed, null, 2);
-
-                root.clear();
-                const codeNode = $createCodeNode("json");
-                const textNode = $createTextNode(formatted);
-                codeNode.append(textNode);
-                root.append(codeNode);
-
-                onFormat();
-            } catch (error) {
-                console.error("Invalid JSON:", error);
-            }
-        });
-    }, [editor, onFormat]);
-
-    // Expose the format function
-    useEffect(() => {
-        (window as Window & { __formatJSON?: () => void }).__formatJSON = formatJSON;
-    }, [formatJSON]);
-
-    return null;
-}
-
-// Plugin to set initial content properly with syntax highlighting
-function InitialContentPlugin({initialContent}: { initialContent: string }) {
-    const [editor] = useLexicalComposerContext();
-    const [isFirstRender, setIsFirstRender] = useState(true);
-
-    useEffect(() => {
-        if (initialContent && isFirstRender) {
+        if (!isUpdating && content) {
+            setIsUpdating(true);
             editor.update(() => {
                 const root = $getRoot();
-                if (root.isEmpty()) {
+                const currentContent = root.getTextContent();
+                if (currentContent !== content) {
                     root.clear();
-                    try {
-                        // For JSON content, we want to preserve formatting and add syntax highlighting
-                        const formattedJSON = JSON.stringify(JSON.parse(initialContent), null, 2);
-                        const codeNode = $createCodeNode("json");
-                        const textNode = $createTextNode(formattedJSON);
-                        codeNode.append(textNode);
-                        root.append(codeNode);
-                    } catch {
-                        // If it's not valid JSON, just set as plain text in a code block
-                        const codeNode = $createCodeNode("json");
-                        const textNode = $createTextNode(initialContent);
-                        codeNode.append(textNode);
-                        root.append(codeNode);
-                    }
+                    const paragraph = $createParagraphNode();
+                    paragraph.append($createTextNode(content));
+                    root.append(paragraph);
+                }
+            }, {
+                onUpdate: () => {
+                    setIsUpdating(false);
                 }
             });
-            setIsFirstRender(false);
         }
-    }, [editor, initialContent, isFirstRender]);
+    }, [editor, content, isUpdating]);
 
-    return null;
+    // Handle changes from Lexical
+    const handleChange = useCallback((editorState: EditorState) => {
+        if (!isUpdating) {
+            editorState.read(() => {
+                const root = $getRoot();
+                const textContent = root.getTextContent();
+                onContentChange(textContent);
+            });
+        }
+    }, [onContentChange, isUpdating]);
+
+    return <OnChangePlugin onChange={handleChange}/>;
 }
 
+// Overlay editor that combines Monaco display with Lexical editing
+function HybridEditor({value, onChange, placeholder, readOnly}: {
+    value: string;
+    onChange: (value: string) => void;
+    placeholder: string;
+    readOnly: boolean;
+}) {
+    const [isEditing, setIsEditing] = useState(false);
+    const [localValue, setLocalValue] = useState(value);
+    const editorContainerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        setLocalValue(value);
+    }, [value]);
+
+    const handleContentChange = useCallback((newContent: string) => {
+        setLocalValue(newContent);
+        onChange(newContent);
+    }, [onChange]);
+
+    const lexicalConfig = {
+        namespace: "HybridEditor",
+        editable: !readOnly,
+        onError: (error: Error) => {
+            console.error("Lexical error:", error);
+        },
+    };
+
+    return (
+        <div className="relative h-full w-full" ref={editorContainerRef}>
+            {/* Monaco Editor for syntax highlighting (always visible) */}
+            <div
+                className={`absolute inset-0 ${isEditing ? "opacity-20" : "opacity-100"} transition-opacity duration-200`}>
+                <Editor
+                    height="100%"
+                    defaultLanguage="json"
+                    value={localValue}
+                    theme="vs-dark"
+                    options={{
+                        readOnly: true,
+                        minimap: {enabled: false},
+                        fontSize: 14,
+                        lineHeight: 20,
+                        fontFamily: "'JetBrains Mono', 'Fira Code', 'Monaco', 'Menlo', monospace",
+                        automaticLayout: true,
+                        wordWrap: "on",
+                        lineNumbers: "on",
+                        lineNumbersMinChars: 3,
+                        glyphMargin: false,
+                        folding: true,
+                        foldingStrategy: "indentation",
+                        contextmenu: false,
+                        selectOnLineNumbers: false,
+                        scrollBeyondLastLine: false,
+                        smoothScrolling: true,
+                        renderLineHighlight: "none",
+                        matchBrackets: "always",
+                        bracketPairColorization: {enabled: true},
+                        scrollbar: {
+                            useShadows: false,
+                            vertical: "visible",
+                            horizontal: "visible",
+                            verticalScrollbarSize: 12,
+                            horizontalScrollbarSize: 12
+                        }
+                    }}
+                />
+            </div>
+
+            {/* Lexical Editor for editing (overlay) */}
+            <div
+                className={`absolute inset-0 ${isEditing ? "opacity-100 z-10" : "opacity-0 pointer-events-none"} transition-opacity duration-200`}
+                style={{
+                    background: isEditing ? "rgba(30, 30, 30, 0.95)" : "transparent"
+                }}
+            >
+                <LexicalComposer initialConfig={lexicalConfig}>
+                    <div className="h-full relative">
+                        <PlainTextPlugin
+                            contentEditable={
+                                <ContentEditable
+                                    className="w-full h-full px-16 py-4 text-sm font-mono leading-[20px] text-[#d4d4d4] bg-transparent border-none outline-none resize-none overflow-auto focus:ring-0"
+                                    style={{
+                                        fontFamily: "'JetBrains Mono', 'Fira Code', 'Monaco', 'Menlo', monospace",
+                                        fontSize: "14px",
+                                        lineHeight: "20px"
+                                    }}
+                                    aria-placeholder={placeholder}
+                                    placeholder={<div/>}
+                                    onFocus={() => setIsEditing(true)}
+                                    onBlur={(e) => {
+                                        // Only hide if not clicking within the editor
+                                        if (!editorContainerRef.current?.contains(e.relatedTarget as Node)) {
+                                            setIsEditing(false);
+                                        }
+                                    }}
+                                />
+                            }
+                            placeholder={
+                                <div
+                                    className="absolute top-4 left-16 text-[#6a6a6a] text-sm font-mono pointer-events-none">
+                                    {placeholder}
+                                </div>
+                            }
+                            ErrorBoundary={LexicalErrorBoundary}
+                        />
+                        <SyncContentPlugin content={localValue} onContentChange={handleContentChange}/>
+                        <HistoryPlugin/>
+                    </div>
+                </LexicalComposer>
+            </div>
+
+            {/* Click overlay to enter edit mode */}
+            {!isEditing && !readOnly && (
+                <div
+                    className="absolute inset-0 z-5 cursor-text flex items-center justify-center group"
+                    onClick={() => setIsEditing(true)}
+                >
+                    <div className="absolute inset-0 bg-transparent group-hover:bg-black/10 transition-colors"/>
+                    <div
+                        className="bg-[#2d2d30] border border-[#3c3c3c] rounded px-3 py-1 text-xs text-[#cccccc] opacity-0 group-hover:opacity-100 transition-opacity">
+                        Click to edit
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+}
 
 const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
                                                                  value = `{
-    "method": "GET",
-    "url": "https://dev.mypasspoint.com/paypass/api/v1/wallet/balance",
+    "method": "POST",
+    "url": "https://dev.mypasspoint.com/paypass/api/v1/wallet/payout",
     "headers": {
         "Authorization": "Bearer YOUR_ACCESS_TOKEN",
         "Content-Type": "application/json",
         "X-Channel-Id": "3",
         "X-Channel-Code": "legacy-api-user"
+    },
+    "body": {
+        "clientReference": "173619396818871",
+        "amount": "1700.00",
+        "narration": "test eur payout from ngn wallet",
+        "transactionCurrency": "EUR",
+        "baseCurrency": "EUR",
+        "countryCode": "FR",
+        "paymentInfo": {
+            "senderFirstName": "Josh Travels",
+            "senderLastName": "Ghaju",
+            "senderAddress": "Plot 331, Raji Rasaki Estate",
+            "senderCity": "Lagos",
+            "senderZipCode": "5005",
+            "senderOccupation": "03",
+            "senderIdType": "03",
+            "senderIdNumber": "46543345322",
+            "senderBeneficiaryRelationship": "02",
+            "remitterType": "I",
+            "beneficiaryType": "I",
+            "receiverFirstName": "WIKARNDoA",
+            "receiverLastName": "SUPATINAVADEE"
+        }
     }
 }`,
                                                                  onChange,
                                                                  title = "API Request",
                                                                  placeholder = "Enter your API request configuration...",
                                                                  readOnly = false,
-                                                                 minHeight = "400px",
-                                                                 maxHeight = "600px",
                                                                  className = ""
                                                              }) => {
     const [localValue, setLocalValue] = useState(value);
@@ -146,7 +245,7 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
     const [isMobile, setIsMobile] = useState(false);
     const [showResponse, setShowResponse] = useState(false);
     const [copied, setCopied] = useState(false);
-    const [error, setError] = useState("");
+    const [, setError] = useState("");
     const containerRef = useRef<HTMLDivElement>(null);
 
     // Check if device is mobile
@@ -164,14 +263,9 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
         setLocalValue(value);
     }, [value]);
 
-    // Handle editor changes properly according to Lexical best practices
-    const handleEditorChange = useCallback((editorState: EditorState) => {
-        editorState.read(() => {
-            const root = $getRoot();
-            const content = root.getTextContent();
-            setLocalValue(content);
-            onChange?.(content);
-        });
+    const handleValueChange = useCallback((newValue: string) => {
+        setLocalValue(newValue);
+        onChange?.(newValue);
     }, [onChange]);
 
     // Copy functionality
@@ -185,25 +279,17 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
         }
     };
 
-    // Format JSON function that calls the plugin
+    // Format JSON function
     const handleFormatJSON = () => {
-        const windowWithFormat = window as Window & { __formatJSON?: () => void };
-        if (windowWithFormat.__formatJSON) {
-            windowWithFormat.__formatJSON();
+        try {
+            const parsed = JSON.parse(localValue);
+            const formatted = JSON.stringify(parsed, null, 4);
+            setLocalValue(formatted);
+            onChange?.(formatted);
+        } catch (error) {
+            console.error("Invalid JSON format");
         }
     };
-
-    const handleFormatUpdate = useCallback(() => {
-        // This will be called after formatting to update local state
-        setTimeout(() => {
-            const windowWithEditor = window as Window & { __getEditorContent?: () => string };
-            if (windowWithEditor.__getEditorContent) {
-                const content = windowWithEditor.__getEditorContent();
-                setLocalValue(content);
-                onChange?.(content);
-            }
-        }, 100);
-    }, [onChange]);
 
     // Execute actual API request
     const handleRunCode = async () => {
@@ -213,7 +299,6 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
         setShowResponse(true);
 
         try {
-            // Parse the request configuration
             let requestConfig;
             try {
                 requestConfig = JSON.parse(localValue);
@@ -221,7 +306,6 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
                 throw new Error("Invalid JSON format in request configuration");
             }
 
-            // Validate required fields
             if (!requestConfig.method) {
                 throw new Error("Request method is required");
             }
@@ -229,7 +313,6 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
                 throw new Error("Request URL is required");
             }
 
-            // Prepare fetch options
             const fetchOptions: RequestInit = {
                 method: requestConfig.method.toUpperCase(),
                 headers: {
@@ -238,26 +321,22 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
                 }
             };
 
-            // Add body for POST/PUT/PATCH requests
             if (requestConfig.body && ["POST", "PUT", "PATCH"].includes(requestConfig.method.toUpperCase())) {
                 fetchOptions.body = JSON.stringify(requestConfig.body);
             }
 
-            // Execute the request
             const startTime = Date.now();
             let fetchResponse;
 
             try {
                 fetchResponse = await fetch(requestConfig.url, fetchOptions);
             } catch (networkError) {
-                // Handle network errors or CORS issues
                 throw new Error(`Network Error: ${networkError instanceof Error ? networkError.message : "Failed to connect to the API"}`);
             }
 
             const endTime = Date.now();
             const responseTime = endTime - startTime;
 
-            // Get response data
             let responseData;
             const contentType = fetchResponse.headers.get("content-type");
 
@@ -271,7 +350,6 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
                 responseData = await fetchResponse.text();
             }
 
-            // Format the complete response
             const formattedResponse = {
                 status: fetchResponse.status,
                 statusText: fetchResponse.statusText,
@@ -283,7 +361,6 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
             setResponse(JSON.stringify(formattedResponse, null, 2));
 
         } catch (err) {
-            // Handle errors
             const errorMessage = err instanceof Error ? err.message : "Unknown error occurred";
             setError(errorMessage);
 
@@ -299,6 +376,24 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
             setIsRunning(false);
         }
     };
+
+    // Handle keyboard shortcuts
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.ctrlKey || e.metaKey) {
+                if (e.key === "Enter") {
+                    e.preventDefault();
+                    handleRunCode();
+                } else if (e.shiftKey && e.altKey && e.key === "F") {
+                    e.preventDefault();
+                    handleFormatJSON();
+                }
+            }
+        };
+
+        document.addEventListener("keydown", handleKeyDown);
+        return () => document.removeEventListener("keydown", handleKeyDown);
+    }, [localValue]);
 
     // Handle mouse events for dragging divider (desktop only)
     const handleMouseDown = (e: React.MouseEvent) => {
@@ -330,61 +425,6 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
         }
     }, [isDragging, handleMouseMove, handleMouseUp, isMobile]);
 
-    // Generate line numbers
-    const requestLines = localValue.split("\n");
-    const requestLineNumbers = requestLines.map((_, index) => index + 1);
-    const responseLines = response.split("\n");
-    const responseLineNumbers = responseLines.map((_, index) => index + 1);
-
-    // Lexical theme for code editing with syntax highlighting
-    const theme = {
-        root: "editor-root",
-        code: "editor-code-block",
-        codeHighlight: {
-            atrule: "editor-token-atrule",
-            attr: "editor-token-attr",
-            boolean: "editor-token-boolean",
-            builtin: "editor-token-builtin",
-            cdata: "editor-token-cdata",
-            char: "editor-token-char",
-            class: "editor-token-class",
-            "class-name": "editor-token-class-name",
-            comment: "editor-token-comment",
-            constant: "editor-token-constant",
-            deleted: "editor-token-deleted",
-            doctype: "editor-token-doctype",
-            entity: "editor-token-entity",
-            function: "editor-token-function",
-            important: "editor-token-important",
-            inserted: "editor-token-inserted",
-            keyword: "editor-token-keyword",
-            namespace: "editor-token-namespace",
-            number: "editor-token-number",
-            operator: "editor-token-operator",
-            prolog: "editor-token-prolog",
-            property: "editor-token-property",
-            punctuation: "editor-token-punctuation",
-            regex: "editor-token-regex",
-            selector: "editor-token-selector",
-            string: "editor-token-string",
-            symbol: "editor-token-symbol",
-            tag: "editor-token-tag",
-            url: "editor-token-url",
-            variable: "editor-token-variable",
-        }
-    };
-
-    // Initial config for Lexical following best practices with code highlighting
-    const initialConfig = {
-        namespace: "SandboxTextEditor",
-        theme,
-        nodes: [CodeNode, CodeHighlightNode],
-        editable: !readOnly,
-        onError: (error: Error) => {
-            console.error("Lexical error:", error);
-        }
-    };
-
     const mobileHeight = isMobile ? "400px" : "600px";
 
     return (
@@ -407,7 +447,7 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
                         size="sm"
                         onClick={handleFormatJSON}
                         className="h-6 w-6 sm:h-8 sm:w-8 p-0 text-[#cccccc] hover:text-white hover:bg-[#3c3c3c]"
-                        title="Format JSON"
+                        title="Format JSON (Shift+Alt+F)"
                     >
                         <Settings className="h-3 w-3 sm:h-4 sm:w-4"/>
                     </Button>
@@ -416,7 +456,7 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
                         size="sm"
                         onClick={handleCopy}
                         className="h-6 w-6 sm:h-8 sm:w-8 p-0 text-[#cccccc] hover:text-white hover:bg-[#3c3c3c]"
-                        title="Copy code"
+                        title="Copy code (Ctrl+C)"
                     >
                         {copied ? (
                             <Check className="h-3 w-3 sm:h-4 sm:w-4 text-green-400"/>
@@ -463,7 +503,7 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
                     // Mobile: Single panel view with tab switching
                     <div className="flex flex-col min-h-0 w-full">
                         {!showResponse ? (
-                            // Request Panel
+                            // Request Panel - Hybrid Editor
                             <>
                                 <div className="bg-[#2d2d30] border-b border-[#3c3c3c] px-3 py-1 flex-shrink-0">
                                     <div className="flex items-center gap-2">
@@ -475,51 +515,17 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
                                     </div>
                                 </div>
 
-                                <div className="flex flex-1 min-h-0">
-                                    <div
-                                        className="bg-[#1e1e1e] px-2 py-3 border-r border-[#3c3c3c] select-none min-w-[40px] flex-shrink-0">
-                                        <div className="text-xs text-[#858585] leading-[1.4] font-mono">
-                                            {requestLineNumbers.map((num) => (
-                                                <div key={num} className="text-right h-[16px] leading-[16px]">
-                                                    {num}
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-
-                                    <div className="flex-1 bg-[#1e1e1e] overflow-hidden">
-                                        <LexicalComposer initialConfig={initialConfig}>
-                                            <div className="h-full relative">
-                                                <RichTextPlugin
-                                                    contentEditable={
-                                                        <ContentEditable
-                                                            className="w-full h-full p-3 text-xs font-mono leading-[1.4] text-[#d4d4d4] bg-transparent border-none outline-none resize-none overflow-auto focus:ring-0"
-                                                            aria-placeholder={placeholder}
-                                                            placeholder={<div/>}
-                                                            spellCheck={false}
-                                                        />
-                                                    }
-                                                    placeholder={
-                                                        <div
-                                                            className="absolute top-3 left-3 text-[#6a6a6a] text-xs font-mono pointer-events-none">
-                                                            {placeholder}
-                                                        </div>
-                                                    }
-                                                    ErrorBoundary={LexicalErrorBoundary}
-                                                />
-                                                <MyOnChangePlugin onChange={handleEditorChange}/>
-                                                <HistoryPlugin/>
-                                                <AutoFocusPlugin/>
-                                                <CodeHighlightPlugin/>
-                                                <FormatJSONPlugin onFormat={handleFormatUpdate}/>
-                                                <InitialContentPlugin initialContent={localValue}/>
-                                            </div>
-                                        </LexicalComposer>
-                                    </div>
+                                <div className="flex-1 bg-[#1e1e1e] overflow-hidden">
+                                    <HybridEditor
+                                        value={localValue}
+                                        onChange={handleValueChange}
+                                        placeholder={placeholder}
+                                        readOnly={readOnly}
+                                    />
                                 </div>
                             </>
                         ) : (
-                            // Response Panel
+                            // Response Panel - Monaco only (read-only)
                             <>
                                 <div className="bg-[#2d2d30] border-b border-[#3c3c3c] px-3 py-1 flex-shrink-0">
                                     <div className="flex items-center gap-2">
@@ -530,46 +536,47 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
                                     </div>
                                 </div>
 
-                                <div className="flex flex-1 min-h-0">
-                                    {response && (
-                                        <div
-                                            className="bg-[#1e1e1e] px-2 py-3 border-r border-[#3c3c3c] select-none min-w-[40px] flex-shrink-0">
-                                            <div className="text-xs text-[#858585] leading-[1.4] font-mono">
-                                                {responseLineNumbers.map((num) => (
-                                                    <div key={num} className="text-right h-[16px] leading-[16px]">
-                                                        {num}
-                                                    </div>
-                                                ))}
+                                <div className="flex-1 bg-[#1e1e1e] overflow-hidden">
+                                    {isRunning ? (
+                                        <div className="flex items-center justify-center h-full">
+                                            <div className="flex items-center gap-3 text-[#4ec9b0]">
+                                                <div
+                                                    className="animate-spin h-4 w-4 border-2 border-[#4ec9b0] border-t-transparent rounded-full"></div>
+                                                <span className="text-xs">Executing request...</span>
+                                            </div>
+                                        </div>
+                                    ) : response ? (
+                                        <Editor
+                                            height="100%"
+                                            defaultLanguage="json"
+                                            value={response}
+                                            theme="vs-dark"
+                                            options={{
+                                                readOnly: true,
+                                                minimap: {enabled: false},
+                                                fontSize: 12,
+                                                lineHeight: 16,
+                                                automaticLayout: true,
+                                                wordWrap: "on",
+                                                lineNumbers: "on",
+                                                glyphMargin: false,
+                                                folding: true,
+                                                contextmenu: false,
+                                                selectOnLineNumbers: true,
+                                                scrollBeyondLastLine: false
+                                            }}
+                                        />
+                                    ) : (
+                                        <div className="flex items-center justify-center h-full p-4">
+                                            <div className="text-center text-[#6a6a6a]">
+                                                <div className="text-base mb-2">⚡</div>
+                                                <div className="text-xs">Ready to execute</div>
+                                                <div className="text-xs mt-1">Press Ctrl+Enter or click "Execute
+                                                    Request"
+                                                </div>
                                             </div>
                                         </div>
                                     )}
-
-                                    <div className="flex-1 bg-[#1e1e1e] overflow-hidden">
-                                        {isRunning ? (
-                                            <div className="flex items-center justify-center h-full">
-                                                <div className="flex items-center gap-3 text-[#4ec9b0]">
-                                                    <div
-                                                        className="animate-spin h-4 w-4 border-2 border-[#4ec9b0] border-t-transparent rounded-full"></div>
-                                                    <span className="text-xs">Executing request...</span>
-                                                </div>
-                                            </div>
-                                        ) : response ? (
-                                            <div
-                                                className={`p-3 text-xs font-mono leading-[1.4] overflow-auto h-full ${error ? "text-[#f87171]" : "text-[#d4d4d4]"}`}>
-                                                <pre className="whitespace-pre-wrap">{response}</pre>
-                                            </div>
-                                        ) : (
-                                            <div className="flex items-center justify-center h-full p-4">
-                                                <div className="text-center text-[#6a6a6a]">
-                                                    <div className="text-base mb-2">⚡</div>
-                                                    <div className="text-xs">Ready to execute</div>
-                                                    <div className="text-xs mt-1">Press Ctrl+Enter or click "Execute
-                                                        Request"
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        )}
-                                    </div>
                                 </div>
                             </>
                         )}
@@ -577,7 +584,7 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
                 ) : (
                     // Desktop: Split panel view with draggable divider
                     <>
-                        {/* Left Side - Request Editor */}
+                        {/* Left Side - Hybrid Request Editor */}
                         <div className="flex flex-col min-h-0" style={{width: `${dividerPosition}%`}}>
                             <div className="bg-[#2d2d30] border-b border-[#3c3c3c] px-3 py-1 flex-shrink-0">
                                 <div className="flex items-center gap-2">
@@ -589,48 +596,13 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
                                 </div>
                             </div>
 
-                            <div className="flex flex-1 min-h-0">
-                                <div
-                                    className="bg-[#1e1e1e] px-3 py-4 border-r border-[#3c3c3c] select-none min-w-[50px] flex-shrink-0">
-                                    <div className="text-xs text-[#858585] leading-[1.5] font-mono">
-                                        {requestLineNumbers.map((num) => (
-                                            <div key={num} className="text-right h-[18px] leading-[18px]">
-                                                {num}
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                <div className="flex-1 bg-[#1e1e1e] overflow-hidden">
-                                    <LexicalComposer initialConfig={initialConfig}>
-                                        <div className="h-full relative">
-                                            <RichTextPlugin
-                                                contentEditable={
-                                                    <ContentEditable
-                                                        className="w-full h-full p-4 text-sm font-mono leading-[1.5] text-[#d4d4d4] bg-transparent border-none outline-none resize-none overflow-auto focus:ring-0"
-                                                        style={{minHeight, maxHeight}}
-                                                        aria-placeholder={placeholder}
-                                                        placeholder={<div/>}
-                                                        spellCheck={false}
-                                                    />
-                                                }
-                                                placeholder={
-                                                    <div
-                                                        className="absolute top-4 left-4 text-[#6a6a6a] text-sm font-mono pointer-events-none">
-                                                        {placeholder}
-                                                    </div>
-                                                }
-                                                ErrorBoundary={LexicalErrorBoundary}
-                                            />
-                                            <MyOnChangePlugin onChange={handleEditorChange}/>
-                                            <HistoryPlugin/>
-                                            <AutoFocusPlugin/>
-                                            <CodeHighlightPlugin/>
-                                            <FormatJSONPlugin onFormat={handleFormatUpdate}/>
-                                            <InitialContentPlugin initialContent={localValue}/>
-                                        </div>
-                                    </LexicalComposer>
-                                </div>
+                            <div className="flex-1 bg-[#1e1e1e] overflow-hidden">
+                                <HybridEditor
+                                    value={localValue}
+                                    onChange={handleValueChange}
+                                    placeholder={placeholder}
+                                    readOnly={readOnly}
+                                />
                             </div>
                         </div>
 
@@ -640,7 +612,7 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
                             onMouseDown={handleMouseDown}
                         />
 
-                        {/* Right Side - Response */}
+                        {/* Right Side - Response (Monaco only) */}
                         <div className="flex flex-col min-h-0" style={{width: `${100 - dividerPosition}%`}}>
                             <div className="bg-[#2d2d30] border-b border-[#3c3c3c] px-3 py-1 flex-shrink-0">
                                 <div className="flex items-center gap-2">
@@ -651,46 +623,46 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
                                 </div>
                             </div>
 
-                            <div className="flex flex-1 min-h-0">
-                                {response && (
-                                    <div
-                                        className="bg-[#1e1e1e] px-3 py-4 border-r border-[#3c3c3c] select-none min-w-[50px] flex-shrink-0">
-                                        <div className="text-xs text-[#858585] leading-[1.5] font-mono">
-                                            {responseLineNumbers.map((num) => (
-                                                <div key={num} className="text-right h-[18px] leading-[18px]">
-                                                    {num}
-                                                </div>
-                                            ))}
+                            <div className="flex-1 bg-[#1e1e1e] overflow-hidden">
+                                {isRunning ? (
+                                    <div className="flex items-center justify-center h-full">
+                                        <div className="flex items-center gap-3 text-[#4ec9b0]">
+                                            <div
+                                                className="animate-spin h-5 w-5 border-2 border-[#4ec9b0] border-t-transparent rounded-full"></div>
+                                            <span className="text-sm">Executing request...</span>
+                                        </div>
+                                    </div>
+                                ) : response ? (
+                                    <Editor
+                                        height="100%"
+                                        defaultLanguage="json"
+                                        value={response}
+                                        theme="vs-dark"
+                                        options={{
+                                            readOnly: true,
+                                            minimap: {enabled: false},
+                                            fontSize: 14,
+                                            lineHeight: 18,
+                                            automaticLayout: true,
+                                            wordWrap: "on",
+                                            lineNumbers: "on",
+                                            glyphMargin: false,
+                                            folding: true,
+                                            contextmenu: false,
+                                            selectOnLineNumbers: true,
+                                            scrollBeyondLastLine: false
+                                        }}
+                                    />
+                                ) : (
+                                    <div className="flex items-center justify-center h-full">
+                                        <div className="text-center text-[#6a6a6a]">
+                                            <div className="text-lg mb-2">⚡</div>
+                                            <div className="text-sm">Ready to execute</div>
+                                            <div className="text-xs mt-1">Press Ctrl+Enter or click "Execute Request"
+                                            </div>
                                         </div>
                                     </div>
                                 )}
-
-                                <div className="flex-1 bg-[#1e1e1e] overflow-hidden">
-                                    {isRunning ? (
-                                        <div className="flex items-center justify-center h-full">
-                                            <div className="flex items-center gap-3 text-[#4ec9b0]">
-                                                <div
-                                                    className="animate-spin h-5 w-5 border-2 border-[#4ec9b0] border-t-transparent rounded-full"></div>
-                                                <span className="text-sm">Executing request...</span>
-                                            </div>
-                                        </div>
-                                    ) : response ? (
-                                        <div
-                                            className={`p-4 text-sm font-mono leading-[1.5] overflow-auto h-full ${error ? "text-[#f87171]" : "text-[#d4d4d4]"}`}>
-                                            <pre className="whitespace-pre-wrap">{response}</pre>
-                                        </div>
-                                    ) : (
-                                        <div className="flex items-center justify-center h-full">
-                                            <div className="text-center text-[#6a6a6a]">
-                                                <div className="text-lg mb-2">⚡</div>
-                                                <div className="text-sm">Ready to execute</div>
-                                                <div className="text-xs mt-1">Press Ctrl+Enter or click "Execute
-                                                    Request"
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
                             </div>
                         </div>
                     </>
@@ -707,7 +679,7 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
 
                 <div className="flex items-center gap-2">
                     {!isMobile && (
-                        <span className="text-xs text-[#6b7280]">Ctrl+Enter to execute</span>
+                        <span className="text-xs text-[#6b7280]">Ctrl+Enter to execute • Shift+Alt+F to format</span>
                     )}
                     <Button
                         onClick={handleRunCode}
@@ -720,147 +692,6 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
                     </Button>
                 </div>
             </div>
-
-            {/* CSS for Lexical editor styling with syntax highlighting */}
-            <style>{`
-                .editor-root {
-                    color: #d4d4d4;
-                    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-                }
-
-                .editor-code-block {
-                    background-color: transparent;
-                    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-                    display: block;
-                    white-space: pre-wrap;
-                    margin: 0;
-                    padding: 0;
-                    border: none;
-                    font-size: inherit;
-                    line-height: inherit;
-                    color: #d4d4d4;
-                }
-
-                /* JSON Syntax Highlighting - VS Code Dark Theme */
-                .editor-token-string {
-                    color: #ce9178 !important;
-                }
-
-                .editor-token-number {
-                    color: #b5cea8 !important;
-                }
-
-                .editor-token-boolean {
-                    color: #569cd6 !important;
-                }
-
-                .editor-token-keyword {
-                    color: #569cd6 !important;
-                }
-
-                .editor-token-property {
-                    color: #9cdcfe !important;
-                }
-
-                .editor-token-punctuation {
-                    color: #d4d4d4 !important;
-                }
-
-                .editor-token-operator {
-                    color: #d4d4d4 !important;
-                }
-
-                .editor-token-comment {
-                    color: #6a9955 !important;
-                    font-style: italic;
-                }
-
-                .editor-token-function {
-                    color: #dcdcaa !important;
-                }
-
-                .editor-token-class-name {
-                    color: #4ec9b0 !important;
-                }
-
-                .editor-token-variable {
-                    color: #9cdcfe !important;
-                }
-
-                .editor-token-constant {
-                    color: #4fc1ff !important;
-                }
-
-                /* Specific token highlighting for JSON */
-                .token-string {
-                    color: #ce9178 !important;
-                }
-
-                .token-number {
-                    color: #b5cea8 !important;
-                }
-
-                .token-boolean {
-                    color: #569cd6 !important;
-                }
-
-                .token-property {
-                    color: #9cdcfe !important;
-                }
-
-                .token-punctuation {
-                    color: #d4d4d4 !important;
-                }
-
-                .token-operator {
-                    color: #d4d4d4 !important;
-                }
-
-                /* Bracket matching */
-                .token-punctuation.bracket {
-                    color: #ffd700 !important;
-                }
-
-                /* Error highlighting for invalid JSON */
-                .token-error {
-                    color: #f14c4c !important;
-                    background-color: rgba(241, 76, 76, 0.1);
-                }
-
-                /* Selection highlighting */
-                .editor-root ::selection {
-                    background-color: #264f78;
-                }
-
-                .editor-root ::-moz-selection {
-                    background-color: #264f78;
-                }
-
-                /* Additional JSON highlighting */
-                .editor-root .token.string {
-                    color: #ce9178 !important;
-                }
-
-                .editor-root .token.property {
-                    color: #9cdcfe !important;
-                }
-
-                .editor-root .token.number {
-                    color: #b5cea8 !important;
-                }
-
-                .editor-root .token.boolean {
-                    color: #569cd6 !important;
-                }
-
-                .editor-root .token.null {
-                    color: #569cd6 !important;
-                }
-
-                .editor-root .token.punctuation {
-                    color: #d4d4d4 !important;
-                }
-            `}</style>
         </div>
     );
 };

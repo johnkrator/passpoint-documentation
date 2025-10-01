@@ -177,9 +177,8 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
                 <div className="flex items-center gap-2 sm:gap-3 min-w-0">
                     <div className="flex items-center gap-1 sm:gap-2 text-[#569cd6] min-w-0">
                         <Lightbulb className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0"/>
-                        <span className="font-medium text-xs sm:text-sm truncate">Lexical React Rich Example</span>
+                        <span className="font-medium text-xs sm:text-sm truncate">Support Test Editor</span>
                     </div>
-                    <span className="text-[#8c8c8c] text-xs hidden sm:inline">By Anonymous</span>
                 </div>
                 <div className="flex items-center gap-1 flex-shrink-0">
                     <Button variant="ghost" size="sm"

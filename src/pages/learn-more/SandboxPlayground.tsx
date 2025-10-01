@@ -4,8 +4,7 @@ import SandboxTextEditor from "@/components/SandboxTextEditor.tsx";
 
 const SandboxPlayground = () => {
     const [selectedEndpoint, setSelectedEndpoint] = useState("wallet/balance");
-    const [requestBody, setRequestBody] = useState("");
-    const [headers, setHeaders] = useState("");
+    const [requestData, setRequestData] = useState("");
 
     const endpoints = [
         {
@@ -14,13 +13,14 @@ const SandboxPlayground = () => {
             method: "GET",
             url: "https://dev.mypasspoint.com/paypass/api/v1/wallet/balance",
             description: "Retrieve wallet balance information",
-            defaultHeaders: {
-                "Authorization": "Bearer YOUR_ACCESS_TOKEN",
-                "Content-Type": "application/json",
-                "X-Channel-Id": "3",
-                "X-Channel-Code": "legacy-api-user"
-            },
-            defaultBody: null
+            defaultRequest: {
+                headers: {
+                    "Authorization": "Bearer YOUR_ACCESS_TOKEN",
+                    "Content-Type": "application/json",
+                    "X-Channel-Id": "3",
+                    "X-Channel-Code": "legacy-api-user"
+                }
+            }
         },
         {
             id: "wallet/create",
@@ -28,15 +28,17 @@ const SandboxPlayground = () => {
             method: "POST",
             url: "https://dev.mypasspoint.com/paypass/api/v1/wallet/create",
             description: "Create a new wallet",
-            defaultHeaders: {
-                "Authorization": "Bearer YOUR_ACCESS_TOKEN",
-                "Content-Type": "application/json",
-                "X-Channel-Id": "3",
-                "X-Channel-Code": "legacy-api-user"
-            },
-            defaultBody: {
-                "currency": "NGN",
-                "name": "Main Wallet"
+            defaultRequest: {
+                headers: {
+                    "Authorization": "Bearer YOUR_ACCESS_TOKEN",
+                    "Content-Type": "application/json",
+                    "X-Channel-Id": "3",
+                    "X-Channel-Code": "legacy-api-user"
+                },
+                body: {
+                    "currency": "NGN",
+                    "name": "Main Wallet"
+                }
             }
         },
         {
@@ -45,19 +47,21 @@ const SandboxPlayground = () => {
             method: "POST",
             url: "https://dev.mypasspoint.com/paypass/api/v1/payout/momo/transfer",
             description: "Transfer funds via mobile money",
-            defaultHeaders: {
-                "Authorization": "Bearer YOUR_ACCESS_TOKEN",
-                "Content-Type": "application/json",
-                "X-Channel-Id": "3",
-                "X-Channel-Code": "legacy-api-user"
-            },
-            defaultBody: {
-                "amount": "1000",
-                "currency": "NGN",
-                "recipientPhone": "+2348123456789",
-                "network": "MTN",
-                "reference": "TXN_" + Date.now(),
-                "description": "Test transfer"
+            defaultRequest: {
+                headers: {
+                    "Authorization": "Bearer YOUR_ACCESS_TOKEN",
+                    "Content-Type": "application/json",
+                    "X-Channel-Id": "3",
+                    "X-Channel-Code": "legacy-api-user"
+                },
+                body: {
+                    "amount": "1000",
+                    "currency": "NGN",
+                    "recipientPhone": "+2348123456789",
+                    "network": "MTN",
+                    "reference": "TXN_" + Date.now(),
+                    "description": "Test transfer"
+                }
             }
         },
         {
@@ -66,17 +70,19 @@ const SandboxPlayground = () => {
             method: "POST",
             url: "https://dev.mypasspoint.com/paypass/api/v1/collection/virtual-account/generate",
             description: "Generate a virtual account for collections",
-            defaultHeaders: {
-                "Authorization": "Bearer YOUR_ACCESS_TOKEN",
-                "Content-Type": "application/json",
-                "X-Channel-Id": "3",
-                "X-Channel-Code": "legacy-api-user"
-            },
-            defaultBody: {
-                "currency": "NGN",
-                "accountType": "individual",
-                "customerName": "John Doe",
-                "customerEmail": "john.doe@example.com"
+            defaultRequest: {
+                headers: {
+                    "Authorization": "Bearer YOUR_ACCESS_TOKEN",
+                    "Content-Type": "application/json",
+                    "X-Channel-Id": "3",
+                    "X-Channel-Code": "legacy-api-user"
+                },
+                body: {
+                    "currency": "NGN",
+                    "accountType": "individual",
+                    "customerName": "John Doe",
+                    "customerEmail": "john.doe@example.com"
+                }
             }
         }
     ];
@@ -85,8 +91,14 @@ const SandboxPlayground = () => {
 
     React.useEffect(() => {
         if (selectedEndpointData) {
-            setHeaders(JSON.stringify(selectedEndpointData.defaultHeaders, null, 2));
-            setRequestBody(selectedEndpointData.defaultBody ? JSON.stringify(selectedEndpointData.defaultBody, null, 2) : "");
+            // Combine headers and body into a single request object
+            const requestObject = {
+                method: selectedEndpointData.method,
+                url: selectedEndpointData.url,
+                headers: selectedEndpointData.defaultRequest.headers,
+                ...(selectedEndpointData.defaultRequest.body && {body: selectedEndpointData.defaultRequest.body})
+            };
+            setRequestData(JSON.stringify(requestObject, null, 2));
         }
     }, [selectedEndpoint, selectedEndpointData]);
 
@@ -146,9 +158,8 @@ const SandboxPlayground = () => {
                     </div>
                 </div>
 
-                {/* Main Content */}
+                {/* Main Content - Single Editor */}
                 <div className="space-y-4 sm:space-y-6">
-                    {/* Request Panel */}
                     <div className="w-full">
                         <div
                             className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden shadow-sm">
@@ -157,7 +168,7 @@ const SandboxPlayground = () => {
                                 className="flex items-center gap-2 px-4 sm:px-6 py-3 sm:py-4 bg-gray-50 dark:bg-gray-800/30 border-b border-gray-200 dark:border-gray-700">
                                 <Settings className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600 dark:text-gray-400"/>
                                 <h2 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">
-                                    Request Configuration
+                                    API Testing Environment
                                 </h2>
                             </div>
 
@@ -186,34 +197,20 @@ const SandboxPlayground = () => {
                                         </code>
                                     </div>
 
-                                    {/* Headers Section */}
+                                    {/* Single API Testing Editor */}
                                     <div>
-                                        <h3 className="text-sm font-medium text-gray-900 dark:text-white mb-3">Headers</h3>
+                                        <h3 className="text-sm font-medium text-gray-900 dark:text-white mb-3">
+                                            Request Configuration & Response
+                                        </h3>
                                         <SandboxTextEditor
-                                            value={headers}
-                                            onChange={setHeaders}
-                                            placeholder="Enter request headers..."
-                                            title="Request Headers"
-                                            minHeight="200px"
-                                            maxHeight="300px"
+                                            value={requestData}
+                                            onChange={setRequestData}
+                                            placeholder="Configure your API request..."
+                                            title="API Request"
+                                            minHeight="400px"
+                                            maxHeight="600px"
                                         />
                                     </div>
-
-                                    {/* Request Body (for POST requests) */}
-                                    {selectedEndpointData.method === "POST" && (
-                                        <div>
-                                            <h3 className="text-sm font-medium text-gray-900 dark:text-white mb-3">Request
-                                                Body</h3>
-                                            <SandboxTextEditor
-                                                value={requestBody}
-                                                onChange={setRequestBody}
-                                                placeholder="Enter request body..."
-                                                title="Request Body"
-                                                minHeight="200px"
-                                                maxHeight="300px"
-                                            />
-                                        </div>
-                                    )}
                                 </div>
                             )}
                         </div>
@@ -225,3 +222,4 @@ const SandboxPlayground = () => {
 };
 
 export default SandboxPlayground;
+

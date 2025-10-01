@@ -1,9 +1,9 @@
 import React, {useState, useEffect, useCallback, useRef} from "react";
-import {Play, X, Settings, Share, RotateCcw, Lightbulb, Copy, Check} from "lucide-react";
+import {Play, X, Settings, Share, Lightbulb, Copy, Check} from "lucide-react";
 import {Button} from "@/components/ui/button";
 
 // Lexical imports - using RichTextPlugin instead of PlainTextPlugin for better editing
-import {$getRoot, $getSelection, type EditorState} from "lexical";
+import {$getRoot, $createTextNode, type EditorState} from "lexical";
 import {LexicalComposer} from "@lexical/react/LexicalComposer";
 import {RichTextPlugin} from "@lexical/react/LexicalRichTextPlugin";
 import {ContentEditable} from "@lexical/react/LexicalContentEditable";
@@ -11,6 +11,9 @@ import {HistoryPlugin} from "@lexical/react/LexicalHistoryPlugin";
 import {AutoFocusPlugin} from "@lexical/react/LexicalAutoFocusPlugin";
 import {useLexicalComposerContext} from "@lexical/react/LexicalComposerContext";
 import {LexicalErrorBoundary} from "@lexical/react/LexicalErrorBoundary";
+import {CodeHighlightNode, CodeNode} from "@lexical/code";
+import {$createCodeNode} from "@lexical/code";
+import {registerCodeHighlighting} from "@lexical/code";
 
 interface SandboxTextEditorProps {
     value?: string;
@@ -36,7 +39,52 @@ function MyOnChangePlugin({onChange}: { onChange: (editorState: EditorState) => 
     return null;
 }
 
-// Plugin to set initial content properly
+// Code Highlighting Plugin for syntax highlighting
+function CodeHighlightPlugin() {
+    const [editor] = useLexicalComposerContext();
+
+    useEffect(() => {
+        return registerCodeHighlighting(editor);
+    }, [editor]);
+
+    return null;
+}
+
+// Format JSON Plugin that works within editor context
+function FormatJSONPlugin({onFormat}: { onFormat: () => void }) {
+    const [editor] = useLexicalComposerContext();
+
+    const formatJSON = useCallback(() => {
+        editor.update(() => {
+            const root = $getRoot();
+            const textContent = root.getTextContent();
+
+            try {
+                const parsed = JSON.parse(textContent);
+                const formatted = JSON.stringify(parsed, null, 2);
+
+                root.clear();
+                const codeNode = $createCodeNode("json");
+                const textNode = $createTextNode(formatted);
+                codeNode.append(textNode);
+                root.append(codeNode);
+
+                onFormat();
+            } catch (error) {
+                console.error("Invalid JSON:", error);
+            }
+        });
+    }, [editor, onFormat]);
+
+    // Expose the format function
+    useEffect(() => {
+        (window as Window & { __formatJSON?: () => void }).__formatJSON = formatJSON;
+    }, [formatJSON]);
+
+    return null;
+}
+
+// Plugin to set initial content properly with syntax highlighting
 function InitialContentPlugin({initialContent}: { initialContent: string }) {
     const [editor] = useLexicalComposerContext();
     const [isFirstRender, setIsFirstRender] = useState(true);
@@ -47,16 +95,19 @@ function InitialContentPlugin({initialContent}: { initialContent: string }) {
                 const root = $getRoot();
                 if (root.isEmpty()) {
                     root.clear();
-                    // Parse and set the JSON content properly
                     try {
-                        // For JSON content, we want to preserve formatting
+                        // For JSON content, we want to preserve formatting and add syntax highlighting
                         const formattedJSON = JSON.stringify(JSON.parse(initialContent), null, 2);
-                        const textNode = root.createTextNode(formattedJSON);
-                        root.append(textNode);
+                        const codeNode = $createCodeNode("json");
+                        const textNode = $createTextNode(formattedJSON);
+                        codeNode.append(textNode);
+                        root.append(codeNode);
                     } catch {
-                        // If it's not valid JSON, just set as plain text
-                        const textNode = root.createTextNode(initialContent);
-                        root.append(textNode);
+                        // If it's not valid JSON, just set as plain text in a code block
+                        const codeNode = $createCodeNode("json");
+                        const textNode = $createTextNode(initialContent);
+                        codeNode.append(textNode);
+                        root.append(codeNode);
                     }
                 }
             });
@@ -66,6 +117,7 @@ function InitialContentPlugin({initialContent}: { initialContent: string }) {
 
     return null;
 }
+
 
 const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
                                                                  value = `{
@@ -133,6 +185,26 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
         }
     };
 
+    // Format JSON function that calls the plugin
+    const handleFormatJSON = () => {
+        const windowWithFormat = window as Window & { __formatJSON?: () => void };
+        if (windowWithFormat.__formatJSON) {
+            windowWithFormat.__formatJSON();
+        }
+    };
+
+    const handleFormatUpdate = useCallback(() => {
+        // This will be called after formatting to update local state
+        setTimeout(() => {
+            const windowWithEditor = window as Window & { __getEditorContent?: () => string };
+            if (windowWithEditor.__getEditorContent) {
+                const content = windowWithEditor.__getEditorContent();
+                setLocalValue(content);
+                onChange?.(content);
+            }
+        }, 100);
+    }, [onChange]);
+
     // Execute actual API request
     const handleRunCode = async () => {
         setIsRunning(true);
@@ -145,7 +217,7 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
             let requestConfig;
             try {
                 requestConfig = JSON.parse(localValue);
-            } catch (parseError) {
+            } catch {
                 throw new Error("Invalid JSON format in request configuration");
             }
 
@@ -192,7 +264,7 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
             if (contentType && contentType.includes("application/json")) {
                 try {
                     responseData = await fetchResponse.json();
-                } catch (jsonError) {
+                } catch {
                     responseData = await fetchResponse.text();
                 }
             } else {
@@ -264,18 +336,49 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
     const responseLines = response.split("\n");
     const responseLineNumbers = responseLines.map((_, index) => index + 1);
 
-    // Lexical theme for code editing
+    // Lexical theme for code editing with syntax highlighting
     const theme = {
         root: "editor-root",
-        text: {
-            code: "editor-code",
+        code: "editor-code-block",
+        codeHighlight: {
+            atrule: "editor-token-atrule",
+            attr: "editor-token-attr",
+            boolean: "editor-token-boolean",
+            builtin: "editor-token-builtin",
+            cdata: "editor-token-cdata",
+            char: "editor-token-char",
+            class: "editor-token-class",
+            "class-name": "editor-token-class-name",
+            comment: "editor-token-comment",
+            constant: "editor-token-constant",
+            deleted: "editor-token-deleted",
+            doctype: "editor-token-doctype",
+            entity: "editor-token-entity",
+            function: "editor-token-function",
+            important: "editor-token-important",
+            inserted: "editor-token-inserted",
+            keyword: "editor-token-keyword",
+            namespace: "editor-token-namespace",
+            number: "editor-token-number",
+            operator: "editor-token-operator",
+            prolog: "editor-token-prolog",
+            property: "editor-token-property",
+            punctuation: "editor-token-punctuation",
+            regex: "editor-token-regex",
+            selector: "editor-token-selector",
+            string: "editor-token-string",
+            symbol: "editor-token-symbol",
+            tag: "editor-token-tag",
+            url: "editor-token-url",
+            variable: "editor-token-variable",
         }
     };
 
-    // Initial config for Lexical following best practices
+    // Initial config for Lexical following best practices with code highlighting
     const initialConfig = {
         namespace: "SandboxTextEditor",
         theme,
+        nodes: [CodeNode, CodeHighlightNode],
         editable: !readOnly,
         onError: (error: Error) => {
             console.error("Lexical error:", error);
@@ -302,6 +405,15 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
                     <Button
                         variant="ghost"
                         size="sm"
+                        onClick={handleFormatJSON}
+                        className="h-6 w-6 sm:h-8 sm:w-8 p-0 text-[#cccccc] hover:text-white hover:bg-[#3c3c3c]"
+                        title="Format JSON"
+                    >
+                        <Settings className="h-3 w-3 sm:h-4 sm:w-4"/>
+                    </Button>
+                    <Button
+                        variant="ghost"
+                        size="sm"
                         onClick={handleCopy}
                         className="h-6 w-6 sm:h-8 sm:w-8 p-0 text-[#cccccc] hover:text-white hover:bg-[#3c3c3c]"
                         title="Copy code"
@@ -311,10 +423,6 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
                         ) : (
                             <Copy className="h-3 w-3 sm:h-4 sm:w-4"/>
                         )}
-                    </Button>
-                    <Button variant="ghost" size="sm"
-                            className="h-6 w-6 sm:h-8 sm:w-8 p-0 text-[#cccccc] hover:text-white hover:bg-[#3c3c3c]">
-                        <Settings className="h-3 w-3 sm:h-4 sm:w-4"/>
                     </Button>
                     <Button variant="ghost" size="sm"
                             className="h-6 w-6 sm:h-8 sm:w-8 p-0 text-[#cccccc] hover:text-white hover:bg-[#3c3c3c] hidden sm:flex">
@@ -402,6 +510,8 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
                                                 <MyOnChangePlugin onChange={handleEditorChange}/>
                                                 <HistoryPlugin/>
                                                 <AutoFocusPlugin/>
+                                                <CodeHighlightPlugin/>
+                                                <FormatJSONPlugin onFormat={handleFormatUpdate}/>
                                                 <InitialContentPlugin initialContent={localValue}/>
                                             </div>
                                         </LexicalComposer>
@@ -515,6 +625,8 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
                                             <MyOnChangePlugin onChange={handleEditorChange}/>
                                             <HistoryPlugin/>
                                             <AutoFocusPlugin/>
+                                            <CodeHighlightPlugin/>
+                                            <FormatJSONPlugin onFormat={handleFormatUpdate}/>
                                             <InitialContentPlugin initialContent={localValue}/>
                                         </div>
                                     </LexicalComposer>
@@ -609,18 +721,144 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
                 </div>
             </div>
 
-            {/* CSS for Lexical editor styling */}
-            <style jsx>{`
+            {/* CSS for Lexical editor styling with syntax highlighting */}
+            <style>{`
                 .editor-root {
                     color: #d4d4d4;
                     font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
                 }
 
-                .editor-code {
+                .editor-code-block {
                     background-color: transparent;
                     font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
                     display: block;
                     white-space: pre-wrap;
+                    margin: 0;
+                    padding: 0;
+                    border: none;
+                    font-size: inherit;
+                    line-height: inherit;
+                    color: #d4d4d4;
+                }
+
+                /* JSON Syntax Highlighting - VS Code Dark Theme */
+                .editor-token-string {
+                    color: #ce9178 !important;
+                }
+
+                .editor-token-number {
+                    color: #b5cea8 !important;
+                }
+
+                .editor-token-boolean {
+                    color: #569cd6 !important;
+                }
+
+                .editor-token-keyword {
+                    color: #569cd6 !important;
+                }
+
+                .editor-token-property {
+                    color: #9cdcfe !important;
+                }
+
+                .editor-token-punctuation {
+                    color: #d4d4d4 !important;
+                }
+
+                .editor-token-operator {
+                    color: #d4d4d4 !important;
+                }
+
+                .editor-token-comment {
+                    color: #6a9955 !important;
+                    font-style: italic;
+                }
+
+                .editor-token-function {
+                    color: #dcdcaa !important;
+                }
+
+                .editor-token-class-name {
+                    color: #4ec9b0 !important;
+                }
+
+                .editor-token-variable {
+                    color: #9cdcfe !important;
+                }
+
+                .editor-token-constant {
+                    color: #4fc1ff !important;
+                }
+
+                /* Specific token highlighting for JSON */
+                .token-string {
+                    color: #ce9178 !important;
+                }
+
+                .token-number {
+                    color: #b5cea8 !important;
+                }
+
+                .token-boolean {
+                    color: #569cd6 !important;
+                }
+
+                .token-property {
+                    color: #9cdcfe !important;
+                }
+
+                .token-punctuation {
+                    color: #d4d4d4 !important;
+                }
+
+                .token-operator {
+                    color: #d4d4d4 !important;
+                }
+
+                /* Bracket matching */
+                .token-punctuation.bracket {
+                    color: #ffd700 !important;
+                }
+
+                /* Error highlighting for invalid JSON */
+                .token-error {
+                    color: #f14c4c !important;
+                    background-color: rgba(241, 76, 76, 0.1);
+                }
+
+                /* Selection highlighting */
+                .editor-root ::selection {
+                    background-color: #264f78;
+                }
+
+                .editor-root ::-moz-selection {
+                    background-color: #264f78;
+                }
+
+                /* Additional JSON highlighting */
+                .editor-root .token.string {
+                    color: #ce9178 !important;
+                }
+
+                .editor-root .token.property {
+                    color: #9cdcfe !important;
+                }
+
+                .editor-root .token.number {
+                    color: #b5cea8 !important;
+                }
+
+                .editor-root .token.boolean {
+                    color: #569cd6 !important;
+                }
+
+                .editor-root .token.null {
+                    color: #569cd6 !important;
+                }
+
+                .editor-root .token.punctuation {
+                    color: #d4d4d4 !important;
                 }
             `}</style>
         </div>

@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useCallback, useRef} from "react";
-import {Play, Copy, Check, X, ChevronDown, ChevronRight, Settings, Share, RotateCcw, Lightbulb} from "lucide-react";
+import {Play, X, Settings, Share, RotateCcw, Lightbulb} from "lucide-react";
 import {Button} from "@/components/ui/button";
 
 // Lexical imports
@@ -15,7 +15,6 @@ import {LexicalErrorBoundary} from "@lexical/react/LexicalErrorBoundary";
 interface SandboxTextEditorProps {
     value?: string;
     onChange?: (value: string) => void;
-    language?: string;
     title?: string;
     placeholder?: string;
     readOnly?: boolean;
@@ -51,7 +50,6 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
     "X-Channel-Code": "legacy-api-user"
 }`,
                                                                  onChange,
-                                                                 language = "json",
                                                                  title = "Request Headers",
                                                                  placeholder = "Enter your request data...",
                                                                  readOnly = false,
@@ -59,11 +57,11 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
                                                                  maxHeight = "600px",
                                                                  className = ""
                                                              }) => {
-    const [copied, setCopied] = useState(false);
+    // const [copied, setCopied] = useState(false); // Removed unused state
     const [localValue, setLocalValue] = useState(value);
     const [isRunning, setIsRunning] = useState(false);
     const [response, setResponse] = useState("");
-    const [isTerminalExpanded, setIsTerminalExpanded] = useState(false);
+    // const [isTerminalExpanded, setIsTerminalExpanded] = useState(false); // Removed unused state
     const [dividerPosition, setDividerPosition] = useState(50); // Percentage for left panel
     const [isDragging, setIsDragging] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
@@ -72,15 +70,15 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
         setLocalValue(value);
     }, [value]);
 
-    const handleCopy = async () => {
-        try {
-            await navigator.clipboard.writeText(localValue);
-            setCopied(true);
-            setTimeout(() => setCopied(false), 2000);
-        } catch (err) {
-            console.error("Failed to copy text: ", err);
-        }
-    };
+    // const handleCopy = async () => {
+    //     try {
+    //         await navigator.clipboard.writeText(localValue);
+    //         setCopied(true);
+    //         setTimeout(() => setCopied(false), 2000);
+    //     } catch (err) {
+    //         console.error("Failed to copy text: ", err);
+    //     }
+    // }; // Removed unused function
 
     const handleEditorChange = useCallback((editorState: EditorState) => {
         editorState.read(() => {
@@ -106,7 +104,7 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
                     success: true,
                     status: "00",
                     timestamp: new Date().toISOString(),
-                    transactionId: "TXN" + Math.random().toString(36).substr(2, 9).toUpperCase()
+                    transactionId: "TXN" + Math.random().toString(36).substring(2, 11).toUpperCase()
                 }
             };
             setResponse(JSON.stringify(mockResponse, null, 2));
@@ -160,7 +158,7 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
         editable: !readOnly,
         onError: (error: Error) => {
             console.error("Lexical error:", error);
-        },
+        }
     };
 
     return (

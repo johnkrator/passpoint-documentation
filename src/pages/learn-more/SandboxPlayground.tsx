@@ -1,29 +1,11 @@
 import React, {useState} from "react";
-import {Play, Code, Settings, Zap, AlertCircle, CheckCircle, Clock} from "lucide-react";
-import {Button} from "@/components/ui/button.tsx";
+import {Code, Settings} from "lucide-react";
 import SandboxTextEditor from "@/components/SandboxTextEditor.tsx";
-
-interface ApiResponse {
-    status: number;
-    statusText: string;
-    headers: Record<string, string>;
-    data: unknown;
-    responseTime: number;
-}
-
-interface ApiError {
-    message: string;
-    status?: number;
-    details?: unknown;
-}
 
 const SandboxPlayground = () => {
     const [selectedEndpoint, setSelectedEndpoint] = useState("wallet/balance");
     const [requestBody, setRequestBody] = useState("");
     const [headers, setHeaders] = useState("");
-    const [response, setResponse] = useState<ApiResponse | null>(null);
-    const [error, setError] = useState<ApiError | null>(null);
-    const [isLoading, setIsLoading] = useState(false);
 
     const endpoints = [
         {
@@ -105,132 +87,8 @@ const SandboxPlayground = () => {
         if (selectedEndpointData) {
             setHeaders(JSON.stringify(selectedEndpointData.defaultHeaders, null, 2));
             setRequestBody(selectedEndpointData.defaultBody ? JSON.stringify(selectedEndpointData.defaultBody, null, 2) : "");
-            setResponse(null);
-            setError(null);
         }
     }, [selectedEndpoint, selectedEndpointData]);
-
-    const executeRequest = async () => {
-        if (!selectedEndpointData) return;
-
-        setIsLoading(true);
-        setError(null);
-        setResponse(null);
-
-        const startTime = Date.now();
-
-        try {
-            let parsedHeaders: Record<string, string> = {};
-            let parsedBody: unknown = null;
-
-            // Parse headers
-            try {
-                parsedHeaders = headers ? JSON.parse(headers) : {};
-            } catch {
-                throw new Error("Invalid JSON in headers");
-            }
-
-            // Parse body for POST requests
-            if (selectedEndpointData.method === "POST" && requestBody) {
-                try {
-                    parsedBody = JSON.parse(requestBody);
-                } catch {
-                    throw new Error("Invalid JSON in request body");
-                }
-            }
-
-            // Prepare fetch options
-            const fetchOptions: RequestInit = {
-                method: selectedEndpointData.method,
-                headers: {
-                    ...parsedHeaders,
-                    // Ensure the content-type is set for POST requests
-                    ...(selectedEndpointData.method === "POST" && !parsedHeaders["Content-Type"] && {
-                        "Content-Type": "application/json"
-                    })
-                },
-                // Handle CORS
-                mode: "cors",
-                credentials: "omit"
-            };
-
-            // Add body for POST requests
-            if (parsedBody && selectedEndpointData.method === "POST") {
-                fetchOptions.body = JSON.stringify(parsedBody);
-            }
-
-            console.log("Making API request:", {
-                url: selectedEndpointData.url,
-                method: selectedEndpointData.method,
-                headers: fetchOptions.headers,
-                body: fetchOptions.body
-            });
-
-            const response = await fetch(selectedEndpointData.url, fetchOptions);
-
-            let responseData: unknown;
-            const contentType = response.headers.get("content-type");
-
-            if (contentType && contentType.includes("application/json")) {
-                try {
-                    responseData = await response.json();
-                } catch {
-                    responseData = await response.text();
-                }
-            } else {
-                responseData = await response.text();
-            }
-
-            const endTime = Date.now();
-
-            // Convert headers to object
-            const responseHeaders: Record<string, string> = {};
-            response.headers.forEach((value, key) => {
-                responseHeaders[key] = value;
-            });
-
-            setResponse({
-                status: response.status,
-                statusText: response.statusText,
-                headers: responseHeaders,
-                data: responseData,
-                responseTime: endTime - startTime
-            });
-
-        } catch (err: unknown) {
-            const error = err as Error;
-            console.error("API request failed:", error);
-
-            // Handle specific error types
-            let errorMessage = error.message || "Request failed";
-
-            if (error.name === "TypeError" && error.message.includes("fetch")) {
-                errorMessage = "Network error: Unable to reach the API endpoint. This might be due to CORS restrictions or the server being unavailable.";
-            } else if (error.message.includes("CORS")) {
-                errorMessage = "CORS error: The API endpoint doesn't allow requests from this domain.";
-            }
-
-            setError({
-                message: errorMessage,
-                details: error
-            });
-        } finally {
-            setIsLoading(false);
-        }
-    };
-
-    const getStatusColor = (status: number) => {
-        if (status >= 200 && status < 300) return "text-green-600 dark:text-green-400";
-        if (status >= 400 && status < 500) return "text-orange-600 dark:text-orange-400";
-        if (status >= 500) return "text-red-600 dark:text-red-400";
-        return "text-gray-600 dark:text-gray-400";
-    };
-
-    const getStatusIcon = (status: number) => {
-        if (status >= 200 && status < 300) return <CheckCircle className="h-4 w-4"/>;
-        if (status >= 400) return <AlertCircle className="h-4 w-4"/>;
-        return <Clock className="h-4 w-4"/>;
-    };
 
     return (
         <div className="min-h-screen bg-white dark:bg-gray-950">
@@ -292,9 +150,11 @@ const SandboxPlayground = () => {
                 <div className="space-y-4 sm:space-y-6">
                     {/* Request Panel */}
                     <div className="w-full">
-                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden shadow-sm">
+                        <div
+                            className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden shadow-sm">
                             {/* Request Header */}
-                            <div className="flex items-center gap-2 px-4 sm:px-6 py-3 sm:py-4 bg-gray-50 dark:bg-gray-800/30 border-b border-gray-200 dark:border-gray-700">
+                            <div
+                                className="flex items-center gap-2 px-4 sm:px-6 py-3 sm:py-4 bg-gray-50 dark:bg-gray-800/30 border-b border-gray-200 dark:border-gray-700">
                                 <Settings className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600 dark:text-gray-400"/>
                                 <h2 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">
                                     Request Configuration
@@ -304,7 +164,8 @@ const SandboxPlayground = () => {
                             {selectedEndpointData && (
                                 <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
                                     {/* Endpoint Info */}
-                                    <div className="p-3 sm:p-4 bg-gray-50 dark:bg-gray-900/50 rounded-lg border border-gray-200 dark:border-gray-700">
+                                    <div
+                                        className="p-3 sm:p-4 bg-gray-50 dark:bg-gray-900/50 rounded-lg border border-gray-200 dark:border-gray-700">
                                         <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
                                             <div className="flex items-center gap-2">
                                                 <span className={`px-2 py-1 text-xs font-medium rounded ${
@@ -319,7 +180,8 @@ const SandboxPlayground = () => {
                                                 </span>
                                             </div>
                                         </div>
-                                        <code className="text-xs text-gray-600 dark:text-gray-400 break-all block overflow-x-auto">
+                                        <code
+                                            className="text-xs text-gray-600 dark:text-gray-400 break-all block overflow-x-auto">
                                             {selectedEndpointData.url}
                                         </code>
                                     </div>
@@ -330,7 +192,6 @@ const SandboxPlayground = () => {
                                         <SandboxTextEditor
                                             value={headers}
                                             onChange={setHeaders}
-                                            language="json"
                                             placeholder="Enter request headers..."
                                             title="Request Headers"
                                             minHeight="200px"
@@ -341,11 +202,11 @@ const SandboxPlayground = () => {
                                     {/* Request Body (for POST requests) */}
                                     {selectedEndpointData.method === "POST" && (
                                         <div>
-                                            <h3 className="text-sm font-medium text-gray-900 dark:text-white mb-3">Request Body</h3>
+                                            <h3 className="text-sm font-medium text-gray-900 dark:text-white mb-3">Request
+                                                Body</h3>
                                             <SandboxTextEditor
                                                 value={requestBody}
                                                 onChange={setRequestBody}
-                                                language="json"
                                                 placeholder="Enter request body..."
                                                 title="Request Body"
                                                 minHeight="200px"
@@ -353,123 +214,8 @@ const SandboxPlayground = () => {
                                             />
                                         </div>
                                     )}
-
-                                    {/* Execute Button */}
-                                    <div className="pt-2">
-                                        <Button
-                                            onClick={executeRequest}
-                                            disabled={isLoading}
-                                            className="w-full bg-[#0099c2] hover:bg-[#0087a8] disabled:opacity-50 h-12 text-base font-medium transition-all"
-                                            size="lg"
-                                        >
-                                            {isLoading ? (
-                                                <div className="flex items-center justify-center gap-3">
-                                                    <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"/>
-                                                    <span>Executing Request...</span>
-                                                </div>
-                                            ) : (
-                                                <div className="flex items-center justify-center gap-3">
-                                                    <Play className="h-5 w-5 fill-current"/>
-                                                    <span>Execute Request</span>
-                                                </div>
-                                            )}
-                                        </Button>
-                                    </div>
                                 </div>
                             )}
-                        </div>
-                    </div>
-
-                    {/* Response Panel */}
-                    <div className="w-full">
-                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden shadow-sm">
-                            {/* Response Header */}
-                            <div className="flex items-center gap-2 px-4 sm:px-6 py-3 sm:py-4 bg-gray-50 dark:bg-gray-800/30 border-b border-gray-200 dark:border-gray-700">
-                                <Zap className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600 dark:text-gray-400"/>
-                                <h2 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">Response</h2>
-                            </div>
-
-                            <div className="p-4 sm:p-6">
-                                {/* Loading State */}
-                                {isLoading && (
-                                    <div className="flex items-center justify-center py-12">
-                                        <div className="text-center">
-                                            <div className="animate-spin rounded-full h-12 w-12 border-2 border-blue-600 border-t-transparent mx-auto mb-4"/>
-                                            <p className="text-base text-gray-600 dark:text-gray-400">Executing request...</p>
-                                        </div>
-                                    </div>
-                                )}
-
-                                {/* Error State */}
-                                {error && (
-                                    <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
-                                        <div className="flex items-center gap-2 mb-2">
-                                            <AlertCircle className="h-5 w-5 text-red-600 dark:text-red-400"/>
-                                            <h3 className="font-medium text-red-900 dark:text-red-100">Error</h3>
-                                        </div>
-                                        <p className="text-red-700 dark:text-red-300 text-sm">{error.message}</p>
-                                    </div>
-                                )}
-
-                                {/* Success Response */}
-                                {response && (
-                                    <div className="space-y-6">
-                                        {/* Response Status */}
-                                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 bg-gray-50 dark:bg-gray-900/50 rounded-lg border border-gray-200 dark:border-gray-700">
-                                            <div className="flex items-center gap-2">
-                                                {getStatusIcon(response.status)}
-                                                <span className={`font-medium text-base ${getStatusColor(response.status)}`}>
-                                                    {response.status} {response.statusText}
-                                                </span>
-                                            </div>
-                                            <span className="text-sm text-gray-600 dark:text-gray-400 font-mono">
-                                                {response.responseTime}ms
-                                            </span>
-                                        </div>
-
-                                        {/* Response Headers */}
-                                        <div>
-                                            <h4 className="text-sm font-medium text-gray-900 dark:text-white mb-3">Response Headers</h4>
-                                            <SandboxTextEditor
-                                                value={JSON.stringify(response.headers, null, 2)}
-                                                readOnly
-                                                language="json"
-                                                title="Response Headers"
-                                                minHeight="200px"
-                                                maxHeight="300px"
-                                            />
-                                        </div>
-
-                                        {/* Response Body */}
-                                        <div>
-                                            <h4 className="text-sm font-medium text-gray-900 dark:text-white mb-3">Response Body</h4>
-                                            <SandboxTextEditor
-                                                value={typeof response.data === 'string' ? response.data : JSON.stringify(response.data, null, 2)}
-                                                readOnly
-                                                language="json"
-                                                title="Response Body"
-                                                minHeight="300px"
-                                                maxHeight="500px"
-                                            />
-                                        </div>
-                                    </div>
-                                )}
-
-                                {/* Empty State */}
-                                {!isLoading && !error && !response && (
-                                    <div className="text-center py-12">
-                                        <div className="p-4 bg-gray-100 dark:bg-gray-800 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                                            <Play className="h-8 w-8 text-gray-400"/>
-                                        </div>
-                                        <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
-                                            Ready to test
-                                        </h3>
-                                        <p className="text-base text-gray-600 dark:text-gray-400 max-w-md mx-auto">
-                                            Configure your request and click "Execute Request" to see the response
-                                        </p>
-                                    </div>
-                                )}
-                            </div>
                         </div>
                     </div>
                 </div>

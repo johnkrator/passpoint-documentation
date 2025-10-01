@@ -286,7 +286,7 @@ const SandboxTextEditor: React.FC<SandboxTextEditorProps> = ({
             const formatted = JSON.stringify(parsed, null, 4);
             setLocalValue(formatted);
             onChange?.(formatted);
-        } catch (error) {
+        } catch {
             console.error("Invalid JSON format");
         }
     };

@@ -10,11 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@lexical/code": "^0.36.1",
+    "@lexical/plain-text": "^0.36.1",
+    "@lexical/react": "^0.36.1",
+    "@lexical/rich-text": "^0.36.1",
+    "@lexical/utils": "^0.36.1",
     "@radix-ui/react-select": "^2.2.6",
     "@radix-ui/react-slot": "^1.2.3",
     "@tailwindcss/vite": "^4.1.13",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "lexical": "^0.36.1",
     "lucide-react": "^0.544.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",

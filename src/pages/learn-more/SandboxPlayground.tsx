@@ -1,29 +1,10 @@
 import React, {useState} from "react";
-import {Play, Code, Settings, Zap, AlertCircle, CheckCircle, Clock} from "lucide-react";
-import {Button} from "@/components/ui/button.tsx";
-import CodeBlock from "@/components/CodeBlock.tsx";
-
-interface ApiResponse {
-    status: number;
-    statusText: string;
-    headers: Record<string, string>;
-    data: unknown;
-    responseTime: number;
-}
-
-interface ApiError {
-    message: string;
-    status?: number;
-    details?: unknown;
-}
+import {Code, Settings} from "lucide-react";
+import SandboxTextEditor from "@/components/SandboxTextEditor.tsx";
 
 const SandboxPlayground = () => {
     const [selectedEndpoint, setSelectedEndpoint] = useState("wallet/balance");
-    const [requestBody, setRequestBody] = useState("");
-    const [headers, setHeaders] = useState("");
-    const [response, setResponse] = useState<ApiResponse | null>(null);
-    const [error, setError] = useState<ApiError | null>(null);
-    const [isLoading, setIsLoading] = useState(false);
+    const [requestData, setRequestData] = useState("");
 
     const endpoints = [
         {
@@ -32,13 +13,14 @@ const SandboxPlayground = () => {
             method: "GET",
             url: "https://dev.mypasspoint.com/paypass/api/v1/wallet/balance",
             description: "Retrieve wallet balance information",
-            defaultHeaders: {
-                "Authorization": "Bearer YOUR_ACCESS_TOKEN",
-                "Content-Type": "application/json",
-                "X-Channel-Id": "3",
-                "X-Channel-Code": "legacy-api-user"
-            },
-            defaultBody: null
+            defaultRequest: {
+                headers: {
+                    "Authorization": "Bearer YOUR_ACCESS_TOKEN",
+                    "Content-Type": "application/json",
+                    "X-Channel-Id": "3",
+                    "X-Channel-Code": "legacy-api-user"
+                }
+            }
         },
         {
             id: "wallet/create",
@@ -46,15 +28,17 @@ const SandboxPlayground = () => {
             method: "POST",
             url: "https://dev.mypasspoint.com/paypass/api/v1/wallet/create",
             description: "Create a new wallet",
-            defaultHeaders: {
-                "Authorization": "Bearer YOUR_ACCESS_TOKEN",
-                "Content-Type": "application/json",
-                "X-Channel-Id": "3",
-                "X-Channel-Code": "legacy-api-user"
-            },
-            defaultBody: {
-                "currency": "NGN",
-                "name": "Main Wallet"
+            defaultRequest: {
+                headers: {
+                    "Authorization": "Bearer YOUR_ACCESS_TOKEN",
+                    "Content-Type": "application/json",
+                    "X-Channel-Id": "3",
+                    "X-Channel-Code": "legacy-api-user"
+                },
+                body: {
+                    "currency": "NGN",
+                    "name": "Main Wallet"
+                }
             }
         },
         {
@@ -63,19 +47,21 @@ const SandboxPlayground = () => {
             method: "POST",
             url: "https://dev.mypasspoint.com/paypass/api/v1/payout/momo/transfer",
             description: "Transfer funds via mobile money",
-            defaultHeaders: {
-                "Authorization": "Bearer YOUR_ACCESS_TOKEN",
-                "Content-Type": "application/json",
-                "X-Channel-Id": "3",
-                "X-Channel-Code": "legacy-api-user"
-            },
-            defaultBody: {
-                "amount": "1000",
-                "currency": "NGN",
-                "recipientPhone": "+2348123456789",
-                "network": "MTN",
-                "reference": "TXN_" + Date.now(),
-                "description": "Test transfer"
+            defaultRequest: {
+                headers: {
+                    "Authorization": "Bearer YOUR_ACCESS_TOKEN",
+                    "Content-Type": "application/json",
+                    "X-Channel-Id": "3",
+                    "X-Channel-Code": "legacy-api-user"
+                },
+                body: {
+                    "amount": "1000",
+                    "currency": "NGN",
+                    "recipientPhone": "+2348123456789",
+                    "network": "MTN",
+                    "reference": "TXN_" + Date.now(),
+                    "description": "Test transfer"
+                }
             }
         },
         {
@@ -84,17 +70,19 @@ const SandboxPlayground = () => {
             method: "POST",
             url: "https://dev.mypasspoint.com/paypass/api/v1/collection/virtual-account/generate",
             description: "Generate a virtual account for collections",
-            defaultHeaders: {
-                "Authorization": "Bearer YOUR_ACCESS_TOKEN",
-                "Content-Type": "application/json",
-                "X-Channel-Id": "3",
-                "X-Channel-Code": "legacy-api-user"
-            },
-            defaultBody: {
-                "currency": "NGN",
-                "accountType": "individual",
-                "customerName": "John Doe",
-                "customerEmail": "john.doe@example.com"
+            defaultRequest: {
+                headers: {
+                    "Authorization": "Bearer YOUR_ACCESS_TOKEN",
+                    "Content-Type": "application/json",
+                    "X-Channel-Id": "3",
+                    "X-Channel-Code": "legacy-api-user"
+                },
+                body: {
+                    "currency": "NGN",
+                    "accountType": "individual",
+                    "customerName": "John Doe",
+                    "customerEmail": "john.doe@example.com"
+                }
             }
         }
     ];
@@ -103,134 +91,16 @@ const SandboxPlayground = () => {
 
     React.useEffect(() => {
         if (selectedEndpointData) {
-            setHeaders(JSON.stringify(selectedEndpointData.defaultHeaders, null, 2));
-            setRequestBody(selectedEndpointData.defaultBody ? JSON.stringify(selectedEndpointData.defaultBody, null, 2) : "");
-            setResponse(null);
-            setError(null);
+            // Combine headers and body into a single request object
+            const requestObject = {
+                method: selectedEndpointData.method,
+                url: selectedEndpointData.url,
+                headers: selectedEndpointData.defaultRequest.headers,
+                ...(selectedEndpointData.defaultRequest.body && {body: selectedEndpointData.defaultRequest.body})
+            };
+            setRequestData(JSON.stringify(requestObject, null, 2));
         }
     }, [selectedEndpoint, selectedEndpointData]);
-
-    const executeRequest = async () => {
-        if (!selectedEndpointData) return;
-
-        setIsLoading(true);
-        setError(null);
-        setResponse(null);
-
-        const startTime = Date.now();
-
-        try {
-            let parsedHeaders: Record<string, string> = {};
-            let parsedBody: unknown = null;
-
-            // Parse headers
-            try {
-                parsedHeaders = headers ? JSON.parse(headers) : {};
-            } catch {
-                throw new Error("Invalid JSON in headers");
-            }
-
-            // Parse body for POST requests
-            if (selectedEndpointData.method === "POST" && requestBody) {
-                try {
-                    parsedBody = JSON.parse(requestBody);
-                } catch {
-                    throw new Error("Invalid JSON in request body");
-                }
-            }
-
-            // Prepare fetch options
-            const fetchOptions: RequestInit = {
-                method: selectedEndpointData.method,
-                headers: {
-                    ...parsedHeaders,
-                    // Ensure the content-type is set for POST requests
-                    ...(selectedEndpointData.method === "POST" && !parsedHeaders["Content-Type"] && {
-                        "Content-Type": "application/json"
-                    })
-                },
-                // Handle CORS
-                mode: "cors",
-                credentials: "omit"
-            };
-
-            // Add body for POST requests
-            if (parsedBody && selectedEndpointData.method === "POST") {
-                fetchOptions.body = JSON.stringify(parsedBody);
-            }
-
-            console.log("Making API request:", {
-                url: selectedEndpointData.url,
-                method: selectedEndpointData.method,
-                headers: fetchOptions.headers,
-                body: fetchOptions.body
-            });
-
-            const response = await fetch(selectedEndpointData.url, fetchOptions);
-
-            let responseData: unknown;
-            const contentType = response.headers.get("content-type");
-
-            if (contentType && contentType.includes("application/json")) {
-                try {
-                    responseData = await response.json();
-                } catch {
-                    responseData = await response.text();
-                }
-            } else {
-                responseData = await response.text();
-            }
-
-            const endTime = Date.now();
-
-            // Convert headers to object
-            const responseHeaders: Record<string, string> = {};
-            response.headers.forEach((value, key) => {
-                responseHeaders[key] = value;
-            });
-
-            setResponse({
-                status: response.status,
-                statusText: response.statusText,
-                headers: responseHeaders,
-                data: responseData,
-                responseTime: endTime - startTime
-            });
-
-        } catch (err: unknown) {
-            const error = err as Error;
-            console.error("API request failed:", error);
-
-            // Handle specific error types
-            let errorMessage = error.message || "Request failed";
-
-            if (error.name === "TypeError" && error.message.includes("fetch")) {
-                errorMessage = "Network error: Unable to reach the API endpoint. This might be due to CORS restrictions or the server being unavailable.";
-            } else if (error.message.includes("CORS")) {
-                errorMessage = "CORS error: The API endpoint doesn't allow requests from this domain.";
-            }
-
-            setError({
-                message: errorMessage,
-                details: error
-            });
-        } finally {
-            setIsLoading(false);
-        }
-    };
-
-    const getStatusColor = (status: number) => {
-        if (status >= 200 && status < 300) return "text-green-600 dark:text-green-400";
-        if (status >= 400 && status < 500) return "text-orange-600 dark:text-orange-400";
-        if (status >= 500) return "text-red-600 dark:text-red-400";
-        return "text-gray-600 dark:text-gray-400";
-    };
-
-    const getStatusIcon = (status: number) => {
-        if (status >= 200 && status < 300) return <CheckCircle className="h-4 w-4"/>;
-        if (status >= 400) return <AlertCircle className="h-4 w-4"/>;
-        return <Clock className="h-4 w-4"/>;
-    };
 
     return (
         <div className="min-h-screen bg-white dark:bg-gray-950">
@@ -288,22 +158,25 @@ const SandboxPlayground = () => {
                     </div>
                 </div>
 
-                {/* Main Content */}
+                {/* Main Content - Single Editor */}
                 <div className="space-y-4 sm:space-y-6">
-                    {/* Request Panel */}
                     <div className="w-full">
                         <div
-                            className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm">
-                            <div className="flex items-center gap-2 mb-3 sm:mb-4">
+                            className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden shadow-sm">
+                            {/* Request Header */}
+                            <div
+                                className="flex items-center gap-2 px-4 sm:px-6 py-3 sm:py-4 bg-gray-50 dark:bg-gray-800/30 border-b border-gray-200 dark:border-gray-700">
                                 <Settings className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600 dark:text-gray-400"/>
-                                <h2 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">Request
-                                    Configuration</h2>
+                                <h2 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">
+                                    API Testing Environment
+                                </h2>
                             </div>
 
                             {selectedEndpointData && (
-                                <div className="space-y-3 sm:space-y-4">
+                                <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
                                     {/* Endpoint Info */}
-                                    <div className="p-3 sm:p-4 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
+                                    <div
+                                        className="p-3 sm:p-4 bg-gray-50 dark:bg-gray-900/50 rounded-lg border border-gray-200 dark:border-gray-700">
                                         <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
                                             <div className="flex items-center gap-2">
                                                 <span className={`px-2 py-1 text-xs font-medium rounded ${
@@ -324,158 +197,20 @@ const SandboxPlayground = () => {
                                         </code>
                                     </div>
 
-                                    {/* Headers */}
+                                    {/* Single API Testing Editor */}
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
-                                            Headers
-                                        </label>
-                                        <CodeBlock
-                                            value={headers}
-                                            onChange={setHeaders}
-                                            language="json"
-                                            placeholder="Enter request headers..."
-                                            title="Request Headers"
-                                            minHeight="150px"
-                                            interactive={true}
+                                        <h3 className="text-sm font-medium text-gray-900 dark:text-white mb-3">
+                                            Request Configuration & Response
+                                        </h3>
+                                        <SandboxTextEditor
+                                            value={requestData}
+                                            onChange={setRequestData}
+                                            placeholder="Configure your API request..."
+                                            title="API Request"
+                                            minHeight="400px"
+                                            maxHeight="600px"
                                         />
                                     </div>
-
-                                    {/* Request Body (for POST requests) */}
-                                    {selectedEndpointData.method === "POST" && (
-                                        <div>
-                                            <label
-                                                className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
-                                                Request Body
-                                            </label>
-                                            <CodeBlock
-                                                value={requestBody}
-                                                onChange={setRequestBody}
-                                                language="json"
-                                                placeholder="Enter request body..."
-                                                title="Request Body"
-                                                minHeight="150px"
-                                                interactive={true}
-                                            />
-                                        </div>
-                                    )}
-
-                                    {/* Execute Button */}
-                                    <Button
-                                        onClick={executeRequest}
-                                        disabled={isLoading}
-                                        className="w-full bg-[#0099c2] hover:bg-[#0087a8] disabled:opacity-50 h-10 sm:h-12"
-                                        size="lg"
-                                    >
-                                        {isLoading ? (
-                                            <>
-                                                <div
-                                                    className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"/>
-                                                <span className="text-sm sm:text-base">Executing...</span>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <Play className="h-4 w-4 mr-2"/>
-                                                <span className="text-sm sm:text-base">Execute Request</span>
-                                            </>
-                                        )}
-                                    </Button>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-
-                    {/* Response Panel */}
-                    <div className="w-full">
-                        <div
-                            className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm">
-                            <div className="flex items-center gap-2 mb-3 sm:mb-4">
-                                <Zap className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600 dark:text-gray-400"/>
-                                <h2 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">Response</h2>
-                            </div>
-
-                            {/* Loading State */}
-                            {isLoading && (
-                                <div className="flex items-center justify-center py-8 sm:py-12">
-                                    <div className="text-center">
-                                        <div
-                                            className="animate-spin rounded-full h-8 w-8 sm:h-12 sm:w-12 border-b-2 border-blue-600 mx-auto mb-3 sm:mb-4"/>
-                                        <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">Executing
-                                            request...</p>
-                                    </div>
-                                </div>
-                            )}
-
-                            {/* Error State */}
-                            {error && (
-                                <div
-                                    className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-3 sm:p-4">
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <AlertCircle className="h-4 w-4 sm:h-5 sm:w-5 text-red-600 dark:text-red-400"/>
-                                        <h3 className="font-medium text-red-900 dark:text-red-100 text-sm sm:text-base">Error</h3>
-                                    </div>
-                                    <p className="text-red-700 dark:text-red-300 text-xs sm:text-sm">{error.message}</p>
-                                </div>
-                            )}
-
-                            {/* Success Response */}
-                            {response && (
-                                <div className="space-y-3 sm:space-y-4">
-                                    {/* Response Status */}
-                                    <div
-                                        className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 p-3 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
-                                        <div className="flex items-center gap-2">
-                                            {getStatusIcon(response.status)}
-                                            <span
-                                                className={`font-medium text-sm sm:text-base ${getStatusColor(response.status)}`}>
-                                                {response.status} {response.statusText}
-                                            </span>
-                                        </div>
-                                        <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-                                            {response.responseTime}ms
-                                        </span>
-                                    </div>
-
-                                    {/* Response Headers */}
-                                    <div>
-                                        <h4 className="text-sm font-medium text-gray-900 dark:text-white mb-2">Response
-                                            Headers</h4>
-                                        <CodeBlock
-                                            value={JSON.stringify(response.headers, null, 2)}
-                                            readOnly
-                                            language="json"
-                                            title="Response Headers"
-                                            minHeight="120px"
-                                        />
-                                    </div>
-
-                                    {/* Response Body */}
-                                    <div>
-                                        <h4 className="text-sm font-medium text-gray-900 dark:text-white mb-2">Response
-                                            Body</h4>
-                                        <CodeBlock
-                                            value={JSON.stringify(response.data, null, 2)}
-                                            readOnly
-                                            language="json"
-                                            title="Response Body"
-                                            minHeight="200px"
-                                        />
-                                    </div>
-                                </div>
-                            )}
-
-                            {/* Empty State */}
-                            {!isLoading && !error && !response && (
-                                <div className="text-center py-8 sm:py-12">
-                                    <div
-                                        className="p-3 sm:p-4 bg-gray-100 dark:bg-gray-800 rounded-full w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 flex items-center justify-center">
-                                        <Play className="h-6 w-6 sm:h-8 sm:w-8 text-gray-400"/>
-                                    </div>
-                                    <h3 className="text-base sm:text-lg font-medium text-gray-900 dark:text-white mb-2">
-                                        Ready to test
-                                    </h3>
-                                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 px-4">
-                                        Configure your request and click "Execute Request" to see the response
-                                    </p>
                                 </div>
                             )}
                         </div>

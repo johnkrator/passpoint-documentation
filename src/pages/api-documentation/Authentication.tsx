@@ -2,6 +2,34 @@ import {Key, Shield, Lock, AlertTriangle, CheckCircle} from "lucide-react";
 import CodeBlock from "@/components/CodeBlock.tsx";
 
 const Authentication = () => {
+    const getCredentialsEndpointCode = () => {
+        return `POST https://dev.mypasspoint.com/userapp/merchant-app/init-credentials`;
+    };
+
+    const getCredentialsRequestBodyCode = () => {
+        return `{
+  "merchantId": "0f66a8ce-497e-483e-9a32-04f00ffb3bc4"
+}`;
+    };
+
+    const getCredentialsCurlCode = () => {
+        return `curl --location 'https://dev.mypasspoint.com/userapp/merchant-app/init-credentials' \\
+--data '{
+    "merchantId":"0f66a8ce-497e-483e-9a32-04f00ffb3bc4"
+}'`;
+    };
+
+    const getCredentialsResponseCode = () => {
+        return `{
+  "responseCode": "00",
+  "responseDescription": "Successful",
+  "responseMessage": "Merchant credential reset successful",
+  "data": {
+    "apiKey": "string"
+  }
+}`;
+    };
+
     const getAuthClientEndpointCode = () => {
         return `POST https://dev.mypasspoint.com/userapp/merchant-app/get-auth-token`;
     };
@@ -29,34 +57,6 @@ const Authentication = () => {
   "data": {
     "accessToken": "string",
     "expiresIn": 0
-  }
-}`;
-    };
-
-    const getCredentialsEndpointCode = () => {
-        return `POST https://dev.mypasspoint.com/userapp/merchant-app/init-credentials`;
-    };
-
-    const getCredentialsRequestBodyCode = () => {
-        return `{
-  "merchantId": "0f66a8ce-497e-483e-9a32-04f00ffb3bc4"
-}`;
-    };
-
-    const getCredentialsCurlCode = () => {
-        return `curl --location 'https://dev.mypasspoint.com/userapp/merchant-app/init-credentials' \\
---data '{
-    "merchantId":"string"
-}'`;
-    };
-
-    const getCredentialsResponseCode = () => {
-        return `{
-  "responseCode": "00",
-  "responseDescription": "Successful",
-  "responseMessage": "Merchant credential reset successful",
-  "data": {
-    "apiKey": "string"
   }
 }`;
     };
@@ -127,9 +127,7 @@ x-merchant-id: YOUR_MERCHANT_ID`;
                     <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Authentication</h1>
 
                     <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
-                        The Authentication section contains APIs responsible for retrieving user credentials and tokens.
-                        This comprehensive guide covers merchant authentication, credential management, and access token
-                        generation for secure API access.
+                        Authentication Overview The Authentication folder contains APIs responsible for retrieving user credentials and token.
                     </p>
 
                     {/* Authentication Overview */}
@@ -141,8 +139,7 @@ x-merchant-id: YOUR_MERCHANT_ID`;
                             className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-xl p-6 lg:p-8 mb-8 shadow-sm">
                             <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
                                 The Authentication folder contains APIs responsible for retrieving user credentials and
-                                tokens. These endpoints enable secure access to Passpoint Payment Service by managing
-                                merchant authentication and access token generation.
+                                token.
                             </p>
                         </div>
 
@@ -182,67 +179,51 @@ x-merchant-id: YOUR_MERCHANT_ID`;
                             </div>
                         </div>
 
+                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">APIs</h3>
+                        
                         <div className="space-y-8">
-                            {/* Authenticate Client */}
-                            <div
-                                className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
-                                <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
-                                    <div
-                                        className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
-                                        <Key className="h-12 w-12 text-brand-500 flex-shrink-0"/>
-                                        <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Authenticate
-                                            Client</h3>
-                                    </div>
-                                    <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                        <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
-                                            This endpoint enables the merchant to get an access token whose duration in
-                                            seconds is contained in the response field expiresIn. The merchant supplies
-                                            merchant ID and API key to retrieve access token for subsequent requests.
-                                        </p>
-
-                                        <div className="space-y-4">
-                                            <div>
-                                                <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
-                                                <CodeBlock>{getAuthClientEndpointCode()}</CodeBlock>
-                                            </div>
-
-                                            <div>
-                                                <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request
-                                                    Body</h4>
-                                                <CodeBlock language="json">{getAuthClientRequestBodyCode()}</CodeBlock>
-                                            </div>
-
-                                            <div>
-                                                <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">cURL
-                                                    Example</h4>
-                                                <CodeBlock language="bash">{getAuthClientCurlCode()}</CodeBlock>
-                                            </div>
-
-                                            <div>
-                                                <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response
-                                                    (200 OK)</h4>
-                                                <CodeBlock language="json">{getAuthClientResponseCode()}</CodeBlock>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Get Credentials */}
+                            {/* Get User Credentials */}
                             <div
                                 className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
                                 <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
                                     <div
                                         className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                         <Shield className="h-12 w-12 text-green-500 flex-shrink-0"/>
-                                        <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Get
-                                            Credentials</h3>
+                                        <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Get User Credentials</h3>
                                     </div>
                                     <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                        <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
-                                            This endpoint retrieves the API key for the merchant. The merchant supplies
-                                            its merchant ID to get the necessary credentials.
-                                        </p>
+                                        <div className="mb-6">
+                                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed">
+                                                <strong>Endpoint:</strong> https://client-sandbox.mypasspoint.com/passpoint-usr/v1/merchant-app/init-credentials
+                                            </p>
+                                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed">
+                                                <strong>Method:</strong> POST
+                                            </p>
+                                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed">
+                                                <strong>Description:</strong> Retrieves merchant api key
+                                            </p>
+                                            <div>
+                                                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Parameters:</h4>
+                                                <div className="overflow-x-auto">
+                                                    <table className="w-full text-sm border-collapse border border-gray-200 dark:border-gray-700">
+                                                        <thead>
+                                                        <tr className="bg-gray-50 dark:bg-gray-800">
+                                                            <th className="text-left py-3 px-4 border border-gray-200 dark:border-gray-700 font-semibold">Parameter</th>
+                                                            <th className="text-left py-3 px-4 border border-gray-200 dark:border-gray-700 font-semibold">Type</th>
+                                                            <th className="text-left py-3 px-4 border border-gray-200 dark:border-gray-700 font-semibold">Description</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <td className="py-3 px-4 border border-gray-200 dark:border-gray-700 font-mono text-xs">merchantId</td>
+                                                            <td className="py-3 px-4 border border-gray-200 dark:border-gray-700">string</td>
+                                                            <td className="py-3 px-4 border border-gray-200 dark:border-gray-700">merchant id</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                         <div className="space-y-4">
                                             <div>
@@ -266,6 +247,82 @@ x-merchant-id: YOUR_MERCHANT_ID`;
                                                 <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response
                                                     (200 OK)</h4>
                                                 <CodeBlock language="json">{getCredentialsResponseCode()}</CodeBlock>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Authenticate Merchant */}
+                            <div
+                                className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
+                                <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
+                                    <div
+                                        className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
+                                        <Key className="h-12 w-12 text-brand-500 flex-shrink-0"/>
+                                        <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Authenticate Merchant</h3>
+                                    </div>
+                                    <div className="flex-1 min-w-0 lg:max-w-4xl">
+                                        <div className="mb-6">
+                                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed">
+                                                <strong>Endpoint:</strong> https://client-sandbox.mypasspoint.com/passpoint-usr/v1/merchant-app/get-auth-token
+                                            </p>
+                                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed">
+                                                <strong>Method:</strong> POST
+                                            </p>
+                                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed">
+                                                <strong>Description:</strong> Retrieves merchant authorization token
+                                            </p>
+                                            <div>
+                                                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Parameters:</h4>
+                                                <div className="overflow-x-auto">
+                                                    <table className="w-full text-sm border-collapse border border-gray-200 dark:border-gray-700">
+                                                        <thead>
+                                                        <tr className="bg-gray-50 dark:bg-gray-800">
+                                                            <th className="text-left py-3 px-4 border border-gray-200 dark:border-gray-700 font-semibold">Parameter</th>
+                                                            <th className="text-left py-3 px-4 border border-gray-200 dark:border-gray-700 font-semibold">Type</th>
+                                                            <th className="text-left py-3 px-4 border border-gray-200 dark:border-gray-700 font-semibold">Description</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <td className="py-3 px-4 border border-gray-200 dark:border-gray-700 font-mono text-xs">merchantId</td>
+                                                            <td className="py-3 px-4 border border-gray-200 dark:border-gray-700">string</td>
+                                                            <td className="py-3 px-4 border border-gray-200 dark:border-gray-700">the merchant id</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="py-3 px-4 border border-gray-200 dark:border-gray-700 font-mono text-xs">apiKey</td>
+                                                            <td className="py-3 px-4 border border-gray-200 dark:border-gray-700">string</td>
+                                                            <td className="py-3 px-4 border border-gray-200 dark:border-gray-700">the merchant api key</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="space-y-4">
+                                            <div>
+                                                <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4>
+                                                <CodeBlock>{getAuthClientEndpointCode()}</CodeBlock>
+                                            </div>
+
+                                            <div>
+                                                <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request
+                                                    Body</h4>
+                                                <CodeBlock language="json">{getAuthClientRequestBodyCode()}</CodeBlock>
+                                            </div>
+
+                                            <div>
+                                                <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">cURL
+                                                    Example</h4>
+                                                <CodeBlock language="bash">{getAuthClientCurlCode()}</CodeBlock>
+                                            </div>
+
+                                            <div>
+                                                <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response
+                                                    (200 OK)</h4>
+                                                <CodeBlock language="json">{getAuthClientResponseCode()}</CodeBlock>
                                             </div>
                                         </div>
                                     </div>
@@ -316,6 +373,18 @@ x-merchant-id: YOUR_MERCHANT_ID`;
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </section>
+
+                    {/* AUTHORIZATION Section */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">AUTHORIZATION</h2>
+                        
+                        <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-xl p-6 lg:p-8 mb-8 shadow-sm">
+                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Bearer Token</h3>
+                            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                                This folder is using Bearer Token from collection <strong>Passpoint Payment Service</strong>
+                            </p>
                         </div>
                     </section>
 

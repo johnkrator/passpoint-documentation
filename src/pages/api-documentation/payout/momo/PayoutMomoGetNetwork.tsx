@@ -14,7 +14,7 @@ const PayoutMomoGetNetwork = () => {
                         Network</h1>
 
                     <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
-                        This endpoint lists all momo network in a particular momo payout enabled corridor.
+                        This endpoint lists all momo network in a particular momo payout enabled corridor
                     </p>
 
                     {/* API Endpoint */}

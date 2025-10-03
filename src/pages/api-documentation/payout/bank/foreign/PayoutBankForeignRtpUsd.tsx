@@ -8,30 +8,23 @@ const PayoutBankForeignRtpUsd = () => {
 
     const getRequestBodyCode = () => {
         return `{
-    "clientReference": "1736193968183",
-    "amount": "50.00",
-    "narration": "real-time payment",
+    "clientReference": "17361939681900",
+    "amount": "10.00",
+    "narration": "test usd payout of 10",
     "transactionCurrency": "USD",
     "baseCurrency": "USD",
     "countryCode": "US",
     "paymentInfo": {
-        "remitterType": "I",
-        "senderFirstName": "David",
-        "senderLastName": "Brown",
-        "senderAddress": "456 Tech Street",
-        "senderCity": "San Francisco",
-        "senderIdType": "01",
-        "senderIdNumber": "555666777",
-        "senderIdIssueCountry": "USA",
-        "senderBeneficiaryRelationship": "01",
-        "beneficiaryType": "I",
-        "receiverFirstName": "Emily",
-        "receiverLastName": "Davis",
-        "receiverAddress": "789 Innovation Drive",
-        "bankAccountNumber": "5554443333",
-        "bankRoutingNumber": "021000089",
-        "purposeOfRemittance": "01",
-        "senderSourceOfFund": "01",
+        "accountType": "savings",
+        "accountName": "Ghaju",
+        "countryCode": "US",
+        "state": "Newyork",
+        "city": "Minnesota",
+        "address": "Plot 331, Raji Rasaki Estate",
+        "postalCode": "5005",
+        "accountNumber": "99999999993",
+        "routingNumber": "067014822",
+        "bankName": "JP Morgan",
         "payoutCurrency": "USD"
     }
 }`;
@@ -42,33 +35,24 @@ const PayoutBankForeignRtpUsd = () => {
 --header 'x-channel-id: 2' \\
 --header 'x-channel-code: passpoint-merchant-user' \\
 --header 'x-merchant-id: pass your merchant id' \\
---header 'Authorization: Bearer YOUR_TOKEN' \\
---header 'Content-Type: application/json' \\
 --data '{
-    "clientReference": "1736193968183",
-    "amount": "50.00",
-    "narration": "real-time payment",
+    "clientReference": "17361939681900",
+    "amount": "10.00",
+    "narration": "test usd payout of 10",
     "transactionCurrency": "USD",
     "baseCurrency": "USD",
     "countryCode": "US",
     "paymentInfo": {
-        "remitterType": "I",
-        "senderFirstName": "David",
-        "senderLastName": "Brown",
-        "senderAddress": "456 Tech Street",
-        "senderCity": "San Francisco",
-        "senderIdType": "01",
-        "senderIdNumber": "555666777",
-        "senderIdIssueCountry": "USA",
-        "senderBeneficiaryRelationship": "01",
-        "beneficiaryType": "I",
-        "receiverFirstName": "Emily",
-        "receiverLastName": "Davis",
-        "receiverAddress": "789 Innovation Drive",
-        "bankAccountNumber": "5554443333",
-        "bankRoutingNumber": "021000089",
-        "purposeOfRemittance": "01",
-        "senderSourceOfFund": "01",
+        "accountType": "savings",
+        "accountName": "Ghaju",
+        "countryCode": "US",
+        "state": "Newyork",
+        "city": "Minnesota",
+        "address": "Plot 331, Raji Rasaki Estate",
+        "postalCode": "5005",
+        "accountNumber": "99999999993",
+        "routingNumber": "067014822",
+        "bankName": "JP Morgan",
         "payoutCurrency": "USD"
     }
 }'`;
@@ -78,12 +62,12 @@ const PayoutBankForeignRtpUsd = () => {
         return `{
   "responseCode": "00",
   "responseDescription": "Successful",
-  "responseMessage": "Your RTP payment is being processed instantly",
+  "responseMessage": "Your transfer to HABEEB ADEBOWALE ADEDEJI is on the way",
   "data": {
     "status": "NEW",
-    "transactionId": "f7g8h9i0-j1k2-3456-lmno-pqr789stuv01",
-    "amount": 50.00,
-    "charges": 1.50
+    "transactionId": "c7035d4d-a0b2-4dab-951c-1f949a4a2731",
+    "amount": 1000,
+    "charges": 10.8
   }
 }`;
     };
@@ -226,3 +210,4 @@ const PayoutBankForeignRtpUsd = () => {
 };
 
 export default PayoutBankForeignRtpUsd;
+

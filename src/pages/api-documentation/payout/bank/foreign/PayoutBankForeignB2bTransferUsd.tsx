@@ -40,41 +40,19 @@ const PayoutBankForeignB2bTransferUsd = () => {
     };
 
     const getCurlExampleCode = () => {
-        return `curl --location 'https://dev.mypasspoint.com/paypass/foreign-ft-app/make-payment/b2b' \\
+        return `curl --location 'https://dev.mypasspoint.com/paypass/ft-app/account-transfer' \\
 --header 'x-channel-id: 2' \\
 --header 'x-channel-code: passpoint-merchant-user' \\
 --header 'x-merchant-id: pass your merchant id' \\
---header 'Authorization: Bearer YOUR_TOKEN' \\
---header 'Content-Type: application/json' \\
 --data '{
-    "clientReference": "1736193968181",
-    "amount": "10.00",
-    "narration": "test usd b2b transfer in china",
-    "transactionCurrency": "CNY",
-    "baseCurrency": "USD",
-    "countryCode": "CN",
-    "paymentInfo": {
-        "remitterType": "B",
-        "senderFirstName": "Josh Travels",
-        "senderAddress": "Plot 331, Raji Rasaki Estate",
-        "senderCity": "Lagos",
-        "senderIdType": "03",
-        "senderIdNumber": "46543345322",
-        "senderIdIssueCountry": "NGA",
-        "senderBeneficiaryRelationship": "02",
-        "beneficiaryType": "B",
-        "receiverFirstName": "Josh Travels",
-        "receiverAddress": "Plot 331, Raji Rasak",
-        "receiverNativeAddress": "武汉市东湖新技术开发区高新大道",
-        "bankAccountNumber": "99999393939393939",
-        "bankBranchCode": "067014822",
-        "swiftCode": "382829299",
-        "purposeOfRemittance": "06",
-        "senderSourceOfFund": "04",
-        "payoutCurrency": "USD",
-        "locationId": "CHNJIA54935",
-        "uploadRef": "b7d69246-9e23-481c-85f0-4b8bca55c2cb"
-    }
+    "amount":"1000",
+    "narration":"test nuban transfer",
+    "pin":"1234",
+    "transactionCurrency":"NGN",
+    "channel":"3",
+    "accountName":"HABEEB ADEBOWALE ADEDEJI",
+    "bankCode":"000015",
+    "accountNumber":"2118622457"
 }'`;
     };
 
@@ -231,3 +209,4 @@ const PayoutBankForeignB2bTransferUsd = () => {
 };
 
 export default PayoutBankForeignB2bTransferUsd;
+

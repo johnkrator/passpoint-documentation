@@ -3,7 +3,45 @@ import CodeBlock from "@/components/CodeBlock.tsx";
 
 const PayoutBankForeignGetPaymentMethods = () => {
     const getEndpointCode = () => {
-        return `GET https://dev.mypasspoint.com/paypass/foreign-ft-app/available-payment-methods?countryCode=`;
+        return `GET https://dev.mypasspoint.com/paypass/foreign-ft-app/available-payment-methods?countryCode=US`;
+    };
+
+    const getCurlExampleCode = () => {
+        return `curl --location 'https://dev.mypasspoint.com/paypass/foreign-ft-app/available-payment-methods?countryCode=US'`;
+    };
+
+    const getExampleResponseCode = () => {
+        return `{
+  "responseCode": "00",
+  "responseDescription": "Successful",
+  "responseMessage": "4 payment method(s) found",
+  "data": [
+    {
+      "name": "ACH",
+      "alias": "ach",
+      "minLimit": 1,
+      "maxLimit": 10000000
+    },
+    {
+      "name": "RTP",
+      "alias": "rtp",
+      "minLimit": 1,
+      "maxLimit": 10000000
+    },
+    {
+      "name": "FEDWIRE",
+      "alias": "wire",
+      "minLimit": 1,
+      "maxLimit": 10000000
+    },
+    {
+      "name": "FEDNOW",
+      "alias": "fednow",
+      "minLimit": 1,
+      "maxLimit": 10000000
+    }
+  ]
+}`;
     };
 
     return (
@@ -37,6 +75,11 @@ const PayoutBankForeignGetPaymentMethods = () => {
                                         <div>
                                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Method</h4>
                                             <p className="text-gray-700 dark:text-gray-300 text-sm">GET</p>
+                                        </div>
+                                        <div>
+                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">cURL
+                                                Example</h4>
+                                            <CodeBlock>{getCurlExampleCode()}</CodeBlock>
                                         </div>
                                     </div>
                                 </div>
@@ -155,6 +198,16 @@ const PayoutBankForeignGetPaymentMethods = () => {
                             </div>
                         </div>
                     </section>
+
+                    {/* Example Response */}
+                    <section className="mb-16">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Example
+                            Response</h2>
+                        <div
+                            className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8">
+                            <CodeBlock>{getExampleResponseCode()}</CodeBlock>
+                        </div>
+                    </section>
                 </div>
             </div>
         </div>
@@ -162,3 +215,4 @@ const PayoutBankForeignGetPaymentMethods = () => {
 };
 
 export default PayoutBankForeignGetPaymentMethods;
+

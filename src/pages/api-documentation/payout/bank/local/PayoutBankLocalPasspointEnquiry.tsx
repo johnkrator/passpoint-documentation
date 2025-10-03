@@ -36,7 +36,7 @@ const PayoutBankLocalPasspointEnquiry = () => {
                         Enquiry</h1>
 
                     <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
-                        This endpoint verifies a passpoint beneficiary wallet.
+                        This endpoint verifies a passpoint beneficiary wallet
                     </p>
 
                     {/* API Endpoint */}

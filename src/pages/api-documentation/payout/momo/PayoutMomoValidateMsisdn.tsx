@@ -14,7 +14,7 @@ const PayoutMomoValidateMsisdn = () => {
                         Msisdn</h1>
 
                     <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
-                        This endpoint list available payout currencies.
+                        This endpoint list available payout currencies
                     </p>
 
                     {/* API Endpoint */}

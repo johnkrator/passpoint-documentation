@@ -20,61 +20,41 @@ const PayoutBankForeignB2cTransferCny = () => {
         "senderAddress": "Plot 331, Raji Rasaki Estate",
         "senderCity": "Lagos",
         "senderIdType": "03",
-        "senderIdNumber": "A08765432",
+        "senderIdNumber": "46543345322",
         "senderIdIssueCountry": "NGA",
-        "senderBeneficiaryRelationship": "01",
+        "senderBeneficiaryRelationship": "02",
         "beneficiaryType": "I",
-        "receiverFirstName": "Li Wei",
-        "receiverLastName": "Zhang",
-        "receiverAddress": "456 Nanjing Road",
-        "receiverCity": "Shanghai",
-        "receiverCountry": "CN",
-        "bankAccountNumber": "6225880087654321",
-        "bankName": "Industrial and Commercial Bank of China",
-        "bankCode": "ICBKCNBJ",
-        "purposeOfRemittance": "02",
-        "senderSourceOfFund": "01",
-        "payoutCurrency": "CNY"
+        "receiverFirstName": "Test",
+        "receiverLastName": "Name",
+        "receiverNativeFirstname": "试账户",
+        "receiverNativeLastname": "测",
+        "receiverIdType": "01",
+        "receiverIdNumber": "440902198806032838",
+        "receiverIdIssueCountry": "CHN",
+        "bankAccountNumber": "6217003090002505420",
+        "bankBranchCode": "067014822",
+        "purposeOfRemittance": "06",
+        "senderSourceOfFund": "04",
+        "payoutCurrency": "CNY",
+        "uploadRef": "b7d69246-9e23-481c-85f0-4b8bca55c2cb"
     }
 }`;
     };
 
     const getCurlExampleCode = () => {
-        return `curl --location 'https://dev.mypasspoint.com/paypass/foreign-ft-app/make-payment/b2c' \\
+        return `curl --location 'https://dev.mypasspoint.com/paypass/ft-app/account-transfer' \\
 --header 'x-channel-id: 2' \\
 --header 'x-channel-code: passpoint-merchant-user' \\
 --header 'x-merchant-id: pass your merchant id' \\
---header 'Authorization: Bearer YOUR_TOKEN' \\
---header 'Content-Type: application/json' \\
 --data '{
-    "clientReference": "1736193968177",
-    "amount": "17.00",
-    "narration": "test cny b2c transfer",
-    "transactionCurrency": "CNY",
-    "baseCurrency": "USD",
-    "countryCode": "CN",
-    "paymentInfo": {
-        "remitterType": "B",
-        "senderFirstName": "Josh Travels",
-        "senderAddress": "Plot 331, Raji Rasaki Estate",
-        "senderCity": "Lagos",
-        "senderIdType": "03",
-        "senderIdNumber": "A08765432",
-        "senderIdIssueCountry": "NGA",
-        "senderBeneficiaryRelationship": "01",
-        "beneficiaryType": "I",
-        "receiverFirstName": "Li Wei",
-        "receiverLastName": "Zhang",
-        "receiverAddress": "456 Nanjing Road",
-        "receiverCity": "Shanghai",
-        "receiverCountry": "CN",
-        "bankAccountNumber": "6225880087654321",
-        "bankName": "Industrial and Commercial Bank of China",
-        "bankCode": "ICBKCNBJ",
-        "purposeOfRemittance": "02",
-        "senderSourceOfFund": "01",
-        "payoutCurrency": "CNY"
-    }
+    "amount":"1000",
+    "narration":"test nuban transfer",
+    "pin":"1234",
+    "transactionCurrency":"NGN",
+    "channel":"3",
+    "accountName":"HABEEB ADEBOWALE ADEDEJI",
+    "bankCode":"000015",
+    "accountNumber":"2118622457"
 }'`;
     };
 
@@ -82,13 +62,12 @@ const PayoutBankForeignB2cTransferCny = () => {
         return `{
   "responseCode": "00",
   "responseDescription": "Successful",
-  "responseMessage": "Your CNY B2C transfer is being processed",
+  "responseMessage": "Your transfer to HABEEB ADEBOWALE ADEDEJI is on the way",
   "data": {
     "status": "NEW",
-    "transactionId": "c1d2e3f4-g5h6-7890-ijkl-mnop123qr456",
-    "amount": 17.00,
-    "charges": 3.25,
-    "estimatedDelivery": "1-3 business days"
+    "transactionId": "c7035d4d-a0b2-4dab-951c-1f949a4a2731",
+    "amount": 1000,
+    "charges": 10.8
   }
 }`;
     };

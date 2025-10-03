@@ -3,82 +3,71 @@ import CodeBlock from "@/components/CodeBlock.tsx";
 
 const PayoutBankForeignAccountDepositCny = () => {
     const getEndpointCode = () => {
-        return `POST https://dev.mypasspoint.com/paypass/foreign-ft-app/account-deposit/cny`;
+        return `POST https://dev.mypasspoint.com/paypass/foreign-ft-app/make-payment/bank`;
     };
 
     const getRequestBodyCode = () => {
         return `{
-    "clientReference": "1736193968188",
-    "amount": "1000.00",
-    "narration": "account deposit CNY",
+    "clientReference": "1736193968197",
+    "amount": "1350.00",
+    "narration": "test cny payout",
     "transactionCurrency": "CNY",
-    "baseCurrency": "CNY",
+    "baseCurrency": "USD",
     "countryCode": "CN",
     "paymentInfo": {
         "remitterType": "I",
-        "senderFirstName": "张",
-        "senderLastName": "伟",
-        "senderAddress": "上海市浦东新区陆家嘴环路1000号",
-        "senderCity": "上海",
-        "senderIdType": "01",
-        "senderIdNumber": "310104198501011234",
-        "senderIdIssueCountry": "CHN",
-        "senderBeneficiaryRelationship": "01",
+        "senderFirstName": "Josh Travels",
+        "senderLastName": "Ghaju",
+        "senderAddress": "Plot 331, Raji Rasaki Estate",
+        "senderMobile": "5678761918",
+        "senderGender": "Male",
+        "senderDateOfBirth": "1998-09-10",
+        "senderCity": "Lagos",
+        "senderZipCode": "5005",
+        "senderIdType": "03",
+        "senderIdNumber": "46543345322",
+        "senderIdIssueCountry": "NGA",
+        "senderBeneficiaryRelationship": "02",
         "beneficiaryType": "I",
-        "receiverFirstName": "李",
-        "receiverLastName": "娜",
-        "receiverNativeFirstname": "李",
-        "receiverNativeLastname": "娜",
+        "receiverFirstName": "SEEA",
+        "receiverLastName": "MOI",
+        "receiverNativeFirstname": "试账户",
+        "receiverNativeLastname": "测",
+        "receiverNativeAddress": "山东省德州市德城区新湖街道1243号202室",
+        "receiverContactNumber": "13333333333",
+        "receiverGender": "Male",
+        "receiverDateOfBirth": "1998-09-10",
+        "receiverCity": "rec-city",
+        "receiverZipCode": "5005",
+        "receiverOccupation": "03",
         "receiverIdType": "01",
-        "receiverIdNumber": "440301199003031234",
+        "receiverIdNumber": "330602198201220041",
         "receiverIdIssueCountry": "CHN",
-        "bankAccountNumber": "6217003090002505421",
-        "bankBranchCode": "102100099996",
-        "purposeOfRemittance": "01",
-        "senderSourceOfFund": "01",
+        "receiverIdIssueDate": "2022-08-28",
+        "receiverIdExpireDate": "2026-12-12",
+        "bankAccountNumber": "6210281010000312",
+        "bankBranchCode": "067014822",
+        "purposeOfRemittance": "06",
+        "senderSourceOfFund": "04",
         "payoutCurrency": "CNY"
     }
 }`;
     };
 
     const getCurlExampleCode = () => {
-        return `curl --location 'https://dev.mypasspoint.com/paypass/foreign-ft-app/account-deposit/cny' \\
+        return `curl --location 'https://dev.mypasspoint.com/paypass/ft-app/account-transfer' \\
 --header 'x-channel-id: 2' \\
 --header 'x-channel-code: passpoint-merchant-user' \\
 --header 'x-merchant-id: pass your merchant id' \\
---header 'Authorization: Bearer YOUR_TOKEN' \\
---header 'Content-Type: application/json' \\
 --data '{
-    "clientReference": "1736193968188",
-    "amount": "1000.00",
-    "narration": "account deposit CNY",
-    "transactionCurrency": "CNY",
-    "baseCurrency": "CNY",
-    "countryCode": "CN",
-    "paymentInfo": {
-        "remitterType": "I",
-        "senderFirstName": "张",
-        "senderLastName": "伟",
-        "senderAddress": "上海市浦东新区陆家嘴环路1000号",
-        "senderCity": "上海",
-        "senderIdType": "01",
-        "senderIdNumber": "310104198501011234",
-        "senderIdIssueCountry": "CHN",
-        "senderBeneficiaryRelationship": "01",
-        "beneficiaryType": "I",
-        "receiverFirstName": "李",
-        "receiverLastName": "娜",
-        "receiverNativeFirstname": "李",
-        "receiverNativeLastname": "娜",
-        "receiverIdType": "01",
-        "receiverIdNumber": "440301199003031234",
-        "receiverIdIssueCountry": "CHN",
-        "bankAccountNumber": "6217003090002505421",
-        "bankBranchCode": "102100099996",
-        "purposeOfRemittance": "01",
-        "senderSourceOfFund": "01",
-        "payoutCurrency": "CNY"
-    }
+    "amount":"1000",
+    "narration":"test nuban transfer",
+    "pin":"1234",
+    "transactionCurrency":"NGN",
+    "channel":"3",
+    "accountName":"HABEEB ADEBOWALE ADEDEJI",
+    "bankCode":"000015",
+    "accountNumber":"2118622457"
 }'`;
     };
 
@@ -86,12 +75,12 @@ const PayoutBankForeignAccountDepositCny = () => {
         return `{
   "responseCode": "00",
   "responseDescription": "Successful",
-  "responseMessage": "Your CNY account deposit is being processed",
+  "responseMessage": "Your transfer to HABEEB ADEBOWALE ADEDEJI is on the way",
   "data": {
     "status": "NEW",
-    "transactionId": "p9q0r1s2-t3u4-5678-vwxy-z012abc345def",
-    "amount": 1000.00,
-    "charges": 10.00
+    "transactionId": "c7035d4d-a0b2-4dab-951c-1f949a4a2731",
+    "amount": 1000,
+    "charges": 10.8
   }
 }`;
     };
@@ -235,3 +224,4 @@ const PayoutBankForeignAccountDepositCny = () => {
 };
 
 export default PayoutBankForeignAccountDepositCny;
+

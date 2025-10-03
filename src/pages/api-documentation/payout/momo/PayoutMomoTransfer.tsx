@@ -56,7 +56,7 @@ const PayoutMomoTransfer = () => {
                     <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Momo Transfer</h1>
 
                     <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
-                        Initiates a payout request to a momo wallet account holder.
+                        Initiates a payout request to a momo wallet account holder
                     </p>
 
                     {/* API Endpoint */}
@@ -379,3 +379,4 @@ const PayoutMomoTransfer = () => {
 };
 
 export default PayoutMomoTransfer;
+

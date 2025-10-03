@@ -3,78 +3,63 @@ import CodeBlock from "@/components/CodeBlock.tsx";
 
 const PayoutBankForeignMomoDepositCny = () => {
     const getEndpointCode = () => {
-        return `POST https://dev.mypasspoint.com/paypass/foreign-ft-app/momo-deposit/cny`;
+        return `POST https://dev.mypasspoint.com/paypass/foreign-ft-app/make-payment/momo`;
     };
 
     const getRequestBodyCode = () => {
         return `{
-    "clientReference": "1736193968189",
-    "amount": "500.00",
-    "narration": "momo deposit CNY",
+    "clientReference": "1736193968181",
+    "amount": "15.00",
+    "narration": "test cny momo transfer",
     "transactionCurrency": "CNY",
-    "baseCurrency": "CNY",
+    "baseCurrency": "USD",
     "countryCode": "CN",
     "paymentInfo": {
-        "remitterType": "I",
-        "senderFirstName": "李",
-        "senderLastName": "明",
-        "senderAddress": "北京市朝阳区建国门外大街1号",
-        "senderCity": "北京",
-        "senderState": "北京",
-        "senderZipCode": "100004",
-        "senderIdType": "01",
-        "senderIdNumber": "110101199001011234",
-        "senderIdIssueCountry": "CHN",
+        "senderFirstName": "Josh Travels",
+        "senderLastName": "Ghaju",
+        "senderGender": "Male",
+        "senderAddress": "Plot 331, Raji Rasaki Estate",
+        "senderMobile": "5678761918",
+        "senderEmail": "test@inficare.com.my",
+        "senderDateOfBirth": "1998-09-10",
+        "senderCity": "Lagos",
+        "senderZipCode": "5005",
+        "senderIdType": "03",
+        "senderIdNumber": "46543345322",
+        "senderIdIssueCountry": "NGA",
         "senderBeneficiaryRelationship": "02",
+        "remitterType": "I",
         "beneficiaryType": "I",
-        "receiverFirstName": "王",
-        "receiverLastName": "芳",
-        "receiverAddress": "上海市黄浦区南京东路123号",
-        "momoNumber": "13812345678",
-        "momoProvider": "WeChat Pay",
-        "purposeOfRemittance": "02",
-        "senderSourceOfFund": "02",
+        "receiverFirstName": "LEI",
+        "receiverLastName": "LI",
+        "receiverContactNumber": "13721473389",
+        "receiverDateOfBirth": "1998-09-10",
+        "receiverAddress": "Plot 331, Raji Rasak",
+        "receiverIdType": "03",
+        "receiverIdNumber": "440902198806032838",
+        "receiverIdIssueCountry": "CHN",
+        "bankAccountNumber": "13721473389",
+        "purposeOfRemittance": "06",
+        "senderSourceOfFund": "04",
         "payoutCurrency": "CNY"
     }
 }`;
     };
 
     const getCurlExampleCode = () => {
-        return `curl --location 'https://dev.mypasspoint.com/paypass/foreign-ft-app/momo-deposit/cny' \\
+        return `curl --location 'https://dev.mypasspoint.com/paypass/ft-app/account-transfer' \\
 --header 'x-channel-id: 2' \\
 --header 'x-channel-code: passpoint-merchant-user' \\
 --header 'x-merchant-id: pass your merchant id' \\
---header 'Authorization: Bearer YOUR_TOKEN' \\
---header 'Content-Type: application/json' \\
 --data '{
-    "clientReference": "1736193968189",
-    "amount": "500.00",
-    "narration": "momo deposit CNY",
-    "transactionCurrency": "CNY",
-    "baseCurrency": "CNY",
-    "countryCode": "CN",
-    "paymentInfo": {
-        "remitterType": "I",
-        "senderFirstName": "李",
-        "senderLastName": "明",
-        "senderAddress": "北京市朝阳区建国门外大街1号",
-        "senderCity": "北京",
-        "senderState": "北京",
-        "senderZipCode": "100004",
-        "senderIdType": "01",
-        "senderIdNumber": "110101199001011234",
-        "senderIdIssueCountry": "CHN",
-        "senderBeneficiaryRelationship": "02",
-        "beneficiaryType": "I",
-        "receiverFirstName": "王",
-        "receiverLastName": "芳",
-        "receiverAddress": "上海市黄浦区南京东路123号",
-        "momoNumber": "13812345678",
-        "momoProvider": "WeChat Pay",
-        "purposeOfRemittance": "02",
-        "senderSourceOfFund": "02",
-        "payoutCurrency": "CNY"
-    }
+    "amount":"1000",
+    "narration":"test nuban transfer",
+    "pin":"1234",
+    "transactionCurrency":"NGN",
+    "channel":"3",
+    "accountName":"HABEEB ADEBOWALE ADEDEJI",
+    "bankCode":"000015",
+    "accountNumber":"2118622457"
 }'`;
     };
 
@@ -82,13 +67,12 @@ const PayoutBankForeignMomoDepositCny = () => {
         return `{
   "responseCode": "00",
   "responseDescription": "Successful",
-  "responseMessage": "Your CNY MoMo deposit is being processed",
+  "responseMessage": "Your transfer to HABEEB ADEBOWALE ADEDEJI is on the way",
   "data": {
     "status": "NEW",
-    "transactionId": "d1e2f3g4-h5i6-7890-jklm-nopq123rs456",
-    "amount": 500.00,
-    "charges": 12.50,
-    "estimatedDelivery": "5-10 minutes"
+    "transactionId": "c7035d4d-a0b2-4dab-951c-1f949a4a2731",
+    "amount": 1000,
+    "charges": 10.8
   }
 }`;
     };
@@ -232,3 +216,4 @@ const PayoutBankForeignMomoDepositCny = () => {
 };
 
 export default PayoutBankForeignMomoDepositCny;
+

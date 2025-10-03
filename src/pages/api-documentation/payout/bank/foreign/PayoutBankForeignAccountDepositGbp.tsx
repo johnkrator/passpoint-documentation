@@ -3,72 +3,74 @@ import CodeBlock from "@/components/CodeBlock.tsx";
 
 const PayoutBankForeignAccountDepositGbp = () => {
     const getEndpointCode = () => {
-        return `POST https://dev.mypasspoint.com/paypass/foreign-ft-app/account-deposit/gbp`;
+        return `POST https://dev.mypasspoint.com/paypass/foreign-ft-app/make-payment/bank`;
     };
 
     const getRequestBodyCode = () => {
         return `{
-    "clientReference": "1736193968186",
-    "amount": "150.00",
-    "narration": "account deposit GBP",
+    "clientReference": "17361939681860",
+    "amount": "1000.00",
+    "narration": "test gbp payout",
     "transactionCurrency": "GBP",
     "baseCurrency": "GBP",
     "countryCode": "GB",
     "paymentInfo": {
+        "senderFirstName": "Josh",
+        "senderLastName": "Ghaju",
+        "senderAddress": "Plot 331, Raji Rasaki Estate",
+        "senderCity": "Lagos",
+        "senderZipCode": "5005",
+        "senderOccupation": "03",
+        "senderIdType": "03",
+        "senderIdNumber": "46543345322",
+        "senderBeneficiaryRelationship": "02",
         "remitterType": "I",
-        "senderFirstName": "William",
-        "senderLastName": "Thompson",
-        "senderAddress": "123 London Street",
-        "senderCity": "London",
-        "senderIdType": "02",
-        "senderIdNumber": "GB123456789",
-        "senderIdIssueCountry": "GBR",
-        "senderBeneficiaryRelationship": "01",
         "beneficiaryType": "I",
-        "receiverFirstName": "Emma",
-        "receiverLastName": "Johnson",
-        "receiverAddress": "456 Manchester Road",
-        "bankAccountNumber": "12345678",
-        "sortCode": "123456",
-        "purposeOfRemittance": "01",
-        "senderSourceOfFund": "01",
+        "receiverFirstName": "WIKARNDoA",
+        "receiverLastName": "SURATPHAWADEE",
+        "receiverAddress": "Plot 331, Raji Rasak",
+        "receiverCity": "rec-city",
+        "receiverZipCode": "5005",
+        "bankAccountNumber": "GB17BOFS80055100813796",
+        "purposeOfRemittance": "06",
+        "senderSourceOfFund": "04",
         "payoutCurrency": "GBP"
     }
 }`;
     };
 
     const getCurlExampleCode = () => {
-        return `curl --location 'https://dev.mypasspoint.com/paypass/foreign-ft-app/account-deposit/gbp' \\
+        return `curl --location 'https://dev.mypasspoint.com/paypass/foreign-ft-app/make-payment/bank' \\
 --header 'x-channel-id: 2' \\
 --header 'x-channel-code: passpoint-merchant-user' \\
 --header 'x-merchant-id: pass your merchant id' \\
---header 'Authorization: Bearer YOUR_TOKEN' \\
---header 'Content-Type: application/json' \\
 --data '{
-    "clientReference": "1736193968186",
-    "amount": "150.00",
-    "narration": "account deposit GBP",
+    "clientReference": "17361939681860",
+    "amount": "1000.00",
+    "narration": "test gbp payout",
     "transactionCurrency": "GBP",
     "baseCurrency": "GBP",
     "countryCode": "GB",
     "paymentInfo": {
+        "senderFirstName": "Josh",
+        "senderLastName": "Ghaju",
+        "senderAddress": "Plot 331, Raji Rasaki Estate",
+        "senderCity": "Lagos",
+        "senderZipCode": "5005",
+        "senderOccupation": "03",
+        "senderIdType": "03",
+        "senderIdNumber": "46543345322",
+        "senderBeneficiaryRelationship": "02",
         "remitterType": "I",
-        "senderFirstName": "William",
-        "senderLastName": "Thompson",
-        "senderAddress": "123 London Street",
-        "senderCity": "London",
-        "senderIdType": "02",
-        "senderIdNumber": "GB123456789",
-        "senderIdIssueCountry": "GBR",
-        "senderBeneficiaryRelationship": "01",
         "beneficiaryType": "I",
-        "receiverFirstName": "Emma",
-        "receiverLastName": "Johnson",
-        "receiverAddress": "456 Manchester Road",
-        "bankAccountNumber": "12345678",
-        "sortCode": "123456",
-        "purposeOfRemittance": "01",
-        "senderSourceOfFund": "01",
+        "receiverFirstName": "WIKARNDoA",
+        "receiverLastName": "SURATPHAWADEE",
+        "receiverAddress": "Plot 331, Raji Rasak",
+        "receiverCity": "rec-city",
+        "receiverZipCode": "5005",
+        "bankAccountNumber": "GB17BOFS80055100813796",
+        "purposeOfRemittance": "06",
+        "senderSourceOfFund": "04",
         "payoutCurrency": "GBP"
     }
 }'`;
@@ -78,12 +80,12 @@ const PayoutBankForeignAccountDepositGbp = () => {
         return `{
   "responseCode": "00",
   "responseDescription": "Successful",
-  "responseMessage": "Your GBP account deposit is being processed",
+  "responseMessage": "Your transfer to HABEEB ADEBOWALE ADEDEJI is on the way",
   "data": {
     "status": "NEW",
-    "transactionId": "l3m4n5o6-p7q8-9012-stuv-wxy789zab012",
-    "amount": 150.00,
-    "charges": 3.50
+    "transactionId": "c7035d4d-a0b2-4dab-951c-1f949a4a2731",
+    "amount": 1000,
+    "charges": 10.8
   }
 }`;
     };
@@ -227,3 +229,4 @@ const PayoutBankForeignAccountDepositGbp = () => {
 };
 
 export default PayoutBankForeignAccountDepositGbp;
+

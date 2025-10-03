@@ -3,72 +3,74 @@ import CodeBlock from "@/components/CodeBlock.tsx";
 
 const PayoutBankForeignAccountDepositEur = () => {
     const getEndpointCode = () => {
-        return `POST https://dev.mypasspoint.com/paypass/foreign-ft-app/account-deposit/eur`;
+        return `POST https://dev.mypasspoint.com/paypass/foreign-ft-app/make-payment/bank`;
     };
 
     const getRequestBodyCode = () => {
         return `{
-    "clientReference": "1736193968187",
-    "amount": "300.00",
-    "narration": "account deposit EUR",
+    "clientReference": "17361939681871",
+    "amount": "1700.00",
+    "narration": "test eur payout from ngn wallet",
     "transactionCurrency": "EUR",
     "baseCurrency": "EUR",
-    "countryCode": "DE",
+    "countryCode": "FR",
     "paymentInfo": {
-        "remitterType": "I",
-        "senderFirstName": "Hans",
-        "senderLastName": "Mueller",
-        "senderAddress": "Hauptstraße 123",
-        "senderCity": "Berlin",
-        "senderIdType": "02",
-        "senderIdNumber": "DE123456789",
-        "senderIdIssueCountry": "DEU",
+        "senderFirstName": "Josh Travels",
+        "senderLastName": "Ghaju",
+        "senderAddress": "Plot 331, Raji Rasaki Estate",
+        "senderCity": "Lagos",
+        "senderZipCode": "5005",
+        "senderOccupation": "03",
+        "senderIdType": "03",
+        "senderIdNumber": "46543345322",
         "senderBeneficiaryRelationship": "02",
+        "remitterType": "I",
         "beneficiaryType": "I",
-        "receiverFirstName": "Marie",
-        "receiverLastName": "Schmidt",
-        "receiverAddress": "Friedrichstraße 456",
-        "bankAccountNumber": "DE89370400440532013000",
-        "swiftCode": "COBADEFFXXX",
-        "purposeOfRemittance": "02",
-        "senderSourceOfFund": "02",
+        "receiverFirstName": "WIKARNDoA",
+        "receiverLastName": "SURATPHAWADEE",
+        "receiverAddress": "Plot 331, Raji Rasak",
+        "receiverCity": "rec-city",
+        "receiverZipCode": "5005",
+        "bankAccountNumber": "DK4900401234567892",
+        "purposeOfRemittance": "06",
+        "senderSourceOfFund": "04",
         "payoutCurrency": "EUR"
     }
 }`;
     };
 
     const getCurlExampleCode = () => {
-        return `curl --location 'https://dev.mypasspoint.com/paypass/foreign-ft-app/account-deposit/eur' \\
+        return `curl --location 'https://dev.mypasspoint.com/paypass/foreign-ft-app/make-payment/bank' \\
 --header 'x-channel-id: 2' \\
 --header 'x-channel-code: passpoint-merchant-user' \\
 --header 'x-merchant-id: pass your merchant id' \\
---header 'Authorization: Bearer YOUR_TOKEN' \\
---header 'Content-Type: application/json' \\
 --data '{
-    "clientReference": "1736193968187",
-    "amount": "300.00",
-    "narration": "account deposit EUR",
+    "clientReference": "17361939681871",
+    "amount": "1700.00",
+    "narration": "test eur payout from ngn wallet",
     "transactionCurrency": "EUR",
     "baseCurrency": "EUR",
-    "countryCode": "DE",
+    "countryCode": "FR",
     "paymentInfo": {
-        "remitterType": "I",
-        "senderFirstName": "Hans",
-        "senderLastName": "Mueller",
-        "senderAddress": "Hauptstraße 123",
-        "senderCity": "Berlin",
-        "senderIdType": "02",
-        "senderIdNumber": "DE123456789",
-        "senderIdIssueCountry": "DEU",
+        "senderFirstName": "Josh Travels",
+        "senderLastName": "Ghaju",
+        "senderAddress": "Plot 331, Raji Rasaki Estate",
+        "senderCity": "Lagos",
+        "senderZipCode": "5005",
+        "senderOccupation": "03",
+        "senderIdType": "03",
+        "senderIdNumber": "46543345322",
         "senderBeneficiaryRelationship": "02",
+        "remitterType": "I",
         "beneficiaryType": "I",
-        "receiverFirstName": "Marie",
-        "receiverLastName": "Schmidt",
-        "receiverAddress": "Friedrichstraße 456",
-        "bankAccountNumber": "DE89370400440532013000",
-        "swiftCode": "COBADEFFXXX",
-        "purposeOfRemittance": "02",
-        "senderSourceOfFund": "02",
+        "receiverFirstName": "WIKARNDoA",
+        "receiverLastName": "SURATPHAWADEE",
+        "receiverAddress": "Plot 331, Raji Rasak",
+        "receiverCity": "rec-city",
+        "receiverZipCode": "5005",
+        "bankAccountNumber": "DK4900401234567892",
+        "purposeOfRemittance": "06",
+        "senderSourceOfFund": "04",
         "payoutCurrency": "EUR"
     }
 }'`;
@@ -78,12 +80,12 @@ const PayoutBankForeignAccountDepositEur = () => {
         return `{
   "responseCode": "00",
   "responseDescription": "Successful",
-  "responseMessage": "Your EUR account deposit is being processed",
+  "responseMessage": "Your transfer to HABEEB ADEBOWALE ADEDEJI is on the way",
   "data": {
     "status": "NEW",
-    "transactionId": "n7o8p9q0-r1s2-3456-tuvw-xyz012abc678",
-    "amount": 300.00,
-    "charges": 4.50
+    "transactionId": "c7035d4d-a0b2-4dab-951c-1f949a4a2731",
+    "amount": 1000,
+    "charges": 10.8
   }
 }`;
     };
@@ -227,3 +229,4 @@ const PayoutBankForeignAccountDepositEur = () => {
 };
 
 export default PayoutBankForeignAccountDepositEur;
+

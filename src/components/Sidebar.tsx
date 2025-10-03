@@ -261,7 +261,7 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                             href: "/payout/convert-funds"
                         },
                         {
-                            icon: History,
+                            icon: Webhook,
                             label: "Fund Transfer Callback Sample",
                             href: "/payout/funds-transfer-callback-sample"
                         }
@@ -830,3 +830,4 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
 };
 
 export default Sidebar;
+

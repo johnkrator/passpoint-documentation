@@ -1,7 +1,7 @@
 import {Webhook} from "lucide-react";
 import CodeBlock from "@/components/CodeBlock.tsx";
 
-const FundTransferCallbackSample = () => {
+const PayoutFundTransferCallbackSample = () => {
     const getCallbackEndpoint = () => {
         return `POST https://merchant_callback_url`;
     };
@@ -441,4 +441,4 @@ String signature = hmac.hmacHex(callback_data)`;
     );
 };
 
-export default FundTransferCallbackSample;
+export default PayoutFundTransferCallbackSample;

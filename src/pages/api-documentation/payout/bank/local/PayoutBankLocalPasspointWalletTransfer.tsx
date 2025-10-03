@@ -56,25 +56,16 @@ const PayoutBankLocalPasspointWalletTransfer = () => {
                         Transfer</h1>
 
                     <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
-                        This endpoint performs the actual transfer of funds. It can be performed through the below
-                        channels:
+                        This endpoint performs the actual transfer of funds.
                     </p>
 
-                    {/* Channels */}
-                    <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Available
-                            Channels</h2>
-                        <div
-                            className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
-                            <div className="space-y-2 text-gray-700 dark:text-gray-300">
-                                <p><strong>1</strong> - MOBILE_ANDROID</p>
-                                <p><strong>2</strong> - MOBILE_IOS</p>
-                                <p><strong>3</strong> - WEB</p>
-                                <p><strong>4</strong> - THIRDPARTY</p>
-                                <p><strong>5</strong> - USSD</p>
-                            </div>
-                        </div>
-                    </section>
+                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+                        It can be performed through the below channels :
+                    </p>
+
+                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+                        1 - MOBILE_ANDROID, 2- MOBILE_IOS, 3- WEB, 4- THIRDPARTY, 5-USSD;
+                    </p>
 
                     {/* API Endpoint */}
                     <section className="mb-16">

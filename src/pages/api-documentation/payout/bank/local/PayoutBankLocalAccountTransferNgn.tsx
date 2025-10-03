@@ -23,16 +23,14 @@ const PayoutBankLocalAccountTransferNgn = () => {
 --header 'x-channel-id: 2' \\
 --header 'x-channel-code: passpoint-merchant-user' \\
 --header 'x-merchant-id: pass your merchant id' \\
---header 'Authorization: Basic <credentials>' \\
---header 'Content-Type: application/json' \\
 --data '{
-    "clientReference": "string",
-    "amount": "number",
-    "narration": "string",
-    "transactionCurrency": "string",
-    "beneficiaryBankCode": "number",
-    "beneficiaryAccountName": "string",
-    "beneficiaryAccountNumber": "number"
+    "clientReference":"8661baa4-8048-4a1d-b91d-96ca4a0bcf5c",
+    "amount":"4500",
+    "narration":"Test Transfer",
+    "transactionCurrency":"NGN",
+    "beneficiaryAccountName":"MFY / ByteLabs Technologies Limited",
+    "beneficiaryBankCode":"035",
+    "beneficiaryAccountNumber":"7433170834"
 }'`;
     };
 
@@ -40,10 +38,11 @@ const PayoutBankLocalAccountTransferNgn = () => {
         return `{
   "responseCode": "00",
   "responseDescription": "Successful",
-  "responseMessage": "NGN account transfer completed successfully",
+  "responseMessage": "Your transfer to HABEEB ADEBOWALE ADEDEJI is on the way",
   "data": {
     "status": "NEW",
-    "transactionId": "e1f2g3h4-i5j6-7890-klmn-opqr123st456"
+    "transactionId": "c7035d4d-a0b2-4dab-951c-1f949a4a2731",
+    "amount": 1000
   }
 }`;
     };

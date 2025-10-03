@@ -8,21 +8,21 @@ const PayoutBankLocalAccountEnquiry = () => {
 
     const getRequestBodyCode = () => {
         return `{
-    "accountNumber": "0690000032",
-    "bankCode": "044",
-    "channel": "3"
+    "bankCode":"090267",
+    "accountNumber":"2040884363",
+    "countryCode":"NG"
 }`;
     };
 
     const getCurlExampleCode = () => {
         return `curl --location 'https://dev.mypasspoint.com/paypass/ft-app/account-enquiry' \\
---header 'x-merchant-id: pass your merchant id' \\
+--header 'x-merchant-id: 22f36327-493c-492d-a390-5bf321ff51ba' \\
 --header 'x-channel-id: 2' \\
---header 'x-channel-code: passpoint-merchant-user' \\
+--header 'x-channel-code: passpoint-infra-user' \\
 --data '{
-    "accountNumber": "0690000032",
-    "bankCode": "044",
-    "channel": "3"
+    "bankCode":"035",
+    "accountNumber":"7433170834",
+    "countryCode":"NG"
 }'`;
     };
 
@@ -30,12 +30,10 @@ const PayoutBankLocalAccountEnquiry = () => {
         return `{
   "responseCode": "00",
   "responseDescription": "Successful",
-  "responseMessage": "Account enquiry successful",
+  "responseMessage": "account enquiry successful",
   "data": {
-    "accountName": "JOHN DOE",
-    "accountNumber": "0690000032",
-    "bankCode": "044",
-    "bankName": "ACCESS BANK PLC"
+    "accountName": "MFY / ByteLabs Technologies Limited"
+  }
 }`;
     };
 
@@ -47,7 +45,7 @@ const PayoutBankLocalAccountEnquiry = () => {
                         Enquiry</h1>
 
                     <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
-                        This verifies a nuban beneficiary account details.
+                        This verifies a nuban beneficiary account details
                     </p>
 
                     {/* API Endpoint */}

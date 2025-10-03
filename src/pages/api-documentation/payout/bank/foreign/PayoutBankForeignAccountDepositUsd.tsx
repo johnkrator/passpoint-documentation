@@ -3,76 +3,92 @@ import CodeBlock from "@/components/CodeBlock.tsx";
 
 const PayoutBankForeignAccountDepositUsd = () => {
     const getEndpointCode = () => {
-        return `POST https://dev.mypasspoint.com/paypass/foreign-ft-app/account-deposit/usd`;
+        return `POST https://dev.mypasspoint.com/paypass/foreign-ft-app/make-payment/bank`;
     };
 
     const getRequestBodyCode = () => {
         return `{
-    "clientReference": "1736193968189",
-    "amount": "500.00",
-    "narration": "account deposit USD",
+    "clientReference": "17361939681845",
+    "amount": "2000.00",
+    "narration": "test usd payout of 200",
     "transactionCurrency": "USD",
     "baseCurrency": "USD",
     "countryCode": "US",
     "paymentInfo": {
-        "remitterType": "I",
-        "senderFirstName": "John",
-        "senderLastName": "Smith",
-        "senderAddress": "123 Main Street",
-        "senderCity": "New York",
-        "senderState": "NY",
-        "senderZipCode": "10001",
-        "senderIdType": "01",
-        "senderIdNumber": "123456789",
-        "senderIdIssueCountry": "USA",
+        "senderFirstName": "Joshua",
+        "senderLastName": "Ghaju",
+        "senderAddress": "Plot 331, Raji Rasaki Estate",
+        "senderMobile": "5678761918",
+        "senderEmail": "test@inficare.com.my",
+        "senderDateOfBirth": "1998-09-10",
+        "senderCity": "Lagos",
+        "senderZipCode": "5005",
+        "senderOccupation": "03",
         "senderBeneficiaryRelationship": "02",
+        "remitterType": "I",
+        "senderIdType": "03",
+        "senderIdNumber": "46543345322",
+        "senderIdIssueCountry": "NGA",
+        "senderIdIssueDate": "2022-08-28",
+        "senderIdExpireDate": "2025-09-30",
         "beneficiaryType": "I",
-        "receiverFirstName": "Jane",
-        "receiverLastName": "Doe",
-        "receiverAddress": "456 Oak Avenue",
-        "bankAccountNumber": "1234567890",
-        "routingNumber": "021000021",
-        "purposeOfRemittance": "02",
-        "senderSourceOfFund": "02",
+        "receiverFirstName": "WIKARNDoA",
+        "receiverLastName": "SURATPHAWADEE",
+        "receiverAddress": "Plot 331, Raji Rasak",
+        "receiverState": "Delaware",
+        "receiverCity": "rec-city",
+        "receiverZipCode": "5005",
+        "bankAccountNumber": "999999999939399393939393939",
+        "bankBranchCode": "067014822",
+        "receiverContactNumber": "18901669689",
+        "purposeOfRemittance": "06",
+        "senderSourceOfFund": "04",
         "payoutCurrency": "USD"
     }
 }`;
     };
 
     const getCurlExampleCode = () => {
-        return `curl --location 'https://dev.mypasspoint.com/paypass/foreign-ft-app/account-deposit/usd' \\
+        return `curl --location 'https://dev.mypasspoint.com/paypass/foreign-ft-app/make-payment/bank' \\
 --header 'x-channel-id: 2' \\
 --header 'x-channel-code: passpoint-merchant-user' \\
 --header 'x-merchant-id: pass your merchant id' \\
---header 'Authorization: Bearer YOUR_TOKEN' \\
---header 'Content-Type: application/json' \\
---data '{
-    "clientReference": "1736193968189",
-    "amount": "500.00",
-    "narration": "account deposit USD",
+--data-raw '{
+    "clientReference": "17361939681845",
+    "amount": "2000.00",
+    "narration": "test usd payout of 200",
     "transactionCurrency": "USD",
     "baseCurrency": "USD",
     "countryCode": "US",
     "paymentInfo": {
-        "remitterType": "I",
-        "senderFirstName": "John",
-        "senderLastName": "Smith",
-        "senderAddress": "123 Main Street",
-        "senderCity": "New York",
-        "senderState": "NY",
-        "senderZipCode": "10001",
-        "senderIdType": "01",
-        "senderIdNumber": "123456789",
-        "senderIdIssueCountry": "USA",
+        "senderFirstName": "Joshua",
+        "senderLastName": "Ghaju",
+        "senderAddress": "Plot 331, Raji Rasaki Estate",
+        "senderMobile": "5678761918",
+        "senderEmail": "test@inficare.com.my",
+        "senderDateOfBirth": "1998-09-10",
+        "senderCity": "Lagos",
+        "senderZipCode": "5005",
+        "senderOccupation": "03",
         "senderBeneficiaryRelationship": "02",
+        "remitterType": "I",
+        "senderIdType": "03",
+        "senderIdNumber": "46543345322",
+        "senderIdIssueCountry": "NGA",
+        "senderIdIssueDate": "2022-08-28",
+        "senderIdExpireDate": "2025-09-30",
         "beneficiaryType": "I",
-        "receiverFirstName": "Jane",
-        "receiverLastName": "Doe",
-        "receiverAddress": "456 Oak Avenue",
-        "bankAccountNumber": "1234567890",
-        "routingNumber": "021000021",
-        "purposeOfRemittance": "02",
-        "senderSourceOfFund": "02",
+        "receiverFirstName": "WIKARNDoA",
+        "receiverLastName": "SURATPHAWADEE",
+        "receiverAddress": "Plot 331, Raji Rasak",
+        "receiverState": "Delaware",
+        "receiverCity": "rec-city",
+        "receiverZipCode": "5005",
+        "bankAccountNumber": "999999999939399393939393939",
+        "bankBranchCode": "067014822",
+        "receiverContactNumber": "18901669689",
+        "purposeOfRemittance": "06",
+        "senderSourceOfFund": "04",
         "payoutCurrency": "USD"
     }
 }'`;
@@ -82,12 +98,12 @@ const PayoutBankForeignAccountDepositUsd = () => {
         return `{
   "responseCode": "00",
   "responseDescription": "Successful",
-  "responseMessage": "Your USD account deposit is being processed",
+  "responseMessage": "Your transfer to HABEEB ADEBOWALE ADEDEJI is on the way",
   "data": {
     "status": "NEW",
-    "transactionId": "a1b2c3d4-e5f6-7890-ghij-klmn012op345",
-    "amount": 500.00,
-    "charges": 7.50
+    "transactionId": "c7035d4d-a0b2-4dab-951c-1f949a4a2731",
+    "amount": 1000,
+    "charges": 10.8
   }
 }`;
     };
@@ -231,3 +247,4 @@ const PayoutBankForeignAccountDepositUsd = () => {
 };
 
 export default PayoutBankForeignAccountDepositUsd;
+

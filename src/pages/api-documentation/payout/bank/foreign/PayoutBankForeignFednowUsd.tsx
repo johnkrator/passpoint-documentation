@@ -8,30 +8,23 @@ const PayoutBankForeignFednowUsd = () => {
 
     const getRequestBodyCode = () => {
         return `{
-    "clientReference": "1736193968184",
-    "amount": "75.00",
-    "narration": "fednow instant payment",
+    "clientReference": "17361939681900",
+    "amount": "10.00",
+    "narration": "test fednow usd payout of 10",
     "transactionCurrency": "USD",
     "baseCurrency": "USD",
     "countryCode": "US",
     "paymentInfo": {
-        "remitterType": "I",
-        "senderFirstName": "Lisa",
-        "senderLastName": "Wilson",
-        "senderAddress": "123 Federal Ave",
-        "senderCity": "Washington",
-        "senderIdType": "01",
-        "senderIdNumber": "111222333",
-        "senderIdIssueCountry": "USA",
-        "senderBeneficiaryRelationship": "03",
-        "beneficiaryType": "I",
-        "receiverFirstName": "Mark",
-        "receiverLastName": "Taylor",
-        "receiverAddress": "456 Capitol Street",
-        "bankAccountNumber": "1112223333",
-        "bankRoutingNumber": "021000055",
-        "purposeOfRemittance": "03",
-        "senderSourceOfFund": "03",
+        "accountType": "savings",
+        "accountName": "Ghaju",
+        "countryCode": "US",
+        "state": "Newyork",
+        "city": "Minnesota",
+        "address": "Plot 331, Raji Rasaki Estate",
+        "postalCode": "5005",
+        "accountNumber": "99999999993",
+        "routingNumber": "067014822",
+        "bankName": "JP Morgan",
         "payoutCurrency": "USD"
     }
 }`;
@@ -42,33 +35,24 @@ const PayoutBankForeignFednowUsd = () => {
 --header 'x-channel-id: 2' \\
 --header 'x-channel-code: passpoint-merchant-user' \\
 --header 'x-merchant-id: pass your merchant id' \\
---header 'Authorization: Bearer YOUR_TOKEN' \\
---header 'Content-Type: application/json' \\
 --data '{
-    "clientReference": "1736193968184",
-    "amount": "75.00",
-    "narration": "fednow instant payment",
+    "clientReference": "17361939681900",
+    "amount": "10.00",
+    "narration": "test fednow usd payout of 10",
     "transactionCurrency": "USD",
     "baseCurrency": "USD",
     "countryCode": "US",
     "paymentInfo": {
-        "remitterType": "I",
-        "senderFirstName": "Lisa",
-        "senderLastName": "Wilson",
-        "senderAddress": "123 Federal Ave",
-        "senderCity": "Washington",
-        "senderIdType": "01",
-        "senderIdNumber": "111222333",
-        "senderIdIssueCountry": "USA",
-        "senderBeneficiaryRelationship": "03",
-        "beneficiaryType": "I",
-        "receiverFirstName": "Mark",
-        "receiverLastName": "Taylor",
-        "receiverAddress": "456 Capitol Street",
-        "bankAccountNumber": "1112223333",
-        "bankRoutingNumber": "021000055",
-        "purposeOfRemittance": "03",
-        "senderSourceOfFund": "03",
+        "accountType": "savings",
+        "accountName": "Ghaju",
+        "countryCode": "US",
+        "state": "Newyork",
+        "city": "Minnesota",
+        "address": "Plot 331, Raji Rasaki Estate",
+        "postalCode": "5005",
+        "accountNumber": "99999999993",
+        "routingNumber": "067014822",
+        "bankName": "JP Morgan",
         "payoutCurrency": "USD"
     }
 }'`;
@@ -78,12 +62,12 @@ const PayoutBankForeignFednowUsd = () => {
         return `{
   "responseCode": "00",
   "responseDescription": "Successful",
-  "responseMessage": "Your FedNow payment is being processed instantly",
+  "responseMessage": "Your transfer to HABEEB ADEBOWALE ADEDEJI is on the way",
   "data": {
     "status": "NEW",
-    "transactionId": "h9i0j1k2-l3m4-5678-nopq-rst012uvw345",
-    "amount": 75.00,
-    "charges": 2.00
+    "transactionId": "c7035d4d-a0b2-4dab-951c-1f949a4a2731",
+    "amount": 1000,
+    "charges": 10.8
   }
 }`;
     };
@@ -226,3 +210,4 @@ const PayoutBankForeignFednowUsd = () => {
 };
 
 export default PayoutBankForeignFednowUsd;
+

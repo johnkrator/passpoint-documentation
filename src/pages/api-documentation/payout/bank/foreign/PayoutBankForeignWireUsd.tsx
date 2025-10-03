@@ -8,31 +8,23 @@ const PayoutBankForeignWireUsd = () => {
 
     const getRequestBodyCode = () => {
         return `{
-    "clientReference": "1736193968182",
-    "amount": "100.00",
-    "narration": "wire transfer payment",
+    "clientReference": "17361939681900",
+    "amount": "10.00",
+    "narration": "test usd payout of 10",
     "transactionCurrency": "USD",
     "baseCurrency": "USD",
     "countryCode": "US",
     "paymentInfo": {
-        "remitterType": "I",
-        "senderFirstName": "Michael",
-        "senderLastName": "Johnson",
-        "senderAddress": "789 Business Ave",
-        "senderCity": "Chicago",
-        "senderIdType": "01",
-        "senderIdNumber": "987654321",
-        "senderIdIssueCountry": "USA",
-        "senderBeneficiaryRelationship": "02",
-        "beneficiaryType": "I",
-        "receiverFirstName": "Sarah",
-        "receiverLastName": "Williams",
-        "receiverAddress": "321 Corporate Blvd",
-        "bankAccountNumber": "9876543210",
-        "bankRoutingNumber": "021000322",
-        "swiftCode": "CHASUS33",
-        "purposeOfRemittance": "02",
-        "senderSourceOfFund": "02",
+        "accountType": "savings",
+        "accountName": "Ghaju",
+        "countryCode": "US",
+        "state": "Newyork",
+        "city": "Minnesota",
+        "address": "Plot 331, Raji Rasaki Estate",
+        "postalCode": "5005",
+        "accountNumber": "99999999993",
+        "routingNumber": "067014822",
+        "bankName": "JP Morgan",
         "payoutCurrency": "USD"
     }
 }`;
@@ -43,34 +35,24 @@ const PayoutBankForeignWireUsd = () => {
 --header 'x-channel-id: 2' \\
 --header 'x-channel-code: passpoint-merchant-user' \\
 --header 'x-merchant-id: pass your merchant id' \\
---header 'Authorization: Bearer YOUR_TOKEN' \\
---header 'Content-Type: application/json' \\
 --data '{
-    "clientReference": "1736193968182",
-    "amount": "100.00",
-    "narration": "wire transfer payment",
+    "clientReference": "17361939681900",
+    "amount": "10.00",
+    "narration": "test usd payout of 10",
     "transactionCurrency": "USD",
     "baseCurrency": "USD",
     "countryCode": "US",
     "paymentInfo": {
-        "remitterType": "I",
-        "senderFirstName": "Michael",
-        "senderLastName": "Johnson",
-        "senderAddress": "789 Business Ave",
-        "senderCity": "Chicago",
-        "senderIdType": "01",
-        "senderIdNumber": "987654321",
-        "senderIdIssueCountry": "USA",
-        "senderBeneficiaryRelationship": "02",
-        "beneficiaryType": "I",
-        "receiverFirstName": "Sarah",
-        "receiverLastName": "Williams",
-        "receiverAddress": "321 Corporate Blvd",
-        "bankAccountNumber": "9876543210",
-        "bankRoutingNumber": "021000322",
-        "swiftCode": "CHASUS33",
-        "purposeOfRemittance": "02",
-        "senderSourceOfFund": "02",
+        "accountType": "savings",
+        "accountName": "Ghaju",
+        "countryCode": "US",
+        "state": "Newyork",
+        "city": "Minnesota",
+        "address": "Plot 331, Raji Rasaki Estate",
+        "postalCode": "5005",
+        "accountNumber": "99999999993",
+        "routingNumber": "067014822",
+        "bankName": "JP Morgan",
         "payoutCurrency": "USD"
     }
 }'`;
@@ -80,12 +62,12 @@ const PayoutBankForeignWireUsd = () => {
         return `{
   "responseCode": "00",
   "responseDescription": "Successful",
-  "responseMessage": "Your wire transfer is being processed",
+  "responseMessage": "Your transfer to HABEEB ADEBOWALE ADEDEJI is on the way",
   "data": {
     "status": "NEW",
-    "transactionId": "d4e5f6g7-h8i9-0123-jklm-nop456789qrs",
-    "amount": 100.00,
-    "charges": 15.00
+    "transactionId": "c7035d4d-a0b2-4dab-951c-1f949a4a2731",
+    "amount": 1000,
+    "charges": 10.8
   }
 }`;
     };
@@ -228,3 +210,4 @@ const PayoutBankForeignWireUsd = () => {
 };
 
 export default PayoutBankForeignWireUsd;
+

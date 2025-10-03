@@ -71,6 +71,9 @@ import CollectionBankDirect from "@/pages/api-documentation/collection/Collectio
 import CollectionBankOpenBanking from "@/pages/api-documentation/collection/CollectionBankOpenBanking.tsx";
 
 import ErrorBoundary, {RouterErrorBoundary} from "@/components/ErrorBoundary.tsx";
+import Rate from "@/pages/api-documentation/payout/Rate.tsx";
+import Report from "@/pages/api-documentation/payout/Report.tsx";
+import FundTransferCallbackSample from "@/pages/api-documentation/payout/FundTransferCallbackSample.tsx";
 
 const Routes = () => {
     return createBrowserRouter([
@@ -131,9 +134,10 @@ const Routes = () => {
                 {path: "payout/bank/foreign/b2b-transfer-cny", element: <PayoutBankForeignB2bTransferCny/>},
                 {path: "payout/bank/foreign/b2c-transfer-cny", element: <PayoutBankForeignB2cTransferCny/>},
                 {path: "payout/bank/foreign/b2b-transfer-usd", element: <PayoutBankForeignB2bTransferUsd/>},
-                {path: "payout/rate", element: <Home/>},
-                {path: "payout/report", element: <Home/>},
+                {path: "payout/rate", element: <Rate/>},
+                {path: "payout/report", element: <Report/>},
                 {path: "payout/convert-funds", element: <PayoutConvertFunds/>},
+                {path: "payout/funds-transfer-callback-sample", element: <FundTransferCallbackSample/>},
 
                 // Collection Routes
                 {path: "collection", element: <Collection/>},

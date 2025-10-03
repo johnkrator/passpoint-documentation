@@ -254,10 +254,16 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                             label: "Report",
                             href: "/payout/report"
                         },
+
                         {
                             icon: RefreshCw,
                             label: "Convert Funds",
                             href: "/payout/convert-funds"
+                        },
+                        {
+                            icon: History,
+                            label: "Fund Transfer Callback Sample",
+                            href: "/payout/funds-transfer-callback-sample"
                         }
                     ]
                 },

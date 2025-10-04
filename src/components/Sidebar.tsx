@@ -101,293 +101,283 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                             icon: ArrowUpToLine,
                             label: "Payout",
                             href: "/payout",
-                    children: [
-                        {
-                            icon: MessageSquare,
-                            label: "Momo",
-                            href: "/payout/momo",
                             children: [
                                 {
-                                    icon: Globe,
-                                    label: "Get Momo Payout Network",
-                                    href: "/payout/momo/get-network"
-                                },
-                                {
-                                    icon: Globe,
-                                    label: "Get Momo Payout Currency",
-                                    href: "/payout/momo/get-payout-network"
-                                },
-                                {
-                                    icon: CheckCircle,
-                                    label: "Validate Momo Msisdn",
-                                    href: "/payout/momo/validate-msisdn"
-                                },
-                                {icon: Send, label: "Momo Transfer", href: "/payout/momo/transfer"}
-                            ]
-                        },
-                        {
-                            icon: Building2,
-                            label: "Bank",
-                            href: "/payout/bank",
-                            children: [
-                                {
-                                    icon: MapPin,
-                                    label: "Local",
-                                    href: "/payout/bank/local",
+                                    icon: MessageSquare,
+                                    label: "Momo",
+                                    href: "/payout/momo",
                                     children: [
                                         {
-                                            icon: Building2,
-                                            label: "Get Banks",
-                                            href: "/payout/bank/local/get-banks"
-                                        },
-                                        {
-                                            icon: CheckCircle,
-                                            label: "Account Enquiry",
-                                            href: "/payout/bank/local/account-enquiry"
-                                        },
-                                        {
-                                            icon: Send,
-                                            label: "Account Transfer - NGN",
-                                            href: "/payout/bank/local/account-transfer-ngn"
-                                        },
-                                        {
-                                            icon: CheckCircle,
-                                            label: "Passpoint Enquiry",
-                                            href: "/payout/bank/local/passpoint-enquiry"
-                                        },
-                                        {
-                                            icon: Send,
-                                            label: "Passpoint Wallet Transfer",
-                                            href: "/payout/bank/local/passpoint-wallet-transfer"
-                                        }
-                                    ]
-                                },
-                                {
-                                    icon: Globe,
-                                    label: "Foreign",
-                                    href: "/payout/bank/foreign",
-                                    children: [
-                                        {
-                                            icon: FileText,
-                                            label: "API Summary",
-                                            href: "/payout/bank/foreign/summary"
+                                            icon: Globe,
+                                            label: "Get Momo Payout Network",
+                                            href: "/payout/momo/get-network"
                                         },
                                         {
                                             icon: Globe,
-                                            label: "Get Available Countries",
-                                            href: "/payout/bank/foreign/get-available-countries"
+                                            label: "Get Momo Payout Currency",
+                                            href: "/payout/momo/get-payout-network"
                                         },
                                         {
-                                            icon: CreditCard,
-                                            label: "Get Payment Methods",
-                                            href: "/payout/bank/foreign/get-payment-methods"
+                                            icon: CheckCircle,
+                                            label: "Validate Momo Msisdn",
+                                            href: "/payout/momo/validate-msisdn"
                                         },
-                                        {
-                                            icon: DollarSign,
-                                            label: "ACH - USD",
-                                            href: "/payout/bank/foreign/ach-usd"
-                                        },
-                                        {
-                                            icon: Send,
-                                            label: "WIRE - USD",
-                                            href: "/payout/bank/foreign/wire-usd"
-                                        },
-                                        {
-                                            icon: Send,
-                                            label: "RTP - USD",
-                                            href: "/payout/bank/foreign/rtp-usd"
-                                        },
-                                        {
-                                            icon: Send,
-                                            label: "FEDNOW - USD",
-                                            href: "/payout/bank/foreign/fednow-usd"
-                                        },
-                                        {
-                                            icon: BarChart3,
-                                            label: "Account Deposit - USD",
-                                            href: "/payout/bank/foreign/account-deposit-usd"
-                                        },
-                                        {
-                                            icon: BarChart3,
-                                            label: "Account Deposit - GBP",
-                                            href: "/payout/bank/foreign/account-deposit-gbp"
-                                        },
-                                        {
-                                            icon: BarChart3,
-                                            label: "Account Deposit - EUR",
-                                            href: "/payout/bank/foreign/account-deposit-eur"
-                                        },
-                                        {
-                                            icon: BarChart3,
-                                            label: "Account Deposit - CNY",
-                                            href: "/payout/bank/foreign/account-deposit-cny"
-                                        },
-                                        {
-                                            icon: MessageSquare,
-                                            label: "Momo Deposit - CNY",
-                                            href: "/payout/bank/foreign/momo-deposit-cny"
-                                        },
-                                        {
-                                            icon: Send,
-                                            label: "B2B Transfer - CNY",
-                                            href: "/payout/bank/foreign/b2b-transfer-cny"
-                                        },
-                                        {
-                                            icon: Send,
-                                            label: "B2C Transfer - CNY",
-                                            href: "/payout/bank/foreign/b2c-transfer-cny"
-                                        },
-                                        {
-                                            icon: Send,
-                                            label: "B2B Transfer - USD",
-                                            href: "/payout/bank/foreign/b2b-transfer-usd"
-                                        }
+                                        {icon: Send, label: "Momo Transfer", href: "/payout/momo/transfer"}
                                     ]
-                                }
-                            ]
-                        },
-                        {
-                            icon: TrendingUp,
-                            label: "Rate",
-                            href: "/payout/rate"
-                        },
-                        {
-                            icon: History,
-                            label: "Report",
-                            href: "/payout/report"
-                        },
-
-                        {
-                            icon: RefreshCw,
-                            label: "Convert Funds",
-                            href: "/payout/convert-funds"
-                        },
-                        {
-                            icon: Webhook,
-                            label: "Fund Transfer Callback Sample",
-                            href: "/payout/funds-transfer-callback-sample"
-                        }
-                    ]
-                },
-                {
-                    icon: ArrowDownToLine,
-                    label: "Collection",
-                    href: "/collection",
-                    children: [
-                        {
-                            icon: MessageSquare,
-                            label: "Momo",
-                            href: "/collection/momo",
-                            children: [
-                                {
-                                    icon: Globe,
-                                    label: "Get Momo Collection Currency",
-                                    href: "/collection/momo/get-currency"
                                 },
                                 {
-                                    icon: Globe,
-                                    label: "Get Momo Collection Network",
-                                    href: "/collection/momo/get-network"
-                                },
-                                {
-                                    icon: Send,
-                                    label: "Momo Request to Pay",
-                                    href: "/collection/momo/request-to-pay"
-                                }
-                            ]
-                        },
-                        {
-                            icon: Building2,
-                            label: "Bank",
-                            href: "/collection/bank",
-                            children: [
-                                {
-                                    icon: Shield,
-                                    label: "Open Banking",
-                                    href: "/collection/bank/open-banking",
+                                    icon: Building2,
+                                    label: "Bank",
+                                    href: "/payout/bank",
                                     children: [
                                         {
-                                            icon: Send,
-                                            label: "Request payment - foreign",
-                                            href: "/collection/bank/open-banking/request-payment-foreign"
-                                        },
-                                        {
-                                            icon: CreditCard,
-                                            label: "Request payment - foreign [with tokenization]",
-                                            href: "/collection/bank/open-banking/request-payment-foreign-tokenization"
-                                        },
-                                        {
-                                            icon: CreditCard,
-                                            label: "Request payment - foreign [with tokenization - new payer]",
-                                            href: "/collection/bank/open-banking/request-payment-foreign-tokenization-new-payer"
-                                        },
-                                        {
                                             icon: MapPin,
-                                            label: "Preselect",
-                                            href: "/collection/bank/open-banking/preselect",
+                                            label: "Local",
+                                            href: "/payout/bank/local",
                                             children: [
                                                 {
                                                     icon: Building2,
                                                     label: "Get Banks",
-                                                    href: "/collection/bank/open-banking/preselect/get-banks"
+                                                    href: "/payout/bank/local/get-banks"
                                                 },
                                                 {
-                                                    icon: Globe,
-                                                    label: "Get Countries",
-                                                    href: "/collection/bank/open-banking/preselect/get-countries"
+                                                    icon: CheckCircle,
+                                                    label: "Account Enquiry",
+                                                    href: "/payout/bank/local/account-enquiry"
                                                 },
                                                 {
                                                     icon: Send,
-                                                    label: "Request payment - foreign [with bank preselect]",
-                                                    href: "/collection/bank/open-banking/preselect/request-payment-foreign-with-bank-preselect"
+                                                    label: "Account Transfer - NGN",
+                                                    href: "/payout/bank/local/account-transfer-ngn"
+                                                },
+                                                {
+                                                    icon: CheckCircle,
+                                                    label: "Passpoint Enquiry",
+                                                    href: "/payout/bank/local/passpoint-enquiry"
+                                                },
+                                                {
+                                                    icon: Send,
+                                                    label: "Passpoint Wallet Transfer",
+                                                    href: "/payout/bank/local/passpoint-wallet-transfer"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            icon: Globe,
+                                            label: "Foreign",
+                                            href: "/payout/bank/foreign",
+                                            children: [
+                                                {
+                                                    icon: FileText,
+                                                    label: "API Summary",
+                                                    href: "/payout/bank/foreign/summary"
+                                                },
+                                                {
+                                                    icon: Globe,
+                                                    label: "Get Available Countries",
+                                                    href: "/payout/bank/foreign/get-available-countries"
+                                                },
+                                                {
+                                                    icon: CreditCard,
+                                                    label: "Get Payment Methods",
+                                                    href: "/payout/bank/foreign/get-payment-methods"
+                                                },
+                                                {
+                                                    icon: DollarSign,
+                                                    label: "ACH - USD",
+                                                    href: "/payout/bank/foreign/ach-usd"
+                                                },
+                                                {
+                                                    icon: Send,
+                                                    label: "WIRE - USD",
+                                                    href: "/payout/bank/foreign/wire-usd"
+                                                },
+                                                {
+                                                    icon: Send,
+                                                    label: "RTP - USD",
+                                                    href: "/payout/bank/foreign/rtp-usd"
+                                                },
+                                                {
+                                                    icon: Send,
+                                                    label: "FEDNOW - USD",
+                                                    href: "/payout/bank/foreign/fednow-usd"
+                                                },
+                                                {
+                                                    icon: BarChart3,
+                                                    label: "Account Deposit - USD",
+                                                    href: "/payout/bank/foreign/account-deposit-usd"
+                                                },
+                                                {
+                                                    icon: BarChart3,
+                                                    label: "Account Deposit - GBP",
+                                                    href: "/payout/bank/foreign/account-deposit-gbp"
+                                                },
+                                                {
+                                                    icon: BarChart3,
+                                                    label: "Account Deposit - EUR",
+                                                    href: "/payout/bank/foreign/account-deposit-eur"
+                                                },
+                                                {
+                                                    icon: BarChart3,
+                                                    label: "Account Deposit - CNY",
+                                                    href: "/payout/bank/foreign/account-deposit-cny"
+                                                },
+                                                {
+                                                    icon: MessageSquare,
+                                                    label: "Momo Deposit - CNY",
+                                                    href: "/payout/bank/foreign/momo-deposit-cny"
+                                                },
+                                                {
+                                                    icon: Send,
+                                                    label: "B2B Transfer - CNY",
+                                                    href: "/payout/bank/foreign/b2b-transfer-cny"
+                                                },
+                                                {
+                                                    icon: Send,
+                                                    label: "B2C Transfer - CNY",
+                                                    href: "/payout/bank/foreign/b2c-transfer-cny"
+                                                },
+                                                {
+                                                    icon: Send,
+                                                    label: "B2B Transfer - USD",
+                                                    href: "/payout/bank/foreign/b2b-transfer-usd"
                                                 }
                                             ]
                                         }
                                     ]
                                 },
                                 {
-                                    icon: DollarSign,
-                                    label: "Get collection currency",
-                                    href: "/collection/bank/get-collection-currency"
+                                    icon: TrendingUp,
+                                    label: "Rate",
+                                    href: "/payout/rate"
                                 },
                                 {
-                                    icon: BarChart3,
-                                    label: "Generate NGN static virtual account",
-                                    href: "/collection/bank/generate-ngn-static-virtual-account"
+                                    icon: History,
+                                    label: "Report",
+                                    href: "/payout/report"
+                                },
+
+                                {
+                                    icon: RefreshCw,
+                                    label: "Convert Funds",
+                                    href: "/payout/convert-funds"
                                 },
                                 {
-                                    icon: BarChart3,
-                                    label: "Generate USD virtual account - individual",
-                                    href: "/collection/bank/generate-usd-virtual-account-individual"
-                                },
-                                {
-                                    icon: BarChart3,
-                                    label: "Generate USD virtual account - business",
-                                    href: "/collection/bank/generate-usd-virtual-account-business"
-                                },
-                                {
-                                    icon: BarChart3,
-                                    label: "List virtual accounts - NGN - paginated",
-                                    href: "/collection/bank/list-virtual-accounts-ngn-paginated"
-                                },
-                                {
-                                    icon: BarChart3,
-                                    label: "Get virtual account",
-                                    href: "/collection/bank/get-virtual-account"
+                                    icon: Webhook,
+                                    label: "Fund Transfer Callback Sample",
+                                    href: "/payout/funds-transfer-callback-sample"
                                 }
                             ]
                         },
                         {
-                            icon: History,
-                            label: "Report",
-                            href: "/collection/report"
-                        },
-                        {
-                            icon: Webhook,
-                            label: "Wallet credit callback sample",
-                            href: "/collection/wallet-credit-callback-sample"
-                        }
-                    ]
+                            icon: ArrowDownToLine,
+                            label: "Collection",
+                            href: "/collection",
+                            children: [
+                                {
+                                    icon: MessageSquare,
+                                    label: "Momo",
+                                    href: "/collection/momo",
+                                    children: [
+                                        {
+                                            icon: Globe,
+                                            label: "Get Momo Collection Currency",
+                                            href: "/collection/momo/get-currency"
+                                        },
+                                        {
+                                            icon: Globe,
+                                            label: "Get Momo Collection Network",
+                                            href: "/collection/momo/get-network"
+                                        },
+                                        {
+                                            icon: Send,
+                                            label: "Momo Request to Pay",
+                                            href: "/collection/momo/request-to-pay"
+                                        }
+                                    ]
+                                },
+                                {
+                                    icon: Building2,
+                                    label: "Bank",
+                                    href: "/collection/bank",
+                                    children: [
+                                        {
+                                            icon: Shield,
+                                            label: "Open Banking",
+                                            href: "/collection/bank/open-banking",
+                                            children: [
+                                                {
+                                                    icon: Send,
+                                                    label: "Request payment - foreign",
+                                                    href: "/collection/bank/open-banking/request-payment-foreign"
+                                                },
+                                                {
+                                                    icon: MapPin,
+                                                    label: "Preselect",
+                                                    href: "/collection/bank/open-banking/preselect",
+                                                    children: [
+                                                        {
+                                                            icon: Building2,
+                                                            label: "Get Banks",
+                                                            href: "/collection/bank/open-banking/preselect/get-banks"
+                                                        },
+                                                        {
+                                                            icon: Globe,
+                                                            label: "Get Countries",
+                                                            href: "/collection/bank/open-banking/preselect/get-countries"
+                                                        },
+                                                        {
+                                                            icon: Send,
+                                                            label: "Request payment - foreign [with bank preselect]",
+                                                            href: "/collection/bank/open-banking/preselect/request-payment-foreign-with-bank-preselect"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            icon: DollarSign,
+                                            label: "Get collection currency",
+                                            href: "/collection/bank/get-collection-currency"
+                                        },
+                                        {
+                                            icon: BarChart3,
+                                            label: "Generate NGN static virtual account",
+                                            href: "/collection/bank/generate-ngn-static-virtual-account"
+                                        },
+                                        {
+                                            icon: BarChart3,
+                                            label: "Generate USD virtual account - individual",
+                                            href: "/collection/bank/generate-usd-virtual-account-individual"
+                                        },
+                                        {
+                                            icon: BarChart3,
+                                            label: "Generate USD virtual account - business",
+                                            href: "/collection/bank/generate-usd-virtual-account-business"
+                                        },
+                                        {
+                                            icon: BarChart3,
+                                            label: "List virtual accounts - NGN - paginated",
+                                            href: "/collection/bank/list-virtual-accounts-ngn-paginated"
+                                        },
+                                        {
+                                            icon: BarChart3,
+                                            label: "Get virtual account",
+                                            href: "/collection/bank/get-virtual-account"
+                                        }
+                                    ]
+                                },
+                                {
+                                    icon: History,
+                                    label: "Report",
+                                    href: "/collection/report"
+                                },
+                                {
+                                    icon: Webhook,
+                                    label: "Wallet credit callback sample",
+                                    href: "/collection/wallet-credit-callback-sample"
+                                }
+                            ]
                         },
                         {
                             icon: BarChart3,
@@ -742,10 +732,13 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                                                                                                             const isGGChildExpanded = openNavItems.includes(ggchildKey);
 
                                                                                                                             return (
-                                                                                                                                <div key={ggchild.href} className="space-y-1">
+                                                                                                                                <div
+                                                                                                                                    key={ggchild.href}
+                                                                                                                                    className="space-y-1">
                                                                                                                                     {hasGGGrandchildren ? (
                                                                                                                                         <div>
-                                                                                                                                            <div className="flex items-center">
+                                                                                                                                            <div
+                                                                                                                                                className="flex items-center">
                                                                                                                                                 <button
                                                                                                                                                     onClick={() => toggleNavItem(ggchildKey)}
                                                                                                                                                     className={cn(
@@ -755,20 +748,26 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                                                                                                                                             : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
                                                                                                                                                     )}
                                                                                                                                                 >
-                                                                                                                                                    <ggchild.icon className="h-4 w-4"/>
-                                                                                                                                                    <span className="truncate">{ggchild.label}</span>
-                                                                                                                                                    <span className="ml-auto">
+                                                                                                                                                    <ggchild.icon
+                                                                                                                                                        className="h-4 w-4"/>
+                                                                                                                                                    <span
+                                                                                                                                                        className="truncate">{ggchild.label}</span>
+                                                                                                                                                    <span
+                                                                                                                                                        className="ml-auto">
                                                                                                                                                         {isGGChildExpanded ? (
-                                                                                                                                                            <ChevronDown className="h-3 w-3"/>
+                                                                                                                                                            <ChevronDown
+                                                                                                                                                                className="h-3 w-3"/>
                                                                                                                                                         ) : (
-                                                                                                                                                            <ChevronRight className="h-3 w-3"/>
+                                                                                                                                                            <ChevronRight
+                                                                                                                                                                className="h-3 w-3"/>
                                                                                                                                                         )}
                                                                                                                                                     </span>
                                                                                                                                                 </button>
                                                                                                                                             </div>
                                                                                                                                             {/* Great-great-grandchildren */}
                                                                                                                                             {isGGChildExpanded && (
-                                                                                                                                                <div className="ml-6 space-y-1 mt-1">
+                                                                                                                                                <div
+                                                                                                                                                    className="ml-6 space-y-1 mt-1">
                                                                                                                                                     {ggchild.children!.map((gggchild) => {
                                                                                                                                                         const isGGGChildActive = location.pathname === gggchild.href;
                                                                                                                                                         const hasGGGGrandchildren = gggchild.children && gggchild.children.length > 0;
@@ -776,10 +775,13 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                                                                                                                                         const isGGGChildExpanded = openNavItems.includes(gggchildKey);
 
                                                                                                                                                         return (
-                                                                                                                                                            <div key={gggchild.href} className="space-y-1">
+                                                                                                                                                            <div
+                                                                                                                                                                key={gggchild.href}
+                                                                                                                                                                className="space-y-1">
                                                                                                                                                                 {hasGGGGrandchildren ? (
                                                                                                                                                                     <div>
-                                                                                                                                                                        <div className="flex items-center">
+                                                                                                                                                                        <div
+                                                                                                                                                                            className="flex items-center">
                                                                                                                                                                             <button
                                                                                                                                                                                 onClick={() => toggleNavItem(gggchildKey)}
                                                                                                                                                                                 className={cn(
@@ -789,20 +791,26 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                                                                                                                                                                         : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
                                                                                                                                                                                 )}
                                                                                                                                                                             >
-                                                                                                                                                                                <gggchild.icon className="h-4 w-4"/>
-                                                                                                                                                                                <span className="truncate">{gggchild.label}</span>
-                                                                                                                                                                                <span className="ml-auto">
+                                                                                                                                                                                <gggchild.icon
+                                                                                                                                                                                    className="h-4 w-4"/>
+                                                                                                                                                                                <span
+                                                                                                                                                                                    className="truncate">{gggchild.label}</span>
+                                                                                                                                                                                <span
+                                                                                                                                                                                    className="ml-auto">
                                                                                                                                                                                     {isGGGChildExpanded ? (
-                                                                                                                                                                                        <ChevronDown className="h-3 w-3"/>
+                                                                                                                                                                                        <ChevronDown
+                                                                                                                                                                                            className="h-3 w-3"/>
                                                                                                                                                                                     ) : (
-                                                                                                                                                                                        <ChevronRight className="h-3 w-3"/>
+                                                                                                                                                                                        <ChevronRight
+                                                                                                                                                                                            className="h-3 w-3"/>
                                                                                                                                                                                     )}
                                                                                                                                                                                 </span>
                                                                                                                                                                             </button>
                                                                                                                                                                         </div>
                                                                                                                                                                         {/* Great-great-great-grandchildren */}
                                                                                                                                                                         {isGGGChildExpanded && (
-                                                                                                                                                                            <div className="ml-6 space-y-1 mt-1">
+                                                                                                                                                                            <div
+                                                                                                                                                                                className="ml-6 space-y-1 mt-1">
                                                                                                                                                                                 {gggchild.children!.map((ggggchild) => {
                                                                                                                                                                                     const isGGGGChildActive = location.pathname === ggggchild.href;
                                                                                                                                                                                     return (
@@ -821,8 +829,10 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                                                                                                                                                                                     : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
                                                                                                                                                                                             )}
                                                                                                                                                                                         >
-                                                                                                                                                                                            <ggggchild.icon className="h-4 w-4"/>
-                                                                                                                                                                                            <span className="truncate">{ggggchild.label}</span>
+                                                                                                                                                                                            <ggggchild.icon
+                                                                                                                                                                                                className="h-4 w-4"/>
+                                                                                                                                                                                            <span
+                                                                                                                                                                                                className="truncate">{ggggchild.label}</span>
                                                                                                                                                                                         </Link>
                                                                                                                                                                                     );
                                                                                                                                                                                 })}
@@ -845,8 +855,10 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                                                                                                                                                                 : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
                                                                                                                                                                         )}
                                                                                                                                                                     >
-                                                                                                                                                                        <gggchild.icon className="h-4 w-4"/>
-                                                                                                                                                                        <span className="truncate">{gggchild.label}</span>
+                                                                                                                                                                        <gggchild.icon
+                                                                                                                                                                            className="h-4 w-4"/>
+                                                                                                                                                                        <span
+                                                                                                                                                                            className="truncate">{gggchild.label}</span>
                                                                                                                                                                     </Link>
                                                                                                                                                                 )}
                                                                                                                                                             </div>
@@ -870,8 +882,10 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                                                                                                                                     : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
                                                                                                                                             )}
                                                                                                                                         >
-                                                                                                                                            <ggchild.icon className="h-4 w-4"/>
-                                                                                                                                            <span className="truncate">{ggchild.label}</span>
+                                                                                                                                            <ggchild.icon
+                                                                                                                                                className="h-4 w-4"/>
+                                                                                                                                            <span
+                                                                                                                                                className="truncate">{ggchild.label}</span>
                                                                                                                                         </Link>
                                                                                                                                     )}
                                                                                                                                 </div>

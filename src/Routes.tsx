@@ -102,6 +102,7 @@ import CollectionGetVirtualAccount
 // Collection Bank Open Banking Pages
 import CollectionRequestPaymentForeign
     from "@/pages/api-documentation/transfer/collection/bank/open-banking/CollectionRequestPaymentForeign.tsx";
+import CollectionBankOpenBankingPreselect from "@/pages/api-documentation/transfer/collection/bank/open-banking/CollectionBankOpenBankingPreselect.tsx";
 import CollectionGetBanks
     from "@/pages/api-documentation/transfer/collection/bank/open-banking/preselect/CollectionGetBanks.tsx";
 import CollectionGetCountries
@@ -214,14 +215,17 @@ const Routes = () => {
 
                 // Collection Bank Open Banking Routes
                 {path: "collection/bank/open-banking", element: <CollectionBankOpenBanking/>},
-                {path: "collection/bank/open-banking/get-banks", element: <CollectionGetBanks/>},
-                {path: "collection/bank/open-banking/get-countries", element: <CollectionGetCountries/>},
                 {
                     path: "collection/bank/open-banking/request-payment-foreign",
                     element: <CollectionRequestPaymentForeign/>
                 },
+
+                // Collection Bank Open Banking Preselect Routes
+                {path: "collection/bank/open-banking/preselect", element: <CollectionBankOpenBankingPreselect/>},
+                {path: "collection/bank/open-banking/preselect/get-banks", element: <CollectionGetBanks/>},
+                {path: "collection/bank/open-banking/preselect/get-countries", element: <CollectionGetCountries/>},
                 {
-                    path: "collection/bank/open-banking/request-payment-foreign-with-bank-preselect",
+                    path: "collection/bank/open-banking/preselect/request-payment-foreign-with-bank-preselect",
                     element: <CollectionRequestPaymentForeignWithBankPreselect/>
                 },
 

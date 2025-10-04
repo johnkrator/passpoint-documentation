@@ -32,8 +32,13 @@ const getNavigationSections = (): NavSection[] => [
             { icon: null, label: "Wallet", href: "/wallet" },
             {
                 icon: null,
-                label: "Payout",
-                href: "/payout",
+                label: "Transfer",
+                href: "/transfer",
+                children: [
+                    {
+                        icon: null,
+                        label: "Payout",
+                        href: "/payout",
                 children: [
                     {
                         icon: null,
@@ -117,10 +122,19 @@ const getNavigationSections = (): NavSection[] => [
                                 label: "Open Banking",
                                 href: "/collection/bank/open-banking",
                                 children: [
-                                    { icon: null, label: "Get Banks", href: "/collection/bank/open-banking/get-banks" },
                                     { icon: null, label: "Request payment - foreign", href: "/collection/bank/open-banking/request-payment-foreign" },
                                     { icon: null, label: "Request payment - foreign [with tokenization]", href: "/collection/bank/open-banking/request-payment-foreign-tokenization" },
-                                    { icon: null, label: "Request payment - foreign [with tokenization - new payer]", href: "/collection/bank/open-banking/request-payment-foreign-tokenization-new-payer" }
+                                    { icon: null, label: "Request payment - foreign [with tokenization - new payer]", href: "/collection/bank/open-banking/request-payment-foreign-tokenization-new-payer" },
+                                    {
+                                        icon: null,
+                                        label: "Preselect",
+                                        href: "/collection/bank/open-banking/preselect",
+                                        children: [
+                                            { icon: null, label: "Get Banks", href: "/collection/bank/open-banking/preselect/get-banks" },
+                                            { icon: null, label: "Get Countries", href: "/collection/bank/open-banking/preselect/get-countries" },
+                                            { icon: null, label: "Request payment - foreign [with bank preselect]", href: "/collection/bank/open-banking/preselect/request-payment-foreign-with-bank-preselect" }
+                                        ]
+                                    }
                                 ]
                             },
                             { icon: null, label: "Get collection currency", href: "/collection/bank/get-collection-currency" },
@@ -139,6 +153,8 @@ const getNavigationSections = (): NavSection[] => [
                     { icon: null, label: "Resend single webhook", href: "/collection/resend-single-webhook" },
                     { icon: null, label: "Resend bulk webhook", href: "/collection/resend-bulk-webhook" },
                     { icon: null, label: "Confirm momo payment", href: "/collection/confirm-momo-payment" }
+                ]
+                    }
                 ]
             },
             {

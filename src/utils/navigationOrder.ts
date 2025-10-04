@@ -146,15 +146,15 @@ const getNavigationSections = (): NavSection[] => [
                         ]
                     },
                     { icon: null, label: "Report", href: "/collection/report" },
-                    { icon: null, label: "Wallet credit callback sample", href: "/collection/wallet-credit-callback-sample" },
-                    { icon: null, label: "List countries", href: "/collection/list-countries" },
-                    { icon: null, label: "Transfer status", href: "/collection/transfer-status" },
-                    { icon: null, label: "Payment status report", href: "/collection/payment-status-report" },
-                    { icon: null, label: "Resend single webhook", href: "/collection/resend-single-webhook" },
-                    { icon: null, label: "Resend bulk webhook", href: "/collection/resend-bulk-webhook" },
-                    { icon: null, label: "Confirm momo payment", href: "/collection/confirm-momo-payment" }
+                    { icon: null, label: "Wallet credit callback sample", href: "/collection/wallet-credit-callback-sample" }
                 ]
-                    }
+                    },
+                    { icon: null, label: "List countries", href: "/transfer/list-countries" },
+                    { icon: null, label: "Transfer status", href: "/transfer/transfer-status" },
+                    { icon: null, label: "Payment status report", href: "/transfer/payment-status-report" },
+                    { icon: null, label: "Resend single webhook", href: "/transfer/resend-single-webhook" },
+                    { icon: null, label: "Resend bulk webhook", href: "/transfer/resend-bulk-webhook" },
+                    { icon: null, label: "Confirm momo payment", href: "/transfer/confirm-momo-payment" }
                 ]
             },
             {

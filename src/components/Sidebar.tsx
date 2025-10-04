@@ -386,38 +386,38 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                             icon: Webhook,
                             label: "Wallet credit callback sample",
                             href: "/collection/wallet-credit-callback-sample"
+                        }
+                    ]
                         },
                         {
                             icon: BarChart3,
                             label: "List countries",
-                            href: "/collection/list-countries"
+                            href: "/transfer/list-countries"
                         },
                         {
                             icon: BarChart3,
                             label: "Transfer status",
-                            href: "/collection/transfer-status"
+                            href: "/transfer/transfer-status"
                         },
                         {
                             icon: BarChart3,
                             label: "Payment status report",
-                            href: "/collection/payment-status-report"
+                            href: "/transfer/payment-status-report"
                         },
                         {
                             icon: Send,
                             label: "Resend single webhook",
-                            href: "/collection/resend-single-webhook"
+                            href: "/transfer/resend-single-webhook"
                         },
                         {
                             icon: Send,
                             label: "Resend bulk webhook",
-                            href: "/collection/resend-bulk-webhook"
+                            href: "/transfer/resend-bulk-webhook"
                         },
                         {
                             icon: CheckCircle,
                             label: "Confirm momo payment",
-                            href: "/collection/confirm-momo-payment"
-                        }
-                    ]
+                            href: "/transfer/confirm-momo-payment"
                         }
                     ]
                 },

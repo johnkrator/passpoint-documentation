@@ -72,12 +72,9 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
         });
     };
 
-    const getUniqueKey = (item: NavItem, parentItem?: NavItem, grandparentItem?: NavItem) => {
+    const getUniqueKey = (...items: (NavItem | undefined)[]) => {
         // Build a unique key based on the full hierarchy path
-        const parts = [];
-        if (grandparentItem) parts.push(grandparentItem.label);
-        if (parentItem) parts.push(parentItem.label);
-        parts.push(item.label);
+        const parts = items.filter(item => item !== undefined).map(item => item!.label);
         return parts.join("-");
     };
 
@@ -96,9 +93,14 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                 {icon: Settings, label: "Authentication", href: "/authentication"},
                 {icon: BarChart3, label: "Wallet", href: "/wallet"},
                 {
-                    icon: ArrowUpToLine,
-                    label: "Payout",
-                    href: "/payout",
+                    icon: Send,
+                    label: "Transfer",
+                    href: "/transfer",
+                    children: [
+                        {
+                            icon: ArrowUpToLine,
+                            label: "Payout",
+                            href: "/payout",
                     children: [
                         {
                             icon: MessageSquare,
@@ -305,11 +307,6 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                     href: "/collection/bank/open-banking",
                                     children: [
                                         {
-                                            icon: Building2,
-                                            label: "Get Banks",
-                                            href: "/collection/bank/open-banking/get-banks"
-                                        },
-                                        {
                                             icon: Send,
                                             label: "Request payment - foreign",
                                             href: "/collection/bank/open-banking/request-payment-foreign"
@@ -323,6 +320,28 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                             icon: CreditCard,
                                             label: "Request payment - foreign [with tokenization - new payer]",
                                             href: "/collection/bank/open-banking/request-payment-foreign-tokenization-new-payer"
+                                        },
+                                        {
+                                            icon: MapPin,
+                                            label: "Preselect",
+                                            href: "/collection/bank/open-banking/preselect",
+                                            children: [
+                                                {
+                                                    icon: Building2,
+                                                    label: "Get Banks",
+                                                    href: "/collection/bank/open-banking/preselect/get-banks"
+                                                },
+                                                {
+                                                    icon: Globe,
+                                                    label: "Get Countries",
+                                                    href: "/collection/bank/open-banking/preselect/get-countries"
+                                                },
+                                                {
+                                                    icon: Send,
+                                                    label: "Request payment - foreign [with bank preselect]",
+                                                    href: "/collection/bank/open-banking/preselect/request-payment-foreign-with-bank-preselect"
+                                                }
+                                            ]
                                         }
                                     ]
                                 },
@@ -397,6 +416,8 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                             icon: CheckCircle,
                             label: "Confirm momo payment",
                             href: "/collection/confirm-momo-payment"
+                        }
+                    ]
                         }
                     ]
                 },
@@ -716,27 +737,84 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                                                                                                         className="ml-6 space-y-1 mt-1">
                                                                                                                         {grandchild.children!.map((ggchild) => {
                                                                                                                             const isGGChildActive = location.pathname === ggchild.href;
+                                                                                                                            const hasGGGrandchildren = ggchild.children && ggchild.children.length > 0;
+                                                                                                                            const ggchildKey = getUniqueKey(ggchild, grandchild, child, item);
+                                                                                                                            const isGGChildExpanded = openNavItems.includes(ggchildKey);
+
                                                                                                                             return (
-                                                                                                                                <Link
-                                                                                                                                    key={ggchild.href}
-                                                                                                                                    to={ggchild.href}
-                                                                                                                                    onClick={() => {
-                                                                                                                                        if (window.innerWidth < 1024) {
-                                                                                                                                            onClose();
-                                                                                                                                        }
-                                                                                                                                    }}
-                                                                                                                                    className={cn(
-                                                                                                                                        "flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors",
-                                                                                                                                        isGGChildActive
-                                                                                                                                            ? "bg-brand-500 text-white"
-                                                                                                                                            : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                                                                                                                                <div key={ggchild.href} className="space-y-1">
+                                                                                                                                    {hasGGGrandchildren ? (
+                                                                                                                                        <div>
+                                                                                                                                            <div className="flex items-center">
+                                                                                                                                                <button
+                                                                                                                                                    onClick={() => toggleNavItem(ggchildKey)}
+                                                                                                                                                    className={cn(
+                                                                                                                                                        "flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors flex-1 text-left",
+                                                                                                                                                        isGGChildActive
+                                                                                                                                                            ? "bg-brand-500 text-white"
+                                                                                                                                                            : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                                                                                                                                                    )}
+                                                                                                                                                >
+                                                                                                                                                    <ggchild.icon className="h-4 w-4"/>
+                                                                                                                                                    <span className="truncate">{ggchild.label}</span>
+                                                                                                                                                    <span className="ml-auto">
+                                                                                                                                                        {isGGChildExpanded ? (
+                                                                                                                                                            <ChevronDown className="h-3 w-3"/>
+                                                                                                                                                        ) : (
+                                                                                                                                                            <ChevronRight className="h-3 w-3"/>
+                                                                                                                                                        )}
+                                                                                                                                                    </span>
+                                                                                                                                                </button>
+                                                                                                                                            </div>
+                                                                                                                                            {/* Great-great-grandchildren */}
+                                                                                                                                            {isGGChildExpanded && (
+                                                                                                                                                <div className="ml-6 space-y-1 mt-1">
+                                                                                                                                                    {ggchild.children!.map((gggchild) => {
+                                                                                                                                                        const isGGGChildActive = location.pathname === gggchild.href;
+                                                                                                                                                        return (
+                                                                                                                                                            <Link
+                                                                                                                                                                key={gggchild.href}
+                                                                                                                                                                to={gggchild.href}
+                                                                                                                                                                onClick={() => {
+                                                                                                                                                                    if (window.innerWidth < 1024) {
+                                                                                                                                                                        onClose();
+                                                                                                                                                                    }
+                                                                                                                                                                }}
+                                                                                                                                                                className={cn(
+                                                                                                                                                                    "flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors",
+                                                                                                                                                                    isGGGChildActive
+                                                                                                                                                                        ? "bg-brand-500 text-white"
+                                                                                                                                                                        : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                                                                                                                                                                )}
+                                                                                                                                                            >
+                                                                                                                                                                <gggchild.icon className="h-4 w-4"/>
+                                                                                                                                                                <span className="truncate">{gggchild.label}</span>
+                                                                                                                                                            </Link>
+                                                                                                                                                        );
+                                                                                                                                                    })}
+                                                                                                                                                </div>
+                                                                                                                                            )}
+                                                                                                                                        </div>
+                                                                                                                                    ) : (
+                                                                                                                                        <Link
+                                                                                                                                            to={ggchild.href}
+                                                                                                                                            onClick={() => {
+                                                                                                                                                if (window.innerWidth < 1024) {
+                                                                                                                                                    onClose();
+                                                                                                                                                }
+                                                                                                                                            }}
+                                                                                                                                            className={cn(
+                                                                                                                                                "flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors",
+                                                                                                                                                isGGChildActive
+                                                                                                                                                    ? "bg-brand-500 text-white"
+                                                                                                                                                    : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                                                                                                                                            )}
+                                                                                                                                        >
+                                                                                                                                            <ggchild.icon className="h-4 w-4"/>
+                                                                                                                                            <span className="truncate">{ggchild.label}</span>
+                                                                                                                                        </Link>
                                                                                                                                     )}
-                                                                                                                                >
-                                                                                                                                    <ggchild.icon
-                                                                                                                                        className="h-4 w-4"/>
-                                                                                                                                    <span
-                                                                                                                                        className="truncate">{ggchild.label}</span>
-                                                                                                                                </Link>
+                                                                                                                                </div>
                                                                                                                             );
                                                                                                                         })}
                                                                                                                     </div>

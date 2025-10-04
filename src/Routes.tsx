@@ -110,6 +110,14 @@ import CollectionGetCountries
 import CollectionRequestPaymentForeignWithBankPreselect
     from "@/pages/api-documentation/transfer/collection/bank/open-banking/preselect/CollectionRequestPaymentForeignWithBankPreselect.tsx";
 
+// Transfer Root Pages
+import TransferListCountries from "@/pages/api-documentation/transfer/TransferListCountries.tsx";
+import TransferStatus from "@/pages/api-documentation/transfer/TransferStatus.tsx";
+import TransferPaymentStatusReport from "@/pages/api-documentation/transfer/TransferPaymentStatusReport.tsx";
+import TransferResendSingleWebhook from "@/pages/api-documentation/transfer/TransferResendSingleWebhook.tsx";
+import TransferResendBulkWebhook from "@/pages/api-documentation/transfer/TransferResendBulkWebhook.tsx";
+import TransferConfirmMomoPayment from "@/pages/api-documentation/transfer/TransferConfirmMomoPayment.tsx";
+
 import ErrorBoundary, {RouterErrorBoundary} from "@/components/ErrorBoundary.tsx";
 import Rate from "@/pages/api-documentation/transfer/payout/Rate.tsx";
 import Report from "@/pages/api-documentation/transfer/payout/Report.tsx";
@@ -232,6 +240,14 @@ const Routes = () => {
                 // Collection General Routes
                 {path: "collection/report", element: <CollectionReport/>},
                 {path: "collection/wallet-credit-callback-sample", element: <CollectionWalletCreditCallbackSample/>},
+
+                // Transfer Root Routes
+                {path: "transfer/list-countries", element: <TransferListCountries/>},
+                {path: "transfer/transfer-status", element: <TransferStatus/>},
+                {path: "transfer/payment-status-report", element: <TransferPaymentStatusReport/>},
+                {path: "transfer/resend-single-webhook", element: <TransferResendSingleWebhook/>},
+                {path: "transfer/resend-bulk-webhook", element: <TransferResendBulkWebhook/>},
+                {path: "transfer/confirm-momo-payment", element: <TransferConfirmMomoPayment/>},
 
                 // Legacy routes for backward compatibility (Payout only)
                 {path: "transfer/payout", element: <Payout/>},

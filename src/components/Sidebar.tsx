@@ -307,11 +307,6 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                             href: "/collection/bank/open-banking",
                                             children: [
                                                 {
-                                                    icon: Send,
-                                                    label: "Request payment - foreign",
-                                                    href: "/collection/bank/open-banking/request-payment-foreign"
-                                                },
-                                                {
                                                     icon: MapPin,
                                                     label: "Preselect",
                                                     href: "/collection/bank/open-banking/preselect",
@@ -332,6 +327,11 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                                             href: "/collection/bank/open-banking/preselect/request-payment-foreign-with-bank-preselect"
                                                         }
                                                     ]
+                                                },
+                                                {
+                                                    icon: Send,
+                                                    label: "Request payment - foreign",
+                                                    href: "/collection/bank/open-banking/request-payment-foreign"
                                                 }
                                             ]
                                         },

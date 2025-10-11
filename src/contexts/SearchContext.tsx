@@ -31,7 +31,7 @@ const searchData: SearchItem[] = [
         section: "GETTING STARTED",
         icon: Home,
         keywords: ["home", "welcome", "start", "overview", "documentation", "docs", "main"],
-        aliases: ["landing", "index", "root"]
+        aliases: ["landing", "index", "root", "/"]
     },
     {
         title: "Introduction",
@@ -40,7 +40,7 @@ const searchData: SearchItem[] = [
         section: "GETTING STARTED",
         icon: Book,
         keywords: ["introduction", "intro", "basics", "getting started", "overview", "begin", "start guide"],
-        aliases: ["intro", "getting-started", "basics"]
+        aliases: ["intro", "getting-started", "basics", "/introduction"]
     },
     {
         title: "Authentication",
@@ -49,7 +49,7 @@ const searchData: SearchItem[] = [
         section: "GETTING STARTED",
         icon: Key,
         keywords: ["authentication", "auth", "api key", "security", "token", "bearer", "oauth", "credentials", "login"],
-        aliases: ["auth", "api-key", "access-token", "authorization"]
+        aliases: ["auth", "api-key", "access-token", "authorization", "/authentication"]
     },
     {
         title: "API Integrations",
@@ -58,7 +58,7 @@ const searchData: SearchItem[] = [
         section: "GETTING STARTED",
         icon: Settings,
         keywords: ["integration", "rest", "sdk", "webhook", "api", "connect", "setup", "configure"],
-        aliases: ["integrations", "setup", "configuration"]
+        aliases: ["integrations", "setup", "configuration", "api-integrations", "/api-integrations"]
     },
 
     // Guides
@@ -69,7 +69,7 @@ const searchData: SearchItem[] = [
         section: "GUIDES",
         icon: Book,
         keywords: ["quick", "guide", "tutorial", "example", "pattern", "how to", "walkthrough"],
-        aliases: ["guides", "tutorials", "examples"]
+        aliases: ["guides", "tutorials", "examples", "quick-guides", "/quick-guides"]
     },
     {
         title: "API Rate Limits",
@@ -78,7 +78,7 @@ const searchData: SearchItem[] = [
         section: "GUIDES",
         icon: BarChart3,
         keywords: ["rate", "limit", "quota", "throttle", "request", "429", "rate-limit", "per-second"],
-        aliases: ["rate-limiting", "throttling", "quotas"]
+        aliases: ["rate-limiting", "throttling", "quotas", "api-rate-limits", "/api-rate-limits"]
     },
     {
         title: "Global Callback Setup",
@@ -87,7 +87,7 @@ const searchData: SearchItem[] = [
         section: "GUIDES",
         icon: Webhook,
         keywords: ["callback", "webhook", "global", "notification", "event", "listener", "hooks"],
-        aliases: ["webhooks", "callbacks", "notifications", "events"]
+        aliases: ["webhooks", "callbacks", "notifications", "events", "global-callback-setup", "/global-callback-setup"]
     },
 
     // Core Services
@@ -98,7 +98,7 @@ const searchData: SearchItem[] = [
         section: "CORE SERVICES",
         icon: Wallet,
         keywords: ["wallet", "balance", "digital", "currency", "account", "funds", "deposit"],
-        aliases: ["wallets", "account-balance", "funds"]
+        aliases: ["wallets", "account-balance", "funds", "/wallet"]
     },
     {
         title: "Transfer",
@@ -107,7 +107,7 @@ const searchData: SearchItem[] = [
         section: "CORE SERVICES",
         icon: ArrowLeftRight,
         keywords: ["transfer", "send", "money", "payment", "move", "transaction"],
-        aliases: ["transfers", "send-money", "move-funds"]
+        aliases: ["transfers", "send-money", "move-funds", "/transfer"]
     },
     {
         title: "Collection",
@@ -116,7 +116,7 @@ const searchData: SearchItem[] = [
         section: "CORE SERVICES",
         icon: Download,
         keywords: ["collection", "collect", "payment", "receive", "invoice", "charge", "accept-payment"],
-        aliases: ["collections", "receive-payment", "accept-payment"]
+        aliases: ["collections", "receive-payment", "accept-payment", "/collection"]
     },
     {
         title: "Payout",
@@ -125,7 +125,7 @@ const searchData: SearchItem[] = [
         section: "CORE SERVICES",
         icon: Upload,
         keywords: ["payout", "disburse", "send", "withdraw", "distribute", "disbursement"],
-        aliases: ["payouts", "disbursements", "withdrawals"]
+        aliases: ["payouts", "disbursements", "withdrawals", "/payout"]
     },
 
     // Collection Methods - Bank
@@ -136,7 +136,7 @@ const searchData: SearchItem[] = [
         section: "COLLECTIONS",
         icon: Building2,
         keywords: ["bank", "collection", "open banking", "ach", "wire", "virtual account"],
-        aliases: ["bank-collection", "banking"]
+        aliases: ["bank-collection", "banking", "collection-bank", "/collection/bank"]
     },
     {
         title: "Open Banking Collections",
@@ -145,7 +145,7 @@ const searchData: SearchItem[] = [
         section: "COLLECTIONS",
         icon: Building2,
         keywords: ["open banking", "bank", "secure", "api", "psd2", "instant", "verification"],
-        aliases: ["open-banking", "psd2"]
+        aliases: ["open-banking", "psd2", "collection-bank-open-banking", "/collection/bank/open-banking"]
     },
     {
         title: "Get Collection Currency",
@@ -154,7 +154,7 @@ const searchData: SearchItem[] = [
         section: "COLLECTIONS",
         icon: Building2,
         keywords: ["currency", "collection", "supported", "available", "list"],
-        aliases: ["currencies", "supported-currencies"]
+        aliases: ["currencies", "supported-currencies", "collection-currency", "get-collection-currency", "/collection/bank/get-collection-currency"]
     },
     {
         title: "Generate NGN Static Virtual Account",
@@ -163,7 +163,7 @@ const searchData: SearchItem[] = [
         section: "COLLECTIONS",
         icon: Building2,
         keywords: ["ngn", "naira", "nigeria", "virtual account", "static", "permanent", "generate"],
-        aliases: ["nigerian-account", "ngn-account"]
+        aliases: ["nigerian-account", "ngn-account", "static-virtual-account", "generate-ngn-static", "/collection/bank/generate-ngn-static-virtual-account"]
     },
     {
         title: "Generate NGN Dynamic Virtual Account",
@@ -172,7 +172,7 @@ const searchData: SearchItem[] = [
         section: "COLLECTIONS",
         icon: Building2,
         keywords: ["ngn", "naira", "nigeria", "virtual account", "dynamic", "temporary", "generate"],
-        aliases: ["temp-account", "dynamic-account"]
+        aliases: ["temp-account", "dynamic-account", "generate-ngn-dynamic", "/collection/bank/generate-ngn-dynamic-virtual-account"]
     },
     {
         title: "Generate NGN Dynamic Virtual Account with Other Info",
@@ -181,7 +181,7 @@ const searchData: SearchItem[] = [
         section: "COLLECTIONS",
         icon: Building2,
         keywords: ["ngn", "naira", "nigeria", "virtual account", "dynamic", "metadata", "custom fields"],
-        aliases: ["dynamic-account-metadata", "ngn-account-info"]
+        aliases: ["dynamic-account-metadata", "ngn-account-info", "generate-ngn-dynamic-other-info", "/collection/bank/generate-ngn-dynamic-virtual-account-with-other-info"]
     },
     {
         title: "Generate USD Virtual Account - Individual",
@@ -190,7 +190,7 @@ const searchData: SearchItem[] = [
         section: "COLLECTIONS",
         icon: Building2,
         keywords: ["usd", "dollar", "usa", "virtual account", "individual", "personal", "generate"],
-        aliases: ["us-account", "dollar-account"]
+        aliases: ["us-account", "dollar-account", "usd-individual", "generate-usd-individual", "/collection/bank/generate-usd-virtual-account-individual"]
     },
     {
         title: "Generate USD Virtual Account - Business",
@@ -199,7 +199,7 @@ const searchData: SearchItem[] = [
         section: "COLLECTIONS",
         icon: Building2,
         keywords: ["usd", "dollar", "usa", "virtual account", "business", "commercial", "generate"],
-        aliases: ["business-account", "commercial-account"]
+        aliases: ["business-account", "commercial-account", "usd-business", "generate-usd-business", "/collection/bank/generate-usd-virtual-account-business"]
     },
     {
         title: "List Virtual Accounts NGN Paginated",
@@ -208,7 +208,7 @@ const searchData: SearchItem[] = [
         section: "COLLECTIONS",
         icon: Building2,
         keywords: ["ngn", "virtual account", "list", "paginated", "filter", "search"],
-        aliases: ["list-accounts", "ngn-accounts"]
+        aliases: ["list-accounts", "ngn-accounts", "list-virtual-accounts-ngn", "/collection/bank/list-virtual-accounts-ngn-paginated"]
     },
     {
         title: "Get Virtual Account",
@@ -217,7 +217,7 @@ const searchData: SearchItem[] = [
         section: "COLLECTIONS",
         icon: Building2,
         keywords: ["virtual account", "get", "details", "retrieve", "lookup"],
-        aliases: ["account-details", "fetch-account"]
+        aliases: ["account-details", "fetch-account", "get-virtual-account", "/collection/bank/get-virtual-account"]
     },
     {
         title: "Collection Report",
@@ -226,7 +226,7 @@ const searchData: SearchItem[] = [
         section: "COLLECTIONS",
         icon: BarChart3,
         keywords: ["report", "collection", "analytics", "transactions", "settlement"],
-        aliases: ["reports", "analytics", "collection-analytics"]
+        aliases: ["reports", "analytics", "collection-analytics", "collection-report", "/collection/report"]
     },
     {
         title: "Wallet Credit Callback Sample",
@@ -235,7 +235,7 @@ const searchData: SearchItem[] = [
         section: "COLLECTIONS",
         icon: Webhook,
         keywords: ["callback", "webhook", "wallet", "credit", "sample", "example", "notification"],
-        aliases: ["webhook-sample", "callback-example"]
+        aliases: ["webhook-sample", "callback-example", "wallet-credit-callback", "/collection/wallet-credit-callback-sample"]
     },
 
     // Collection - Open Banking
@@ -246,7 +246,7 @@ const searchData: SearchItem[] = [
         section: "COLLECTIONS",
         icon: Globe,
         keywords: ["open banking", "foreign", "international", "payment", "request", "cross-border"],
-        aliases: ["international-payment", "cross-border-collection"]
+        aliases: ["international-payment", "cross-border-collection", "request-payment-foreign", "open-banking-foreign", "/collection/bank/open-banking/request-payment-foreign"]
     },
     {
         title: "Get Banks",
@@ -255,7 +255,7 @@ const searchData: SearchItem[] = [
         section: "COLLECTIONS",
         icon: Building2,
         keywords: ["banks", "list", "open banking", "supported", "preselect"],
-        aliases: ["bank-list", "supported-banks"]
+        aliases: ["bank-list", "supported-banks", "preselect-banks", "open-banking-preselect-get-banks", "/collection/bank/open-banking/preselect/get-banks"]
     },
     {
         title: "Get Countries",
@@ -264,7 +264,7 @@ const searchData: SearchItem[] = [
         section: "COLLECTIONS",
         icon: Globe,
         keywords: ["countries", "list", "supported", "open banking", "international"],
-        aliases: ["country-list", "supported-countries"]
+        aliases: ["country-list", "supported-countries", "preselect-countries", "open-banking-preselect-get-countries", "/collection/bank/open-banking/preselect/get-countries"]
     },
     {
         title: "Request Payment Foreign with Bank Preselect",
@@ -273,7 +273,7 @@ const searchData: SearchItem[] = [
         section: "COLLECTIONS",
         icon: Building2,
         keywords: ["payment", "foreign", "preselect", "bank", "international", "request"],
-        aliases: ["preselect-payment", "bank-preselect"]
+        aliases: ["preselect-payment", "bank-preselect", "request-payment-foreign-bank-preselect", "open-banking-preselect-foreign", "/collection/bank/open-banking/preselect/request-payment-foreign-with-bank-preselect"]
     },
 
     // Collection - Mobile Money
@@ -284,7 +284,7 @@ const searchData: SearchItem[] = [
         section: "MOBILE MONEY",
         icon: Smartphone,
         keywords: ["momo", "mobile", "money", "network", "provider", "operator", "collection"],
-        aliases: ["momo-networks", "mobile-operators"]
+        aliases: ["momo-networks", "mobile-operators", "collection-momo-network", "momo-get-network", "/collection/momo/get-network"]
     },
     {
         title: "Get MoMo Collection Currency",
@@ -293,7 +293,7 @@ const searchData: SearchItem[] = [
         section: "MOBILE MONEY",
         icon: Smartphone,
         keywords: ["momo", "mobile", "money", "currency", "collection", "supported"],
-        aliases: ["momo-currencies"]
+        aliases: ["momo-currencies", "collection-momo-currency", "momo-get-currency", "/collection/momo/get-currency"]
     },
     {
         title: "MoMo Request to Pay",
@@ -302,7 +302,7 @@ const searchData: SearchItem[] = [
         section: "MOBILE MONEY",
         icon: Smartphone,
         keywords: ["momo", "mobile", "money", "request", "pay", "collection", "charge"],
-        aliases: ["request-payment", "momo-charge"]
+        aliases: ["request-payment", "momo-charge", "momo-request-to-pay", "collection-momo-request", "/collection/momo/request-to-pay"]
     },
 
     // Payout - Bank
@@ -313,7 +313,7 @@ const searchData: SearchItem[] = [
         section: "PAYOUTS",
         icon: Building2,
         keywords: ["bank", "payout", "transfer", "wire", "ach", "disbursement"],
-        aliases: ["bank-payout", "bank-transfer"]
+        aliases: ["bank-payout", "bank-transfer", "payout-bank", "/payout/bank"]
     },
     {
         title: "Local Bank Transfers",
@@ -322,7 +322,7 @@ const searchData: SearchItem[] = [
         section: "PAYOUTS",
         icon: Building2,
         keywords: ["local", "domestic", "bank", "ach", "wire", "same day", "payout"],
-        aliases: ["domestic-transfer", "local-payout"]
+        aliases: ["domestic-transfer", "local-payout", "payout-bank-local", "/payout/bank/local"]
     },
     {
         title: "Foreign Bank Transfers",
@@ -331,7 +331,7 @@ const searchData: SearchItem[] = [
         section: "PAYOUTS",
         icon: Globe,
         keywords: ["foreign", "international", "wire", "global", "cross border", "swift", "payout"],
-        aliases: ["international-transfer", "cross-border-payout"]
+        aliases: ["international-transfer", "cross-border-payout", "payout-bank-foreign", "/payout/bank/foreign"]
     },
     {
         title: "Convert Funds",
@@ -340,7 +340,7 @@ const searchData: SearchItem[] = [
         section: "PAYOUTS",
         icon: ArrowLeftRight,
         keywords: ["convert", "currency", "exchange", "rate", "fx", "forex", "swap"],
-        aliases: ["currency-conversion", "fx", "exchange"]
+        aliases: ["currency-conversion", "fx", "exchange", "convert-funds", "payout-convert", "/payout/convert-funds"]
     },
     {
         title: "Payout Rate",
@@ -349,7 +349,7 @@ const searchData: SearchItem[] = [
         section: "PAYOUTS",
         icon: BarChart3,
         keywords: ["rate", "exchange", "forex", "fx", "conversion", "fee", "payout"],
-        aliases: ["exchange-rate", "fx-rate"]
+        aliases: ["exchange-rate", "fx-rate", "payout-rate", "/payout/rate"]
     },
     {
         title: "Payout Report",
@@ -358,7 +358,7 @@ const searchData: SearchItem[] = [
         section: "PAYOUTS",
         icon: BarChart3,
         keywords: ["report", "payout", "analytics", "transactions", "disbursement", "settlement"],
-        aliases: ["payout-analytics", "disbursement-report"]
+        aliases: ["payout-analytics", "disbursement-report", "payout-report", "/payout/report"]
     },
     {
         title: "Fund Transfer Callback Sample",
@@ -367,7 +367,7 @@ const searchData: SearchItem[] = [
         section: "PAYOUTS",
         icon: Webhook,
         keywords: ["callback", "webhook", "payout", "transfer", "sample", "example", "notification"],
-        aliases: ["payout-webhook", "transfer-callback"]
+        aliases: ["payout-webhook", "transfer-callback", "funds-transfer-callback", "/payout/funds-transfer-callback-sample"]
     },
 
     // Payout - Local Bank
@@ -378,7 +378,7 @@ const searchData: SearchItem[] = [
         section: "LOCAL TRANSFERS",
         icon: Building2,
         keywords: ["banks", "local", "list", "supported", "domestic"],
-        aliases: ["local-banks", "domestic-banks", "get-banks"]
+        aliases: ["local-banks", "domestic-banks", "get-banks", "payout-local-banks", "/payout/bank/local/get-banks"]
     },
     {
         title: "Account Enquiry",
@@ -387,7 +387,7 @@ const searchData: SearchItem[] = [
         section: "LOCAL TRANSFERS",
         icon: Building2,
         keywords: ["enquiry", "verify", "account", "local", "bank", "validation", "check"],
-        aliases: ["account-verification", "verify-account", "account-enquiry"]
+        aliases: ["account-verification", "verify-account", "account-enquiry", "payout-local-enquiry", "/payout/bank/local/account-enquiry"]
     },
     {
         title: "Account Transfer - NGN",
@@ -396,7 +396,7 @@ const searchData: SearchItem[] = [
         section: "LOCAL TRANSFERS",
         icon: Building2,
         keywords: ["ngn", "naira", "nigeria", "account", "transfer", "payout", "local"],
-        aliases: ["nigerian-transfer", "ngn-payout", "account-transfer-ngn"]
+        aliases: ["nigerian-transfer", "ngn-payout", "account-transfer-ngn", "payout-local-ngn", "/payout/bank/local/account-transfer-ngn"]
     },
     {
         title: "Passpoint Enquiry",
@@ -405,7 +405,7 @@ const searchData: SearchItem[] = [
         section: "LOCAL TRANSFERS",
         icon: Wallet,
         keywords: ["passpoint", "enquiry", "wallet", "beneficiary", "verify", "check"],
-        aliases: ["wallet-verification", "verify-wallet"]
+        aliases: ["wallet-verification", "verify-wallet", "passpoint-enquiry", "payout-local-passpoint-enquiry", "/payout/bank/local/passpoint-enquiry"]
     },
     {
         title: "Passpoint Wallet Transfer",
@@ -414,7 +414,7 @@ const searchData: SearchItem[] = [
         section: "LOCAL TRANSFERS",
         icon: Wallet,
         keywords: ["passpoint", "wallet", "transfer", "instant", "p2p", "peer"],
-        aliases: ["wallet-transfer", "p2p-transfer"]
+        aliases: ["wallet-transfer", "p2p-transfer", "passpoint-wallet-transfer", "payout-local-passpoint-wallet", "/payout/bank/local/passpoint-wallet-transfer"]
     },
 
     // Payout - Foreign Bank
@@ -425,7 +425,7 @@ const searchData: SearchItem[] = [
         section: "FOREIGN TRANSFERS",
         icon: Globe,
         keywords: ["summary", "overview", "foreign", "international", "options"],
-        aliases: ["foreign-overview"]
+        aliases: ["foreign-overview", "foreign-summary", "payout-foreign-summary", "/payout/bank/foreign/summary"]
     },
     {
         title: "Get Available Countries",
@@ -434,7 +434,7 @@ const searchData: SearchItem[] = [
         section: "FOREIGN TRANSFERS",
         icon: Globe,
         keywords: ["countries", "supported", "foreign", "international", "list"],
-        aliases: ["supported-countries", "country-list", "get-available-countries"]
+        aliases: ["supported-countries", "country-list", "get-available-countries", "payout-foreign-countries", "/payout/bank/foreign/get-available-countries"]
     },
     {
         title: "Get Payment Methods",
@@ -443,7 +443,7 @@ const searchData: SearchItem[] = [
         section: "FOREIGN TRANSFERS",
         icon: CreditCard,
         keywords: ["payment", "methods", "foreign", "options", "available"],
-        aliases: ["payment-options"]
+        aliases: ["payment-options", "get-payment-methods", "payout-foreign-methods", "/payout/bank/foreign/get-payment-methods"]
     },
     {
         title: "Account Deposit - CNY",
@@ -452,7 +452,7 @@ const searchData: SearchItem[] = [
         section: "FOREIGN TRANSFERS",
         icon: Building2,
         keywords: ["cny", "china", "yuan", "deposit", "account", "chinese", "renminbi"],
-        aliases: ["china-deposit", "yuan-transfer"]
+        aliases: ["china-deposit", "yuan-transfer", "account-deposit-cny", "payout-foreign-cny", "/payout/bank/foreign/account-deposit-cny"]
     },
     {
         title: "Account Deposit - EUR",
@@ -461,7 +461,7 @@ const searchData: SearchItem[] = [
         section: "FOREIGN TRANSFERS",
         icon: Building2,
         keywords: ["eur", "euro", "europe", "deposit", "account", "sepa", "european"],
-        aliases: ["euro-deposit", "eur-transfer"]
+        aliases: ["euro-deposit", "eur-transfer", "account-deposit-eur", "payout-foreign-eur", "/payout/bank/foreign/account-deposit-eur"]
     },
     {
         title: "Account Deposit - GBP",
@@ -470,7 +470,7 @@ const searchData: SearchItem[] = [
         section: "FOREIGN TRANSFERS",
         icon: Building2,
         keywords: ["gbp", "pound", "uk", "britain", "deposit", "sterling", "british"],
-        aliases: ["uk-deposit", "pound-transfer"]
+        aliases: ["uk-deposit", "pound-transfer", "account-deposit-gbp", "payout-foreign-gbp", "/payout/bank/foreign/account-deposit-gbp"]
     },
     {
         title: "Account Deposit - USD",
@@ -479,7 +479,7 @@ const searchData: SearchItem[] = [
         section: "FOREIGN TRANSFERS",
         icon: Building2,
         keywords: ["usd", "dollar", "usa", "america", "deposit", "account", "american"],
-        aliases: ["us-deposit", "dollar-transfer"]
+        aliases: ["us-deposit", "dollar-transfer", "account-deposit-usd", "payout-foreign-usd", "/payout/bank/foreign/account-deposit-usd"]
     },
     {
         title: "ACH Transfer - USD",
@@ -488,7 +488,7 @@ const searchData: SearchItem[] = [
         section: "FOREIGN TRANSFERS",
         icon: Building2,
         keywords: ["ach", "usd", "dollar", "automated", "clearing", "house", "same day"],
-        aliases: ["ach-payment", "us-ach"]
+        aliases: ["ach-payment", "us-ach", "ach-usd", "payout-foreign-ach", "/payout/bank/foreign/ach-usd"]
     },
     {
         title: "B2B Transfer - CNY",
@@ -497,7 +497,7 @@ const searchData: SearchItem[] = [
         section: "FOREIGN TRANSFERS",
         icon: Building2,
         keywords: ["b2b", "business", "cny", "yuan", "china", "commercial", "corporate"],
-        aliases: ["business-transfer-cny", "corporate-cny"]
+        aliases: ["business-transfer-cny", "corporate-cny", "b2b-cny", "payout-foreign-b2b-cny", "/payout/bank/foreign/b2b-transfer-cny"]
     },
     {
         title: "B2B Transfer - USD",
@@ -506,7 +506,7 @@ const searchData: SearchItem[] = [
         section: "FOREIGN TRANSFERS",
         icon: Building2,
         keywords: ["b2b", "business", "usd", "dollar", "commercial", "corporate"],
-        aliases: ["business-transfer-usd", "corporate-usd"]
+        aliases: ["business-transfer-usd", "corporate-usd", "b2b-usd", "payout-foreign-b2b-usd", "/payout/bank/foreign/b2b-transfer-usd"]
     },
     {
         title: "B2C Transfer - CNY",
@@ -515,7 +515,7 @@ const searchData: SearchItem[] = [
         section: "FOREIGN TRANSFERS",
         icon: Building2,
         keywords: ["b2c", "consumer", "cny", "yuan", "china", "customer", "payout"],
-        aliases: ["customer-transfer-cny", "b2c-cny"]
+        aliases: ["customer-transfer-cny", "b2c-cny", "payout-foreign-b2c-cny", "/payout/bank/foreign/b2c-transfer-cny"]
     },
     {
         title: "FedNow Transfer - USD",
@@ -524,7 +524,7 @@ const searchData: SearchItem[] = [
         section: "FOREIGN TRANSFERS",
         icon: Building2,
         keywords: ["fednow", "federal", "reserve", "real time", "usd", "instant", "fed"],
-        aliases: ["fednow", "instant-usd"]
+        aliases: ["fednow", "instant-usd", "fednow-usd", "payout-foreign-fednow", "/payout/bank/foreign/fednow-usd"]
     },
     {
         title: "MoMo Deposit - CNY",
@@ -533,7 +533,7 @@ const searchData: SearchItem[] = [
         section: "FOREIGN TRANSFERS",
         icon: Smartphone,
         keywords: ["momo", "mobile", "money", "deposit", "cny", "china", "alipay", "wechat"],
-        aliases: ["china-momo", "alipay-deposit"]
+        aliases: ["china-momo", "alipay-deposit", "momo-deposit-cny", "payout-foreign-momo-cny", "/payout/bank/foreign/momo-deposit-cny"]
     },
     {
         title: "RTP Transfer - USD",
@@ -542,7 +542,7 @@ const searchData: SearchItem[] = [
         section: "FOREIGN TRANSFERS",
         icon: Building2,
         keywords: ["rtp", "real time", "payment", "usd", "instant", "24/7"],
-        aliases: ["real-time-payment", "rtp"]
+        aliases: ["real-time-payment", "rtp", "rtp-usd", "payout-foreign-rtp", "/payout/bank/foreign/rtp-usd"]
     },
     {
         title: "Wire Transfer - USD",
@@ -551,7 +551,7 @@ const searchData: SearchItem[] = [
         section: "FOREIGN TRANSFERS",
         icon: Building2,
         keywords: ["wire", "transfer", "usd", "traditional", "swift", "international"],
-        aliases: ["swift-transfer", "wire-usd"]
+        aliases: ["swift-transfer", "wire-usd", "payout-foreign-wire", "/payout/bank/foreign/wire-usd"]
     },
 
     // Payout - Mobile Money
@@ -562,7 +562,7 @@ const searchData: SearchItem[] = [
         section: "MOBILE MONEY",
         icon: Smartphone,
         keywords: ["momo", "mobile", "money", "network", "provider", "operator", "payout"],
-        aliases: ["momo-networks", "mobile-operators"]
+        aliases: ["momo-networks", "mobile-operators", "payout-momo-network", "momo-get-network", "/payout/momo/get-network"]
     },
     {
         title: "MoMo Get Currency",
@@ -571,7 +571,7 @@ const searchData: SearchItem[] = [
         section: "MOBILE MONEY",
         icon: Smartphone,
         keywords: ["momo", "mobile", "money", "currency", "supported", "payout"],
-        aliases: ["momo-currencies"]
+        aliases: ["momo-currencies", "payout-momo-currency", "get-payout-network", "/payout/momo/get-payout-network"]
     },
     {
         title: "MoMo Transfer",
@@ -580,7 +580,7 @@ const searchData: SearchItem[] = [
         section: "MOBILE MONEY",
         icon: Smartphone,
         keywords: ["momo", "mobile", "money", "transfer", "send", "wallet", "payout", "airtel", "mtn", "vodacom"],
-        aliases: ["mobile-transfer", "momo-payout"]
+        aliases: ["mobile-transfer", "momo-payout", "momo-transfer", "payout-momo-transfer", "/payout/momo/transfer"]
     },
     {
         title: "MoMo Validate MSISDN",
@@ -589,7 +589,7 @@ const searchData: SearchItem[] = [
         section: "MOBILE MONEY",
         icon: Smartphone,
         keywords: ["momo", "mobile", "money", "validate", "msisdn", "phone", "number", "verification"],
-        aliases: ["validate-phone", "phone-verification"]
+        aliases: ["validate-phone", "phone-verification", "validate-msisdn", "payout-momo-validate", "/payout/momo/validate-msisdn"]
     },
 
     // Transfer Root Pages
@@ -600,7 +600,7 @@ const searchData: SearchItem[] = [
         section: "TRANSFERS",
         icon: Globe,
         keywords: ["countries", "list", "transfer", "supported", "available"],
-        aliases: ["country-list", "supported-countries"]
+        aliases: ["country-list", "supported-countries", "list-countries", "transfer-list-countries", "/transfer/list-countries"]
     },
     {
         title: "Transfer Status",
@@ -609,7 +609,7 @@ const searchData: SearchItem[] = [
         section: "TRANSFERS",
         icon: BarChart3,
         keywords: ["status", "transfer", "check", "track", "transaction", "lookup"],
-        aliases: ["check-status", "track-transfer", "transfer-status"]
+        aliases: ["check-status", "track-transfer", "transfer-status", "/transfer/transfer-status"]
     },
     {
         title: "Payment Status Report",
@@ -618,7 +618,7 @@ const searchData: SearchItem[] = [
         section: "TRANSFERS",
         icon: BarChart3,
         keywords: ["payment", "status", "report", "analytics", "transfer", "transaction"],
-        aliases: ["payment-report", "status-report"]
+        aliases: ["payment-report", "status-report", "payment-status-report", "transfer-payment-report", "/transfer/payment-status-report"]
     },
     {
         title: "Resend Single Webhook",
@@ -627,7 +627,7 @@ const searchData: SearchItem[] = [
         section: "TRANSFERS",
         icon: Webhook,
         keywords: ["resend", "webhook", "single", "notification", "retry", "callback"],
-        aliases: ["retry-webhook", "resend-notification"]
+        aliases: ["retry-webhook", "resend-notification", "resend-single-webhook", "transfer-resend-single", "/transfer/resend-single-webhook"]
     },
     {
         title: "Resend Bulk Webhook",
@@ -636,7 +636,7 @@ const searchData: SearchItem[] = [
         section: "TRANSFERS",
         icon: Webhook,
         keywords: ["resend", "webhook", "bulk", "batch", "notifications", "multiple"],
-        aliases: ["bulk-webhook", "batch-resend"]
+        aliases: ["bulk-webhook", "batch-resend", "resend-bulk-webhook", "transfer-resend-bulk", "/transfer/resend-bulk-webhook"]
     },
     {
         title: "Confirm MoMo Payment",
@@ -645,7 +645,7 @@ const searchData: SearchItem[] = [
         section: "TRANSFERS",
         icon: Smartphone,
         keywords: ["confirm", "momo", "mobile", "money", "payment", "verify", "settlement"],
-        aliases: ["verify-momo", "momo-confirmation"]
+        aliases: ["verify-momo", "momo-confirmation", "confirm-momo-payment", "transfer-confirm-momo", "/transfer/confirm-momo-payment"]
     },
 
     // Learn More / Administration
@@ -656,7 +656,7 @@ const searchData: SearchItem[] = [
         section: "ADMINISTRATION",
         icon: Users,
         keywords: ["user", "roles", "permissions", "access", "admin", "rbac", "team", "management"],
-        aliases: ["permissions", "access-control", "rbac"]
+        aliases: ["permissions", "access-control", "rbac", "user-roles", "/user-roles"]
     },
     {
         title: "Status Responses",
@@ -665,7 +665,7 @@ const searchData: SearchItem[] = [
         section: "REFERENCE",
         icon: BarChart3,
         keywords: ["status", "response", "http", "code", "error", "2xx", "4xx", "5xx"],
-        aliases: ["error-codes", "http-codes", "status-codes"]
+        aliases: ["error-codes", "http-codes", "status-codes", "status-responses", "/status-responses"]
     },
     {
         title: "Sandbox Playground",
@@ -674,7 +674,7 @@ const searchData: SearchItem[] = [
         section: "DEVELOPER TOOLS",
         icon: Play,
         keywords: ["sandbox", "playground", "test", "testing", "environment", "interactive", "try"],
-        aliases: ["sandbox", "test-environment", "api-playground"]
+        aliases: ["sandbox", "test-environment", "api-playground", "sandbox-playground", "/sandbox-playground"]
     },
 
     // API Endpoints - Dynamic search for actual API URLs
@@ -845,58 +845,89 @@ const calculateSearchScore = (item: SearchItem, query: string): number => {
     let isUrlSearch = false;
 
     if (qLower.includes("://") || qLower.includes(".com") || qLower.includes(".dev") ||
-        (qLower.startsWith("/") && qLower.includes("/"))) {
+        (qLower.startsWith("/") && qLower.length > 1)) {
         const extractedPath = extractPathFromUrl(qLower);
         searchQuery = extractedPath.toLowerCase();
         isUrlSearch = true;
 
         // Exact URL path match gets highest priority
         if (item.url === extractedPath) {
-            return 2000; // Super high priority for exact URL matches
+            return 10000; // Massive priority for exact URL matches
         }
 
-        // Partial URL path match
+        // Case-insensitive exact match
         if (item.url.toLowerCase() === searchQuery) {
-            return 1500;
+            return 9000;
         }
 
-        // URL contains the path
+        // Exact alias match for URL
+        const exactAliasMatch = item.aliases?.some(a => a.toLowerCase() === searchQuery);
+        if (exactAliasMatch) {
+            return 8000;
+        }
+
+        // URL contains the full search path
         if (item.url.toLowerCase().includes(searchQuery)) {
-            score += 1000;
+            score += 5000;
         }
 
-        // Dynamic URL keyword matching for richer search
-        const urlKeywords = extractedPath.split(new RegExp("[/\\-_]")).filter(Boolean).map(k => k.toLowerCase());
-        const titleWords = item.title.toLowerCase().split(/\s+/).filter(Boolean);
-        const contentWords = item.content.toLowerCase().split(/\s+/).filter(Boolean);
+        // Path segment exact matching
+        const searchSegments = searchQuery.split("/").filter(Boolean);
+        const itemSegments = item.url.toLowerCase().split("/").filter(Boolean);
 
-        const matchingUrlKeywords = urlKeywords.filter(uk =>
-            titleWords.some(tw => tw.includes(uk) || uk.includes(tw)) ||
-            contentWords.some(cw => cw.includes(uk) || uk.includes(cw)) ||
-            item.keywords?.some(k => k.toLowerCase().includes(uk) || uk.includes(k.toLowerCase())) ||
-            item.aliases?.some(a => a.toLowerCase().includes(uk) || uk.includes(a.toLowerCase()))
+        // All search segments found in item URL in order
+        let allSegmentsMatch = true;
+        let lastFoundIndex = -1;
+        for (const segment of searchSegments) {
+            const foundIndex = itemSegments.indexOf(segment, lastFoundIndex + 1);
+            if (foundIndex === -1) {
+                allSegmentsMatch = false;
+                break;
+            }
+            lastFoundIndex = foundIndex;
+        }
+
+        if (allSegmentsMatch && searchSegments.length > 0) {
+            score += 4000 + (searchSegments.length * 200);
+        }
+
+        // Partial segment matching
+        const matchingSegments = searchSegments.filter(searchSeg =>
+            itemSegments.some(itemSeg =>
+                itemSeg === searchSeg ||
+                itemSeg.includes(searchSeg) ||
+                searchSeg.includes(itemSeg)
+            )
         );
 
-        if (matchingUrlKeywords.length > 0) {
-            score += matchingUrlKeywords.length * 50; // 50 points per matching URL keyword
+        if (matchingSegments.length > 0) {
+            score += matchingSegments.length * 300;
         }
 
-        // Dynamic path segment matching for API endpoints
-        const pathSegments = extractedPath.split("/").filter(Boolean);
-        const lastSegment = pathSegments[pathSegments.length - 1]?.toLowerCase();
-        if (lastSegment) {
-            // Check if item URL ends with the last segment
-            if (item.url.toLowerCase().endsWith("/" + lastSegment) || item.url.toLowerCase() === "/" + lastSegment) {
-                score += 1200; // High priority for URL ending match
+        // Last segment matching (endpoint name)
+        const lastSearchSegment = searchSegments[searchSegments.length - 1];
+        const lastItemSegment = itemSegments[itemSegments.length - 1];
+
+        if (lastSearchSegment && lastItemSegment) {
+            if (lastItemSegment === lastSearchSegment) {
+                score += 2000;
+            } else if (lastItemSegment?.includes(lastSearchSegment)) {
+                score += 1000;
             }
-            // Check if any alias matches the last segment
-            if (item.aliases?.some(a => a.toLowerCase() === lastSegment)) {
-                score += 1100; // High priority for alias match
-            }
+        }
+
+        // Check if any alias contains URL path segments
+        const aliasSegmentMatch = item.aliases?.some(alias => {
+            const aliasLower = alias.toLowerCase();
+            return searchSegments.some(seg => aliasLower.includes(seg) || seg.includes(aliasLower));
+        });
+
+        if (aliasSegmentMatch) {
+            score += 500;
         }
     }
 
-    // Exact title match: 1000 points (highest priority)
+    // Exact title match: 1000 points (highest priority for non-URL searches)
     if (item.title.toLowerCase() === searchQuery) {
         score += 1000;
     }
@@ -931,13 +962,13 @@ const calculateSearchScore = (item: SearchItem, query: string): number => {
 
     // Exact alias match: 350 points
     const exactAlias = item.aliases?.some(a => a.toLowerCase() === searchQuery);
-    if (exactAlias) {
+    if (exactAlias && !isUrlSearch) {
         score += 350;
     }
 
     // Alias contains query: 100 points
     const partialAlias = item.aliases?.some(a => a.toLowerCase().includes(searchQuery));
-    if (partialAlias && !exactAlias) {
+    if (partialAlias && !exactAlias && !isUrlSearch) {
         score += 100;
     }
 
@@ -956,38 +987,14 @@ const calculateSearchScore = (item: SearchItem, query: string): number => {
         score += 50;
     }
 
-    // URL segment exact match: 150 points (important for URL searches)
-    const urlSegments = item.url.split("/").filter(Boolean);
-    const querySegments = searchQuery.split("/").filter(Boolean);
-
-    const exactUrlSegment = urlSegments.some(seg => seg.toLowerCase() === searchQuery);
-    if (exactUrlSegment) {
-        score += 150;
-    }
-
-    // URL segment contains query: 80 points
-    const partialUrlSegment = urlSegments.some(seg => seg.toLowerCase().includes(searchQuery));
-    if (partialUrlSegment && !exactUrlSegment) {
-        score += 80;
-    }
-
-    // Bonus for matching multiple URL segments (for URL searches)
-    if (querySegments.length > 1 && !isUrlSearch) {
-        const matchingSegments = querySegments.filter(qSeg =>
-            urlSegments.some(uSeg => uSeg.toLowerCase().includes(qSeg))
-        );
-        if (matchingSegments.length > 0) {
-            score += matchingSegments.length * 50;
-        }
-    }
-
     // Multi-word query bonus: check if all words match
-    const queryWords = searchQuery.split(/\s+/).filter(Boolean);
-    if (queryWords.length > 1) {
+    const queryWords = searchQuery.split(/[\s/-]+/).filter(Boolean);
+    if (queryWords.length > 1 && !isUrlSearch) {
         const allWordsMatch = queryWords.every(word =>
             item.title.toLowerCase().includes(word) ||
             item.content.toLowerCase().includes(word) ||
-            item.keywords?.some(k => k.toLowerCase().includes(word))
+            item.keywords?.some(k => k.toLowerCase().includes(word)) ||
+            item.url.toLowerCase().includes(word)
         );
         if (allWordsMatch) {
             score += 200;

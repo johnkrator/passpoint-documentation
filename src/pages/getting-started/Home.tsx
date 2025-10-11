@@ -19,14 +19,14 @@ const Home = () => {
                     </p>
                     <div className="flex flex-wrap gap-4">
                         <Link
-                            to="/getting-started/introduction"
+                            to="/introduction"
                             className="inline-flex items-center gap-2 bg-[#009ac2] hover:bg-[#008ab0] text-white px-6 py-3 rounded-lg font-semibold transition-colors shadow-sm hover:shadow-md"
                         >
                             Get Started
                             <ArrowRight className="h-5 w-5"/>
                         </Link>
                         <Link
-                            to="/getting-started/api-integrations"
+                            to="/authentication"
                             className="inline-flex items-center gap-2 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 px-6 py-3 rounded-lg font-semibold transition-colors shadow-sm hover:shadow-md"
                         >
                             <Code className="h-5 w-5"/>
@@ -158,7 +158,7 @@ const Home = () => {
                                         Support for both one-time and recurring payments with automatic reconciliation.
                                     </p>
                                     <Link
-                                        to="/api-documentation/collection"
+                                        to="/collection"
                                         className="inline-flex items-center gap-2 text-[#009ac2] dark:text-[#009ac2] hover:text-[#008ab0] dark:hover:text-[#008ab0] font-medium"
                                     >
                                         Explore Collections API
@@ -183,7 +183,7 @@ const Home = () => {
                                         Bulk payout support with automated scheduling and compliance checks.
                                     </p>
                                     <Link
-                                        to="/api-documentation/payout"
+                                        to="/payout"
                                         className="inline-flex items-center gap-2 text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 font-medium"
                                     >
                                         Explore Payout API
@@ -208,7 +208,7 @@ const Home = () => {
                                         balance tracking, transaction history, and wallet-to-wallet transfers.
                                     </p>
                                     <Link
-                                        to="/api-documentation/wallet"
+                                        to="/wallet"
                                         className="inline-flex items-center gap-2 text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium"
                                     >
                                         Explore Wallet API
@@ -286,7 +286,7 @@ const Home = () => {
                                         in the sandbox environment.
                                     </p>
                                     <Link
-                                        to="/getting-started/api-integrations"
+                                        to="/api-integrations"
                                         className="inline-flex items-center gap-2 text-[#009ac2] dark:text-[#009ac2] hover:text-[#008ab0] dark:hover:text-[#008ab0] font-medium"
                                     >
                                         View Integration Guide
@@ -319,7 +319,7 @@ const Home = () => {
                     <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">Additional Resources</h2>
                     <div className="grid gap-6 md:grid-cols-2">
                         <Link
-                            to="/getting-started/introduction"
+                            to="/introduction"
                             className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover:border-[#009ac2]/50 dark:hover:border-[#009ac2]/70"
                         >
                             <div className="flex items-start gap-4">
@@ -342,7 +342,7 @@ const Home = () => {
                         </Link>
 
                         <Link
-                            to="/guides/quick-guides"
+                            to="/quick-guides"
                             className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover:border-green-300 dark:hover:border-green-700"
                         >
                             <div className="flex items-start gap-4">
@@ -365,7 +365,7 @@ const Home = () => {
                         </Link>
 
                         <Link
-                            to="/api-documentation/authentication"
+                            to="/authentication"
                             className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover:border-purple-300 dark:hover:border-purple-700"
                         >
                             <div className="flex items-start gap-4">
@@ -388,7 +388,7 @@ const Home = () => {
                         </Link>
 
                         <Link
-                            to="/learn-more/status-responses"
+                            to="/status-responses"
                             className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover:border-orange-300 dark:hover:border-orange-700"
                         >
                             <div className="flex items-start gap-4">
@@ -424,14 +424,14 @@ const Home = () => {
                     </p>
                     <div className="flex flex-wrap gap-4 justify-center">
                         <Link
-                            to="/getting-started/introduction"
+                            to="/introduction"
                             className="inline-flex items-center gap-2 bg-white text-[#009ac2] hover:bg-gray-50 px-8 py-3 rounded-lg font-semibold transition-colors shadow-lg"
                         >
                             Read Documentation
                             <ArrowRight className="h-5 w-5"/>
                         </Link>
                         <a
-                            href="https://app.mypasspoint.com"
+                            href="https://go.mypasspoint.com/auth/login"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 bg-[#007a9a] hover:bg-[#006a8a] text-white px-8 py-3 rounded-lg font-semibold transition-colors"

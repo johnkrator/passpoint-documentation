@@ -294,33 +294,145 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
             case "javascript":
             case "js":
             case "typescript":
-            case "ts":
-                return code
-                    // Keywords in purple
-                    .replace(/\b(const|let|var|function|class|if|else|for|while|do|switch|case|break|continue|return|try|catch|finally|throw|async|await|import|export|from|default|extends|implements|interface|type|enum|namespace|module|declare|abstract|static|public|private|protected|readonly|override)\b/g, "<span class=\"text-purple-400\">$1</span>")
-                    // Function/method calls in cyan
-                    .replace(/\b([a-zA-Z_$][a-zA-Z0-9_$]*)\s*(?=\()/g, "<span class=\"text-cyan-400\">$1</span>")
-                    // Property access in cyan
-                    .replace(/\.([a-zA-Z_$][a-zA-Z0-9_$]*)/g, ".<span class=\"text-cyan-400\">$1</span>")
-                    // Strings in green
-                    .replace(/("([^"\\]|\\.)*")/g, "<span class=\"text-green-400\">$1</span>")
-                    .replace(/('([^'\\]|\\.)*')/g, "<span class=\"text-green-400\">$1</span>")
-                    .replace(/(`([^`\\]|\\.)*`)/g, "<span class=\"text-green-400\">$1</span>")
-                    // Numbers in orange
-                    .replace(/\b(\d+(?:\.\d+)?)\b/g, "<span class=\"text-orange-400\">$1</span>")
-                    // Booleans and null in orange
-                    .replace(/\b(true|false|null|undefined|NaN|Infinity)\b/g, "<span class=\"text-orange-400\">$1</span>")
-                    // This, super, new in orange
-                    .replace(/\b(this|super|new)\b/g, "<span class=\"text-orange-400\">$1</span>")
-                    // Operators in white
-                    .replace(/(===|!==|==|!=|<=|>=|<|>|\|\||&&|\+\+|--|\+=|-=|\*=|\/=|%=|&=|\|=|\^=|<<=|>>=|>>>=)/g, "<span class=\"text-white\">$1</span>")
-                    // Arrow functions in white
-                    .replace(/(=>)/g, "<span class=\"text-white\">$1</span>")
-                    // Brackets and braces in white
-                    .replace(/([{}[\]()])/g, "<span class=\"text-white\">$1</span>")
-                    // Comments in gray italic
-                    .replace(/(\/\/.*$)/gm, "<span class=\"text-gray-500 italic\">$1</span>")
-                    .replace(/(\/\*[\s\S]*?\*\/)/g, "<span class=\"text-gray-500 italic\">$1</span>");
+            case "ts": {
+                // Token-based approach to avoid regex conflicts
+                const jsTokens: Array<{ type: string; value: string }> = [];
+                let i = 0;
+
+                while (i < code.length) {
+                    // Skip whitespace
+                    if (/\s/.test(code[i])) {
+                        let ws = "";
+                        while (i < code.length && /\s/.test(code[i])) {
+                            ws += code[i];
+                            i++;
+                        }
+                        jsTokens.push({type: "whitespace", value: ws});
+                        continue;
+                    }
+
+                    // Comments
+                    if (code.substr(i, 2) === "//") {
+                        let comment = "";
+                        while (i < code.length && code[i] !== "\n") {
+                            comment += code[i];
+                            i++;
+                        }
+                        jsTokens.push({type: "comment", value: comment});
+                        continue;
+                    }
+
+                    if (code.substr(i, 2) === "/*") {
+                        let comment = "";
+                        while (i < code.length) {
+                            comment += code[i];
+                            if (code.substr(i, 2) === "*/") {
+                                comment += code[++i];
+                                i++;
+                                break;
+                            }
+                            i++;
+                        }
+                        jsTokens.push({type: "comment", value: comment});
+                        continue;
+                    }
+
+                    // Strings
+                    if (code[i] === "\"" || code[i] === "'" || code[i] === "`") {
+                        const quote = code[i];
+                        let str = quote;
+                        i++;
+                        while (i < code.length) {
+                            if (code[i] === "\\" && i + 1 < code.length) {
+                                str += code[i] + code[i + 1];
+                                i += 2;
+                            } else if (code[i] === quote) {
+                                str += code[i];
+                                i++;
+                                break;
+                            } else {
+                                str += code[i];
+                                i++;
+                            }
+                        }
+                        jsTokens.push({type: "string", value: str});
+                        continue;
+                    }
+
+                    // Numbers
+                    if (/\d/.test(code[i])) {
+                        let num = "";
+                        while (i < code.length && /[\d.]/.test(code[i])) {
+                            num += code[i];
+                            i++;
+                        }
+                        jsTokens.push({type: "number", value: num});
+                        continue;
+                    }
+
+                    // Identifiers and keywords
+                    if (/[a-zA-Z_$]/.test(code[i])) {
+                        let ident = "";
+                        while (i < code.length && /[a-zA-Z0-9_$]/.test(code[i])) {
+                            ident += code[i];
+                            i++;
+                        }
+
+                        const keywords = ["const", "let", "var", "function", "class", "if", "else", "for", "while", "do", "switch", "case", "break", "continue", "return", "try", "catch", "finally", "throw", "async", "await", "import", "export", "from", "default", "extends", "implements", "interface", "type", "enum", "namespace", "module", "declare", "abstract", "static", "public", "private", "protected", "readonly", "override"];
+                        const booleans = ["true", "false", "null", "undefined", "NaN", "Infinity", "this", "super", "new"];
+
+                        if (keywords.includes(ident)) {
+                            jsTokens.push({type: "keyword", value: ident});
+                        } else if (booleans.includes(ident)) {
+                            jsTokens.push({type: "boolean", value: ident});
+                        } else {
+                            // Check if next non-whitespace char is '(' for function call
+                            let j = i;
+                            while (j < code.length && /\s/.test(code[j])) j++;
+                            if (code[j] === "(") {
+                                jsTokens.push({type: "function", value: ident});
+                            } else if (i > 0 && code[i - ident.length - 1] === ".") {
+                                jsTokens.push({type: "property", value: ident});
+                            } else {
+                                jsTokens.push({type: "identifier", value: ident});
+                            }
+                        }
+                        continue;
+                    }
+
+                    // Operators and punctuation
+                    jsTokens.push({type: "operator", value: code[i]});
+                    i++;
+                }
+
+                // Convert tokens to HTML
+                return jsTokens.map(token => {
+                    const escaped = token.value
+                        .replace(/&/g, "&amp;")
+                        .replace(/</g, "&lt;")
+                        .replace(/>/g, "&gt;");
+
+                    switch (token.type) {
+                        case "comment":
+                            return `<span class="text-gray-500 italic">${escaped}</span>`;
+                        case "string":
+                            return `<span class="text-green-400">${escaped}</span>`;
+                        case "keyword":
+                            return `<span class="text-purple-400">${escaped}</span>`;
+                        case "boolean":
+                        case "number":
+                            return `<span class="text-orange-400">${escaped}</span>`;
+                        case "function":
+                        case "property":
+                            return `<span class="text-cyan-400">${escaped}</span>`;
+                        case "whitespace":
+                        case "identifier":
+                        case "operator":
+                        default:
+                            return escaped;
+                    }
+                }).join("");
+            }
 
             case "python":
                 return code

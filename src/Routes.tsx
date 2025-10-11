@@ -259,7 +259,7 @@ const Routes = () => {
 
                 // Global Callback Setup Routes
                 {path: "global-callback-setup", element: <GlobalCallbackSetup/>},
-                {path: "global-callback-setup/update-merchant-callback-url", element: <Home/>},
+                {path: "global-callback-setup/update-merchant-callback-url", element: <GlobalCallbackSetup/>},
 
                 // Virtual Card v2 Routes
                 {path: "virtual-card-v2", element: <Home/>}, // Main Virtual Card v2 page

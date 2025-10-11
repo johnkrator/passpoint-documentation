@@ -73,8 +73,11 @@ const DocumentationLayout = ({children}: DocumentationLayoutProps) => {
 
                                         {/* Footer */}
                                         <footer
-                                            className="mt-8 py-8 border-t border-gray-200 dark:border-gray-800 text-center">
-                                            <p className="text-gray-500 text-sm">All rights reserved</p>
+                                            className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
+                                            <p className="text-gray-500 dark:text-gray-400 text-sm pb-10">
+                                                © {new Date().getFullYear()} Passpoint Payment Service. All rights
+                                                reserved.
+                                            </p>
                                         </footer>
                                     </div>
                                 )}

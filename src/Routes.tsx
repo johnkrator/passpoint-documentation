@@ -122,6 +122,8 @@ import Rate from "@/pages/api-documentation/transfer/payout/Rate.tsx";
 import Report from "@/pages/api-documentation/transfer/payout/Report.tsx";
 import PayoutFundTransferCallbackSample
     from "@/pages/api-documentation/transfer/payout/PayoutFundTransferCallbackSample.tsx";
+import CollectionGenerateNgnDynamicVirtualAccountWithOtherInfo
+    from "@/pages/api-documentation/transfer/collection/bank/CollectionGenerateNgnDynamicVirtualAccountWithOtherInfo.tsx";
 
 const Routes = () => {
     return createBrowserRouter([
@@ -205,6 +207,10 @@ const Routes = () => {
                 {
                     path: "collection/bank/generate-ngn-dynamic-virtual-account",
                     element: <CollectionGenerateNGNDynamicVirtualAccount/>
+                },
+                {
+                    path: "collection/bank/generate-ngn-dynamic-virtual-account-with-other-info",
+                    element: <CollectionGenerateNgnDynamicVirtualAccountWithOtherInfo/>
                 },
                 {
                     path: "collection/bank/generate-usd-virtual-account-individual",

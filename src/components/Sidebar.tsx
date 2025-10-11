@@ -347,6 +347,16 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                                         },
                                         {
                                             icon: BarChart3,
+                                            label: "Generate NGN dynamic virtual account",
+                                            href: "/collection/bank/generate-ngn-dynamic-virtual-account"
+                                        },
+                                        {
+                                            icon: BarChart3,
+                                            label: "Generate NGN dynamic virtual account - with other info",
+                                            href: "/collection/bank/generate-ngn-dynamic-virtual-account-with-other-info"
+                                        },
+                                        {
+                                            icon: BarChart3,
                                             label: "Generate USD virtual account - individual",
                                             href: "/collection/bank/generate-usd-virtual-account-individual"
                                         },

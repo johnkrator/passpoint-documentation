@@ -821,7 +821,7 @@ const extractPathFromUrl = (input: string): string => {
         // Not a valid URL, check if it contains a domain
         if (trimmed.includes("://") || trimmed.includes(".com") || trimmed.includes(".dev")) {
             // Extract path after domain
-            const match = trimmed.match(/(?:https?:\/\/)?(?:[^\/]+)(\/.*)/);
+            const match = trimmed.match(/(?:https?:\/\/)?(?:[^/]+)(\/.*)/);
             if (match && match[1]) {
                 return match[1];
             }
@@ -863,6 +863,22 @@ const calculateSearchScore = (item: SearchItem, query: string): number => {
         // URL contains the path
         if (item.url.toLowerCase().includes(searchQuery)) {
             score += 1000;
+        }
+
+        // Dynamic URL keyword matching for richer search
+        const urlKeywords = extractedPath.split(new RegExp("[/\\-_]")).filter(Boolean).map(k => k.toLowerCase());
+        const titleWords = item.title.toLowerCase().split(/\s+/).filter(Boolean);
+        const contentWords = item.content.toLowerCase().split(/\s+/).filter(Boolean);
+
+        const matchingUrlKeywords = urlKeywords.filter(uk =>
+            titleWords.some(tw => tw.includes(uk) || uk.includes(tw)) ||
+            contentWords.some(cw => cw.includes(uk) || uk.includes(cw)) ||
+            item.keywords?.some(k => k.toLowerCase().includes(uk) || uk.includes(k.toLowerCase())) ||
+            item.aliases?.some(a => a.toLowerCase().includes(uk) || uk.includes(a.toLowerCase()))
+        );
+
+        if (matchingUrlKeywords.length > 0) {
+            score += matchingUrlKeywords.length * 50; // 50 points per matching URL keyword
         }
     }
 

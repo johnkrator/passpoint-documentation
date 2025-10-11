@@ -59,55 +59,143 @@ const GlobalCallbackSetup = () => {
     };
 
     const getSignatureVerificationExample = () => {
-        return `const crypto = require('crypto');
+        return `import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import java.security.MessageDigest;
+import java.util.Arrays;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-function verifyCallbackSignature(payload, receivedSignature, secret) {
-  // Create HMAC using SHA-256
-  const hmac = crypto.createHmac('sha256', secret);
-  hmac.update(JSON.stringify(payload), 'utf8');
-  const calculatedSignature = hmac.digest('hex');
-  
-  // Use timing-safe comparison
-  return crypto.timingSafeEqual(
-    Buffer.from(receivedSignature),
-    Buffer.from(calculatedSignature)
-  );
-}
-
-// Express.js webhook handler
-app.post('/webhooks/passpoint', express.json(), (req, res) => {
-  const signature = req.headers['x-passpoint-signature'];
-  const payload = req.body;
-  
-  // Verify signature
-  if (!verifyCallbackSignature(payload, signature, process.env.CALLBACK_SECRET)) {
-    console.error('Invalid webhook signature');
-    return res.status(401).json({ error: 'Unauthorized' });
-  }
-  
-  // Process the webhook
-  try {
-    switch (payload.status) {
-      case 'SUCCESSFUL':
-        handleSuccessfulPayment(payload);
-        break;
-      case 'FAILED':
-        handleFailedPayment(payload);
-        break;
-      case 'PENDING':
-        handlePendingPayment(payload);
-        break;
-      default:
-        console.warn('Unknown payment status:', payload.status);
+@RestController
+@RequestMapping("/webhooks")
+public class WebhookController {
+    
+    private static final String HMAC_ALGORITHM = "HmacSHA256";
+    private final ObjectMapper objectMapper = new ObjectMapper();
+    
+    /**
+     * Verify HMAC signature using timing-safe comparison
+     */
+    private boolean verifyCallbackSignature(String payload, String receivedSignature, String secret) {
+        try {
+            // Create HMAC using SHA-256
+            Mac hmac = Mac.getInstance(HMAC_ALGORITHM);
+            SecretKeySpec secretKey = new SecretKeySpec(secret.getBytes("UTF-8"), HMAC_ALGORITHM);
+            hmac.init(secretKey);
+            
+            // Calculate signature
+            byte[] hash = hmac.doFinal(payload.getBytes("UTF-8"));
+            String calculatedSignature = bytesToHex(hash);
+            
+            // Use timing-safe comparison to prevent timing attacks
+            return MessageDigest.isEqual(
+                receivedSignature.getBytes(),
+                calculatedSignature.getBytes()
+            );
+        } catch (Exception e) {
+            return false;
+        }
     }
     
-    // Always respond with 200 to acknowledge receipt
-    res.status(200).json({ received: true });
-  } catch (error) {
-    console.error('Webhook processing error:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});`;
+    /**
+     * Convert byte array to hex string
+     */
+    private String bytesToHex(byte[] bytes) {
+        StringBuilder result = new StringBuilder();
+        for (byte b : bytes) {
+            result.append(String.format("%02x", b));
+        }
+        return result.toString();
+    }
+    
+    /**
+     * Passpoint webhook handler
+     */
+    @PostMapping("/passpoint")
+    public ResponseEntity<?> handlePasspointWebhook(
+            @RequestBody String rawPayload,
+            @RequestHeader("x-passpoint-signature") String signature) {
+        
+        String callbackSecret = System.getenv("CALLBACK_SECRET");
+        
+        // Verify signature
+        if (!verifyCallbackSignature(rawPayload, signature, callbackSecret)) {
+            System.err.println("Invalid webhook signature");
+            return ResponseEntity
+                .status(HttpStatus.UNAUTHORIZED)
+                .body(Map.of("error", "Unauthorized"));
+        }
+        
+        // Process the webhook
+        try {
+            WebhookPayload payload = objectMapper.readValue(rawPayload, WebhookPayload.class);
+            
+            switch (payload.getStatus()) {
+                case "SUCCESSFUL":
+                    handleSuccessfulPayment(payload);
+                    break;
+                case "FAILED":
+                    handleFailedPayment(payload);
+                    break;
+                case "PENDING":
+                    handlePendingPayment(payload);
+                    break;
+                default:
+                    System.out.println("Unknown payment status: " + payload.getStatus());
+            }
+            
+            // Always respond with 200 to acknowledge receipt
+            return ResponseEntity.ok(Map.of("received", true));
+            
+        } catch (Exception error) {
+            System.err.println("Webhook processing error: " + error.getMessage());
+            return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(Map.of("error", "Internal server error"));
+        }
+    }
+    
+    // Payment processing methods
+    private void handleSuccessfulPayment(WebhookPayload payload) {
+        // Implement your successful payment logic
+        System.out.println("Processing successful payment: " + payload.getTransactionId());
+    }
+    
+    private void handleFailedPayment(WebhookPayload payload) {
+        // Implement your failed payment logic
+        System.out.println("Processing failed payment: " + payload.getTransactionId());
+    }
+    
+    private void handlePendingPayment(WebhookPayload payload) {
+        // Implement your pending payment logic
+        System.out.println("Processing pending payment: " + payload.getTransactionId());
+    }
+}
+
+// Webhook payload model
+class WebhookPayload {
+    private String transactionId;
+    private double amount;
+    private String currency;
+    private String status;
+    private String merchantId;
+    private String reference;
+    private String paymentType;
+    private String timestamp;
+    private String customerEmail;
+    private Map<String, Object> metadata;
+    
+    // Getters and setters
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
+    
+    public String getTransactionId() { return transactionId; }
+    public void setTransactionId(String transactionId) { this.transactionId = transactionId; }
+    
+    // ... other getters and setters
+}`;
     };
 
     return (
@@ -362,10 +450,10 @@ app.post('/webhooks/passpoint', express.json(), (req, res) => {
 
                                     <div className="space-y-4">
                                         <div>
-                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Node.js
-                                                Implementation Example</h4>
+                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Java
+                                                Spring Boot Implementation Example</h4>
                                             <CodeBlock
-                                                language="javascript">{getSignatureVerificationExample()}</CodeBlock>
+                                                language="java">{getSignatureVerificationExample()}</CodeBlock>
                                         </div>
                                     </div>
                                 </div>

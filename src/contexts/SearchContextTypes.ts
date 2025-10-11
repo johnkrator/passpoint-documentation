@@ -1,4 +1,5 @@
-import { createContext } from "react";
+import {createContext} from "react";
+import type {LucideIcon} from "lucide-react";
 
 export interface SearchItem {
     title: string;
@@ -6,6 +7,9 @@ export interface SearchItem {
     url: string;
     section?: string;
     keywords?: string[];
+    icon?: LucideIcon;
+    aliases?: string[]; // Alternative names/spellings
+    category?: string; // For grouping results
 }
 
 export interface SearchContextType {

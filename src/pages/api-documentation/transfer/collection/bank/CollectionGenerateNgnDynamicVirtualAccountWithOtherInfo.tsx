@@ -1,43 +1,63 @@
-import {Globe} from "lucide-react";
+import {Link2} from "lucide-react";
 import CodeBlock from "@/components/CodeBlock.tsx";
 
-const GetCollectionCurrency = () => {
-    const getEndpoint = () => `GET https://dev.mypasspoint.com/paypass/ft-app/currency-list/bank?type=collection`;
+const CollectionGenerateNgnDynamicVirtualAccountWithOtherInfo = () => {
+    const getEndpoint = () => `POST https://dev.mypasspoint.com/paypass/ft-app/generate-virtual-account?type=dynamic`;
 
-    const getCurlRequest = () => `curl --location 'https://dev.mypasspoint.com/paypass/ft-app/currency-list/bank?type=collection' \\
---header 'x-merchant-id: pass your merchant id' \\
+    const getRequestBody = () => `{
+    "narration": "payment for services 12",
+    "accountName": "Johnny Jones",
+    "email": "client@gmail.com",
+    "phoneNumber": "08030000000",
+    "amount": "1000",
+    "otherInfo": {
+        "callbackUrl": "http://localhost.com/"
+    }
+}`;
+
+    const getCurlRequest = () => `curl --location 'https://dev.mypasspoint.com/paypass/ft-app/generate-virtual-account?type=dynamic' \\
 --header 'x-channel-id: 2' \\
---header 'x-channel-code: passpoint-merchant-user'`;
+--header 'x-channel-code: passpoint-merchant-user' \\
+--header 'x-merchant-id: 4832a689-9cce-4380-e8f1-08dc1b7b0701' \\
+--data-raw '{
+    "narration": "payment for services 12",
+    "accountName": "Johnny Jones",
+    "email": "client@gmail.com",
+    "phoneNumber": "08030000000",
+    "amount": "1000",
+    "otherInfo": {
+        "callbackUrl": "http://localhost.com/"
+    }
+}'`;
 
     const getResponse = () => `{
   "responseCode": "00",
   "responseDescription": "Successful",
-  "responseMessage": "1 payout currency(ies) found.",
-  "count": 1,
-  "data": [
-    {
-      "name": "Nigerian Naira",
-      "code": "NGN",
-      "currencyType": "FIAT",
-      "countryCode": "NG",
-      "logoUrl": "https://asset.mypasspoint.com/img/payoutCurrency/NGN.png"
-    }
-  ]
+  "responseMessage": "virtual account has been created successfully",
+  "data": {
+    "accountName": "John Benson",
+    "accountNumber": "0185487837",
+    "bankName": "9 Payment Service Bank",
+    "bankCode": "120001",
+    "transactionReference": "string",
+    "dynamic": true,
+    "active": false
+  }
 }`;
 
     return (
         <div className="min-h-screen bg-white dark:bg-gray-950">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Get Collection
-                        Currency</h1>
+                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Generate NGN
+                        Dynamic Virtual Account - With Other Info</h1>
 
                     <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
-                        This endpoint lists available collection currencies for bank transfers and virtual account
-                        generation.
+                        Generate a temporary NGN virtual account with additional callback configuration for webhook
+                        notifications when payments are received.
                     </p>
 
-                    {/* Get Collection Currency */}
+                    {/* Generate Dynamic Account with Callback */}
                     <section className="mb-16">
                         <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Endpoint
                             Details</h2>
@@ -47,13 +67,14 @@ const GetCollectionCurrency = () => {
                             <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
-                                    <Globe className="h-12 w-12 text-brand-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Get
-                                        Currency List</h3>
+                                    <Link2 className="h-12 w-12 text-brand-500"/>
+                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">With
+                                        Callback URL</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
                                     <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
-                                        Retrieve the list of supported currencies for collection operations.
+                                        Create a dynamic virtual account with custom callback URL for payment
+                                        notifications.
                                     </p>
 
                                     <div className="space-y-4">
@@ -68,11 +89,18 @@ const GetCollectionCurrency = () => {
                                             <div
                                                 className="bg-gray-50 dark:bg-gray-900/50 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
                                                 <p className="text-sm text-gray-700 dark:text-gray-300">
-                                                    <span className="font-semibold">Type:</span> Bearer Token
+                                                    <span className="font-semibold">Type:</span> Basic Auth
                                                 </p>
-                                                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                                                    Using Bearer Token from collection Passpoint Payment Service
-                                                </p>
+                                                <div className="mt-2 space-y-1">
+                                                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                                                        <span
+                                                            className="font-semibold">Username:</span> &lt;username&gt;
+                                                    </p>
+                                                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                                                        <span
+                                                            className="font-semibold">Password:</span> &lt;password&gt;
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -90,18 +118,16 @@ const GetCollectionCurrency = () => {
                                                     </thead>
                                                     <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                                                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-900/30">
-                                                        <td className="px-4 py-3 font-mono text-gray-700 dark:text-gray-300">x-merchant-id</td>
-                                                        <td className="px-4 py-3 text-gray-600 dark:text-gray-400">pass
-                                                            your merchant id
-                                                        </td>
-                                                    </tr>
-                                                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-900/30">
                                                         <td className="px-4 py-3 font-mono text-gray-700 dark:text-gray-300">x-channel-id</td>
                                                         <td className="px-4 py-3 text-gray-600 dark:text-gray-400">2</td>
                                                     </tr>
                                                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-900/30">
                                                         <td className="px-4 py-3 font-mono text-gray-700 dark:text-gray-300">x-channel-code</td>
                                                         <td className="px-4 py-3 text-gray-600 dark:text-gray-400">passpoint-merchant-user</td>
+                                                    </tr>
+                                                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-900/30">
+                                                        <td className="px-4 py-3 font-mono text-gray-700 dark:text-gray-300">x-merchant-id</td>
+                                                        <td className="px-4 py-3 text-gray-600 dark:text-gray-400">4832a689-9cce-4380-e8f1-08dc1b7b0701</td>
                                                     </tr>
                                                     </tbody>
                                                 </table>
@@ -124,11 +150,18 @@ const GetCollectionCurrency = () => {
                                                     <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                                                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-900/30">
                                                         <td className="px-4 py-3 font-mono text-gray-700 dark:text-gray-300">type</td>
-                                                        <td className="px-4 py-3 text-gray-600 dark:text-gray-400">collection</td>
+                                                        <td className="px-4 py-3 text-gray-600 dark:text-gray-400">dynamic</td>
                                                     </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
+                                        </div>
+
+                                        {/* Request Body */}
+                                        <div>
+                                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request
+                                                Body</h4>
+                                            <CodeBlock language="json">{getRequestBody()}</CodeBlock>
                                         </div>
 
                                         {/* Example Request */}
@@ -160,4 +193,4 @@ const GetCollectionCurrency = () => {
     );
 };
 
-export default GetCollectionCurrency;
+export default CollectionGenerateNgnDynamicVirtualAccountWithOtherInfo;

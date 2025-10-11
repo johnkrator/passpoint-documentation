@@ -102,7 +102,6 @@ import CollectionGetVirtualAccount
 // Collection Bank Open Banking Pages
 import CollectionRequestPaymentForeign
     from "@/pages/api-documentation/transfer/collection/bank/open-banking/CollectionRequestPaymentForeign.tsx";
-import CollectionBankOpenBankingPreselect from "@/pages/api-documentation/transfer/collection/bank/open-banking/CollectionBankOpenBankingPreselect.tsx";
 import CollectionGetBanks
     from "@/pages/api-documentation/transfer/collection/bank/open-banking/preselect/CollectionGetBanks.tsx";
 import CollectionGetCountries
@@ -123,6 +122,8 @@ import Rate from "@/pages/api-documentation/transfer/payout/Rate.tsx";
 import Report from "@/pages/api-documentation/transfer/payout/Report.tsx";
 import PayoutFundTransferCallbackSample
     from "@/pages/api-documentation/transfer/payout/PayoutFundTransferCallbackSample.tsx";
+import CollectionGenerateNgnDynamicVirtualAccountWithOtherInfo
+    from "@/pages/api-documentation/transfer/collection/bank/CollectionGenerateNgnDynamicVirtualAccountWithOtherInfo.tsx";
 
 const Routes = () => {
     return createBrowserRouter([
@@ -208,6 +209,10 @@ const Routes = () => {
                     element: <CollectionGenerateNGNDynamicVirtualAccount/>
                 },
                 {
+                    path: "collection/bank/generate-ngn-dynamic-virtual-account-with-other-info",
+                    element: <CollectionGenerateNgnDynamicVirtualAccountWithOtherInfo/>
+                },
+                {
                     path: "collection/bank/generate-usd-virtual-account-individual",
                     element: <CollectionGenerateUSDVirtualAccountIndividual/>
                 },
@@ -229,7 +234,6 @@ const Routes = () => {
                 },
 
                 // Collection Bank Open Banking Preselect Routes
-                {path: "collection/bank/open-banking/preselect", element: <CollectionBankOpenBankingPreselect/>},
                 {path: "collection/bank/open-banking/preselect/get-banks", element: <CollectionGetBanks/>},
                 {path: "collection/bank/open-banking/preselect/get-countries", element: <CollectionGetCountries/>},
                 {

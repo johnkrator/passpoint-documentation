@@ -153,19 +153,143 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
                     .replace(/(\/\*[\s\S]*?\*\/)/g, "<span class=\"text-gray-500 italic\">$1</span>");
 
             case "bash":
-            case "shell":
-                return code
-                    // Commands in white/default
-                    .replace(/^(curl|wget|ssh|scp|git|npm|yarn|pnpm|node|python|ruby|go)/gm, "<span class=\"text-white\">$1</span>")
-                    // Flags in cyan
-                    .replace(/(\s)(-[a-zA-Z]|--[a-zA-Z-]+)/g, "$1<span class=\"text-cyan-400\">$2</span>")
-                    // URLs in sky blue
-                    .replace(/(https?:\/\/[^\s"\\]+)/g, "<span class=\"text-sky-400\">$1</span>")
-                    // Strings in green
-                    .replace(/("([^"\\]|\\.)*")/g, "<span class=\"text-green-400\">$1</span>")
-                    .replace(/('([^'\\]|\\.)*')/g, "<span class=\"text-green-400\">$1</span>")
-                    // Comments in gray italic
-                    .replace(/(#.*$)/gm, "<span class=\"text-gray-500 italic\">$1</span>");
+            case "shell": {
+                // Token-based approach to avoid regex conflicts
+                const bashTokens: Array<{ type: string; value: string }> = [];
+                let bi = 0;
+
+                while (bi < code.length) {
+                    // Skip whitespace
+                    if (/\s/.test(code[bi])) {
+                        let ws = "";
+                        while (bi < code.length && /\s/.test(code[bi])) {
+                            ws += code[bi];
+                            bi++;
+                        }
+                        bashTokens.push({type: "whitespace", value: ws});
+                        continue;
+                    }
+
+                    // Comments
+                    if (code[bi] === "#") {
+                        let comment = "";
+                        while (bi < code.length && code[bi] !== "\n") {
+                            comment += code[bi];
+                            bi++;
+                        }
+                        bashTokens.push({type: "comment", value: comment});
+                        continue;
+                    }
+
+                    // Single-quoted strings
+                    if (code[bi] === "'") {
+                        let str = "'";
+                        bi++;
+                        while (bi < code.length) {
+                            if (code[bi] === "'") {
+                                str += code[bi];
+                                bi++;
+                                break;
+                            }
+                            str += code[bi];
+                            bi++;
+                        }
+                        bashTokens.push({type: "string", value: str});
+                        continue;
+                    }
+
+                    // Double-quoted strings
+                    if (code[bi] === "\"") {
+                        let str = "\"";
+                        bi++;
+                        while (bi < code.length) {
+                            if (code[bi] === "\\" && bi + 1 < code.length) {
+                                str += code[bi] + code[bi + 1];
+                                bi += 2;
+                            } else if (code[bi] === "\"") {
+                                str += code[bi];
+                                bi++;
+                                break;
+                            } else {
+                                str += code[bi];
+                                bi++;
+                            }
+                        }
+                        bashTokens.push({type: "string", value: str});
+                        continue;
+                    }
+
+                    // URLs (http:// or https://)
+                    if (code.substr(bi, 7) === "http://" || code.substr(bi, 8) === "https://") {
+                        let url = "";
+                        while (bi < code.length && !/[\s"'\\]/.test(code[bi])) {
+                            url += code[bi];
+                            bi++;
+                        }
+                        bashTokens.push({type: "url", value: url});
+                        continue;
+                    }
+
+                    // Flags (--flag or -f)
+                    if (code[bi] === "-" && bi + 1 < code.length && /[a-zA-Z-]/.test(code[bi + 1])) {
+                        let flag = "-";
+                        bi++;
+                        while (bi < code.length && /[a-zA-Z0-9-]/.test(code[bi])) {
+                            flag += code[bi];
+                            bi++;
+                        }
+                        bashTokens.push({type: "flag", value: flag});
+                        continue;
+                    }
+
+                    // Commands (curl, git, etc.)
+                    if (/[a-zA-Z_]/.test(code[bi])) {
+                        let word = "";
+                        while (bi < code.length && /[a-zA-Z0-9_-]/.test(code[bi])) {
+                            word += code[bi];
+                            bi++;
+                        }
+
+                        const commands = ["curl", "wget", "ssh", "scp", "git", "npm", "yarn", "pnpm", "node", "python", "ruby", "go"];
+                        if (commands.includes(word)) {
+                            bashTokens.push({type: "command", value: word});
+                        } else {
+                            bashTokens.push({type: "text", value: word});
+                        }
+                        continue;
+                    }
+
+                    // Everything else
+                    bashTokens.push({type: "operator", value: code[bi]});
+                    bi++;
+                }
+
+                // Convert tokens to HTML
+                return bashTokens.map(token => {
+                    const escaped = token.value
+                        .replace(/&/g, "&amp;")
+                        .replace(/</g, "&lt;")
+                        .replace(/>/g, "&gt;");
+
+                    switch (token.type) {
+                        case "comment":
+                            return `<span class="text-gray-500 italic">${escaped}</span>`;
+                        case "string":
+                            return `<span class="text-green-400">${escaped}</span>`;
+                        case "url":
+                            return `<span class="text-sky-400">${escaped}</span>`;
+                        case "flag":
+                            return `<span class="text-cyan-400">${escaped}</span>`;
+                        case "command":
+                            return `<span class="text-white">${escaped}</span>`;
+                        case "whitespace":
+                        case "text":
+                        case "operator":
+                        default:
+                            return escaped;
+                    }
+                }).join("");
+            }
 
             case "javascript":
             case "js":
@@ -259,7 +383,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
                     .replace(/(\/\*[\s\S]*?\*\/)/g, "<span class=\"text-gray-500 italic\">$1</span>")
                     .replace(/(\/\/.*$)/gm, "<span class=\"text-gray-500 italic\">$1</span>");
 
-            case "java":
+            case "java": {
                 // Token-based approach to avoid regex conflicts
                 const tokens: Array<{ type: string; value: string }> = [];
                 let i = 0;
@@ -417,6 +541,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
                             return escaped;
                     }
                 }).join("");
+            }
 
             default:
                 return code;

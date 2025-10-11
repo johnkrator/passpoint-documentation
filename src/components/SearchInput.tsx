@@ -72,8 +72,12 @@ const SearchInput: React.FC<SearchInputProps> = ({
         setSearchTerm("");
         setSelectedIndex(-1);
 
-        // Navigate using React Router (SPA navigation - no page reload)
-        navigate(url);
+        // Navigate using React Router for internal routes, or window.location for external
+        if (url.startsWith("http")) {
+            window.location.href = url;
+        } else {
+            navigate(url);
+        }
     }, [navigate, setSearchTerm, setShowSuggestions]);
 
     const handleClearSearch = (e: React.MouseEvent) => {

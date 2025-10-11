@@ -378,7 +378,7 @@ const searchData: SearchItem[] = [
         section: "LOCAL TRANSFERS",
         icon: Building2,
         keywords: ["banks", "local", "list", "supported", "domestic"],
-        aliases: ["local-banks", "domestic-banks"]
+        aliases: ["local-banks", "domestic-banks", "get-banks"]
     },
     {
         title: "Account Enquiry",
@@ -387,7 +387,7 @@ const searchData: SearchItem[] = [
         section: "LOCAL TRANSFERS",
         icon: Building2,
         keywords: ["enquiry", "verify", "account", "local", "bank", "validation", "check"],
-        aliases: ["account-verification", "verify-account"]
+        aliases: ["account-verification", "verify-account", "account-enquiry"]
     },
     {
         title: "Account Transfer - NGN",
@@ -396,7 +396,7 @@ const searchData: SearchItem[] = [
         section: "LOCAL TRANSFERS",
         icon: Building2,
         keywords: ["ngn", "naira", "nigeria", "account", "transfer", "payout", "local"],
-        aliases: ["nigerian-transfer", "ngn-payout"]
+        aliases: ["nigerian-transfer", "ngn-payout", "account-transfer-ngn"]
     },
     {
         title: "Passpoint Enquiry",
@@ -434,7 +434,7 @@ const searchData: SearchItem[] = [
         section: "FOREIGN TRANSFERS",
         icon: Globe,
         keywords: ["countries", "supported", "foreign", "international", "list"],
-        aliases: ["supported-countries", "country-list"]
+        aliases: ["supported-countries", "country-list", "get-available-countries"]
     },
     {
         title: "Get Payment Methods",
@@ -609,7 +609,7 @@ const searchData: SearchItem[] = [
         section: "TRANSFERS",
         icon: BarChart3,
         keywords: ["status", "transfer", "check", "track", "transaction", "lookup"],
-        aliases: ["check-status", "track-transfer"]
+        aliases: ["check-status", "track-transfer", "transfer-status"]
     },
     {
         title: "Payment Status Report",
@@ -879,6 +879,20 @@ const calculateSearchScore = (item: SearchItem, query: string): number => {
 
         if (matchingUrlKeywords.length > 0) {
             score += matchingUrlKeywords.length * 50; // 50 points per matching URL keyword
+        }
+
+        // Dynamic path segment matching for API endpoints
+        const pathSegments = extractedPath.split("/").filter(Boolean);
+        const lastSegment = pathSegments[pathSegments.length - 1]?.toLowerCase();
+        if (lastSegment) {
+            // Check if item URL ends with the last segment
+            if (item.url.toLowerCase().endsWith("/" + lastSegment) || item.url.toLowerCase() === "/" + lastSegment) {
+                score += 1200; // High priority for URL ending match
+            }
+            // Check if any alias matches the last segment
+            if (item.aliases?.some(a => a.toLowerCase() === lastSegment)) {
+                score += 1100; // High priority for alias match
+            }
         }
     }
 

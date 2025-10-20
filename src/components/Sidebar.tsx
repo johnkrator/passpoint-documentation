@@ -439,6 +439,11 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                     href: "/virtual-card-v2",
                     children: [
                         {
+                            icon: FileText,
+                            label: "Card Introduction",
+                            href: "/virtual-card-v2/card-introduction"
+                        },
+                        {
                             icon: Send,
                             label: "Issue Card (Default Billing Details)",
                             href: "/virtual-card-v2/issue-card-default-billing"

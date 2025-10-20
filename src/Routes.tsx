@@ -125,6 +125,28 @@ import PayoutFundTransferCallbackSample
 import CollectionGenerateNgnDynamicVirtualAccountWithOtherInfo
     from "@/pages/api-documentation/transfer/collection/bank/CollectionGenerateNgnDynamicVirtualAccountWithOtherInfo.tsx";
 
+// Virtual Card v2 Pages
+import VirtualCardV2 from "@/pages/virtual-card-v2/VirtualCardV2.tsx";
+import CardIntroduction from "@/pages/virtual-card-v2/CardIntroduction.tsx";
+import IssueCardDefaultBilling from "@/pages/virtual-card-v2/IssueCardDefaultBilling.tsx";
+import IssueCardClientBilling from "@/pages/virtual-card-v2/IssueCardClientBilling.tsx";
+import IssueAndFundCardClientBilling from "@/pages/virtual-card-v2/IssueAndFundCardClientBilling.tsx";
+import CardDetails from "@/pages/virtual-card-v2/CardDetails.tsx";
+import CardFullPan from "@/pages/virtual-card-v2/CardFullPan.tsx";
+import CardBalance from "@/pages/virtual-card-v2/CardBalance.tsx";
+import CardProfileStatus from "@/pages/virtual-card-v2/CardProfileStatus.tsx";
+import FreezeCard from "@/pages/virtual-card-v2/FreezeCard.tsx";
+import UnfreezeCard from "@/pages/virtual-card-v2/UnfreezeCard.tsx";
+import FundCard from "@/pages/virtual-card-v2/FundCard.tsx";
+import WithdrawFromCard from "@/pages/virtual-card-v2/WithdrawFromCard.tsx";
+import CardTransaction from "@/pages/virtual-card-v2/CardTransaction.tsx";
+import CardTransactionsList from "@/pages/virtual-card-v2/CardTransactionsList.tsx";
+import TerminateCard from "@/pages/virtual-card-v2/TerminateCard.tsx";
+import UpdateCardCallbackDetails from "@/pages/virtual-card-v2/UpdateCardCallbackDetails.tsx";
+import CardStatement from "@/pages/virtual-card-v2/CardStatement.tsx";
+import CardStatementByTransactionId from "@/pages/virtual-card-v2/CardStatementByTransactionId.tsx";
+import RealtimeAuthorizationDecisionMaker from "@/pages/virtual-card-v2/RealtimeAuthorizationDecisionMaker.tsx";
+
 const Routes = () => {
     return createBrowserRouter([
         {
@@ -262,25 +284,26 @@ const Routes = () => {
                 {path: "global-callback-setup/update-merchant-callback-url", element: <GlobalCallbackSetup/>},
 
                 // Virtual Card v2 Routes
-                {path: "virtual-card-v2", element: <Home/>}, // Main Virtual Card v2 page
-                {path: "virtual-card-v2/issue-card-default-billing", element: <Home/>},
-                {path: "virtual-card-v2/issue-card-client-billing", element: <Home/>},
-                {path: "virtual-card-v2/issue-and-fund-card-client-billing", element: <Home/>},
-                {path: "virtual-card-v2/card-details", element: <Home/>},
-                {path: "virtual-card-v2/card-full-pan", element: <Home/>},
-                {path: "virtual-card-v2/card-balance", element: <Home/>},
-                {path: "virtual-card-v2/card-profile-status", element: <Home/>},
-                {path: "virtual-card-v2/freeze-card", element: <Home/>},
-                {path: "virtual-card-v2/unfreeze-card", element: <Home/>},
-                {path: "virtual-card-v2/fund-card", element: <Home/>},
-                {path: "virtual-card-v2/withdraw-from-card", element: <Home/>},
-                {path: "virtual-card-v2/card-transaction", element: <Home/>},
-                {path: "virtual-card-v2/card-transactions-list", element: <Home/>},
-                {path: "virtual-card-v2/terminate-card", element: <Home/>},
-                {path: "virtual-card-v2/update-card-callback-details", element: <Home/>},
-                {path: "virtual-card-v2/card-statement", element: <Home/>},
-                {path: "virtual-card-v2/card-statement-by-transaction-id", element: <Home/>},
-                {path: "virtual-card-v2/realtime-authorization-decision-maker", element: <Home/>},
+                {path: "virtual-card-v2", element: <VirtualCardV2/>},
+                {path: "virtual-card-v2/card-introduction", element: <CardIntroduction/>},
+                {path: "virtual-card-v2/issue-card-default-billing", element: <IssueCardDefaultBilling/>},
+                {path: "virtual-card-v2/issue-card-client-billing", element: <IssueCardClientBilling/>},
+                {path: "virtual-card-v2/issue-and-fund-card-client-billing", element: <IssueAndFundCardClientBilling/>},
+                {path: "virtual-card-v2/card-details", element: <CardDetails/>},
+                {path: "virtual-card-v2/card-full-pan", element: <CardFullPan/>},
+                {path: "virtual-card-v2/card-balance", element: <CardBalance/>},
+                {path: "virtual-card-v2/card-profile-status", element: <CardProfileStatus/>},
+                {path: "virtual-card-v2/freeze-card", element: <FreezeCard/>},
+                {path: "virtual-card-v2/unfreeze-card", element: <UnfreezeCard/>},
+                {path: "virtual-card-v2/fund-card", element: <FundCard/>},
+                {path: "virtual-card-v2/withdraw-from-card", element: <WithdrawFromCard/>},
+                {path: "virtual-card-v2/card-transaction", element: <CardTransaction/>},
+                {path: "virtual-card-v2/card-transactions-list", element: <CardTransactionsList/>},
+                {path: "virtual-card-v2/terminate-card", element: <TerminateCard/>},
+                {path: "virtual-card-v2/update-card-callback-details", element: <UpdateCardCallbackDetails/>},
+                {path: "virtual-card-v2/card-statement", element: <CardStatement/>},
+                {path: "virtual-card-v2/card-statement-by-transaction-id", element: <CardStatementByTransactionId/>},
+                {path: "virtual-card-v2/realtime-authorization-decision-maker", element: <RealtimeAuthorizationDecisionMaker/>},
 
                 // Card Acquiring Routes
                 {path: "card-acquiring", element: <Home/>}, // Main Card Acquiring page

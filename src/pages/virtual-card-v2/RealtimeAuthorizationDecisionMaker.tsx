@@ -2,33 +2,54 @@ import {CheckCircle, Shield} from "lucide-react";
 import CodeBlock from "@/components/CodeBlock.tsx";
 
 const RealtimeAuthorizationDecisionMaker = () => {
-    const endpointCode = () => `POST https://payment-sandbox.mypasspoint.com/passpoint-payserv/v1/virtual-card/realtime-authorization-decision`;
+    const endpointCode = () => `POST https://merchant_url`;
     const headersCode = () => `x-channel-id: 2
 x-channel-code: passpoint-merchant-user
 x-merchant-id: pass your merchant id
 Authorization: Bearer [your-access-token]
 Content-Type: application/json`;
     const requestBodyCode = () => `{
-  "transactionId": "txn_123456789",
-  "decision": "APPROVE",
-  "reason": "Transaction verified"
+    "approvalCode": "string",
+    "cardAcceptorCountry": "string",
+    "cardAcceptorName": "string",
+    "cardId": "string",
+    "clientName": "string",
+    "maskedCardPan": "string",
+    "mcc": "string",
+    "rrn": "string",
+    "stan": "string",
+    "settlementCurrency": "string",
+    "terminalId": "string",
+    "transactionCurrency": "string",
+    "transactionAmount": "decimal",
+    "charges": "decimal",
+    "debitAmount": "decimal",
+    "settlementAmount": "decimal",
+    "crossborder": "boolean",
+    "crossborderCharge": "decimal",
+    "crossborderChargeBearer": "string"
 }`;
-    const curlCode = () => `curl --location 'https://payment-sandbox.mypasspoint.com/passpoint-payserv/v1/virtual-card/realtime-authorization-decision' \\
---header 'x-channel-id: 2' \\
---header 'x-channel-code: passpoint-merchant-user' \\
---header 'x-merchant-id: pass your merchant id' \\
---header 'Authorization: Bearer [your-access-token]' \\
+    const curlCode = () => `curl --location 'https://merchant_url' \\
 --header 'Content-Type: application/json' \\
---data '{"transactionId": "txn_123456789", "decision": "APPROVE", "reason": "Transaction verified"}'`;
+--data '{
+    "mcc": "string",
+    "cardId": "string",
+    "terminalId": "string",
+    "cardAcceptorCountry": "string",
+    "cardAcceptorName": "string",
+    "transactionCurrency": "string",
+    "transactionAmount": "number",
+    "settlementAmount": "number",
+    "settlementCurrency": "string",
+    "rrn": "string",
+    "stan": "string",
+    "maskedCardPan": "string",
+    "clientName": "string",
+    "approvalCode": "string"
+}'`;
     const responseCode = () => `{
-  "responseCode": "00",
-  "responseDescription": "Successful",
-  "responseMessage": "Authorization decision recorded",
-  "data": {
-    "transactionId": "txn_123456789",
-    "decision": "APPROVE",
-    "processedAt": "2024-01-15T18:00:00Z"
-  }
+  "responseCode": "approve|decline",
+  "reasonCode": "approve|decline"
 }`;
 
     return (
@@ -37,7 +58,7 @@ Content-Type: application/json`;
                 <div className="max-w-none">
                     <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Realtime Authorization Decision Maker</h1>
                     <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
-                        Make real-time authorization decisions for card transactions, approving or declining them based on custom rules.
+                        This endpoint fetches a single card statement ledger by transaction id. This is a merchant-hosted endpoint that receives authorization requests from Passpoint.
                     </p>
                     <section className="mb-16">
                         <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">API</h2>
@@ -52,9 +73,10 @@ Content-Type: application/json`;
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
                                     <div className="mb-6">
-                                        <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed"><strong>Endpoint:</strong> https://payment-sandbox.mypasspoint.com/passpoint-payserv/v1/virtual-card/realtime-authorization-decision</p>
+                                        <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed"><strong>Endpoint:</strong> https://merchant_url</p>
                                         <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed"><strong>Method:</strong> POST</p>
-                                        <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed"><strong>Description:</strong> Make real-time authorization decisions for card transactions</p>
+                                        <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed"><strong>Description:</strong> This endpoint fetches a single card statement ledger by transaction id</p>
+                                        <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed"><strong>Authorization:</strong> Bearer Token (using Bearer Token from collection Passpoint Payment Service)</p>
                                     </div>
                                     <div className="space-y-4">
                                         <div><h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4><CodeBlock>{endpointCode()}</CodeBlock></div>

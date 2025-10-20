@@ -1,60 +1,90 @@
-import {FileSearch} from "lucide-react";
+import {FileText} from "lucide-react";
 import CodeBlock from "@/components/CodeBlock.tsx";
 
 const CardStatementByTransactionId = () => {
-    const endpointCode = () => `GET https://payment-sandbox.mypasspoint.com/passpoint-payserv/v1/virtual-card/card-statement-by-transaction-id/{transactionId}`;
+    const endpointCode = () => `POST https://dev.mypasspoint.com/cardapp/get-card-statement`;
     const headersCode = () => `x-channel-id: 2
 x-channel-code: passpoint-merchant-user
-x-merchant-id: pass your merchant id
-Authorization: Bearer [your-access-token]`;
-    const curlCode = () => `curl --location 'https://payment-sandbox.mypasspoint.com/passpoint-payserv/v1/virtual-card/card-statement-by-transaction-id/txn_123456789' \\
---header 'x-channel-id: 2' \\
---header 'x-channel-code: passpoint-merchant-user' \\
---header 'x-merchant-id: pass your merchant id' \\
---header 'Authorization: Bearer [your-access-token]'`;
+x-merchant-id: aeed8e61-db43-4f8a-b792-36e5d2c3dd40
+Authorization: Bearer [your-access-token]
+Content-Type: application/json`;
+    const requestBodyCode = () => `{
+    "startDate":"2024-04-20",
+    "endDate":"2024-12-31",
+    "cardId":"b9c336d6-ec8d-4153-bd36-433b079461ee",
+    "transMode":"ref::xxxxx",
+    "pageNumber": 1,
+    "pageSize": 20
+}`;
+    const curlCode = () => `curl --location --request GET 'https://dev.mypasspoint.com/cardapp/get-card-statement' \\
+--header 'Content-Type: application/json' \\
+--data '{
+    "startDate":"2024-04-20",
+    "endDate":"2024-12-31",
+    "cardId":"b9c336d6-ec8d-4153-bd36-433b079461ee",
+    "transMode":"ref::xxxxx",
+    "pageNumber": 1,
+    "pageSize": 20
+}
+/**
+* where xxxxx = transaction id
+* the transaction id must be prefixed with ref::
+*/'`;
     const responseCode = () => `{
   "responseCode": "00",
   "responseDescription": "Successful",
-  "responseMessage": "Statement item found",
-  "data": {
-    "transactionId": "txn_123456789",
-    "cardId": "card_123456789",
-    "amount": 250.00,
-    "currency": "USD",
-    "merchantName": "Amazon.com",
-    "transactionType": "PURCHASE",
-    "status": "COMPLETED",
-    "transactionDate": "2024-01-15T10:30:00Z"
-  }
+  "responseMessage": "1 statement items found.",
+  "totalCount": 1,
+  "pageCount": 1,
+  "pageSize": 1,
+  "currentPage": 1,
+  "data": [
+    {
+      "cbaReference": "M2",
+      "cardId": "c222d8a1-6aea-4938-b948-5ed8263daa40",
+      "currency": "USD",
+      "openingBalance": "0.00",
+      "amount": 150,
+      "runningBalance": "150.00",
+      "narration": "Card Funding of 150 - Card Funding - Funding IFO - 809dae1e-eebc-4f56-9480-dfd06b5fe5a4",
+      "transactionType": "FundCard",
+      "transactionDate": "2024-04-27 03:18:36",
+      "credit": true
+    }
+  ]
 }`;
 
     return (
         <div className="min-h-screen bg-white dark:bg-gray-950">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Card Statement by Transaction Id</h1>
+                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Get Card Statement by Transaction Id</h1>
                     <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
-                        Retrieve a specific statement item by transaction ID.
+                        This endpoint fetches a single card statement ledger by transaction id.
                     </p>
                     <section className="mb-16">
                         <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">API</h2>
-                        <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
-                            <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
-                                <div className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
-                                    <FileSearch className="h-12 w-12 text-purple-500 flex-shrink-0"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Get Statement Item</h3>
-                                </div>
-                                <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <div className="mb-6">
-                                        <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed"><strong>Endpoint:</strong> https://payment-sandbox.mypasspoint.com/passpoint-payserv/v1/virtual-card/card-statement-by-transaction-id/&#123;transactionId&#125;</p>
-                                        <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed"><strong>Method:</strong> GET</p>
-                                        <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed"><strong>Description:</strong> Retrieve statement details for a specific transaction</p>
+                        <div className="space-y-8">
+                            <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
+                                <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-none">
+                                    <div className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
+                                        <FileText className="h-12 w-12 text-brand-500 flex-shrink-0"/>
+                                        <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Statement by Txn ID</h3>
                                     </div>
-                                    <div className="space-y-4">
-                                        <div><h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4><CodeBlock>{endpointCode()}</CodeBlock></div>
-                                        <div><h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Headers</h4><CodeBlock language="bash">{headersCode()}</CodeBlock></div>
-                                        <div><h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">cURL Example</h4><CodeBlock language="bash">{curlCode()}</CodeBlock></div>
-                                        <div><h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response</h4><CodeBlock language="json">{responseCode()}</CodeBlock></div>
+                                    <div className="flex-1 min-w-0 lg:max-w-4xl">
+                                        <div className="mb-6">
+                                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed"><strong>Endpoint:</strong> https://dev.mypasspoint.com/cardapp/get-card-statement</p>
+                                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed"><strong>Method:</strong> POST</p>
+                                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed"><strong>Description:</strong> This endpoint fetches a single card statement ledger by transaction id</p>
+                                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed"><strong>Authorization:</strong> Bearer Token (This request is using Bearer Token from collection Passpoint Payment Service)</p>
+                                        </div>
+                                        <div className="space-y-4">
+                                            <div><h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Endpoint</h4><CodeBlock>{endpointCode()}</CodeBlock></div>
+                                            <div><h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Headers</h4><CodeBlock language="bash">{headersCode()}</CodeBlock></div>
+                                            <div><h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Request Body</h4><CodeBlock language="json">{requestBodyCode()}</CodeBlock></div>
+                                            <div><h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">cURL Example</h4><CodeBlock language="bash">{curlCode()}</CodeBlock></div>
+                                            <div><h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Response (200 OK)</h4><CodeBlock language="json">{responseCode()}</CodeBlock></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

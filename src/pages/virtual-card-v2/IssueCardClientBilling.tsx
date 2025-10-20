@@ -3,7 +3,7 @@ import CodeBlock from "@/components/CodeBlock.tsx";
 
 const IssueCardClientBilling = () => {
     const endpointCode = () => {
-        return `POST https://payment-sandbox.mypasspoint.com/passpoint-payserv/v1/virtual-card/issue-card-client-billing`;
+        return `POST https://dev.mypasspoint.com/cardapp/issue`;
     };
 
     const headersCode = () => {
@@ -16,39 +16,48 @@ Content-Type: application/json`;
 
     const requestBodyCode = () => {
         return `{
-  "customerId": "string",
-  "currency": "USD",
-  "cardType": "VIRTUAL",
-  "nameOnCard": "John Doe",
-  "billingAddress": {
-    "street": "123 Main St",
-    "city": "New York",
-    "state": "NY",
-    "postalCode": "10001",
-    "country": "US"
-  }
+    "firstName": "John",
+    "lastName": "Deep",
+    "email": "teli2x@yahoo.ca",
+    "phoneNumber": "08038276746",
+    "currency": "USD",
+    "scheme": "1",
+    "cardType": "0",
+    "orderId": "44606ed9-d785-493a-abbc-85a370806975",
+    "useBillingDetails": "client",
+    "address": "9 milton drive",
+    "city": "Beverly hills",
+    "state": "California",
+    "country": "US",
+    "zipCode": "19901",
+    "callbackUrl": "string",
+    "is3d": "no",
+    "tokenization": "no",
+    "useCardAsChargeBearer" : "no"
 }`;
     };
 
     const curlCode = () => {
-        return `curl --location 'https://payment-sandbox.mypasspoint.com/passpoint-payserv/v1/virtual-card/issue-card-client-billing' \\
---header 'x-channel-id: 2' \\
---header 'x-channel-code: passpoint-merchant-user' \\
---header 'x-merchant-id: pass your merchant id' \\
---header 'Authorization: Bearer [your-access-token]' \\
---header 'Content-Type: application/json' \\
---data '{
-  "customerId": "string",
-  "currency": "USD",
-  "cardType": "VIRTUAL",
-  "nameOnCard": "John Doe",
-  "billingAddress": {
-    "street": "123 Main St",
-    "city": "New York",
-    "state": "NY",
-    "postalCode": "10001",
-    "country": "US"
-  }
+        return `curl --location 'https://dev.mypasspoint.com/cardapp/issue' \\
+--data-raw '{
+    "firstName": "John",
+    "lastName": "Deep",
+    "email": "teli2x@yahoo.ca",
+    "phoneNumber": "08038276746",
+    "currency": "USD",
+    "scheme": "1",
+    "cardType": "0",
+    "orderId": "af009f32-ce77-46f4-9a82-13e35ac57878",
+    "useBillingDetails": "client",
+    "address": "9 milton drive",
+    "city": "Beverly hills",
+    "state": "California",
+    "country": "US",
+    "zipCode": "19901",
+    "callbackUrl": "string",
+    "is3d": "no",
+    "tokenization": "no",
+    "useCardAsChargeBearer" : "no"
 }'`;
     };
 
@@ -56,21 +65,8 @@ Content-Type: application/json`;
         return `{
   "responseCode": "00",
   "responseDescription": "Successful",
-  "responseMessage": "Card issued successfully with client billing details",
-  "data": {
-    "cardId": "card_123456789",
-    "cardNumber": "****1234",
-    "expiryDate": "12/25",
-    "cvv": "***",
-    "status": "ACTIVE",
-    "billingAddress": {
-      "street": "123 Main St",
-      "city": "New York",
-      "state": "NY",
-      "postalCode": "10001",
-      "country": "US"
-    }
-  }
+  "responseMessage": "string",
+  "reference": "string"
 }`;
     };
 
@@ -79,12 +75,11 @@ Content-Type: application/json`;
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
                     <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                        Issue Card (Client Billing Details)
+                        Issue Card - Client Billing Details
                     </h1>
 
                     <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
-                        This endpoint allows you to issue a new virtual card using custom billing details
-                        provided by the client.
+                        This is the endpoint for creating a virtual card for the customer. A bearer token is required in the Authorization header which will be used to retrieve the customer's details and create the virtual card. colour = the display colour of the card on your interface e.g mobile app etc. scheme = the card scheme e.g. 1 - Mastercard, 2 - Visa
                     </p>
 
                     {/* API Section */}
@@ -103,14 +98,16 @@ Content-Type: application/json`;
                                     <div className="flex-1 min-w-0 lg:max-w-4xl">
                                         <div className="mb-6">
                                             <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed">
-                                                <strong>Endpoint:</strong> https://payment-sandbox.mypasspoint.com/passpoint-payserv/v1/virtual-card/issue-card-client-billing
+                                                <strong>Endpoint:</strong> https://dev.mypasspoint.com/cardapp/issue
                                             </p>
                                             <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed">
                                                 <strong>Method:</strong> POST
                                             </p>
                                             <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed">
-                                                <strong>Description:</strong> Issue a new virtual card with client-provided
-                                                billing address details
+                                                <strong>Description:</strong> This is the endpoint for creating a virtual card for the customer
+                                            </p>
+                                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed">
+                                                <strong>Authorization:</strong> Bearer Token (This request is using Bearer Token from collection Passpoint Payment Service)
                                             </p>
                                         </div>
 
@@ -145,7 +142,7 @@ Content-Type: application/json`;
 
                                             <div>
                                                 <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                                                    Response
+                                                    Response (200 OK)
                                                 </h4>
                                                 <CodeBlock language="json">{responseCode()}</CodeBlock>
                                             </div>

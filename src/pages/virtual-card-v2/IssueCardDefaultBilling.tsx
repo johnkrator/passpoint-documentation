@@ -3,7 +3,7 @@ import CodeBlock from "@/components/CodeBlock.tsx";
 
 const IssueCardDefaultBilling = () => {
     const endpointCode = () => {
-        return `POST https://payment-sandbox.mypasspoint.com/passpoint-payserv/v1/virtual-card/issue-card-default-billing`;
+        return `POST https://dev.mypasspoint.com/cardapp/issue`;
     };
 
     const headersCode = () => {
@@ -16,25 +16,35 @@ Content-Type: application/json`;
 
     const requestBodyCode = () => {
         return `{
-  "customerId": "string",
-  "currency": "USD",
-  "cardType": "VIRTUAL",
-  "nameOnCard": "John Doe"
+    "firstName":"Bogus",
+    "lastName":"Pokus",
+    "email":"chinedu37dz+123456@gmail.com",
+    "phoneNumber":"08038276746",
+    "currency":"USD",
+    "scheme":"2",
+    "cardType" : "0",
+    "orderId":"39737957-7af4-4b8a-b289-51b3315bc7f1",
+    "pin":"1234",
+    "is3d" : "no",
+    "tokenization" : "no",
+    "useCardAsChargeBearer" : "no"
 }`;
     };
 
     const curlCode = () => {
-        return `curl --location 'https://payment-sandbox.mypasspoint.com/passpoint-payserv/v1/virtual-card/issue-card-default-billing' \\
---header 'x-channel-id: 2' \\
---header 'x-channel-code: passpoint-merchant-user' \\
---header 'x-merchant-id: pass your merchant id' \\
---header 'Authorization: Bearer [your-access-token]' \\
---header 'Content-Type: application/json' \\
---data '{
-  "customerId": "string",
-  "currency": "USD",
-  "cardType": "VIRTUAL",
-  "nameOnCard": "John Doe"
+        return `curl --location 'https://dev.mypasspoint.com/cardapp/issue' \\
+--data-raw '{
+    "firstName":"Bogus",
+    "lastName":"Pokus",
+    "email":"chinedu37dz+123456@gmail.com",
+    "phoneNumber":"08038276746",
+    "currency":"USD",
+    "scheme":"2",
+    "cardType" : "0",
+    "orderId":"827c8156-55ab-4917-8f5c-19d90cc64780",
+    "is3d" : "no",
+    "tokenization" : "no",
+    "useCardAsChargeBearer" : "no"
 }'`;
     };
 
@@ -42,14 +52,8 @@ Content-Type: application/json`;
         return `{
   "responseCode": "00",
   "responseDescription": "Successful",
-  "responseMessage": "Card issued successfully",
-  "data": {
-    "cardId": "card_123456789",
-    "cardNumber": "****1234",
-    "expiryDate": "12/25",
-    "cvv": "***",
-    "status": "ACTIVE"
-  }
+  "responseMessage": "string",
+  "reference": "string"
 }`;
     };
 
@@ -58,12 +62,11 @@ Content-Type: application/json`;
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
                     <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                        Issue Card (Default Billing Details)
+                        Issue Card - Default Billing Details
                     </h1>
 
                     <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
-                        This endpoint allows you to issue a new virtual card using default billing details
-                        configured in your merchant account.
+                        This is the endpoint for creating a virtual card for the customer. A bearer token is required in the Authorization header which will be used to retrieve the customer's details and create the virtual card. colour = the display colour of the card on your interface e.g mobile app etc. scheme = the card scheme e.g. 1 - Mastercard, 2 - Visa
                     </p>
 
                     {/* API Section */}
@@ -82,14 +85,16 @@ Content-Type: application/json`;
                                     <div className="flex-1 min-w-0 lg:max-w-4xl">
                                         <div className="mb-6">
                                             <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed">
-                                                <strong>Endpoint:</strong> https://payment-sandbox.mypasspoint.com/passpoint-payserv/v1/virtual-card/issue-card-default-billing
+                                                <strong>Endpoint:</strong> https://dev.mypasspoint.com/cardapp/issue
                                             </p>
                                             <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed">
                                                 <strong>Method:</strong> POST
                                             </p>
                                             <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed">
-                                                <strong>Description:</strong> Issue a new virtual card using default
-                                                billing details from your merchant profile
+                                                <strong>Description:</strong> This is the endpoint for creating a virtual card for the customer
+                                            </p>
+                                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed">
+                                                <strong>Authorization:</strong> Bearer Token (This request is using Bearer Token from collection Passpoint Payment Service)
                                             </p>
                                         </div>
 
@@ -124,7 +129,7 @@ Content-Type: application/json`;
 
                                             <div>
                                                 <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                                                    Response
+                                                    Response (200 OK)
                                                 </h4>
                                                 <CodeBlock language="json">{responseCode()}</CodeBlock>
                                             </div>

@@ -147,6 +147,10 @@ import CardStatement from "@/pages/virtual-card-v2/CardStatement.tsx";
 import CardStatementByTransactionId from "@/pages/virtual-card-v2/CardStatementByTransactionId.tsx";
 import RealtimeAuthorizationDecisionMaker from "@/pages/virtual-card-v2/RealtimeAuthorizationDecisionMaker.tsx";
 
+// Card Acquiring Pages
+import InitiatePaymentNewCustomer from "@/pages/card-acquiring/InitiatePaymentNewCustomer.tsx";
+import InitiatePaymentExistingCustomer from "@/pages/card-acquiring/InitiatePaymentExistingCustomer.tsx";
+
 const Routes = () => {
     return createBrowserRouter([
         {
@@ -303,12 +307,18 @@ const Routes = () => {
                 {path: "virtual-card-v2/update-card-callback-details", element: <UpdateCardCallbackDetails/>},
                 {path: "virtual-card-v2/card-statement", element: <CardStatement/>},
                 {path: "virtual-card-v2/card-statement-by-transaction-id", element: <CardStatementByTransactionId/>},
-                {path: "virtual-card-v2/realtime-authorization-decision-maker", element: <RealtimeAuthorizationDecisionMaker/>},
+                {
+                    path: "virtual-card-v2/realtime-authorization-decision-maker",
+                    element: <RealtimeAuthorizationDecisionMaker/>
+                },
 
                 // Card Acquiring Routes
                 {path: "card-acquiring", element: <Home/>}, // Main Card Acquiring page
-                {path: "card-acquiring/initiate-payment-new-customer", element: <Home/>},
-                {path: "card-acquiring/initiate-payment-existing-customer", element: <Home/>},
+                {path: "card-acquiring/initiate-payment-new-customer", element: <InitiatePaymentNewCustomer/>},
+                {
+                    path: "card-acquiring/initiate-payment-existing-customer",
+                    element: <InitiatePaymentExistingCustomer/>
+                },
                 {path: "user-roles", element: <UserRoles/>},
                 {path: "status-responses", element: <StatusResponses/>},
                 {path: "sandbox-playground", element: <SandboxPlayground/>},

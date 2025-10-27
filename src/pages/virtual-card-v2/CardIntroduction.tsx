@@ -21,7 +21,7 @@ const CardIntroduction = () => {
                 <thead>
                     <tr className="bg-gray-100 dark:bg-gray-800">
                         {columns.map((col, idx) => (
-                            <th key={idx} className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left font-semibold text-gray-900 dark:text-white">
+                            <th key={idx} className="border border-gray-300 dark:border-gray-600 px-2 sm:px-4 py-2 text-left font-semibold text-gray-900 dark:text-white text-xs sm:text-sm">
                                 {col}
                             </th>
                         ))}
@@ -31,8 +31,8 @@ const CardIntroduction = () => {
                     {data.map((row, idx) => (
                         <tr key={idx} className="hover:bg-gray-50 dark:hover:bg-gray-800/50">
                             {Object.values(row).map((val: any, cellIdx) => (
-                                <td key={cellIdx} className="border border-gray-300 dark:border-gray-600 px-4 py-2">
-                                    {cellIdx === 0 ? <code className="font-mono text-xs">{val}</code> : val}
+                                <td key={cellIdx} className="border border-gray-300 dark:border-gray-600 px-2 sm:px-4 py-2 text-xs sm:text-sm break-words">
+                                    {cellIdx === 0 ? <code className="font-mono text-xs break-all">{val}</code> : val}
                                 </td>
                             ))}
                         </tr>
@@ -82,12 +82,12 @@ const CardIntroduction = () => {
                                 </div>
 
                                 <div className="space-y-4 mb-6">
-                                    <p className="text-gray-700 dark:text-gray-300">
-                                        <strong>Endpoint:</strong> <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">https://dev.mypasspoint.com/cardapp/issue</code>
+                                    <p className="text-gray-700 dark:text-gray-300 break-words">
+                                        <strong>Endpoint:</strong> <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-xs sm:text-sm break-all inline-block max-w-full">https://dev.mypasspoint.com/cardapp/issue</code>
                                     </p>
                                     <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
-                                        <p className="text-blue-800 dark:text-blue-300 text-sm">
-                                            <strong>N.B:</strong> When the card is to be funded during card creation, the endpoint is: <br/><code className="bg-blue-100 dark:bg-blue-900 px-2 py-1 rounded text-sm">https://dev.mypasspoint.com/cardapp/issue-and-fund</code>
+                                        <p className="text-blue-800 dark:text-blue-300 text-sm break-words">
+                                            <strong>N.B:</strong> When the card is to be funded during card creation, the endpoint is: <br/><code className="bg-blue-100 dark:bg-blue-900 px-2 py-1 rounded text-xs sm:text-sm break-all inline-block max-w-full mt-1">https://dev.mypasspoint.com/cardapp/issue-and-fund</code>
                                         </p>
                                     </div>
                                     <p className="text-gray-700 dark:text-gray-300"><strong>Method:</strong> POST</p>
@@ -115,8 +115,8 @@ const CardIntroduction = () => {
                                 </div>
 
                                 <div className="space-y-4 mb-6">
-                                    <p className="text-gray-700 dark:text-gray-300">
-                                        <strong>Endpoint:</strong> <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">https://dev.mypasspoint.com/cardapp/fund</code>
+                                    <p className="text-gray-700 dark:text-gray-300 break-words">
+                                        <strong>Endpoint:</strong> <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-xs sm:text-sm break-all inline-block max-w-full">https://dev.mypasspoint.com/cardapp/fund</code>
                                     </p>
                                     <p className="text-gray-700 dark:text-gray-300"><strong>Method:</strong> POST</p>
                                     <p className="text-gray-700 dark:text-gray-300"><strong>Description:</strong> Funds a virtual card</p>
@@ -143,8 +143,8 @@ const CardIntroduction = () => {
                                 </div>
 
                                 <div className="space-y-4 mb-6">
-                                    <p className="text-gray-700 dark:text-gray-300">
-                                        <strong>Endpoint:</strong> <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">https://dev.mypasspoint.com/cardapp/withdraw</code>
+                                    <p className="text-gray-700 dark:text-gray-300 break-words">
+                                        <strong>Endpoint:</strong> <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-xs sm:text-sm break-all inline-block max-w-full">https://dev.mypasspoint.com/cardapp/withdraw</code>
                                     </p>
                                     <p className="text-gray-700 dark:text-gray-300"><strong>Method:</strong> POST</p>
                                     <p className="text-gray-700 dark:text-gray-300"><strong>Description:</strong> Withdraw from a virtual card</p>
@@ -171,8 +171,8 @@ const CardIntroduction = () => {
                                 </div>
 
                                 <div className="space-y-4 mb-6">
-                                    <p className="text-gray-700 dark:text-gray-300">
-                                        <strong>Endpoint:</strong> <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">https://dev.mypasspoint.com/cardapp/get-card-balance</code>
+                                    <p className="text-gray-700 dark:text-gray-300 break-words">
+                                        <strong>Endpoint:</strong> <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-xs sm:text-sm break-all inline-block max-w-full">https://dev.mypasspoint.com/cardapp/get-card-balance</code>
                                     </p>
                                     <p className="text-gray-700 dark:text-gray-300"><strong>Method:</strong> GET</p>
                                     <p className="text-gray-700 dark:text-gray-300"><strong>Description:</strong> Get card balance</p>
@@ -202,8 +202,8 @@ const CardIntroduction = () => {
                                 </div>
 
                                 <div className="space-y-4 mb-6">
-                                    <p className="text-gray-700 dark:text-gray-300">
-                                        <strong>Endpoint:</strong> <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">https://dev.mypasspoint.com/cardapp/get-card-details</code>
+                                    <p className="text-gray-700 dark:text-gray-300 break-words">
+                                        <strong>Endpoint:</strong> <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-xs sm:text-sm break-all inline-block max-w-full">https://dev.mypasspoint.com/cardapp/get-card-details</code>
                                     </p>
                                     <p className="text-gray-700 dark:text-gray-300"><strong>Method:</strong> GET</p>
                                     <p className="text-gray-700 dark:text-gray-300"><strong>Description:</strong> Get card details</p>
@@ -230,8 +230,8 @@ const CardIntroduction = () => {
                                 </div>
 
                                 <div className="space-y-4 mb-6">
-                                    <p className="text-gray-700 dark:text-gray-300">
-                                        <strong>Endpoint:</strong> <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">https://dev.mypasspoint.com/cardapp/show-card</code>
+                                    <p className="text-gray-700 dark:text-gray-300 break-words">
+                                        <strong>Endpoint:</strong> <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-xs sm:text-sm break-all inline-block max-w-full">https://dev.mypasspoint.com/cardapp/show-card</code>
                                     </p>
                                     <p className="text-gray-700 dark:text-gray-300"><strong>Method:</strong> GET</p>
                                     <p className="text-gray-700 dark:text-gray-300"><strong>Description:</strong> Show Card Pan</p>
@@ -263,8 +263,8 @@ const CardIntroduction = () => {
                                 </div>
 
                                 <div className="space-y-4 mb-6">
-                                    <p className="text-gray-700 dark:text-gray-300">
-                                        <strong>Endpoint:</strong> <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">https://dev.mypasspoint.com/cardapp/get-card-status</code>
+                                    <p className="text-gray-700 dark:text-gray-300 break-words">
+                                        <strong>Endpoint:</strong> <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-xs sm:text-sm break-all inline-block max-w-full">https://dev.mypasspoint.com/cardapp/get-card-status</code>
                                     </p>
                                     <p className="text-gray-700 dark:text-gray-300"><strong>Method:</strong> GET</p>
                                     <p className="text-gray-700 dark:text-gray-300"><strong>Description:</strong> This retrieves the card status. It also tells if the card is active or terminated</p>
@@ -291,8 +291,8 @@ const CardIntroduction = () => {
                                 </div>
 
                                 <div className="space-y-4 mb-6">
-                                    <p className="text-gray-700 dark:text-gray-300">
-                                        <strong>Endpoint:</strong> <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">https://dev.mypasspoint.com/cardapp/update-card-status/deactivate</code>
+                                    <p className="text-gray-700 dark:text-gray-300 break-words">
+                                        <strong>Endpoint:</strong> <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-xs sm:text-sm break-all inline-block max-w-full">https://dev.mypasspoint.com/cardapp/update-card-status/deactivate</code>
                                     </p>
                                     <p className="text-gray-700 dark:text-gray-300"><strong>Method:</strong> PUT</p>
                                     <p className="text-gray-700 dark:text-gray-300"><strong>Description:</strong> Freeze Card</p>
@@ -319,8 +319,8 @@ const CardIntroduction = () => {
                                 </div>
 
                                 <div className="space-y-4 mb-6">
-                                    <p className="text-gray-700 dark:text-gray-300">
-                                        <strong>Endpoint:</strong> <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">https://dev.mypasspoint.com/cardapp/update-card-status/activate</code>
+                                    <p className="text-gray-700 dark:text-gray-300 break-words">
+                                        <strong>Endpoint:</strong> <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-xs sm:text-sm break-all inline-block max-w-full">https://dev.mypasspoint.com/cardapp/update-card-status/activate</code>
                                     </p>
                                     <p className="text-gray-700 dark:text-gray-300"><strong>Method:</strong> PUT</p>
                                     <p className="text-gray-700 dark:text-gray-300"><strong>Description:</strong> Freeze Card</p>
@@ -347,8 +347,8 @@ const CardIntroduction = () => {
                                 </div>
 
                                 <div className="space-y-4 mb-6">
-                                    <p className="text-gray-700 dark:text-gray-300">
-                                        <strong>Endpoint:</strong> <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">https://dev.mypasspoint.com/cardapp/terminate</code>
+                                    <p className="text-gray-700 dark:text-gray-300 break-words">
+                                        <strong>Endpoint:</strong> <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-xs sm:text-sm break-all inline-block max-w-full">https://dev.mypasspoint.com/cardapp/terminate</code>
                                     </p>
                                     <p className="text-gray-700 dark:text-gray-300"><strong>Method:</strong> POST</p>
                                     <p className="text-gray-700 dark:text-gray-300"><strong>Description:</strong> Terminate virtual card</p>
@@ -380,8 +380,8 @@ const CardIntroduction = () => {
                                 </div>
 
                                 <div className="space-y-4 mb-6">
-                                    <p className="text-gray-700 dark:text-gray-300">
-                                        <strong>Endpoint:</strong> <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">https://dev.mypasspoint.com/cardapp/get-card-trans</code>
+                                    <p className="text-gray-700 dark:text-gray-300 break-words">
+                                        <strong>Endpoint:</strong> <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-xs sm:text-sm break-all inline-block max-w-full">https://dev.mypasspoint.com/cardapp/get-card-trans</code>
                                     </p>
                                     <p className="text-gray-700 dark:text-gray-300"><strong>Method:</strong> GET</p>
                                     <p className="text-gray-700 dark:text-gray-300"><strong>Description:</strong> Get card transaction details</p>
@@ -408,8 +408,8 @@ const CardIntroduction = () => {
                                 </div>
 
                                 <div className="space-y-4 mb-6">
-                                    <p className="text-gray-700 dark:text-gray-300">
-                                        <strong>Endpoint:</strong> <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">https://dev.mypasspoint.com/cardapp/-card-list</code>
+                                    <p className="text-gray-700 dark:text-gray-300 break-words">
+                                        <strong>Endpoint:</strong> <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-xs sm:text-sm break-all inline-block max-w-full">https://dev.mypasspoint.com/cardapp/-card-list</code>
                                     </p>
                                     <p className="text-gray-700 dark:text-gray-300"><strong>Method:</strong> GET</p>
                                     <p className="text-gray-700 dark:text-gray-300"><strong>Description:</strong> Get card list</p>
@@ -440,8 +440,8 @@ const CardIntroduction = () => {
                                 </div>
 
                                 <div className="space-y-4 mb-6">
-                                    <p className="text-gray-700 dark:text-gray-300">
-                                        <strong>Endpoint:</strong> <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">https://merchant_url</code>
+                                    <p className="text-gray-700 dark:text-gray-300 break-words">
+                                        <strong>Endpoint:</strong> <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-xs sm:text-sm break-all inline-block max-w-full">https://merchant_url</code>
                                     </p>
                                     <p className="text-gray-700 dark:text-gray-300"><strong>Method:</strong> POST</p>
                                     <p className="text-gray-700 dark:text-gray-300"><strong>Description:</strong> Sends callback for card events to merchant</p>
@@ -470,8 +470,8 @@ const CardIntroduction = () => {
                                 </div>
 
                                 <div className="space-y-4 mb-6">
-                                    <p className="text-gray-700 dark:text-gray-300">
-                                        <strong>Endpoint:</strong> <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">https://dev.mypasspoint.com/cardapp/get-card-statement</code>
+                                    <p className="text-gray-700 dark:text-gray-300 break-words">
+                                        <strong>Endpoint:</strong> <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-xs sm:text-sm break-all inline-block max-w-full">https://dev.mypasspoint.com/cardapp/get-card-statement</code>
                                     </p>
                                     <p className="text-gray-700 dark:text-gray-300"><strong>Method:</strong> POST</p>
                                     <p className="text-gray-700 dark:text-gray-300"><strong>Description:</strong> Get card statement</p>

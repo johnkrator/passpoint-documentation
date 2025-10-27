@@ -84,8 +84,10 @@ const response = await createTransaction({
                 </h1>
 
                 <p className="text-gray-700 dark:text-gray-300 text-lg mb-8 leading-relaxed">
-                    This guide explains how transactions flow through the Passpoint system, from initiation to completion.
-                    Understanding transaction states, status codes, and lifecycle patterns is essential for building robust
+                    This guide explains how transactions flow through the Passpoint system, from initiation to
+                    completion.
+                    Understanding transaction states, status codes, and lifecycle patterns is essential for building
+                    robust
                     payment integrations.
                 </p>
 
@@ -94,21 +96,25 @@ const response = await createTransaction({
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Transaction Lifecycle</h2>
 
                     <p className="text-gray-700 dark:text-gray-300 mb-6">
-                        Every transaction in Passpoint goes through a series of states. Understanding these states helps you
+                        Every transaction in Passpoint goes through a series of states. Understanding these states helps
+                        you
                         handle transactions appropriately at each stage.
                     </p>
 
                     <div className="space-y-4 mb-8">
                         {/* NEW */}
-                        <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6">
+                        <div
+                            className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6">
                             <div className="flex items-start space-x-4">
                                 <div className="bg-blue-500 rounded-full p-2 flex-shrink-0">
                                     <CheckCircle className="h-5 w-5 text-white"/>
                                 </div>
                                 <div>
-                                    <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-2">1. NEW</h3>
+                                    <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-2">1.
+                                        NEW</h3>
                                     <p className="text-blue-800 dark:text-blue-200 mb-2">
-                                        Transaction has been created and accepted by Passpoint but not yet submitted to the payment provider.
+                                        Transaction has been created and accepted by Passpoint but not yet submitted to
+                                        the payment provider.
                                     </p>
                                     <div className="text-sm font-mono text-blue-700 dark:text-blue-300">
                                         data.status: "NEW"
@@ -122,15 +128,18 @@ const response = await createTransaction({
                         </div>
 
                         {/* PENDING */}
-                        <div className="bg-yellow-50 dark:bg-yellow-950/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-6">
+                        <div
+                            className="bg-yellow-50 dark:bg-yellow-950/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-6">
                             <div className="flex items-start space-x-4">
                                 <div className="bg-yellow-500 rounded-full p-2 flex-shrink-0">
                                     <Clock className="h-5 w-5 text-white"/>
                                 </div>
                                 <div>
-                                    <h3 className="text-lg font-semibold text-yellow-900 dark:text-yellow-100 mb-2">2. PENDING</h3>
+                                    <h3 className="text-lg font-semibold text-yellow-900 dark:text-yellow-100 mb-2">2.
+                                        PENDING</h3>
                                     <p className="text-yellow-800 dark:text-yellow-200 mb-2">
-                                        Transaction is queued and awaiting processing by our system before being sent to the payment provider.
+                                        Transaction is queued and awaiting processing by our system before being sent to
+                                        the payment provider.
                                     </p>
                                     <div className="text-sm font-mono text-yellow-700 dark:text-yellow-300">
                                         data.status: "PENDING" | responseCode: "01"
@@ -144,15 +153,18 @@ const response = await createTransaction({
                         </div>
 
                         {/* PROCESSING */}
-                        <div className="bg-purple-50 dark:bg-purple-950/20 border border-purple-200 dark:border-purple-800 rounded-lg p-6">
+                        <div
+                            className="bg-purple-50 dark:bg-purple-950/20 border border-purple-200 dark:border-purple-800 rounded-lg p-6">
                             <div className="flex items-start space-x-4">
                                 <div className="bg-purple-500 rounded-full p-2 flex-shrink-0">
                                     <RefreshCw className="h-5 w-5 text-white"/>
                                 </div>
                                 <div>
-                                    <h3 className="text-lg font-semibold text-purple-900 dark:text-purple-100 mb-2">3. PROCESSING</h3>
+                                    <h3 className="text-lg font-semibold text-purple-900 dark:text-purple-100 mb-2">3.
+                                        PROCESSING</h3>
                                     <p className="text-purple-800 dark:text-purple-200 mb-2">
-                                        Transaction has been submitted to the payment provider and is currently being processed. This is the active processing state.
+                                        Transaction has been submitted to the payment provider and is currently being
+                                        processed. This is the active processing state.
                                     </p>
                                     <div className="text-sm font-mono text-purple-700 dark:text-purple-300">
                                         data.status: "PROCESSING"
@@ -167,13 +179,15 @@ const response = await createTransaction({
 
                         {/* SUCCESSFUL / FAILED */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg p-6">
+                            <div
+                                className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg p-6">
                                 <div className="flex items-start space-x-4">
                                     <div className="bg-green-500 rounded-full p-2 flex-shrink-0">
                                         <CheckCircle className="h-5 w-5 text-white"/>
                                     </div>
                                     <div>
-                                        <h3 className="text-lg font-semibold text-green-900 dark:text-green-100 mb-2">4a. SUCCESSFUL</h3>
+                                        <h3 className="text-lg font-semibold text-green-900 dark:text-green-100 mb-2">4a.
+                                            SUCCESSFUL</h3>
                                         <p className="text-green-800 dark:text-green-200 mb-2">
                                             Transaction completed successfully. Funds have been transferred.
                                         </p>
@@ -187,15 +201,18 @@ const response = await createTransaction({
                                 </div>
                             </div>
 
-                            <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-lg p-6">
+                            <div
+                                className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-lg p-6">
                                 <div className="flex items-start space-x-4">
                                     <div className="bg-red-500 rounded-full p-2 flex-shrink-0">
                                         <XCircle className="h-5 w-5 text-white"/>
                                     </div>
                                     <div>
-                                        <h3 className="text-lg font-semibold text-red-900 dark:text-red-100 mb-2">4b. FAILED</h3>
+                                        <h3 className="text-lg font-semibold text-red-900 dark:text-red-100 mb-2">4b.
+                                            FAILED</h3>
                                         <p className="text-red-800 dark:text-red-200 mb-2">
-                                            Transaction failed and will not be retried. Check responseMessage for reason.
+                                            Transaction failed and will not be retried. Check responseMessage for
+                                            reason.
                                         </p>
                                         <div className="text-sm font-mono text-red-700 dark:text-red-300">
                                             data.status: "FAILED"
@@ -220,12 +237,14 @@ const response = await createTransaction({
                         Understanding responseCode vs data.status
                     </h2>
 
-                    <div className="bg-brand-50 dark:bg-brand-950/20 border border-brand-200 dark:border-brand-800 rounded-lg p-6 mb-6">
+                    <div
+                        className="bg-brand-50 dark:bg-brand-950/20 border border-brand-200 dark:border-brand-800 rounded-lg p-6 mb-6">
                         <div className="space-y-4">
                             <div>
                                 <h4 className="font-semibold text-brand-900 dark:text-brand-100 mb-2">responseCode</h4>
                                 <p className="text-brand-800 dark:text-brand-200">
-                                    Indicates the result of your API request to Passpoint. This tells you if your request was accepted, rejected, or encountered an error.
+                                    Indicates the result of your API request to Passpoint. This tells you if your
+                                    request was accepted, rejected, or encountered an error.
                                 </p>
                                 <ul className="mt-2 space-y-1 text-brand-700 dark:text-brand-300 text-sm">
                                     <li>• "00" = API request successful</li>
@@ -237,7 +256,8 @@ const response = await createTransaction({
                             <div>
                                 <h4 className="font-semibold text-brand-900 dark:text-brand-100 mb-2">data.status</h4>
                                 <p className="text-brand-800 dark:text-brand-200">
-                                    Indicates the current state of the transaction itself in the payment processing pipeline.
+                                    Indicates the current state of the transaction itself in the payment processing
+                                    pipeline.
                                 </p>
                                 <ul className="mt-2 space-y-1 text-brand-700 dark:text-brand-300 text-sm">
                                     <li>• "NEW" = Transaction created</li>
@@ -250,12 +270,15 @@ const response = await createTransaction({
                         </div>
                     </div>
 
-                    <div className="bg-yellow-50 dark:bg-yellow-950/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
+                    <div
+                        className="bg-yellow-50 dark:bg-yellow-950/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
                         <div className="flex items-start space-x-3">
-                            <AlertTriangle className="h-5 w-5 text-yellow-600 dark:text-yellow-400 flex-shrink-0 mt-0.5"/>
+                            <AlertTriangle
+                                className="h-5 w-5 text-yellow-600 dark:text-yellow-400 flex-shrink-0 mt-0.5"/>
                             <div>
                                 <p className="text-yellow-800 dark:text-yellow-200 text-sm">
-                                    <strong>Important:</strong> A transaction can have responseCode "00" (request successful) but data.status "PENDING" or "PROCESSING".
+                                    <strong>Important:</strong> A transaction can have responseCode "00" (request
+                                    successful) but data.status "PENDING" or "PROCESSING".
                                     Always check data.status to determine if funds have been transferred.
                                 </p>
                             </div>
@@ -268,17 +291,21 @@ const response = await createTransaction({
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Monitoring Transactions</h2>
 
                     <p className="text-gray-700 dark:text-gray-300 mb-6">
-                        Passpoint provides two ways to monitor transaction status changes: webhooks (recommended) and polling.
+                        Passpoint provides two ways to monitor transaction status changes: webhooks (recommended) and
+                        polling.
                     </p>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                        <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+                        <div
+                            className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
                             <div className="flex items-start space-x-4 mb-4">
                                 <Bell className="h-8 w-8 text-brand-500 flex-shrink-0"/>
                                 <div>
-                                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Webhooks (Recommended)</h3>
+                                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Webhooks
+                                        (Recommended)</h3>
                                     <p className="text-gray-700 dark:text-gray-300 text-sm mb-3">
-                                        Passpoint sends real-time notifications to your server when transaction status changes.
+                                        Passpoint sends real-time notifications to your server when transaction status
+                                        changes.
                                     </p>
                                 </div>
                             </div>
@@ -302,7 +329,8 @@ const response = await createTransaction({
                             </ul>
                         </div>
 
-                        <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+                        <div
+                            className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
                             <div className="flex items-start space-x-4 mb-4">
                                 <RefreshCw className="h-8 w-8 text-gray-500 flex-shrink-0"/>
                                 <div>
@@ -340,29 +368,35 @@ const response = await createTransaction({
 
                 {/* Idempotency */}
                 <section className="mb-12">
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Idempotency and Duplicate Prevention</h2>
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Idempotency and Duplicate
+                        Prevention</h2>
 
                     <p className="text-gray-700 dark:text-gray-300 mb-6">
                         Use client references to prevent duplicate transactions when network issues cause retries.
                     </p>
 
-                    <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 mb-6">
+                    <div
+                        className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 mb-6">
                         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">How It Works</h3>
                         <ol className="space-y-3 text-gray-700 dark:text-gray-300">
                             <li className="flex items-start gap-3">
-                                <span className="bg-brand-500 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 text-sm font-bold">1</span>
+                                <span
+                                    className="bg-brand-500 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 text-sm font-bold">1</span>
                                 <span>Generate a unique clientReference for each transaction attempt</span>
                             </li>
                             <li className="flex items-start gap-3">
-                                <span className="bg-brand-500 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 text-sm font-bold">2</span>
+                                <span
+                                    className="bg-brand-500 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 text-sm font-bold">2</span>
                                 <span>Include this reference in your transaction request</span>
                             </li>
                             <li className="flex items-start gap-3">
-                                <span className="bg-brand-500 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 text-sm font-bold">3</span>
+                                <span
+                                    className="bg-brand-500 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 text-sm font-bold">3</span>
                                 <span>If the request fails and you retry with the same clientReference, Passpoint will return the original transaction instead of creating a duplicate</span>
                             </li>
                             <li className="flex items-start gap-3">
-                                <span className="bg-brand-500 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 text-sm font-bold">4</span>
+                                <span
+                                    className="bg-brand-500 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 text-sm font-bold">4</span>
                                 <span>Store the clientReference in your database to track transactions</span>
                             </li>
                         </ol>
@@ -378,73 +412,97 @@ const response = await createTransaction({
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Best Practices</h2>
 
                     <div className="space-y-4">
-                        <div className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
+                        <div
+                            className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
                             <div className="flex items-start gap-3">
-                                <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5"/>
+                                <CheckCircle
+                                    className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5"/>
                                 <div>
-                                    <h4 className="font-semibold text-green-900 dark:text-green-100 mb-1">Always check data.status for final state</h4>
+                                    <h4 className="font-semibold text-green-900 dark:text-green-100 mb-1">Always check
+                                        data.status for final state</h4>
                                     <p className="text-green-800 dark:text-green-200 text-sm">
-                                        Don't rely solely on responseCode. A "00" response means the request was accepted, not that the transaction is complete.
+                                        Don't rely solely on responseCode. A "00" response means the request was
+                                        accepted, not that the transaction is complete.
                                     </p>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
+                        <div
+                            className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
                             <div className="flex items-start gap-3">
-                                <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5"/>
+                                <CheckCircle
+                                    className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5"/>
                                 <div>
-                                    <h4 className="font-semibold text-green-900 dark:text-green-100 mb-1">Implement webhooks for status updates</h4>
+                                    <h4 className="font-semibold text-green-900 dark:text-green-100 mb-1">Implement
+                                        webhooks for status updates</h4>
                                     <p className="text-green-800 dark:text-green-200 text-sm">
-                                        Webhooks provide real-time notifications and are more efficient than polling. Use polling only as a backup mechanism.
+                                        Webhooks provide real-time notifications and are more efficient than polling.
+                                        Use polling only as a backup mechanism.
                                     </p>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
+                        <div
+                            className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
                             <div className="flex items-start gap-3">
-                                <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5"/>
+                                <CheckCircle
+                                    className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5"/>
                                 <div>
-                                    <h4 className="font-semibold text-green-900 dark:text-green-100 mb-1">Use unique client references</h4>
+                                    <h4 className="font-semibold text-green-900 dark:text-green-100 mb-1">Use unique
+                                        client references</h4>
                                     <p className="text-green-800 dark:text-green-200 text-sm">
-                                        Generate unique clientReference values to prevent duplicate transactions and enable reliable retry logic.
+                                        Generate unique clientReference values to prevent duplicate transactions and
+                                        enable reliable retry logic.
                                     </p>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
+                        <div
+                            className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
                             <div className="flex items-start gap-3">
-                                <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5"/>
+                                <CheckCircle
+                                    className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5"/>
                                 <div>
-                                    <h4 className="font-semibold text-green-900 dark:text-green-100 mb-1">Store transaction references</h4>
+                                    <h4 className="font-semibold text-green-900 dark:text-green-100 mb-1">Store
+                                        transaction references</h4>
                                     <p className="text-green-800 dark:text-green-200 text-sm">
-                                        Keep both Passpoint's transactionId and your clientReference in your database for reconciliation and support.
+                                        Keep both Passpoint's transactionId and your clientReference in your database
+                                        for reconciliation and support.
                                     </p>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
+                        <div
+                            className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
                             <div className="flex items-start gap-3">
-                                <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5"/>
+                                <CheckCircle
+                                    className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5"/>
                                 <div>
-                                    <h4 className="font-semibold text-green-900 dark:text-green-100 mb-1">Handle all transaction states</h4>
+                                    <h4 className="font-semibold text-green-900 dark:text-green-100 mb-1">Handle all
+                                        transaction states</h4>
                                     <p className="text-green-800 dark:text-green-200 text-sm">
-                                        Build logic to handle NEW, PENDING, PROCESSING, SUCCESSFUL, and FAILED states appropriately in your application.
+                                        Build logic to handle NEW, PENDING, PROCESSING, SUCCESSFUL, and FAILED states
+                                        appropriately in your application.
                                     </p>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
+                        <div
+                            className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
                             <div className="flex items-start gap-3">
-                                <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5"/>
+                                <CheckCircle
+                                    className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5"/>
                                 <div>
-                                    <h4 className="font-semibold text-green-900 dark:text-green-100 mb-1">Set realistic timeouts</h4>
+                                    <h4 className="font-semibold text-green-900 dark:text-green-100 mb-1">Set realistic
+                                        timeouts</h4>
                                     <p className="text-green-800 dark:text-green-200 text-sm">
-                                        Bank transfers can take several minutes. Don't timeout too quickly. Wait for webhook notifications or poll periodically.
+                                        Bank transfers can take several minutes. Don't timeout too quickly. Wait for
+                                        webhook notifications or poll periodically.
                                     </p>
                                 </div>
                             </div>
@@ -457,7 +515,8 @@ const response = await createTransaction({
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Common Scenarios</h2>
 
                     <div className="space-y-6">
-                        <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+                        <div
+                            className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
                             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
                                 Scenario 1: Immediate Success
                             </h3>
@@ -465,12 +524,17 @@ const response = await createTransaction({
                                 Some transactions (like wallet-to-wallet transfers) complete immediately:
                             </p>
                             <div className="bg-gray-50 dark:bg-gray-800 rounded p-4 font-mono text-sm">
-                                <div className="text-gray-700 dark:text-gray-300">POST /transfer → responseCode: "00", data.status: "SUCCESSFUL"</div>
-                                <div className="text-gray-500 dark:text-gray-400 mt-1">// Transaction complete, no waiting required</div>
+                                <div className="text-gray-700 dark:text-gray-300">POST /transfer → responseCode: "00",
+                                    data.status: "SUCCESSFUL"
+                                </div>
+                                <div className="text-gray-500 dark:text-gray-400 mt-1">// Transaction complete, no
+                                    waiting required
+                                </div>
                             </div>
                         </div>
 
-                        <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+                        <div
+                            className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
                             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
                                 Scenario 2: Asynchronous Processing
                             </h3>
@@ -478,16 +542,25 @@ const response = await createTransaction({
                                 Most bank transfers process asynchronously:
                             </p>
                             <div className="bg-gray-50 dark:bg-gray-800 rounded p-4 font-mono text-sm space-y-2">
-                                <div className="text-gray-700 dark:text-gray-300">POST /transfer → responseCode: "00", data.status: "PENDING"</div>
-                                <div className="text-gray-500 dark:text-gray-400">// Wait for webhook or poll status endpoint</div>
-                                <div className="text-gray-700 dark:text-gray-300 mt-2">GET /transfer-status → data.status: "PROCESSING"</div>
+                                <div className="text-gray-700 dark:text-gray-300">POST /transfer → responseCode: "00",
+                                    data.status: "PENDING"
+                                </div>
+                                <div className="text-gray-500 dark:text-gray-400">// Wait for webhook or poll status
+                                    endpoint
+                                </div>
+                                <div className="text-gray-700 dark:text-gray-300 mt-2">GET /transfer-status →
+                                    data.status: "PROCESSING"
+                                </div>
                                 <div className="text-gray-500 dark:text-gray-400">// Still processing...</div>
-                                <div className="text-gray-700 dark:text-gray-300 mt-2">Webhook received → data.status: "SUCCESSFUL"</div>
+                                <div className="text-gray-700 dark:text-gray-300 mt-2">Webhook received → data.status:
+                                    "SUCCESSFUL"
+                                </div>
                                 <div className="text-gray-500 dark:text-gray-400">// Transaction complete!</div>
                             </div>
                         </div>
 
-                        <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+                        <div
+                            className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
                             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
                                 Scenario 3: Transaction Failure
                             </h3>
@@ -495,22 +568,25 @@ const response = await createTransaction({
                                 Failures can occur at various stages:
                             </p>
                             <div className="bg-gray-50 dark:bg-gray-800 rounded p-4 font-mono text-sm space-y-2">
-                                <div className="text-gray-700 dark:text-gray-300">POST /transfer → responseCode: "31"</div>
-                                <div className="text-gray-500 dark:text-gray-400">// Validation error - fix and retry</div>
+                                <div className="text-gray-700 dark:text-gray-300">POST /transfer → responseCode: "31"
+                                </div>
+                                <div className="text-gray-500 dark:text-gray-400">// Validation error - fix and retry
+                                </div>
                                 <div className="text-gray-700 dark:text-gray-300 mt-2">OR</div>
-                                <div className="text-gray-700 dark:text-gray-300 mt-2">POST /transfer → responseCode: "00", data.status: "PENDING"</div>
-                                <div className="text-gray-700 dark:text-gray-300">Webhook received → data.status: "FAILED"</div>
-                                <div className="text-gray-500 dark:text-gray-400">// Provider rejected (e.g., insufficient funds, invalid account)</div>
+                                <div className="text-gray-700 dark:text-gray-300 mt-2">POST /transfer → responseCode:
+                                    "00", data.status: "PENDING"
+                                </div>
+                                <div className="text-gray-700 dark:text-gray-300">Webhook received → data.status:
+                                    "FAILED"
+                                </div>
+                                <div className="text-gray-500 dark:text-gray-400">// Provider rejected (e.g.,
+                                    insufficient funds, invalid account)
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
             </div>
-
-            {/* Footer */}
-            <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
-                <p className="text-gray-500 text-sm">All rights reserved</p>
-            </footer>
         </div>
     );
 };

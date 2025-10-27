@@ -150,6 +150,7 @@ import RealtimeAuthorizationDecisionMaker from "@/pages/virtual-card-v2/Realtime
 // Card Acquiring Pages
 import InitiatePaymentNewCustomer from "@/pages/card-acquiring/InitiatePaymentNewCustomer.tsx";
 import InitiatePaymentExistingCustomer from "@/pages/card-acquiring/InitiatePaymentExistingCustomer.tsx";
+import TransactionDynamics from "@/pages/guides/TransactionDynamics.tsx";
 
 const Routes = () => {
     return createBrowserRouter([
@@ -168,7 +169,7 @@ const Routes = () => {
                 {path: "", element: <Home/>},
                 {path: "api-rate-limits", element: <ApiRateLimits/>},
                 {path: "quick-guides", element: <QuickGuides/>},
-                {path: "transaction-dynamics", element: <Home/>}, // Uses existing DocumentationContent
+                {path: "transaction-dynamics", element: <TransactionDynamics/>},
                 {path: "introduction", element: <Introduction/>},
                 {path: "api-integrations", element: <ApiIntegrations/>},
                 {path: "authentication", element: <Authentication/>},

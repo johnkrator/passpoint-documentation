@@ -4,40 +4,68 @@ import CodeBlock from "@/components/CodeBlock.tsx";
 const StatusResponses = () => {
     const getErrorResponseCode = () => {
         return `{
-  "error": {
-    "type": "invalid_request_error",
-    "code": "missing_required_field",
-    "message": "The 'amount' field is required",
-    "field": "amount",
-    "request_id": "req_abc123"
+  "responseCode": "31",
+  "responseDescription": "Invalid Parameter",
+  "responseMessage": "The 'amount' field is required and must be a positive number",
+  "data": {
+    "success": false,
+    "error": "INVALID_PARAMETER",
+    "errorDescription": "The amount field contains an invalid value"
   }
 }`;
     };
 
     const getErrorHandlingExampleCode = () => {
-        return `async function handleAPICall() {
+        return `async function handlePasspointAPI() {
   try {
-    const response = await fetch('/api/v1/transactions', {
+    const response = await fetch('https://api.passpoint.io/v1/transfer/status', {
       method: 'POST',
-      headers: { 'Authorization': 'Bearer ' + apiKey },
-      body: JSON.stringify(transactionData)
+      headers: {
+        'Authorization': 'Bearer ' + accessToken,
+        'Content-Type': 'application/json',
+        'x-channel-id': '3',
+        'x-channel-code': 'legacy-api-user',
+        'x-merchant-id': merchantId
+      },
+      body: JSON.stringify({ transactionReference: 'TXN123456' })
     });
 
-    if (!response.ok) {
-      const error = await response.json();
-      console.error('API Error:', error.error.message);
+    const result = await response.json();
 
-      if (response.status === 429) {
-        // Handle rate limiting
-        const retryAfter = response.headers.get('retry-after');
-        await delay(retryAfter * 1000);
-        return handleAPICall(); // Retry
-      }
-
-      throw new Error(error.error.message);
+    // Check Passpoint response code
+    if (result.responseCode === '00') {
+      console.log('Success:', result.data);
+      return result.data;
+    } else if (result.responseCode === '01') {
+      console.log('Transaction pending, check again later');
+      return result;
+    } else if (result.responseCode === '06') {
+      // Session timeout - refresh token and retry
+      console.warn('Session expired, refreshing token...');
+      await refreshAccessToken();
+      return handlePasspointAPI(); // Retry
+    } else if (result.responseCode === '30' || result.responseCode === '31') {
+      // Validation errors
+      console.error('Validation error:', result.responseMessage);
+      throw new Error(result.responseMessage);
+    } else if (result.responseCode === '60') {
+      // Security violation
+      console.error('Authentication failed:', result.responseMessage);
+      throw new Error('Invalid credentials');
+    } else {
+      // Other errors
+      console.error('API error:', result.responseCode, result.responseMessage);
+      throw new Error(result.responseMessage);
     }
 
-    return await response.json();
+    // Handle HTTP rate limiting
+    if (response.status === 429) {
+      const retryAfter = response.headers.get('retry-after');
+      console.warn(\`Rate limited. Retry after \${retryAfter}s\`);
+      await delay(retryAfter * 1000);
+      return handlePasspointAPI();
+    }
+
   } catch (error) {
     console.error('Request failed:', error.message);
     throw error;
@@ -207,62 +235,286 @@ const StatusResponses = () => {
                 </section>
 
                 <section className="mb-12">
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Transaction Status Values</h2>
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Passpoint Response Codes</h2>
+
+                    <p className="text-gray-700 dark:text-gray-300 mb-6">
+                        All Passpoint API responses include a <code
+                        className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">responseCode</code> field
+                        that indicates the status of the request. Understanding these codes is essential for proper
+                        error handling and transaction processing.
+                    </p>
 
                     <div className="space-y-4">
+                        {/* Success Codes */}
                         <div
-                            className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+                            className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg p-6">
                             <div className="flex items-center space-x-3 mb-4">
                                 <CheckCircle className="h-6 w-6 text-green-500"/>
-                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">successful</h3>
+                                <h3 className="text-lg font-semibold text-green-800 dark:text-green-200">00 -
+                                    Successful</h3>
                             </div>
-                            <p className="text-gray-700 dark:text-gray-300 mb-2">
-                                Transaction completed successfully and funds have been transferred.
+                            <p className="text-green-700 dark:text-green-300 mb-2">
+                                Request processed successfully. The operation completed without errors.
                             </p>
-                            <div className="bg-gray-100 dark:bg-gray-800 rounded p-3 font-mono text-sm overflow-x-auto">
-                                <div className="text-gray-900 dark:text-gray-100 break-all">"status": "successful"</div>
+                            <div
+                                className="bg-white dark:bg-green-900/20 rounded p-3 font-mono text-sm overflow-x-auto">
+                                <div className="text-green-800 dark:text-green-200 break-all">"responseCode": "00"</div>
                             </div>
                         </div>
 
+                        {/* Pending Codes */}
                         <div
-                            className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+                            className="bg-yellow-50 dark:bg-yellow-950/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-6">
                             <div className="flex items-center space-x-3 mb-4">
                                 <Clock className="h-6 w-6 text-yellow-500"/>
-                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">pending</h3>
+                                <h3 className="text-lg font-semibold text-yellow-800 dark:text-yellow-200">01 -
+                                    Pending</h3>
                             </div>
-                            <p className="text-gray-700 dark:text-gray-300 mb-2">
-                                Transaction is being processed. Monitor for status changes via webhooks.
+                            <p className="text-yellow-700 dark:text-yellow-300 mb-2">
+                                Request is being processed. Monitor for status changes via webhooks or status check
+                                endpoints.
                             </p>
-                            <div className="bg-gray-100 dark:bg-gray-800 rounded p-3 font-mono text-sm overflow-x-auto">
-                                <div className="text-gray-900 dark:text-gray-100 break-all">"status": "pending"</div>
+                            <div
+                                className="bg-white dark:bg-yellow-900/20 rounded p-3 font-mono text-sm overflow-x-auto">
+                                <div className="text-yellow-800 dark:text-yellow-200 break-all">"responseCode": "01"
+                                </div>
                             </div>
                         </div>
 
                         <div
-                            className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+                            className="bg-yellow-50 dark:bg-yellow-950/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-6">
+                            <div className="flex items-center space-x-3 mb-4">
+                                <Clock className="h-6 w-6 text-yellow-500"/>
+                                <h3 className="text-lg font-semibold text-yellow-800 dark:text-yellow-200">01OTP -
+                                    Pending OTP Response</h3>
+                            </div>
+                            <p className="text-yellow-700 dark:text-yellow-300 mb-2">
+                                Transaction is awaiting OTP verification from the user. Provide the OTP to complete the
+                                transaction.
+                            </p>
+                            <div
+                                className="bg-white dark:bg-yellow-900/20 rounded p-3 font-mono text-sm overflow-x-auto">
+                                <div className="text-yellow-800 dark:text-yellow-200 break-all">"responseCode":
+                                    "01OTP"
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Failed Codes */}
+                        <div
+                            className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-lg p-6">
                             <div className="flex items-center space-x-3 mb-4">
                                 <XCircle className="h-6 w-6 text-red-500"/>
-                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">failed</h3>
+                                <h3 className="text-lg font-semibold text-red-800 dark:text-red-200">02 - Failed</h3>
                             </div>
-                            <p className="text-gray-700 dark:text-gray-300 mb-2">
-                                Transaction could not be completed. Check the error details for specific reason.
+                            <p className="text-red-700 dark:text-red-300 mb-2">
+                                Request failed. Check the responseMessage field for specific error details.
                             </p>
-                            <div className="bg-gray-100 dark:bg-gray-800 rounded p-3 font-mono text-sm overflow-x-auto">
-                                <div className="text-gray-900 dark:text-gray-100 break-all">"status": "failed"</div>
+                            <div className="bg-white dark:bg-red-900/20 rounded p-3 font-mono text-sm overflow-x-auto">
+                                <div className="text-red-800 dark:text-red-200 break-all">"responseCode": "02"</div>
                             </div>
                         </div>
 
                         <div
-                            className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+                            className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-lg p-6">
+                            <div className="flex items-center space-x-3 mb-4">
+                                <AlertTriangle className="h-6 w-6 text-red-500"/>
+                                <h3 className="text-lg font-semibold text-red-800 dark:text-red-200">03 - Service
+                                    Unavailable</h3>
+                            </div>
+                            <p className="text-red-700 dark:text-red-300 mb-2">
+                                The service is temporarily unavailable. Retry the request after a short delay.
+                            </p>
+                            <div className="bg-white dark:bg-red-900/20 rounded p-3 font-mono text-sm overflow-x-auto">
+                                <div className="text-red-800 dark:text-red-200 break-all">"responseCode": "03"</div>
+                            </div>
+                        </div>
+
+                        {/* Request Error Codes */}
+                        <div
+                            className="bg-orange-50 dark:bg-orange-950/20 border border-orange-200 dark:border-orange-800 rounded-lg p-6">
                             <div className="flex items-center space-x-3 mb-4">
                                 <AlertTriangle className="h-6 w-6 text-orange-500"/>
-                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">cancelled</h3>
+                                <h3 className="text-lg font-semibold text-orange-800 dark:text-orange-200">04 - Empty
+                                    Request</h3>
+                            </div>
+                            <p className="text-orange-700 dark:text-orange-300 mb-2">
+                                The request body is empty or missing required data.
+                            </p>
+                            <div
+                                className="bg-white dark:bg-orange-900/20 rounded p-3 font-mono text-sm overflow-x-auto">
+                                <div className="text-orange-800 dark:text-orange-200 break-all">"responseCode": "04"
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            className="bg-orange-50 dark:bg-orange-950/20 border border-orange-200 dark:border-orange-800 rounded-lg p-6">
+                            <div className="flex items-center space-x-3 mb-4">
+                                <AlertTriangle className="h-6 w-6 text-orange-500"/>
+                                <h3 className="text-lg font-semibold text-orange-800 dark:text-orange-200">05 - Empty
+                                    Response</h3>
+                            </div>
+                            <p className="text-orange-700 dark:text-orange-300 mb-2">
+                                The server returned an empty response. This may indicate a temporary service issue.
+                            </p>
+                            <div
+                                className="bg-white dark:bg-orange-900/20 rounded p-3 font-mono text-sm overflow-x-auto">
+                                <div className="text-orange-800 dark:text-orange-200 break-all">"responseCode": "05"
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            className="bg-orange-50 dark:bg-orange-950/20 border border-orange-200 dark:border-orange-800 rounded-lg p-6">
+                            <div className="flex items-center space-x-3 mb-4">
+                                <Clock className="h-6 w-6 text-orange-500"/>
+                                <h3 className="text-lg font-semibold text-orange-800 dark:text-orange-200">06 - Session
+                                    Timeout</h3>
+                            </div>
+                            <p className="text-orange-700 dark:text-orange-300 mb-2">
+                                Your session has expired. Obtain a new access token and retry the request.
+                            </p>
+                            <div
+                                className="bg-white dark:bg-orange-900/20 rounded p-3 font-mono text-sm overflow-x-auto">
+                                <div className="text-orange-800 dark:text-orange-200 break-all">"responseCode": "06"
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Validation Error Codes */}
+                        <div
+                            className="bg-purple-50 dark:bg-purple-950/20 border border-purple-200 dark:border-purple-800 rounded-lg p-6">
+                            <div className="flex items-center space-x-3 mb-4">
+                                <XCircle className="h-6 w-6 text-purple-500"/>
+                                <h3 className="text-lg font-semibold text-purple-800 dark:text-purple-200">30 - Failed
+                                    Parameter Validation</h3>
+                            </div>
+                            <p className="text-purple-700 dark:text-purple-300 mb-2">
+                                One or more request parameters failed validation. Check the responseMessage for specific
+                                field errors.
+                            </p>
+                            <div
+                                className="bg-white dark:bg-purple-900/20 rounded p-3 font-mono text-sm overflow-x-auto">
+                                <div className="text-purple-800 dark:text-purple-200 break-all">"responseCode": "30"
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            className="bg-purple-50 dark:bg-purple-950/20 border border-purple-200 dark:border-purple-800 rounded-lg p-6">
+                            <div className="flex items-center space-x-3 mb-4">
+                                <XCircle className="h-6 w-6 text-purple-500"/>
+                                <h3 className="text-lg font-semibold text-purple-800 dark:text-purple-200">31 - Invalid
+                                    Parameter</h3>
+                            </div>
+                            <p className="text-purple-700 dark:text-purple-300 mb-2">
+                                A request parameter contains an invalid value or format. Review the API documentation
+                                for correct parameter specifications.
+                            </p>
+                            <div
+                                className="bg-white dark:bg-purple-900/20 rounded p-3 font-mono text-sm overflow-x-auto">
+                                <div className="text-purple-800 dark:text-purple-200 break-all">"responseCode": "31"
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Not Found Code */}
+                        <div
+                            className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6">
+                            <div className="flex items-center space-x-3 mb-4">
+                                <AlertTriangle className="h-6 w-6 text-blue-500"/>
+                                <h3 className="text-lg font-semibold text-blue-800 dark:text-blue-200">40 - No Record
+                                    Found</h3>
+                            </div>
+                            <p className="text-blue-700 dark:text-blue-300 mb-2">
+                                The requested resource or record does not exist in the system.
+                            </p>
+                            <div className="bg-white dark:bg-blue-900/20 rounded p-3 font-mono text-sm overflow-x-auto">
+                                <div className="text-blue-800 dark:text-blue-200 break-all">"responseCode": "40"</div>
+                            </div>
+                        </div>
+
+                        {/* Server Error Codes */}
+                        <div
+                            className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+                            <div className="flex items-center space-x-3 mb-4">
+                                <XCircle className="h-6 w-6 text-gray-500"/>
+                                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">50 - Database
+                                    Exception</h3>
                             </div>
                             <p className="text-gray-700 dark:text-gray-300 mb-2">
-                                Transaction was intentionally cancelled before completion.
+                                A database error occurred while processing your request. Contact support if this
+                                persists.
                             </p>
-                            <div className="bg-gray-100 dark:bg-gray-800 rounded p-3 font-mono text-sm overflow-x-auto">
-                                <div className="text-gray-900 dark:text-gray-100 break-all">"status": "cancelled"</div>
+                            <div className="bg-white dark:bg-gray-800 rounded p-3 font-mono text-sm overflow-x-auto">
+                                <div className="text-gray-800 dark:text-gray-200 break-all">"responseCode": "50"</div>
+                            </div>
+                        </div>
+
+                        <div
+                            className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+                            <div className="flex items-center space-x-3 mb-4">
+                                <XCircle className="h-6 w-6 text-gray-500"/>
+                                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">51 - General
+                                    Exception</h3>
+                            </div>
+                            <p className="text-gray-700 dark:text-gray-300 mb-2">
+                                An unexpected error occurred while processing your request. Retry with exponential
+                                backoff or contact support.
+                            </p>
+                            <div className="bg-white dark:bg-gray-800 rounded p-3 font-mono text-sm overflow-x-auto">
+                                <div className="text-gray-800 dark:text-gray-200 break-all">"responseCode": "51"</div>
+                            </div>
+                        </div>
+
+                        <div
+                            className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+                            <div className="flex items-center space-x-3 mb-4">
+                                <XCircle className="h-6 w-6 text-gray-500"/>
+                                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">53 - Duplicate
+                                    Exception</h3>
+                            </div>
+                            <p className="text-gray-700 dark:text-gray-300 mb-2">
+                                The request contains duplicate data that conflicts with an existing record. Check for
+                                idempotency key conflicts.
+                            </p>
+                            <div className="bg-white dark:bg-gray-800 rounded p-3 font-mono text-sm overflow-x-auto">
+                                <div className="text-gray-800 dark:text-gray-200 break-all">"responseCode": "53"</div>
+                            </div>
+                        </div>
+
+                        {/* Security Code */}
+                        <div
+                            className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-lg p-6">
+                            <div className="flex items-center space-x-3 mb-4">
+                                <XCircle className="h-6 w-6 text-red-500"/>
+                                <h3 className="text-lg font-semibold text-red-800 dark:text-red-200">60 - Security
+                                    Violation</h3>
+                            </div>
+                            <p className="text-red-700 dark:text-red-300 mb-2">
+                                Authentication failed or API credentials are invalid. Verify your API keys and
+                                authentication headers.
+                            </p>
+                            <div className="bg-white dark:bg-red-900/20 rounded p-3 font-mono text-sm overflow-x-auto">
+                                <div className="text-red-800 dark:text-red-200 break-all">"responseCode": "60"</div>
+                            </div>
+                        </div>
+
+                        {/* Unknown Error Code */}
+                        <div
+                            className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+                            <div className="flex items-center space-x-3 mb-4">
+                                <AlertTriangle className="h-6 w-6 text-gray-500"/>
+                                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">99 - Unknown
+                                    Error</h3>
+                            </div>
+                            <p className="text-gray-700 dark:text-gray-300 mb-2">
+                                An unknown error occurred. Contact Passpoint support with the request_id for
+                                investigation.
+                            </p>
+                            <div className="bg-white dark:bg-gray-800 rounded p-3 font-mono text-sm overflow-x-auto">
+                                <div className="text-gray-800 dark:text-gray-200 break-all">"responseCode": "99"</div>
                             </div>
                         </div>
                     </div>
@@ -280,36 +532,30 @@ const StatusResponses = () => {
                     <div className="space-y-4">
                         <div
                             className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded p-4">
-                            <div className="font-semibold text-gray-900 dark:text-white mb-2">type</div>
-                            <div className="text-sm text-gray-700 dark:text-gray-300">Category of error
-                                (invalid_request_error, authentication_error, etc.)
+                            <div className="font-semibold text-gray-900 dark:text-white mb-2">responseCode</div>
+                            <div className="text-sm text-gray-700 dark:text-gray-300">Numeric code indicating the status
+                                of the request (e.g., "00", "01", "31")
                             </div>
                         </div>
                         <div
                             className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded p-4">
-                            <div className="font-semibold text-gray-900 dark:text-white mb-2">code</div>
-                            <div className="text-sm text-gray-700 dark:text-gray-300">Specific error code for
-                                programmatic handling
+                            <div className="font-semibold text-gray-900 dark:text-white mb-2">responseDescription</div>
+                            <div className="text-sm text-gray-700 dark:text-gray-300">Short description of the response
+                                code (e.g., "Successful", "Invalid Parameter")
                             </div>
                         </div>
                         <div
                             className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded p-4">
-                            <div className="font-semibold text-gray-900 dark:text-white mb-2">message</div>
-                            <div className="text-sm text-gray-700 dark:text-gray-300">Human-readable error description
+                            <div className="font-semibold text-gray-900 dark:text-white mb-2">responseMessage</div>
+                            <div className="text-sm text-gray-700 dark:text-gray-300">Detailed human-readable message
+                                explaining the response
                             </div>
                         </div>
                         <div
                             className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded p-4">
-                            <div className="font-semibold text-gray-900 dark:text-white mb-2">field</div>
-                            <div className="text-sm text-gray-700 dark:text-gray-300">Specific field that caused the
-                                error (when applicable)
-                            </div>
-                        </div>
-                        <div
-                            className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded p-4">
-                            <div className="font-semibold text-gray-900 dark:text-white mb-2">request_id</div>
-                            <div className="text-sm text-gray-700 dark:text-gray-300">Unique identifier for debugging
-                                and support
+                            <div className="font-semibold text-gray-900 dark:text-white mb-2">data</div>
+                            <div className="text-sm text-gray-700 dark:text-gray-300">Contains the response payload or
+                                additional error details (success, error, errorDescription fields)
                             </div>
                         </div>
                     </div>
@@ -323,11 +569,15 @@ const StatusResponses = () => {
                         <h3 className="text-lg font-semibold text-brand-900 dark:text-brand-100 mb-3">Best
                             Practices</h3>
                         <ul className="space-y-2 text-brand-800 dark:text-brand-200">
-                            <li>• Always check the status code before processing the response</li>
-                            <li>• Implement retry logic with exponential backoff for 5xx errors</li>
-                            <li>• Log error details including request_id for debugging</li>
-                            <li>• Handle rate limiting gracefully using Retry-After headers</li>
-                            <li>• Validate input data before sending requests to avoid 4xx errors</li>
+                            <li>• Always check the responseCode field before processing the response data</li>
+                            <li>• Implement retry logic with exponential backoff for codes 03, 50, 51 (service/server
+                                errors)
+                            </li>
+                            <li>• Handle session timeouts (code 06) by refreshing your access token automatically</li>
+                            <li>• Log responseCode, responseMessage, and transaction references for debugging</li>
+                            <li>• Handle rate limiting (HTTP 429) gracefully using Retry-After headers</li>
+                            <li>• Validate input data before sending requests to avoid codes 30 and 31</li>
+                            <li>• Use webhooks to monitor pending transactions (code 01) instead of polling</li>
                         </ul>
                     </div>
 
@@ -337,12 +587,6 @@ const StatusResponses = () => {
                     >{getErrorHandlingExampleCode()}</CodeBlock>
                 </section>
             </div>
-
-
-            {/* Footer */}
-            <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
-                <p className="text-gray-500 text-sm">All rights reserved</p>
-            </footer>
         </div>
     );
 };

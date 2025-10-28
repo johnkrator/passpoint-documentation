@@ -30,7 +30,7 @@ const DocumentationLayout = ({children}: DocumentationLayoutProps) => {
 
     // Check if the current page should show global components
     // Exclude home page since DocumentationContent has its own footer and pagination
-    const shouldShowGlobalComponents = location.pathname !== "/" && location.pathname !== "/transaction-dynamics";
+    const shouldShowGlobalComponents = location.pathname !== "/";
 
     const pageId = generatePageId();
 

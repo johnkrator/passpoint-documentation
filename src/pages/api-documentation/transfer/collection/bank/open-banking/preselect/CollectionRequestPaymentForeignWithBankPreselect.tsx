@@ -58,11 +58,11 @@ x-merchant-id: {your_merchant_id}`;
         <div className="min-h-screen bg-white dark:bg-gray-950">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+                    <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-6">
                         Request Payment - Foreign (Bank Pre-select)
                     </h1>
 
-                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-12 leading-relaxed max-w-4xl">
                         Initiate a foreign payment request with bank preselection. This endpoint allows you to create a
                         payment
                         with a specific bank already selected, streamlining the customer checkout experience.
@@ -75,12 +75,12 @@ x-merchant-id: {your_merchant_id}`;
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <Send className="h-12 w-12 text-brand-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">
                                         Bank Preselect Payment
                                     </h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         Create a payment request with a pre-selected bank for faster processing. Include
                                         the bank ID
                                         in the paymentInfo object to skip bank selection during checkout.

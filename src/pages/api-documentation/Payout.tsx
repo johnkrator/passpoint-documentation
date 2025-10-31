@@ -199,16 +199,16 @@ const Payout = () => {
         <div className="min-h-screen bg-white dark:bg-gray-950">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Payout</h1>
+                    <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-6">Payout</h1>
 
-                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-12 leading-relaxed max-w-4xl">
                         Process secure payouts to bank accounts, cards, and digital wallets. Manage single and batch
                         payouts with comprehensive compliance and fraud protection.
                     </p>
 
                     {/* Create Payout */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Create
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Create
                             Payout</h2>
 
                         <div
@@ -217,11 +217,11 @@ const Payout = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <DollarSign className="h-12 w-12 text-brand-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Create
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Create
                                         New Payout</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         Initiate a payout to various destination types including bank accounts, debit
                                         cards, and digital wallets with real-time validation.
                                     </p>
@@ -250,7 +250,7 @@ const Payout = () => {
 
                     {/* Payout Methods */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Payout
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Payout
                             Methods</h2>
 
                         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -259,7 +259,7 @@ const Payout = () => {
                                 className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
                                 <div className="flex items-center mb-4">
                                     <Building className="h-12 w-12 text-blue-500 mr-3"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white">Bank
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white">Bank
                                         Account</h3>
                                 </div>
                                 <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
@@ -286,7 +286,7 @@ const Payout = () => {
                                 className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
                                 <div className="flex items-center mb-4">
                                     <CreditCard className="h-12 w-12 text-green-500 mr-3"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white">Debit
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white">Debit
                                         Card</h3>
                                 </div>
                                 <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
@@ -313,7 +313,7 @@ const Payout = () => {
                                 className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
                                 <div className="flex items-center mb-4">
                                     <Banknote className="h-12 w-12 text-purple-500 mr-3"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white">Digital
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white">Digital
                                         Wallet</h3>
                                 </div>
                                 <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
@@ -339,7 +339,7 @@ const Payout = () => {
 
                     {/* Get Payout Status */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Get Payout
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Get Payout
                             Status</h2>
 
                         <div
@@ -348,11 +348,11 @@ const Payout = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <Clock className="h-12 w-12 text-blue-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Check
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Check
                                         Payout Status</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         Retrieve the current status and details of a payout including compliance checks
                                         and delivery confirmation.
                                     </p>
@@ -375,7 +375,7 @@ const Payout = () => {
 
                     {/* Batch Payout */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Batch
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Batch
                             Payout</h2>
 
                         <div
@@ -384,11 +384,11 @@ const Payout = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <CheckCircle className="h-12 w-12 text-green-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Batch
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Batch
                                         Processing</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         Process multiple payouts in a single batch operation with atomic processing and
                                         comprehensive error handling.
                                     </p>

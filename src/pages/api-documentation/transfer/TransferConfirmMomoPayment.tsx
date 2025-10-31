@@ -29,10 +29,10 @@ const TransferConfirmMomoPayment = () => {
         <div className="min-h-screen bg-white dark:bg-gray-950">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Confirm Momo
+                    <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-6">Confirm Momo
                         Payment</h1>
 
-                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-12 leading-relaxed max-w-4xl">
                         Confirm mobile money (MOMO) payin transactions that require OTP verification.
                         This endpoint is specifically used for networks like Orange that implement two-factor
                         authentication for payments.
@@ -40,7 +40,7 @@ const TransferConfirmMomoPayment = () => {
 
                     {/* API Endpoint Section */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">API
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">API
                             Endpoint</h2>
 
                         <div
@@ -49,12 +49,12 @@ const TransferConfirmMomoPayment = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <CheckCircle2 className="h-12 w-12 text-brand-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">
                                         Confirm Payment
                                     </h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         Complete mobile money transactions by submitting the OTP received by the
                                         customer.
                                     </p>
@@ -182,7 +182,7 @@ const TransferConfirmMomoPayment = () => {
 
                     {/* Payment Flow */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Payment
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Payment
                             Flow</h2>
 
                         <div
@@ -224,7 +224,7 @@ const TransferConfirmMomoPayment = () => {
 
                     {/* Supported Networks */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Supported
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Supported
                             Networks</h2>
 
                         <div className="grid gap-6 md:grid-cols-2">
@@ -274,7 +274,7 @@ const TransferConfirmMomoPayment = () => {
 
                     {/* Error Handling */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Error
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Error
                             Handling</h2>
 
                         <div
@@ -316,7 +316,7 @@ const TransferConfirmMomoPayment = () => {
 
                     {/* Best Practices */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Best
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Best
                             Practices</h2>
 
                         <div className="grid gap-6 md:grid-cols-2">

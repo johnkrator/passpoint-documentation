@@ -46,11 +46,11 @@ const CardIntroduction = () => {
         <div className="min-h-screen bg-white dark:bg-gray-950">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+                    <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-6">
                         Virtual Card v2
                     </h1>
 
-                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed">
+                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-12 leading-relaxed">
                         This section of the documentation contains API requests and responses for the virtual card issuance and other operations
                     </p>
 
@@ -71,7 +71,7 @@ const CardIntroduction = () => {
 
                     {/* APIs Section */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">APIs</h2>
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">APIs</h2>
 
                         <div className="space-y-12">
                             {/* Issue Card */}
@@ -517,7 +517,7 @@ const CardIntroduction = () => {
 
                     {/* Webhook Event Types Section */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Webhook Event Types</h2>
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Webhook Event Types</h2>
 
                         <div className="space-y-8">
                             {/* CARD CREATION WITHOUT FUNDING */}
@@ -643,7 +643,7 @@ const CardIntroduction = () => {
 
                     {/* WEBHOOK PARAMETER DESCRIPTION */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Webhook Parameter Description</h2>
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Webhook Parameter Description</h2>
                         
                         <ParameterTable 
                             columns={["Parameter", "Type", "Required", "Description"]} 
@@ -653,7 +653,7 @@ const CardIntroduction = () => {
 
                     {/* WEBHOOK SAMPLE RESPONSE */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Webhook Sample Response</h2>
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Webhook Sample Response</h2>
                         
                         <CodeBlock language="json">{`{
 "code": "00",

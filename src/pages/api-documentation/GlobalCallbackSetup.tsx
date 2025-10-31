@@ -202,11 +202,11 @@ class WebhookPayload {
         <div className="min-h-screen bg-white dark:bg-gray-950">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+                    <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-6">
                         Merchant Callback Setup
                     </h1>
 
-                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-12 leading-relaxed max-w-4xl">
                         Configure your merchant callback URL to receive real-time payment notifications. This endpoint
                         allows you to set as well as update your callback details which will be used for all transaction
                         events. If not set, callback details from individual payment requests will be used.
@@ -214,7 +214,7 @@ class WebhookPayload {
 
                     {/* Update Callback URL Section */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">
                             Update Merchant Callback URL
                         </h2>
 
@@ -224,12 +224,12 @@ class WebhookPayload {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <Webhook className="h-12 w-12 text-brand-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">
                                         Update Callback
                                     </h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         Set or update your merchant's global callback URL and secret for receiving
                                         payment notifications.
                                     </p>
@@ -394,7 +394,7 @@ class WebhookPayload {
 
                     {/* Callback Payload Structure */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">
                             Callback Payload Structure
                         </h2>
 
@@ -404,12 +404,12 @@ class WebhookPayload {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <CheckCircle2 className="h-12 w-12 text-blue-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">
                                         Webhook Payload
                                     </h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         When payment events occur, Passpoint will send a POST request to your callback
                                         URL with transaction details.
                                     </p>
@@ -428,7 +428,7 @@ class WebhookPayload {
 
                     {/* Security Implementation */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">
                             Security Implementation
                         </h2>
 
@@ -438,12 +438,12 @@ class WebhookPayload {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <Shield className="h-12 w-12 text-green-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">
                                         Signature Verification
                                     </h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         Always verify the HMAC signature on incoming webhooks to ensure authenticity and
                                         prevent replay attacks.
                                     </p>
@@ -463,7 +463,7 @@ class WebhookPayload {
 
                     {/* Best Practices */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">
                             Best Practices
                         </h2>
 
@@ -473,7 +473,7 @@ class WebhookPayload {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <AlertCircle className="h-12 w-12 text-amber-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">
                                         Important Notes
                                     </h3>
                                 </div>

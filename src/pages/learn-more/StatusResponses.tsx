@@ -76,16 +76,18 @@ const StatusResponses = () => {
     return (
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
             <div className="prose prose-invert max-w-4xl">
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Status Responses and Their
+                <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-6">Status Responses and
+                    Their
                     Meanings</h1>
 
-                <p className="text-gray-700 dark:text-gray-300 text-lg mb-8 leading-relaxed">
+                <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
                     Understanding API status codes and response patterns is crucial for building robust integrations.
                     This guide explains all possible status responses and how to handle them appropriately.
                 </p>
 
                 <section className="mb-12">
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">HTTP Status Codes</h2>
+                    <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-6">HTTP Status
+                        Codes</h2>
 
                     <div className="space-y-6">
                         <div
@@ -93,7 +95,7 @@ const StatusResponses = () => {
                             <div className="flex items-start space-x-4">
                                 <CheckCircle className="h-8 w-8 text-green-500 flex-shrink-0 mt-1"/>
                                 <div>
-                                    <h3 className="text-xl font-semibold text-green-800 dark:text-green-200 mb-3">2xx
+                                    <h3 className="md:text-xl text-lg font-semibold text-green-800 dark:text-green-200 mb-3">2xx
                                         Success</h3>
                                     <div className="space-y-3">
                                         <div className="bg-white dark:bg-green-900/20 rounded p-3">
@@ -142,7 +144,7 @@ const StatusResponses = () => {
                             <div className="flex items-start space-x-4">
                                 <AlertTriangle className="h-8 w-8 text-yellow-500 flex-shrink-0 mt-1"/>
                                 <div>
-                                    <h3 className="text-xl font-semibold text-yellow-800 dark:text-yellow-200 mb-3">4xx
+                                    <h3 className="md:text-xl text-lg font-semibold text-yellow-800 dark:text-yellow-200 mb-3">4xx
                                         Client Errors</h3>
                                     <div className="space-y-3">
                                         <div className="bg-white dark:bg-yellow-900/20 rounded p-3">

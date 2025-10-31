@@ -240,16 +240,16 @@ const Collection = () => {
         <div className="min-h-screen bg-white dark:bg-gray-950">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Collection</h1>
+                    <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-6">Collection</h1>
 
-                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-12 leading-relaxed max-w-4xl">
                         Collect payments from customers through multiple channels including payment links, QR codes, and
                         direct API integration. Support for cards, bank transfers, and digital wallets.
                     </p>
 
                     {/* Create Payment Link */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Create Payment
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Create Payment
                             Link</h2>
 
                         <div
@@ -258,11 +258,11 @@ const Collection = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <Download className="h-12 w-12 text-brand-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Create
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Create
                                         Payment Link</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         Generate secure payment links for invoices, products, or services with
                                         customizable amounts and payment methods.
                                     </p>
@@ -291,7 +291,7 @@ const Collection = () => {
 
                     {/* Direct Payment Collection */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Direct Payment
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Direct Payment
                             Collection</h2>
 
                         <div className="space-y-8">
@@ -301,11 +301,11 @@ const Collection = () => {
                                     <div
                                         className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                         <CreditCard className="h-12 w-12 text-brand-500"/>
-                                        <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Process
+                                        <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Process
                                             Direct Payment</h3>
                                     </div>
                                     <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                        <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                        <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                             Collect payments directly through API integration with support for cards,
                                             ACH, and alternative payment methods.
                                         </p>
@@ -335,7 +335,7 @@ const Collection = () => {
 
                     {/* Payment Methods */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Supported
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Supported
                             Payment Methods</h2>
 
                         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -422,7 +422,7 @@ const Collection = () => {
 
                     {/* Payment Status Tracking */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Payment Status
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Payment Status
                             Tracking</h2>
 
                         <div className="space-y-8">
@@ -432,11 +432,11 @@ const Collection = () => {
                                     <div
                                         className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                         <Clock className="h-12 w-12 text-brand-500"/>
-                                        <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Get
+                                        <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Get
                                             Payment Status</h3>
                                     </div>
                                     <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                        <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                        <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                             Monitor payment progress, view transaction details, and track settlement
                                             status.
                                         </p>
@@ -506,7 +506,7 @@ const Collection = () => {
 
                     {/* Recurring Collections */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Recurring
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Recurring
                             Collections</h2>
 
                         <div
@@ -515,11 +515,11 @@ const Collection = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <Clock className="h-12 w-12 text-brand-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Setup
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Setup
                                         Recurring Payments</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         Create subscription-based recurring payment schedules with flexible billing
                                         intervals and automatic retry logic.
                                     </p>
@@ -548,7 +548,7 @@ const Collection = () => {
 
                     {/* Fraud Prevention */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Fraud
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Fraud
                             Prevention</h2>
 
                         <div

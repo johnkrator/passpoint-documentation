@@ -124,20 +124,21 @@ x-merchant-id: YOUR_MERCHANT_ID`;
         <div className="min-h-screen bg-white dark:bg-gray-950">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Authentication</h1>
+                    <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-6">Authentication</h1>
 
-                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
-                        Authentication Overview The Authentication folder contains APIs responsible for retrieving user credentials and token.
+                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-12 leading-relaxed max-w-4xl">
+                        Authentication Overview The Authentication folder contains APIs responsible for retrieving user
+                        credentials and token.
                     </p>
 
                     {/* Authentication Overview */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Authentication
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Authentication
                             Overview</h2>
 
                         <div
                             className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-xl p-6 lg:p-8 mb-8 shadow-sm">
-                            <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
+                            <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
                                 The Authentication folder contains APIs responsible for retrieving user credentials and
                                 token.
                             </p>
@@ -180,7 +181,7 @@ x-merchant-id: YOUR_MERCHANT_ID`;
                         </div>
 
                         <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">APIs</h3>
-                        
+
                         <div className="space-y-8">
                             {/* Get User Credentials */}
                             <div
@@ -189,23 +190,25 @@ x-merchant-id: YOUR_MERCHANT_ID`;
                                     <div
                                         className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                         <Shield className="h-12 w-12 text-green-500 flex-shrink-0"/>
-                                        <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Get User Credentials</h3>
+                                        <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Get
+                                            User Credentials</h3>
                                     </div>
                                     <div className="flex-1 min-w-0 lg:max-w-4xl">
                                         <div className="mb-6">
-                                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed">
+                                            <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
                                                 <strong>Endpoint:</strong> https://client-sandbox.mypasspoint.com/passpoint-usr/v1/merchant-app/init-credentials
                                             </p>
-                                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed">
+                                            <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
                                                 <strong>Method:</strong> POST
                                             </p>
-                                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed">
+                                            <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
                                                 <strong>Description:</strong> Retrieves merchant api key
                                             </p>
                                             <div>
                                                 <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Parameters:</h4>
                                                 <div className="overflow-x-auto">
-                                                    <table className="w-full text-sm border-collapse border border-gray-200 dark:border-gray-700">
+                                                    <table
+                                                        className="w-full text-sm border-collapse border border-gray-200 dark:border-gray-700">
                                                         <thead>
                                                         <tr className="bg-gray-50 dark:bg-gray-800">
                                                             <th className="text-left py-3 px-4 border border-gray-200 dark:border-gray-700 font-semibold">Parameter</th>
@@ -217,7 +220,9 @@ x-merchant-id: YOUR_MERCHANT_ID`;
                                                         <tr>
                                                             <td className="py-3 px-4 border border-gray-200 dark:border-gray-700 font-mono text-xs">merchantId</td>
                                                             <td className="py-3 px-4 border border-gray-200 dark:border-gray-700">string</td>
-                                                            <td className="py-3 px-4 border border-gray-200 dark:border-gray-700">merchant id</td>
+                                                            <td className="py-3 px-4 border border-gray-200 dark:border-gray-700">merchant
+                                                                id
+                                                            </td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
@@ -260,23 +265,25 @@ x-merchant-id: YOUR_MERCHANT_ID`;
                                     <div
                                         className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                         <Key className="h-12 w-12 text-brand-500 flex-shrink-0"/>
-                                        <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Authenticate Merchant</h3>
+                                        <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Authenticate
+                                            Merchant</h3>
                                     </div>
                                     <div className="flex-1 min-w-0 lg:max-w-4xl">
                                         <div className="mb-6">
-                                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed">
+                                            <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
                                                 <strong>Endpoint:</strong> https://client-sandbox.mypasspoint.com/passpoint-usr/v1/merchant-app/get-auth-token
                                             </p>
-                                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed">
+                                            <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
                                                 <strong>Method:</strong> POST
                                             </p>
-                                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed">
+                                            <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
                                                 <strong>Description:</strong> Retrieves merchant authorization token
                                             </p>
                                             <div>
                                                 <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Parameters:</h4>
                                                 <div className="overflow-x-auto">
-                                                    <table className="w-full text-sm border-collapse border border-gray-200 dark:border-gray-700">
+                                                    <table
+                                                        className="w-full text-sm border-collapse border border-gray-200 dark:border-gray-700">
                                                         <thead>
                                                         <tr className="bg-gray-50 dark:bg-gray-800">
                                                             <th className="text-left py-3 px-4 border border-gray-200 dark:border-gray-700 font-semibold">Parameter</th>
@@ -288,12 +295,16 @@ x-merchant-id: YOUR_MERCHANT_ID`;
                                                         <tr>
                                                             <td className="py-3 px-4 border border-gray-200 dark:border-gray-700 font-mono text-xs">merchantId</td>
                                                             <td className="py-3 px-4 border border-gray-200 dark:border-gray-700">string</td>
-                                                            <td className="py-3 px-4 border border-gray-200 dark:border-gray-700">the merchant id</td>
+                                                            <td className="py-3 px-4 border border-gray-200 dark:border-gray-700">the
+                                                                merchant id
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td className="py-3 px-4 border border-gray-200 dark:border-gray-700 font-mono text-xs">apiKey</td>
                                                             <td className="py-3 px-4 border border-gray-200 dark:border-gray-700">string</td>
-                                                            <td className="py-3 px-4 border border-gray-200 dark:border-gray-700">the merchant api key</td>
+                                                            <td className="py-3 px-4 border border-gray-200 dark:border-gray-700">the
+                                                                merchant api key
+                                                            </td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
@@ -336,11 +347,11 @@ x-merchant-id: YOUR_MERCHANT_ID`;
                                     <div
                                         className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                         <Lock className="h-12 w-12 text-purple-500 flex-shrink-0"/>
-                                        <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Get
+                                        <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Get
                                             Whitelisted IPs</h3>
                                     </div>
                                     <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                        <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                        <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                             This endpoint retrieves all whitelisted IP addresses for the merchant.
                                             Requires proper authentication headers including Bearer token and merchant
                                             information.
@@ -378,24 +389,26 @@ x-merchant-id: YOUR_MERCHANT_ID`;
 
                     {/* AUTHORIZATION Section */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">AUTHORIZATION</h2>
-                        
-                        <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-xl p-6 lg:p-8 mb-8 shadow-sm">
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">AUTHORIZATION</h2>
+
+                        <div
+                            className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-xl p-6 lg:p-8 mb-8 shadow-sm">
                             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Bearer Token</h3>
                             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                                This folder is using Bearer Token from collection <strong>Passpoint Payment Service</strong>
+                                This folder is using Bearer Token from collection <strong>Passpoint Payment
+                                Service</strong>
                             </p>
                         </div>
                     </section>
 
                     {/* API Parameters Summary */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">API Parameters
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">API Parameters
                             Summary</h2>
 
                         <div
                             className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
-                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                            <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                 Summary of key parameters used across the authentication endpoints for quick reference.
                             </p>
 
@@ -444,12 +457,12 @@ x-merchant-id: YOUR_MERCHANT_ID`;
 
                     {/* Bearer Token Usage */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Bearer Token
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Bearer Token
                             Usage</h2>
 
                         <div
                             className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
-                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                            <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                 All authenticated requests to Passpoint Payment Service APIs require a valid Bearer
                                 token in the Authorization header.
                             </p>
@@ -472,7 +485,7 @@ x-merchant-id: YOUR_MERCHANT_ID`;
 
                     {/* Authentication Errors */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Authentication
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Authentication
                             Errors</h2>
 
                         <div
@@ -481,11 +494,11 @@ x-merchant-id: YOUR_MERCHANT_ID`;
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <AlertTriangle className="h-12 w-12 text-red-500 flex-shrink-0"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Error
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Error
                                         Handling</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         Handle authentication errors gracefully by checking response codes and
                                         implementing proper error handling logic.
                                     </p>
@@ -537,7 +550,7 @@ x-merchant-id: YOUR_MERCHANT_ID`;
 
                     {/* Best Practices */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Best
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Best
                             Practices</h2>
 
                         <div

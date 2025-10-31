@@ -79,11 +79,11 @@ const response = await createTransaction({
     return (
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
             <div className="prose prose-invert max-w-4xl">
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+                <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-6">
                     Understanding Transaction Dynamics
                 </h1>
 
-                <p className="text-gray-700 dark:text-gray-300 text-lg mb-8 leading-relaxed">
+                <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
                     This guide explains how transactions flow through the Passpoint system, from initiation to
                     completion.
                     Understanding transaction states, status codes, and lifecycle patterns is essential for building
@@ -93,9 +93,10 @@ const response = await createTransaction({
 
                 {/* Transaction Lifecycle */}
                 <section className="mb-12">
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Transaction Lifecycle</h2>
+                    <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-6">Transaction
+                        Lifecycle</h2>
 
-                    <p className="text-gray-700 dark:text-gray-300 mb-6">
+                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6">
                         Every transaction in Passpoint goes through a series of states. Understanding these states helps
                         you
                         handle transactions appropriately at each stage.
@@ -110,7 +111,7 @@ const response = await createTransaction({
                                     <CheckCircle className="h-5 w-5 text-white"/>
                                 </div>
                                 <div>
-                                    <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-2">1.
+                                    <h3 className="md:text-base text-sm font-semibold text-blue-900 dark:text-blue-100 mb-2">1.
                                         NEW</h3>
                                     <p className="text-blue-800 dark:text-blue-200 mb-2">
                                         Transaction has been created and accepted by Passpoint but not yet submitted to
@@ -135,7 +136,7 @@ const response = await createTransaction({
                                     <Clock className="h-5 w-5 text-white"/>
                                 </div>
                                 <div>
-                                    <h3 className="text-lg font-semibold text-yellow-900 dark:text-yellow-100 mb-2">2.
+                                    <h3 className="md:text-base text-sm font-semibold text-yellow-900 dark:text-yellow-100 mb-2">2.
                                         PENDING</h3>
                                     <p className="text-yellow-800 dark:text-yellow-200 mb-2">
                                         Transaction is queued and awaiting processing by our system before being sent to
@@ -160,7 +161,7 @@ const response = await createTransaction({
                                     <RefreshCw className="h-5 w-5 text-white"/>
                                 </div>
                                 <div>
-                                    <h3 className="text-lg font-semibold text-purple-900 dark:text-purple-100 mb-2">3.
+                                    <h3 className="md:text-base text-sm font-semibold text-purple-900 dark:text-purple-100 mb-2">3.
                                         PROCESSING</h3>
                                     <p className="text-purple-800 dark:text-purple-200 mb-2">
                                         Transaction has been submitted to the payment provider and is currently being
@@ -186,7 +187,7 @@ const response = await createTransaction({
                                         <CheckCircle className="h-5 w-5 text-white"/>
                                     </div>
                                     <div>
-                                        <h3 className="text-lg font-semibold text-green-900 dark:text-green-100 mb-2">4a.
+                                        <h3 className="md:text-base text-sm font-semibold text-green-900 dark:text-green-100 mb-2">4a.
                                             SUCCESSFUL</h3>
                                         <p className="text-green-800 dark:text-green-200 mb-2">
                                             Transaction completed successfully. Funds have been transferred.
@@ -208,7 +209,7 @@ const response = await createTransaction({
                                         <XCircle className="h-5 w-5 text-white"/>
                                     </div>
                                     <div>
-                                        <h3 className="text-lg font-semibold text-red-900 dark:text-red-100 mb-2">4b.
+                                        <h3 className="md:text-base text-sm font-semibold text-red-900 dark:text-red-100 mb-2">4b.
                                             FAILED</h3>
                                         <p className="text-red-800 dark:text-red-200 mb-2">
                                             Transaction failed and will not be retried. Check responseMessage for
@@ -233,7 +234,7 @@ const response = await createTransaction({
 
                 {/* Response Code vs Transaction Status */}
                 <section className="mb-12">
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                    <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-6">
                         Understanding responseCode vs data.status
                     </h2>
 
@@ -288,9 +289,10 @@ const response = await createTransaction({
 
                 {/* Monitoring Transactions */}
                 <section className="mb-12">
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Monitoring Transactions</h2>
+                    <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-6">Monitoring
+                        Transactions</h2>
 
-                    <p className="text-gray-700 dark:text-gray-300 mb-6">
+                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6">
                         Passpoint provides two ways to monitor transaction status changes: webhooks (recommended) and
                         polling.
                     </p>
@@ -301,9 +303,9 @@ const response = await createTransaction({
                             <div className="flex items-start space-x-4 mb-4">
                                 <Bell className="h-8 w-8 text-brand-500 flex-shrink-0"/>
                                 <div>
-                                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Webhooks
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-2">Webhooks
                                         (Recommended)</h3>
-                                    <p className="text-gray-700 dark:text-gray-300 text-sm mb-3">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-3">
                                         Passpoint sends real-time notifications to your server when transaction status
                                         changes.
                                     </p>
@@ -334,8 +336,8 @@ const response = await createTransaction({
                             <div className="flex items-start space-x-4 mb-4">
                                 <RefreshCw className="h-8 w-8 text-gray-500 flex-shrink-0"/>
                                 <div>
-                                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Polling</h3>
-                                    <p className="text-gray-700 dark:text-gray-300 text-sm mb-3">
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-2">Polling</h3>
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-3">
                                         Periodically query the transaction status endpoint to check for updates.
                                     </p>
                                 </div>
@@ -368,17 +370,19 @@ const response = await createTransaction({
 
                 {/* Idempotency */}
                 <section className="mb-12">
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Idempotency and Duplicate
+                    <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-6">Idempotency and
+                        Duplicate
                         Prevention</h2>
 
-                    <p className="text-gray-700 dark:text-gray-300 mb-6">
+                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6">
                         Use client references to prevent duplicate transactions when network issues cause retries.
                     </p>
 
                     <div
                         className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 mb-6">
-                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">How It Works</h3>
-                        <ol className="space-y-3 text-gray-700 dark:text-gray-300">
+                        <h3 className="md:text-base text-sm font-semibold text-gray-900 dark:text-white mb-3">How It
+                            Works</h3>
+                        <ol className="space-y-3 md:text-lg text-sm text-gray-700 dark:text-gray-300">
                             <li className="flex items-start gap-3">
                                 <span
                                     className="bg-brand-500 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 text-sm font-bold">1</span>
@@ -409,7 +413,7 @@ const response = await createTransaction({
 
                 {/* Best Practices */}
                 <section className="mb-12">
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Best Practices</h2>
+                    <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-6">Best Practices</h2>
 
                     <div className="space-y-4">
                         <div

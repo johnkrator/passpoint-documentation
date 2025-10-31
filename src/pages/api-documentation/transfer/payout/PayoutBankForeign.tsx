@@ -154,17 +154,17 @@ const PayoutBankForeign = () => {
         <div className="min-h-screen bg-white dark:bg-gray-950">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">International Bank
+                    <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-6">International Bank
                         Transfers</h1>
 
-                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-12 leading-relaxed max-w-4xl">
                         Send money globally with multiple payment methods including wire transfers, ACH, RTP, FedNow,
                         and local payment networks across 200+ countries and territories.
                     </p>
 
                     {/* Get Available Countries */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Get Available
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Get Available
                             Countries</h2>
 
                         <div
@@ -173,11 +173,11 @@ const PayoutBankForeign = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <MapPin className="h-12 w-12 text-brand-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Available
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Available
                                         Countries</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         Retrieve a comprehensive list of countries where international payouts are
                                         supported, including payment methods and processing times for each destination.
                                     </p>
@@ -207,7 +207,7 @@ const PayoutBankForeign = () => {
 
                     {/* Get Payment Methods */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Get Payment
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Get Payment
                             Methods</h2>
 
                         <div
@@ -216,11 +216,11 @@ const PayoutBankForeign = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <CreditCard className="h-12 w-12 text-green-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Payment
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Payment
                                         Methods</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         Get available payment methods for a specific country and currency combination
                                         with detailed fee structures and processing times.
                                     </p>
@@ -249,7 +249,7 @@ const PayoutBankForeign = () => {
 
                     {/* International Transfer */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">International
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">International
                             Transfer</h2>
 
                         <div
@@ -258,11 +258,11 @@ const PayoutBankForeign = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <Globe className="h-12 w-12 text-blue-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Send
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Send
                                         Internationally</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         Execute international bank transfers with automatic currency conversion,
                                         compliance checks, and real-time status tracking.
                                     </p>
@@ -293,7 +293,7 @@ const PayoutBankForeign = () => {
 
                     {/* Payment Methods Grid */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Supported
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Supported
                             Payment Methods</h2>
 
                         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">

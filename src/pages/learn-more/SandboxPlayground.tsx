@@ -112,10 +112,10 @@ const SandboxPlayground = () => {
                             <Code className="h-5 w-5 sm:h-6 sm:w-6 text-brand-600 dark:text-brand-400"/>
                         </div>
                         <div>
-                            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">
+                            <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white">
                                 Sandbox Playground
                             </h1>
-                            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mt-1">
+                            <p className="md:text-lg text-sm text-gray-600 dark:text-gray-300 mt-1">
                                 Test API endpoints interactively with real-time responses
                             </p>
                         </div>

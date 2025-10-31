@@ -340,17 +340,17 @@ const CollectionReport = () => {
         <div className="min-h-screen bg-white dark:bg-gray-950">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Collection
+                    <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-6">Collection
                         Report</h1>
 
-                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-12 leading-relaxed max-w-4xl">
                         Retrieve comprehensive transaction history and virtual account reports with flexible pagination
                         options. Query by date range, currency, and pagination settings.
                     </p>
 
                     {/* Transaction History - All Currency - Paginated */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Transaction
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Transaction
                             History - Collection - All Currency - Paginated</h2>
 
                         <div
@@ -359,11 +359,11 @@ const CollectionReport = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <History className="h-12 w-12 text-brand-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Transaction
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Transaction
                                         History</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         This endpoint returns the list of transactions across all currencies with
                                         pagination support.
                                     </p>
@@ -491,7 +491,7 @@ const CollectionReport = () => {
 
                     {/* Transaction History - NGN - Paginated */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Transaction
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Transaction
                             History - Collection - NGN - Paginated</h2>
 
                         <div
@@ -500,11 +500,11 @@ const CollectionReport = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <Clock className="h-12 w-12 text-brand-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">NGN
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">NGN
                                         History</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         This endpoint returns the list of NGN transactions with detailed settlement
                                         information.
                                     </p>
@@ -632,7 +632,7 @@ const CollectionReport = () => {
 
                     {/* Transaction History - All Currency - Not Paginated */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Transaction
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Transaction
                             History - Collection - All Currency - Not Paginated</h2>
 
                         <div
@@ -641,11 +641,11 @@ const CollectionReport = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <FileText className="h-12 w-12 text-brand-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Full
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Full
                                         History</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         This endpoint returns the complete list of transactions without pagination. Set
                                         pageNumber and pageSize to 0.
                                     </p>
@@ -773,7 +773,7 @@ const CollectionReport = () => {
 
                     {/* List Virtual Accounts - All Currency - Paginated */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">List Virtual
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">List Virtual
                             Accounts - All Currency - Paginated</h2>
 
                         <div
@@ -782,11 +782,11 @@ const CollectionReport = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <List className="h-12 w-12 text-brand-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Paginated
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Paginated
                                         List</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         Retrieve a paginated list of virtual accounts across all supported currencies
                                         within a specified date range.
                                     </p>
@@ -881,7 +881,7 @@ const CollectionReport = () => {
 
                     {/* List Virtual Accounts - All Currency - Not Paginated */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">List Virtual
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">List Virtual
                             Accounts - All Currency - Not Paginated</h2>
 
                         <div
@@ -890,11 +890,11 @@ const CollectionReport = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <FileText className="h-12 w-12 text-brand-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Full
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Full
                                         List</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         Retrieve all virtual accounts across all currencies without pagination. Set
                                         pageNumber and pageSize to 0 for a complete list.
                                     </p>

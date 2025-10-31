@@ -60,10 +60,10 @@ Content-Type: application/json`;
         <div className="min-h-screen bg-white dark:bg-gray-950">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Momo Request to
+                    <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-6">Momo Request to
                         Pay</h1>
 
-                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-12 leading-relaxed max-w-4xl">
                         Initiates a request to receive funds from a mobile money wallet account holder. This API allows
                         you to collect payments from customers using their mobile money accounts across various networks
                         and countries.
@@ -92,18 +92,18 @@ Content-Type: application/json`;
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <Smartphone className="h-12 w-12 text-brand-500 flex-shrink-0"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Request
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Request
                                         Payment</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
                                     <div className="mb-6">
-                                        <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed">
+                                        <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
                                             <strong>Endpoint:</strong> https://dev.mypasspoint.com/paypass/momo-app/request-payment
                                         </p>
-                                        <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed">
+                                        <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
                                             <strong>Method:</strong> POST
                                         </p>
-                                        <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                        <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                             <strong>Description:</strong> Initiates a request to receive funds from a
                                             momo wallet account holder
                                         </p>

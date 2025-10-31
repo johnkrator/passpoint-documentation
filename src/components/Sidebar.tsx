@@ -90,7 +90,7 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
         {
             title: "API DOCUMENTATION",
             items: [
-                {icon: Settings, label: "Authentication", href: "/authentication"},
+                // {icon: Settings, label: "Authentication", href: "/authentication"},
                 {icon: BarChart3, label: "Wallet", href: "/wallet"},
                 {
                     icon: Send,
@@ -421,18 +421,18 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                         }
                     ]
                 },
-                {
-                    icon: Settings,
-                    label: "Global Callback Setup",
-                    href: "/global-callback-setup",
-                    children: [
-                        {
-                            icon: Settings,
-                            label: "Update Merchant Callback Url",
-                            href: "/global-callback-setup/update-merchant-callback-url"
-                        }
-                    ]
-                },
+                // {
+                //     icon: Settings,
+                //     label: "Global Callback Setup",
+                //     href: "/global-callback-setup",
+                //     children: [
+                //         {
+                //             icon: Settings,
+                //             label: "Update Merchant Callback Url",
+                //             href: "/global-callback-setup/update-merchant-callback-url"
+                //         }
+                //     ]
+                // },
                 {
                     icon: FileText,
                     label: "Virtual Card v2",
@@ -535,23 +535,23 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
                         }
                     ]
                 },
-                {
-                    icon: BarChart3,
-                    label: "Card Acquiring",
-                    href: "/card-acquiring",
-                    children: [
-                        {
-                            icon: Send,
-                            label: "Initiate Payment (New Customer)",
-                            href: "/card-acquiring/initiate-payment-new-customer"
-                        },
-                        {
-                            icon: Send,
-                            label: "Initiate Payment (Existing Customer)",
-                            href: "/card-acquiring/initiate-payment-existing-customer"
-                        }
-                    ]
-                },
+                // {
+                //     icon: BarChart3,
+                //     label: "Card Acquiring",
+                //     href: "/card-acquiring",
+                //     children: [
+                //         {
+                //             icon: Send,
+                //             label: "Initiate Payment (New Customer)",
+                //             href: "/card-acquiring/initiate-payment-new-customer"
+                //         },
+                //         {
+                //             icon: Send,
+                //             label: "Initiate Payment (Existing Customer)",
+                //             href: "/card-acquiring/initiate-payment-existing-customer"
+                //         }
+                //     ]
+                // },
             ]
         },
         {

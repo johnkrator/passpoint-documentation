@@ -19,12 +19,12 @@ Authorization: Bearer [your-access-token]`;
         <div className="min-h-screen bg-white dark:bg-gray-950">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
-                    <h1 className="text-xl sm:text-2xl lg:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 break-words">Freeze Card</h1>
-                    <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base lg:text-lg mb-8 sm:mb-12 leading-relaxed max-w-4xl">
+                    <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 break-words">Freeze Card</h1>
+                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-8 sm:mb-12 leading-relaxed max-w-4xl">
                         This is the endpoint used to temporarily suspend or freeze a virtual card. Note that a suspended virtual card can still be funded but cannot be used to authorise any purchase. A bearer token is required in the Authorization header. The id of the card is passed as a query parameter.
                     </p>
                     <section className="mb-12 sm:mb-16">
-                        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8">API</h2>
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8">API</h2>
                         <div className="space-y-6 sm:space-y-8">
                             <div className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-4 sm:p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
                                 <div className="flex flex-col lg:flex-row lg:items-start gap-4 sm:gap-6">

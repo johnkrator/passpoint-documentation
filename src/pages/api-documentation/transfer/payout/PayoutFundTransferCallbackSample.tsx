@@ -72,10 +72,10 @@ String signature = hmac.hmacHex(callback_data)`;
         <div className="min-h-screen bg-white dark:bg-gray-950">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Funds Transfer
+                    <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-6">Funds Transfer
                         Callback Sample</h1>
 
-                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-12 leading-relaxed max-w-4xl">
                         This endpoint receives callback notifications for fund transfer transactions. The callback is
                         sent to your configured merchant callback URL.
                     </p>
@@ -100,7 +100,7 @@ String signature = hmac.hmacHex(callback_data)`;
 
                     {/* Funds Transfer Callback Sample */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Callback
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Callback
                             Details</h2>
 
                         {/* API Endpoint */}
@@ -110,7 +110,7 @@ String signature = hmac.hmacHex(callback_data)`;
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <Webhook className="h-12 w-12 text-brand-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">POST
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">POST
                                         Request</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">

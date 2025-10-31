@@ -94,7 +94,7 @@ Authorization: Bearer [your-access-token]`;
                                 <div className="flex flex-col lg:flex-row lg:items-start gap-4 sm:gap-6">
                                     <div className="flex items-center gap-3 sm:gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                         <Send className="h-10 w-10 sm:h-12 sm:w-12 text-blue-500 flex-shrink-0"/>
-                                        <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Initiate Payment (New Customer)</h3>
+                                        <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Initiate Payment (New Customer)</h3>
                                     </div>
                                     <div className="flex-1 min-w-0 lg:max-w-4xl overflow-hidden">
                                         <div className="mb-4 sm:mb-6 break-words">

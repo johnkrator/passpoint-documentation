@@ -147,9 +147,9 @@ const Report = () => {
         <div className="min-h-screen bg-white dark:bg-gray-950">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Report</h1>
+                    <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-6">Report</h1>
 
-                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-12 leading-relaxed max-w-4xl">
                         Retrieve transaction history and reports for payout transactions.
                     </p>
 
@@ -173,7 +173,7 @@ const Report = () => {
 
                     {/* Transaction History - Payout - NGN - Not Paginated */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Transaction
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Transaction
                             History - Payout - NGN - Not Paginated</h2>
 
                         <p className="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
@@ -199,7 +199,7 @@ const Report = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <FileText className="h-12 w-12 text-brand-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">POST
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">POST
                                         Request</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
@@ -472,7 +472,7 @@ const Report = () => {
 
                     {/* Transaction History - Payout - NGN - Paginated */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Transaction
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Transaction
                             History - Payout - NGN - Paginated</h2>
 
                         <p className="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
@@ -486,7 +486,7 @@ const Report = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <FileText className="h-12 w-12 text-brand-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">POST
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">POST
                                         Request</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
@@ -538,7 +538,7 @@ const Report = () => {
 
                     {/* Transaction History - Payout - All Currency - Paginated */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Transaction
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Transaction
                             History - Payout - All Currency - Paginated</h2>
 
                         <p className="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
@@ -552,7 +552,7 @@ const Report = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <FileText className="h-12 w-12 text-brand-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">POST
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">POST
                                         Request</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
@@ -604,7 +604,7 @@ const Report = () => {
 
                     {/* Transaction History - Payout - All Currency - Not Paginated */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Transaction
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Transaction
                             History - Payout - All Currency - Not Paginated</h2>
 
                         <p className="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
@@ -619,7 +619,7 @@ const Report = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <FileText className="h-12 w-12 text-brand-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">POST
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">POST
                                         Request</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
@@ -673,7 +673,7 @@ const Report = () => {
 
                     {/* Common Headers and Parameters */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Common Headers
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Common Headers
                             and Parameters</h2>
 
                         {/* Authorization */}

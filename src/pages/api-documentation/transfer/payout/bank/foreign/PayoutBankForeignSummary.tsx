@@ -3,16 +3,16 @@ const PayoutBankForeignSummary = () => {
         <div className="min-h-screen bg-white dark:bg-gray-950">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Foreign</h1>
+                    <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-6">Foreign</h1>
 
-                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-12 leading-relaxed max-w-4xl">
                         This section of the documentation contains API requests and responses for foreign payouts in
                         USD, GBP, EUR and CNY
                     </p>
 
                     {/* APIs Overview */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">APIs</h2>
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">APIs</h2>
 
                         {/* Get Available Payout Countries */}
                         <div className="mb-12">

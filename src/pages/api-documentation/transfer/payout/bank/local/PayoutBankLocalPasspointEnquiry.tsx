@@ -32,10 +32,10 @@ const PayoutBankLocalPasspointEnquiry = () => {
         <div className="min-h-screen bg-white dark:bg-gray-950">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Passpoint
+                    <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-6">Passpoint
                         Enquiry</h1>
 
-                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-12 leading-relaxed max-w-4xl">
                         Thoroughly study the codebase, ensure to stick with the current coding style. Code must be
                         robust, clean, bug free and prod ready. This endpoint verifies a passpoint beneficiary wallet
                     </p>
@@ -48,7 +48,7 @@ const PayoutBankLocalPasspointEnquiry = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <CheckCircle className="h-12 w-12 text-brand-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">POST
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">POST
                                         Request</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
@@ -65,7 +65,7 @@ const PayoutBankLocalPasspointEnquiry = () => {
 
                     {/* Authorization */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Authorization</h2>
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Authorization</h2>
                         <div
                             className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
                             <div className="space-y-4">
@@ -82,7 +82,7 @@ const PayoutBankLocalPasspointEnquiry = () => {
 
                     {/* Headers */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Headers</h2>
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Headers</h2>
                         <div
                             className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
                             <div className="overflow-x-auto">
@@ -116,7 +116,7 @@ const PayoutBankLocalPasspointEnquiry = () => {
 
                     {/* Request Body */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Request
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Request
                             Body</h2>
                         <div
                             className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
@@ -132,7 +132,7 @@ const PayoutBankLocalPasspointEnquiry = () => {
 
                     {/* Example Request */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Example
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Example
                             Request</h2>
                         <div
                             className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
@@ -148,7 +148,7 @@ const PayoutBankLocalPasspointEnquiry = () => {
 
                     {/* Example Response */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Example
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Example
                             Response</h2>
                         <div
                             className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">

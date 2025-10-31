@@ -180,16 +180,16 @@ const Transfer = () => {
         <div className="min-h-screen bg-white dark:bg-gray-950">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Transfer</h1>
+                    <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-6">Transfer</h1>
 
-                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-12 leading-relaxed max-w-4xl">
                         Process secure fund transfers between wallets, bank accounts, and external payment systems.
                         Manage both internal and external transfers with real-time status tracking.
                     </p>
 
                     {/* Create Transfer */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">
                             Create Transfer
                         </h2>
                         <div
@@ -198,12 +198,12 @@ const Transfer = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <Send className="h-12 w-12 text-brand-500 flex-shrink-0"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">
                                         Create New Transfer
                                     </h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         Initiate a transfer between wallets, bank accounts, or external payment
                                         providers with comprehensive validation and fraud detection.
                                     </p>
@@ -232,7 +232,7 @@ const Transfer = () => {
 
                     {/* Get Transfer Status */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Transfer
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Transfer
                             Status</h2>
 
                         <div className="space-y-8">
@@ -242,12 +242,12 @@ const Transfer = () => {
                                     <div
                                         className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                         <Clock className="h-12 w-12 text-blue-500 flex-shrink-0"/>
-                                        <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">
+                                        <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">
                                             Get Transfer Status
                                         </h3>
                                     </div>
                                     <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                        <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                        <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                             Check the current status and details of a transfer including processing
                                             updates and completion information.
                                         </p>
@@ -317,7 +317,7 @@ const Transfer = () => {
 
                     {/* Bulk Transfer */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">
                             Bulk Transfer
                         </h2>
 
@@ -327,12 +327,12 @@ const Transfer = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <ArrowRightLeft className="h-12 w-12 text-purple-500 flex-shrink-0"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">
                                         Process Bulk Transfers
                                     </h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         Execute multiple transfers in a single batch operation with atomic processing
                                         and comprehensive error handling.
                                     </p>

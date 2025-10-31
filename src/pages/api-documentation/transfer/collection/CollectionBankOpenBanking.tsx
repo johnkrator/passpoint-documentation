@@ -186,10 +186,10 @@ const CollectionBankOpenBanking = () => {
         <div className="min-h-screen bg-white dark:bg-gray-950">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Open Banking
+                    <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-6">Open Banking
                         Collections</h1>
 
-                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-12 leading-relaxed max-w-4xl">
                         Secure bank-to-bank payments using Open Banking APIs with instant account verification,
                         real-time payment confirmation, and optional tokenization for recurring payments. Supported
                         across EU, UK, and US markets.
@@ -197,7 +197,7 @@ const CollectionBankOpenBanking = () => {
 
                     {/* Get Banks */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Get Supported
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Get Supported
                             Banks</h2>
 
                         <div
@@ -206,11 +206,11 @@ const CollectionBankOpenBanking = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <Building2 className="h-12 w-12 text-brand-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Get
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Get
                                         Banks</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         Retrieve a comprehensive list of banks that support Open Banking payments,
                                         including their capabilities and processing times.
                                     </p>
@@ -239,7 +239,7 @@ const CollectionBankOpenBanking = () => {
 
                     {/* Create Payment Request */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Create Payment
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Create Payment
                             Request</h2>
 
                         <div
@@ -248,11 +248,11 @@ const CollectionBankOpenBanking = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <Send className="h-12 w-12 text-brand-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Payment
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Payment
                                         Request</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         Create a secure Open Banking payment request with bank selection and customer
                                         authorization flow.
                                     </p>
@@ -281,7 +281,7 @@ const CollectionBankOpenBanking = () => {
 
                     {/* Tokenized Payments */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Tokenized
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Tokenized
                             Payments</h2>
 
                         <div
@@ -290,11 +290,11 @@ const CollectionBankOpenBanking = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <CreditCard className="h-12 w-12 text-brand-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Tokenized
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Tokenized
                                         Payment</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         Process payments using previously authorized customer and bank tokens for
                                         seamless recurring payments.
                                     </p>
@@ -323,7 +323,7 @@ const CollectionBankOpenBanking = () => {
 
                     {/* Onboard and Pay */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Onboard and
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Onboard and
                             Pay</h2>
 
                         <div
@@ -332,11 +332,11 @@ const CollectionBankOpenBanking = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <Shield className="h-12 w-12 text-brand-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Onboard
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Onboard
                                         & Pay</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         Streamlined customer onboarding with immediate payment processing and optional
                                         tokenization for future transactions.
                                     </p>
@@ -365,7 +365,7 @@ const CollectionBankOpenBanking = () => {
 
                     {/* Open Banking Benefits */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Open Banking
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Open Banking
                             Benefits</h2>
 
                         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -441,7 +441,7 @@ const CollectionBankOpenBanking = () => {
 
                     {/* Supported Regions */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Supported
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Supported
                             Regions</h2>
 
                         <div
@@ -521,7 +521,7 @@ const CollectionBankOpenBanking = () => {
 
                     {/* Compliance Information */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Compliance &
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Compliance &
                             Regulation</h2>
 
                         <div

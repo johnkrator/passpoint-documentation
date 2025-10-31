@@ -39,16 +39,16 @@ const PayoutBank = () => {
         <div className="min-h-screen bg-white dark:bg-gray-950">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Bank Payouts</h1>
+                    <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-6">Bank Payouts</h1>
 
-                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-12 leading-relaxed max-w-4xl">
                         Process secure bank transfers for both local and international recipients. Support for ACH, wire
                         transfers, and real-time payment networks with comprehensive compliance and fraud protection.
                     </p>
 
                     {/* Bank Payout Overview */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Bank Transfer
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Bank Transfer
                             Methods</h2>
 
                         <div className="grid gap-6 md:grid-cols-2">
@@ -57,7 +57,7 @@ const PayoutBank = () => {
                                 className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
                                 <div className="flex items-center mb-4">
                                     <MapPin className="h-12 w-12 text-blue-500 mr-3"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white">Local
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white">Local
                                         Bank Transfers</h3>
                                 </div>
                                 <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
@@ -90,7 +90,7 @@ const PayoutBank = () => {
                                 className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
                                 <div className="flex items-center mb-4">
                                     <Globe className="h-12 w-12 text-green-500 mr-3"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white">International
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white">International
                                         Transfers</h3>
                                 </div>
                                 <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
@@ -122,7 +122,7 @@ const PayoutBank = () => {
 
                     {/* Bank Verification */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Bank Account
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Bank Account
                             Verification</h2>
 
                         <div
@@ -131,11 +131,11 @@ const PayoutBank = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <Shield className="h-12 w-12 text-brand-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Verify
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Verify
                                         Bank Account</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         Verify bank account ownership before processing payouts to prevent fraud and
                                         ensure compliance with regulatory requirements.
                                     </p>
@@ -165,7 +165,7 @@ const PayoutBank = () => {
 
                     {/* Transfer Methods Comparison */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Transfer
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Transfer
                             Methods Comparison</h2>
 
                         <div

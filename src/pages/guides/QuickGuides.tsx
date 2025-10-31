@@ -132,17 +132,17 @@ app.post('/webhooks/passpoint', (req, res) => {
         <div className="min-h-screen bg-white dark:bg-gray-950">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Quick Start
+                    <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-6">Quick Start
                         Guides</h1>
 
-                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-12 leading-relaxed max-w-4xl">
                         Get up and running with Passpoint APIs in minutes. These quick-start guides provide step-by-step
                         instructions for common integration scenarios, from authentication to transaction processing.
                     </p>
 
                     {/* Quick Start Cards */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Getting
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Getting
                             Started</h2>
 
                         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
@@ -150,10 +150,10 @@ app.post('/webhooks/passpoint', (req, res) => {
                                 <div
                                     className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 h-full hover:shadow-lg hover:border-brand-500 dark:hover:border-brand-400 transition-all">
                                     <Rocket className="h-10 w-10 text-brand-500 mb-4"/>
-                                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-brand-600 dark:group-hover:text-brand-400">
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-brand-600 dark:group-hover:text-brand-400">
                                         5-Minute Quickstart
                                     </h3>
-                                    <p className="text-gray-700 dark:text-gray-300 mb-4">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-4">
                                         Set up your development environment and make your first API call in under 5
                                         minutes.
                                     </p>
@@ -178,10 +178,10 @@ app.post('/webhooks/passpoint', (req, res) => {
                                 <div
                                     className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 h-full hover:shadow-lg hover:border-brand-500 dark:hover:border-brand-400 transition-all">
                                     <Shield className="h-10 w-10 text-purple-500 mb-4"/>
-                                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-brand-600 dark:group-hover:text-brand-400">
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-brand-600 dark:group-hover:text-brand-400">
                                         Authentication Setup
                                     </h3>
-                                    <p className="text-gray-700 dark:text-gray-300 mb-4">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-4">
                                         Securely authenticate with Passpoint APIs using API keys and access tokens.
                                     </p>
                                     <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
@@ -205,10 +205,10 @@ app.post('/webhooks/passpoint', (req, res) => {
                                 <div
                                     className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 h-full hover:shadow-lg hover:border-brand-500 dark:hover:border-brand-400 transition-all">
                                     <CreditCard className="h-10 w-10 text-yellow-500 mb-4"/>
-                                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-brand-600 dark:group-hover:text-brand-400">
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-brand-600 dark:group-hover:text-brand-400">
                                         Transaction Processing
                                     </h3>
-                                    <p className="text-gray-700 dark:text-gray-300 mb-4">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-4">
                                         Process payments, refunds, and handle transaction states with confidence.
                                     </p>
                                     <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
@@ -231,10 +231,10 @@ app.post('/webhooks/passpoint', (req, res) => {
                             <div
                                 className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6">
                                 <Bell className="h-10 w-10 text-green-500 mb-4"/>
-                                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+                                <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-3">
                                     Webhook Integration
                                 </h3>
-                                <p className="text-gray-700 dark:text-gray-300 mb-4">
+                                <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-4">
                                     Set up webhooks to receive real-time notifications about transaction events.
                                 </p>
                                 <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
@@ -257,10 +257,10 @@ app.post('/webhooks/passpoint', (req, res) => {
                                 <div
                                     className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 h-full hover:shadow-lg hover:border-brand-500 dark:hover:border-brand-400 transition-all">
                                     <AlertTriangle className="h-10 w-10 text-red-500 mb-4"/>
-                                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-brand-600 dark:group-hover:text-brand-400">
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-brand-600 dark:group-hover:text-brand-400">
                                         Error Handling
                                     </h3>
-                                    <p className="text-gray-700 dark:text-gray-300 mb-4">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-4">
                                         Implement robust error handling and recovery strategies for production systems.
                                     </p>
                                     <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
@@ -283,10 +283,10 @@ app.post('/webhooks/passpoint', (req, res) => {
                             <div
                                 className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6">
                                 <TestTube2 className="h-10 w-10 text-blue-500 mb-4"/>
-                                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+                                <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-3">
                                     Testing & Sandbox
                                 </h3>
-                                <p className="text-gray-700 dark:text-gray-300 mb-4">
+                                <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-4">
                                     Use Passpoint's sandbox environment to test your integration before going live.
                                 </p>
                                 <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
@@ -309,10 +309,10 @@ app.post('/webhooks/passpoint', (req, res) => {
 
                     {/* Step-by-Step Guide */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">5-Minute
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">5-Minute
                             Integration</h2>
 
-                        <p className="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed max-w-4xl">
+                        <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-8 leading-relaxed max-w-4xl">
                             Follow these steps to integrate Passpoint into your application quickly. This example uses
                             JavaScript,
                             but the concepts apply to any programming language.
@@ -324,7 +324,7 @@ app.post('/webhooks/passpoint', (req, res) => {
 
                         <div
                             className="mt-8 bg-brand-50 dark:bg-brand-950/20 border border-brand-200 dark:border-brand-800 rounded-lg p-6">
-                            <h3 className="text-lg font-semibold text-brand-900 dark:text-brand-100 mb-3 flex items-center gap-2">
+                            <h3 className="md:text-base text-sm font-semibold text-brand-900 dark:text-brand-100 mb-3 flex items-center gap-2">
                                 <Zap className="h-5 w-5"/>
                                 Next Steps
                             </h3>
@@ -346,10 +346,10 @@ app.post('/webhooks/passpoint', (req, res) => {
 
                     {/* Webhook Integration Guide */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Webhook
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Webhook
                             Integration</h2>
 
-                        <p className="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed max-w-4xl">
+                        <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-8 leading-relaxed max-w-4xl">
                             Webhooks provide real-time notifications about transaction events. This is the recommended
                             approach
                             for monitoring transaction status instead of polling.
@@ -404,10 +404,10 @@ app.post('/webhooks/passpoint', (req, res) => {
 
                     {/* Error Handling Guide */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Production-Ready
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Production-Ready
                             Error Handling</h2>
 
-                        <p className="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed max-w-4xl">
+                        <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-8 leading-relaxed max-w-4xl">
                             Proper error handling is critical for production systems. Passpoint uses response codes to
                             indicate
                             the status of each request. Always check the <code
@@ -421,7 +421,7 @@ app.post('/webhooks/passpoint', (req, res) => {
 
                     {/* Common Integration Patterns */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Common
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Common
                             Integration Patterns</h2>
 
                         <div className="space-y-6">
@@ -430,10 +430,10 @@ app.post('/webhooks/passpoint', (req, res) => {
                                 <div className="flex items-start gap-4 mb-4">
                                     <Code className="h-8 w-8 text-brand-500 flex-shrink-0"/>
                                     <div>
-                                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                        <h3 className="md:text-base text-sm font-semibold text-gray-900 dark:text-white mb-2">
                                             E-commerce Integration
                                         </h3>
-                                        <p className="text-gray-700 dark:text-gray-300 mb-4">
+                                        <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-4">
                                             Integrate Passpoint with your e-commerce platform for seamless payment
                                             processing at checkout.
                                         </p>
@@ -464,10 +464,10 @@ app.post('/webhooks/passpoint', (req, res) => {
                                 <div className="flex items-start gap-4 mb-4">
                                     <BookOpen className="h-8 w-8 text-purple-500 flex-shrink-0"/>
                                     <div>
-                                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                        <h3 className="md:text-base text-sm font-semibold text-gray-900 dark:text-white mb-2">
                                             Virtual Card Implementation
                                         </h3>
-                                        <p className="text-gray-700 dark:text-gray-300 mb-4">
+                                        <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-4">
                                             Issue virtual cards to customers for secure online payments and spending
                                             control.
                                         </p>
@@ -498,10 +498,10 @@ app.post('/webhooks/passpoint', (req, res) => {
                                 <div className="flex items-start gap-4 mb-4">
                                     <Zap className="h-8 w-8 text-yellow-500 flex-shrink-0"/>
                                     <div>
-                                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                        <h3 className="md:text-base text-sm font-semibold text-gray-900 dark:text-white mb-2">
                                             Bulk Payout System
                                         </h3>
-                                        <p className="text-gray-700 dark:text-gray-300 mb-4">
+                                        <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-4">
                                             Process high-volume payouts efficiently for marketplace sellers,
                                             contractors, or affiliates.
                                         </p>
@@ -531,12 +531,12 @@ app.post('/webhooks/passpoint', (req, res) => {
 
                     {/* Sandbox Testing */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Sandbox
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Sandbox
                             Environment</h2>
 
                         <div
                             className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6 mb-8">
-                            <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">Development
+                            <h3 className="md:text-base text-sm font-semibold text-blue-900 dark:text-blue-100 mb-3">Development
                                 Environment</h3>
                             <p className="text-blue-800 dark:text-blue-200 mb-4">
                                 Use the sandbox environment to test your integration without affecting real data or

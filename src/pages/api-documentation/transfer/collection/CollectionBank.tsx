@@ -82,10 +82,10 @@ const CollectionBank = () => {
         <div className="min-h-screen bg-white dark:bg-gray-950">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Bank
+                    <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-6">Bank
                         Collections</h1>
 
-                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-12 leading-relaxed max-w-4xl">
                         Collect payments from bank accounts worldwide using Open Banking APIs and direct bank
                         connections. Support for real-time account verification, payment requests, and automated
                         settlement with comprehensive fraud protection.
@@ -93,7 +93,7 @@ const CollectionBank = () => {
 
                     {/* Collection Methods Overview */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Collection
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Collection
                             Methods</h2>
 
                         <div className="grid gap-6 md:grid-cols-2">
@@ -102,7 +102,7 @@ const CollectionBank = () => {
                                 className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
                                 <div className="flex items-center mb-4">
                                     <Shield className="h-12 w-12 text-blue-500 mr-3"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white">Open
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white">Open
                                         Banking</h3>
                                 </div>
                                 <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
@@ -135,7 +135,7 @@ const CollectionBank = () => {
                                 className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm hover:shadow-md transition-shadow">
                                 <div className="flex items-center mb-4">
                                     <Building2 className="h-12 w-12 text-green-500 mr-3"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white">Direct
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white">Direct
                                         Bank Options</h3>
                                 </div>
                                 <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
@@ -167,7 +167,7 @@ const CollectionBank = () => {
 
                     {/* Bank Account Verification */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Account
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Account
                             Verification</h2>
 
                         <div
@@ -176,11 +176,11 @@ const CollectionBank = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <CheckCircle className="h-12 w-12 text-brand-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Verify
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Verify
                                         Bank Account</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         Verify customer bank account ownership and validity before processing payment
                                         requests to reduce failed payments and fraud.
                                     </p>
@@ -209,7 +209,7 @@ const CollectionBank = () => {
 
                     {/* Collection Features */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Collection
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Collection
                             Features</h2>
 
                         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -288,7 +288,7 @@ const CollectionBank = () => {
 
                     {/* Payment Request Flow */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Payment
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Payment
                             Request Flow</h2>
 
                         <div
@@ -297,11 +297,11 @@ const CollectionBank = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <CreditCard className="h-12 w-12 text-blue-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Request
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Request
                                         Payment</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         Create secure payment requests that customers can fulfill using their preferred
                                         bank account with optional tokenization for recurring payments.
                                     </p>
@@ -330,7 +330,7 @@ const CollectionBank = () => {
 
                     {/* Success Rates by Method */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Success Rates
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Success Rates
                             by Method</h2>
 
                         <div
@@ -424,7 +424,7 @@ const CollectionBank = () => {
 
                     {/* Compliance & Security */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Compliance &
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Compliance &
                             Security</h2>
 
                         <div

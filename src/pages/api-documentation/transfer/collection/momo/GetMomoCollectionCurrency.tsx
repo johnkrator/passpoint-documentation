@@ -99,10 +99,10 @@ const GetMomoCollectionCurrency = () => {
         <div className="min-h-screen bg-white dark:bg-gray-950">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Get Momo
+                    <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-6">Get Momo
                         Collection Currency</h1>
 
-                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-12 leading-relaxed max-w-4xl">
                         This endpoint lists all mobile money (momo) networks available in a particular momo collection
                         enabled corridor. Use this to retrieve supported currencies and their details for mobile money
                         collections.
@@ -116,18 +116,18 @@ const GetMomoCollectionCurrency = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <Globe className="h-12 w-12 text-brand-500 flex-shrink-0"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Currency
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Currency
                                         List</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
                                     <div className="mb-6">
-                                        <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed">
+                                        <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
                                             <strong>Endpoint:</strong> https://dev.mypasspoint.com/paypass/ft-app/currency-list/momo
                                         </p>
-                                        <p className="text-gray-700 dark:text-gray-300 text-lg mb-4 leading-relaxed">
+                                        <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
                                             <strong>Method:</strong> GET
                                         </p>
-                                        <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                        <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                             <strong>Description:</strong> This endpoint lists all momo networks in a
                                             particular momo collection enabled corridor
                                         </p>

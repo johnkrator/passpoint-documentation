@@ -69,7 +69,7 @@ Content-Type: application/json`;
                                         <Shield className="h-10 w-10 sm:h-12 sm:w-12 text-green-500 flex-shrink-0"/>
                                         <CheckCircle className="h-6 w-6 text-blue-500 absolute -bottom-1 -right-1 bg-white dark:bg-gray-800 rounded-full"/>
                                     </div>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Authorization Decision</h3>
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Authorization Decision</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl overflow-hidden">
                                     <div className="mb-4 sm:mb-6 break-words">

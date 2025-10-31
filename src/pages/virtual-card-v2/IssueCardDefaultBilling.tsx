@@ -61,7 +61,7 @@ Content-Type: application/json`;
         <div className="min-h-screen bg-white dark:bg-gray-950">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
-                    <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 break-words">
+                    <h1 className="md:text-2xl text-xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 break-words">
                         Issue Card - Default Billing Details
                     </h1>
 

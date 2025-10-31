@@ -220,10 +220,10 @@ const CollectionBankDirect = () => {
         <div className="min-h-screen bg-white dark:bg-gray-950">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">Direct Bank
+                    <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-6">Direct Bank
                         Options</h1>
 
-                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-12 leading-relaxed max-w-4xl">
                         Generate virtual accounts and manage direct bank integrations for automated collections. Support
                         for ACH, SEPA, local clearing systems, and real-time settlement across multiple currencies and
                         regions.
@@ -231,7 +231,7 @@ const CollectionBankDirect = () => {
 
                     {/* Get Collection Currency */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Get Collection
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Get Collection
                             Currency</h2>
 
                         <div
@@ -240,11 +240,11 @@ const CollectionBankDirect = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <DollarSign className="h-12 w-12 text-brand-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Collection
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Collection
                                         Currency</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         Retrieve supported currencies for direct bank collections, including exchange
                                         rates, processing fees, and settlement times for each currency.
                                     </p>
@@ -273,7 +273,7 @@ const CollectionBankDirect = () => {
 
                     {/* Generate NGN Static Virtual Account */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Generate NGN
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Generate NGN
                             Static Virtual Account</h2>
 
                         <div
@@ -282,11 +282,11 @@ const CollectionBankDirect = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <Building2 className="h-12 w-12 text-brand-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">NGN
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">NGN
                                         Virtual Account</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         Generate a static NGN virtual account for collecting Nigerian Naira payments
                                         with
                                         automatic settlement to your designated account.
@@ -317,7 +317,7 @@ const CollectionBankDirect = () => {
 
                     {/* USD Virtual Accounts */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">USD Virtual
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">USD Virtual
                             Accounts</h2>
 
                         <div className="space-y-6 lg:grid lg:gap-6 lg:grid-cols-2 lg:space-y-0">
@@ -379,7 +379,7 @@ const CollectionBankDirect = () => {
 
                     {/* List Virtual Accounts */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">List Virtual
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">List Virtual
                             Accounts - NGN - Paginated</h2>
 
                         <div
@@ -388,11 +388,11 @@ const CollectionBankDirect = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <BarChart3 className="h-12 w-12 text-orange-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">List
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">List
                                         Accounts</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         Retrieve a paginated list of all NGN virtual accounts with status, balance
                                         information, and collection statistics.
                                     </p>
@@ -421,7 +421,7 @@ const CollectionBankDirect = () => {
 
                     {/* Get Virtual Account */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Get Virtual
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Get Virtual
                             Account</h2>
 
                         <div
@@ -430,11 +430,11 @@ const CollectionBankDirect = () => {
                                 <div
                                     className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center lg:min-w-0 lg:w-48 flex-shrink-0">
                                     <BarChart3 className="h-12 w-12 text-teal-500"/>
-                                    <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Get
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Get
                                         Account Details</h3>
                                 </div>
                                 <div className="flex-1 min-w-0 lg:max-w-4xl">
-                                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                                         Retrieve detailed information about a specific virtual account including
                                         balance, transaction history, and collection statistics.
                                     </p>
@@ -457,7 +457,7 @@ const CollectionBankDirect = () => {
 
                     {/* Virtual Account Benefits */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Virtual
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Virtual
                             Account Benefits</h2>
 
                         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -532,7 +532,7 @@ const CollectionBankDirect = () => {
 
                     {/* Fees & Limits */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Fees &
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Fees &
                             Limits</h2>
 
                         <div
@@ -610,7 +610,7 @@ const CollectionBankDirect = () => {
 
                     {/* Security & Compliance */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Security &
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Security &
                             Compliance</h2>
 
                         <div

@@ -6,18 +6,18 @@ const VirtualCardV2 = () => {
         <div className="min-h-screen bg-white dark:bg-gray-950">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+                    <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-6">
                         Virtual Card v2
                     </h1>
 
-                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-12 leading-relaxed max-w-4xl">
                         Comprehensive API suite for managing virtual cards. Issue, fund, freeze, and manage virtual cards
                         with real-time transaction monitoring and authorization controls.
                     </p>
 
                     {/* Card Issuance Section */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Card Issuance</h2>
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Card Issuance</h2>
                         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                             <Link
                                 to="/virtual-card-v2/issue-card-default-billing"
@@ -83,7 +83,7 @@ const VirtualCardV2 = () => {
 
                     {/* Card Information Section */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Card Information</h2>
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Card Information</h2>
                         <div className="grid gap-6 md:grid-cols-2">
                             <Link to="/virtual-card-v2/card-details" className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover:border-brand-500/50">
                                 <div className="flex items-start gap-4">
@@ -117,7 +117,7 @@ const VirtualCardV2 = () => {
 
                     {/* Card Management Section */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Card Management</h2>
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Card Management</h2>
                         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                             <Link to="/virtual-card-v2/freeze-card" className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md transition-all">
                                 <div className="flex items-start gap-4">
@@ -165,7 +165,7 @@ const VirtualCardV2 = () => {
 
                     {/* Transactions & Reporting Section */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Transactions & Reporting</h2>
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Transactions & Reporting</h2>
                         <div className="grid gap-6 md:grid-cols-2">
                             <Link to="/virtual-card-v2/card-transaction" className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md transition-all">
                                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Card Transaction</h3>
@@ -187,7 +187,7 @@ const VirtualCardV2 = () => {
 
                     {/* Advanced Features Section */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Advanced Features</h2>
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Advanced Features</h2>
                         <Link to="/virtual-card-v2/realtime-authorization-decision-maker" className="bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-950/30 dark:to-blue-900/30 border border-green-200 dark:border-green-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all block">
                             <div className="flex items-start gap-4">
                                 <Shield className="h-10 w-10 text-green-600 dark:text-green-400 flex-shrink-0"/>

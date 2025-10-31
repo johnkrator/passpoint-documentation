@@ -7,7 +7,6 @@ import Introduction from "@/pages/getting-started/Introduction.tsx";
 import ApiIntegrations from "@/pages/getting-started/ApiIntegrations.tsx";
 import UserRoles from "@/pages/learn-more/UserRoles.tsx";
 import StatusResponses from "@/pages/learn-more/StatusResponses.tsx";
-import Authentication from "@/pages/api-documentation/Authentication.tsx";
 import Wallet from "@/pages/api-documentation/Wallet.tsx";
 import Transfer from "@/pages/api-documentation/Transfer.tsx";
 import Payout from "@/pages/api-documentation/Payout.tsx";
@@ -148,8 +147,6 @@ import CardStatementByTransactionId from "@/pages/virtual-card-v2/CardStatementB
 import RealtimeAuthorizationDecisionMaker from "@/pages/virtual-card-v2/RealtimeAuthorizationDecisionMaker.tsx";
 
 // Card Acquiring Pages
-import InitiatePaymentNewCustomer from "@/pages/card-acquiring/InitiatePaymentNewCustomer.tsx";
-import InitiatePaymentExistingCustomer from "@/pages/card-acquiring/InitiatePaymentExistingCustomer.tsx";
 import TransactionDynamics from "@/pages/guides/TransactionDynamics.tsx";
 
 const Routes = () => {
@@ -172,7 +169,7 @@ const Routes = () => {
                 {path: "transaction-dynamics", element: <TransactionDynamics/>},
                 {path: "introduction", element: <Introduction/>},
                 {path: "api-integrations", element: <ApiIntegrations/>},
-                {path: "authentication", element: <Authentication/>},
+                // {path: "authentication", element: <Authentication/>},
                 {path: "wallet", element: <Wallet/>},
                 {path: "transfer", element: <Transfer/>},
 
@@ -286,7 +283,7 @@ const Routes = () => {
 
                 // Global Callback Setup Routes
                 {path: "global-callback-setup", element: <GlobalCallbackSetup/>},
-                {path: "global-callback-setup/update-merchant-callback-url", element: <GlobalCallbackSetup/>},
+                // {path: "global-callback-setup/update-merchant-callback-url", element: <GlobalCallbackSetup/>},
 
                 // Virtual Card v2 Routes
                 {path: "virtual-card-v2", element: <VirtualCardV2/>},
@@ -314,12 +311,12 @@ const Routes = () => {
                 },
 
                 // Card Acquiring Routes
-                {path: "card-acquiring", element: <Home/>}, // Main Card Acquiring page
-                {path: "card-acquiring/initiate-payment-new-customer", element: <InitiatePaymentNewCustomer/>},
-                {
-                    path: "card-acquiring/initiate-payment-existing-customer",
-                    element: <InitiatePaymentExistingCustomer/>
-                },
+                // {path: "card-acquiring", element: <Home/>}, // Main Card Acquiring page
+                // {path: "card-acquiring/initiate-payment-new-customer", element: <InitiatePaymentNewCustomer/>},
+                // {
+                //     path: "card-acquiring/initiate-payment-existing-customer",
+                //     element: <InitiatePaymentExistingCustomer/>
+                // },
                 {path: "user-roles", element: <UserRoles/>},
                 {path: "status-responses", element: <StatusResponses/>},
                 {path: "sandbox-playground", element: <SandboxPlayground/>},

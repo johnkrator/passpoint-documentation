@@ -302,10 +302,10 @@ app.listen(3000, () => {
         <div className="min-h-screen bg-white dark:bg-gray-950">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">API
+                    <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-6">API
                         Integrations</h1>
 
-                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+                    <p className="text-gray-700 dark:text-gray-300 md:text-lg text-sm mb-12 leading-relaxed max-w-4xl">
                         Learn how to integrate Passpoint Payment Service APIs into your application with comprehensive
                         guides, code examples, and best practices for secure payment processing, wallet management, and
                         transfer operations.
@@ -319,9 +319,9 @@ app.listen(3000, () => {
                                 <CheckCircle
                                     className="h-6 w-6 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5 mr-4"/>
                                 <div>
-                                    <h3 className="text-lg font-semibold text-green-800 dark:text-green-200 mb-2">Dashboard
+                                    <h3 className="md:text-xl text-lg font-semibold text-green-800 dark:text-green-200 mb-2">Dashboard
                                         Access</h3>
-                                    <p className="text-green-700 dark:text-green-300">
+                                    <p className="text-green-700 dark:text-green-300 md:text-lg text-sm">
                                         Your <strong>API keys</strong> and <strong>merchant IDs</strong> can be found in
                                         the <strong>Developers section</strong> of your Passpoint dashboard. Access your
                                         credentials securely through the merchant portal.
@@ -336,9 +336,9 @@ app.listen(3000, () => {
                                 <AlertTriangle
                                     className="h-6 w-6 text-[#009ac2] dark:text-[#009ac2] flex-shrink-0 mt-0.5 mr-4"/>
                                 <div>
-                                    <h3 className="text-lg font-semibold text-[#009ac2] dark:text-[#009ac2] mb-2">Token
+                                    <h3 className="md:text-xl text-lg font-semibold text-[#009ac2] dark:text-[#009ac2] mb-2">Token
                                         Expiry Notice</h3>
-                                    <p className="text-gray-700 dark:text-gray-300">
+                                    <p className="text-gray-700 dark:text-gray-300 md:text-lg text-sm">
                                         <strong>Development Environment:</strong> Bearer tokens are active for 10
                                         minutes<br/>
                                         <strong>Production Environment:</strong> Bearer tokens are active for 1
@@ -353,7 +353,7 @@ app.listen(3000, () => {
 
                     {/* Integration Methods */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Integration
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Integration
                             Methods</h2>
 
                         <div className="space-y-8">
@@ -362,11 +362,11 @@ app.listen(3000, () => {
                                 <div className="flex flex-col lg:flex-row lg:items-start gap-6">
                                     <div className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center">
                                         <Terminal className="h-12 w-12 text-brand-500 flex-shrink-0"/>
-                                        <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">REST
+                                        <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">REST
                                             API</h3>
                                     </div>
                                     <div className="flex-1">
-                                        <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                        <p className="text-gray-700 dark:text-gray-300 md:text-lg text-sm mb-6 leading-relaxed">
                                             Direct HTTP calls to Passpoint Payment Service RESTful endpoints with JSON
                                             payloads. Perfect for custom integrations and server-side applications.
                                         </p>
@@ -380,10 +380,10 @@ app.listen(3000, () => {
                                 <div className="flex flex-col lg:flex-row lg:items-start gap-6">
                                     <div className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center">
                                         <Key className="h-12 w-12 text-green-500 flex-shrink-0"/>
-                                        <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">SDKs</h3>
+                                        <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">SDKs</h3>
                                     </div>
                                     <div className="flex-1">
-                                        <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                        <p className="text-gray-700 dark:text-gray-300 md:text-lg text-sm mb-6 leading-relaxed">
                                             While Passpoint Payment Service provides comprehensive REST APIs, you can
                                             create wrapper libraries for your preferred programming languages with
                                             built-in error handling and retry logic.
@@ -455,10 +455,10 @@ app.listen(3000, () => {
                                 <div className="flex flex-col lg:flex-row lg:items-start gap-6">
                                     <div className="flex items-center gap-4 lg:flex-col lg:items-center lg:text-center">
                                         <Globe className="h-12 w-12 text-[#009ac2] dark:text-[#009ac2] flex-shrink-0"/>
-                                        <h3 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white lg:mt-3">Webhooks</h3>
+                                        <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white lg:mt-3">Webhooks</h3>
                                     </div>
                                     <div className="flex-1">
-                                        <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                                        <p className="text-gray-700 dark:text-gray-300 md:text-lg text-sm mb-6 leading-relaxed">
                                             Configure global callbacks to receive real-time notifications about
                                             transaction events, payment status changes, and system updates from
                                             Passpoint Payment Service.
@@ -497,7 +497,7 @@ app.listen(3000, () => {
 
                     {/* Authentication & Headers */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">Authentication
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-6">Authentication
                             & Headers</h2>
 
                         <div
@@ -518,16 +518,16 @@ app.listen(3000, () => {
 
                         <div className="space-y-6">
                             <div>
-                                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Required
+                                <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-3">Required
                                     Headers</h3>
-                                <p className="text-gray-700 dark:text-gray-300 mb-4">
+                                <p className="text-gray-700 dark:text-gray-300 md:text-lg text-sm mb-4">
                                     Every API request to Passpoint Payment Service must include these headers:
                                 </p>
                                 <CodeBlock>{getRequiredHeadersCode()}</CodeBlock>
                             </div>
 
                             <div>
-                                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Environment
+                                <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-3">Environment
                                     URLs</h3>
                                 <div className="grid gap-4 md:grid-cols-2">
                                     <div
@@ -563,26 +563,26 @@ app.listen(3000, () => {
 
                     {/* Quick Start Examples */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">Quick Start
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-6">Quick Start
                             Examples</h2>
 
                         <div className="space-y-6">
                             <div>
-                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Step 1: Get
+                                <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-3">Step 1: Get
                                     Access Token</h3>
                                 <CodeBlock title="Authentication (Node.js)"
                                            language="javascript">{getAuthenticationExampleCode()}</CodeBlock>
                             </div>
 
                             <div>
-                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Step 2: Create
+                                <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-3">Step 2: Create
                                     Wallet</h3>
                                 <CodeBlock title="Create Wallet (Node.js)"
                                            language="javascript">{getCreateWalletExampleCode()}</CodeBlock>
                             </div>
 
                             <div>
-                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Complete
+                                <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-3">Complete
                                     Integration</h3>
                                 <CodeBlock title="Full Integration Example (Node.js)"
                                            language="javascript">{getCompleteIntegrationCode()}</CodeBlock>
@@ -592,12 +592,12 @@ app.listen(3000, () => {
 
                     {/* Error Handling */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">Error
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-6">Error
                             Handling</h2>
 
                         <div
                             className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm mb-6">
-                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                            <p className="text-gray-700 dark:text-gray-300 md:text-lg text-sm mb-6 leading-relaxed">
                                 Implement robust error handling to gracefully manage API failures, validation errors,
                                 and network issues.
                                 Always check both <code
@@ -613,7 +613,7 @@ app.listen(3000, () => {
 
                         <div
                             className="bg-orange-50 dark:bg-orange-950/20 border border-orange-200 dark:border-orange-800 rounded-xl p-6">
-                            <h3 className="text-lg font-semibold text-orange-800 dark:text-orange-200 mb-3 flex items-center gap-2">
+                            <h3 className="md:text-xl text-lg font-semibold text-orange-800 dark:text-orange-200 mb-3 flex items-center gap-2">
                                 <AlertTriangle className="h-5 w-5"/>
                                 Common Error Codes
                             </h3>
@@ -648,12 +648,12 @@ app.listen(3000, () => {
 
                     {/* Token Management */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">Token
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-6">Token
                             Management & Refresh</h2>
 
                         <div
                             className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm mb-6">
-                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                            <p className="text-gray-700 dark:text-gray-300 md:text-lg text-sm mb-6 leading-relaxed">
                                 Implement automatic token refresh to avoid session timeouts during long-running
                                 operations.
                                 Tokens expire after 10 minutes (dev) or 1 hour (production).
@@ -665,7 +665,7 @@ app.listen(3000, () => {
 
                         <div
                             className="bg-[#009ac2]/10 dark:bg-[#009ac2]/20 border border-[#009ac2]/30 dark:border-[#009ac2]/50 rounded-xl p-6">
-                            <h3 className="text-lg font-semibold text-[#009ac2] dark:text-[#009ac2] mb-3">Best
+                            <h3 className="md:text-xl text-lg font-semibold text-[#009ac2] dark:text-[#009ac2] mb-3">Best
                                 Practices</h3>
                             <ul className="space-y-2 text-gray-700 dark:text-gray-300 text-sm">
                                 <li className="flex items-start gap-2">
@@ -690,12 +690,12 @@ app.listen(3000, () => {
 
                     {/* Webhook Setup */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">Webhook
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-6">Webhook
                             Setup</h2>
 
                         <div
                             className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm mb-6">
-                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                            <p className="text-gray-700 dark:text-gray-300 md:text-lg text-sm mb-6 leading-relaxed">
                                 Configure webhooks to receive real-time notifications about transaction status changes.
                                 Set up your webhook URL in the Passpoint dashboard under Global Callback Setup.
                             </p>
@@ -707,7 +707,7 @@ app.listen(3000, () => {
                         <div className="grid gap-6 md:grid-cols-2">
                             <div
                                 className="bg-purple-50 dark:bg-purple-950/20 border border-purple-200 dark:border-purple-800 rounded-xl p-6">
-                                <h3 className="text-lg font-semibold text-purple-800 dark:text-purple-200 mb-3">Webhook
+                                <h3 className="md:text-xl text-lg font-semibold text-purple-800 dark:text-purple-200 mb-3">Webhook
                                     Requirements</h3>
                                 <ul className="space-y-2 text-purple-700 dark:text-purple-300 text-sm">
                                     <li className="flex items-start gap-2">
@@ -731,7 +731,7 @@ app.listen(3000, () => {
 
                             <div
                                 className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-xl p-6">
-                                <h3 className="text-lg font-semibold text-green-800 dark:text-green-200 mb-3">Configuration
+                                <h3 className="md:text-xl text-lg font-semibold text-green-800 dark:text-green-200 mb-3">Configuration
                                     Steps</h3>
                                 <ol className="space-y-2 text-green-700 dark:text-green-300 text-sm list-decimal list-inside">
                                     <li>Deploy your webhook endpoint</li>
@@ -751,13 +751,13 @@ app.listen(3000, () => {
 
                     {/* Testing & Best Practices */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">Testing & Best
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-6">Testing & Best
                             Practices</h2>
 
                         <div className="grid gap-6 md:grid-cols-2 mb-6">
                             <div
                                 className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm">
-                                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                                <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                                     <Zap className="h-6 w-6 text-green-500"/>
                                     Sandbox Testing
                                 </h3>
@@ -787,7 +787,7 @@ app.listen(3000, () => {
 
                             <div
                                 className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm">
-                                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                                <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                                     <CheckCircle className="h-6 w-6 text-[#009ac2]"/>
                                     Production Checklist
                                 </h3>
@@ -818,9 +818,9 @@ app.listen(3000, () => {
 
                         <div
                             className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
-                            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Retry Logic
+                            <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-4">Retry Logic
                                 Implementation</h3>
-                            <p className="text-gray-700 dark:text-gray-300 mb-4">
+                            <p className="text-gray-700 dark:text-gray-300 md:text-lg text-sm mb-4">
                                 Implement exponential backoff for transient failures like network errors or temporary
                                 service unavailability.
                                 Do not retry on validation errors (30, 31) or authentication failures (60).
@@ -832,7 +832,7 @@ app.listen(3000, () => {
 
                     {/* Common Pitfalls */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">Common
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-6">Common
                             Integration Pitfalls</h2>
 
                         <div className="space-y-4">
@@ -841,10 +841,10 @@ app.listen(3000, () => {
                                 <div className="flex items-start gap-3">
                                     <XCircle className="h-6 w-6 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5"/>
                                     <div>
-                                        <h3 className="text-lg font-semibold text-red-800 dark:text-red-200 mb-2">
+                                        <h3 className="md:text-xl text-lg font-semibold text-red-800 dark:text-red-200 mb-2">
                                             Ignoring Token Expiry
                                         </h3>
-                                        <p className="text-red-700 dark:text-red-300 text-sm mb-2">
+                                        <p className="text-red-700 dark:text-red-300 md:text-lg text-sm mb-2">
                                             Tokens expire after 10 minutes (dev) or 1 hour (prod). Failing to refresh
                                             causes 06 (session_timeout) errors.
                                         </p>
@@ -860,10 +860,10 @@ app.listen(3000, () => {
                                 <div className="flex items-start gap-3">
                                     <XCircle className="h-6 w-6 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5"/>
                                     <div>
-                                        <h3 className="text-lg font-semibold text-red-800 dark:text-red-200 mb-2">
+                                        <h3 className="md:text-xl text-lg font-semibold text-red-800 dark:text-red-200 mb-2">
                                             Not Handling Pending Status
                                         </h3>
-                                        <p className="text-red-700 dark:text-red-300 text-sm mb-2">
+                                        <p className="text-red-700 dark:text-red-300 md:text-lg text-sm mb-2">
                                             Some transactions return status "01" (pending) and complete asynchronously.
                                             You must wait for webhooks.
                                         </p>
@@ -880,10 +880,10 @@ app.listen(3000, () => {
                                 <div className="flex items-start gap-3">
                                     <XCircle className="h-6 w-6 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5"/>
                                     <div>
-                                        <h3 className="text-lg font-semibold text-red-800 dark:text-red-200 mb-2">
+                                        <h3 className="md:text-xl text-lg font-semibold text-red-800 dark:text-red-200 mb-2">
                                             Missing Mandatory Headers
                                         </h3>
-                                        <p className="text-red-700 dark:text-red-300 text-sm mb-2">
+                                        <p className="text-red-700 dark:text-red-300 md:text-lg text-sm mb-2">
                                             All requests require x-channel-id, x-channel-code, and x-merchant-id
                                             headers. Missing headers cause authentication failures.
                                         </p>
@@ -900,10 +900,10 @@ app.listen(3000, () => {
                                 <div className="flex items-start gap-3">
                                     <XCircle className="h-6 w-6 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5"/>
                                     <div>
-                                        <h3 className="text-lg font-semibold text-red-800 dark:text-red-200 mb-2">
+                                        <h3 className="md:text-xl text-lg font-semibold text-red-800 dark:text-red-200 mb-2">
                                             Exposing Credentials Client-Side
                                         </h3>
-                                        <p className="text-red-700 dark:text-red-300 text-sm mb-2">
+                                        <p className="text-red-700 dark:text-red-300 md:text-lg text-sm mb-2">
                                             API keys and merchant IDs should never be exposed in frontend code, mobile
                                             apps, or public repositories.
                                         </p>
@@ -919,10 +919,10 @@ app.listen(3000, () => {
                                 <div className="flex items-start gap-3">
                                     <XCircle className="h-6 w-6 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5"/>
                                     <div>
-                                        <h3 className="text-lg font-semibold text-red-800 dark:text-red-200 mb-2">
+                                        <h3 className="md:text-xl text-lg font-semibold text-red-800 dark:text-red-200 mb-2">
                                             No Idempotency for Webhooks
                                         </h3>
-                                        <p className="text-red-700 dark:text-red-300 text-sm mb-2">
+                                        <p className="text-red-700 dark:text-red-300 md:text-lg text-sm mb-2">
                                             Webhooks may be sent multiple times. Processing duplicates can lead to
                                             incorrect balance updates or double fulfillment.
                                         </p>
@@ -938,17 +938,17 @@ app.listen(3000, () => {
 
                     {/* Next Steps */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">Next
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-6">Next
                             Steps</h2>
 
                         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                             <Link to="/api-documentation/collection"
                                   className="bg-gradient-to-br from-[#009ac2]/10 to-[#009ac2]/20 dark:from-[#009ac2]/30 dark:to-[#009ac2]/40 border border-[#009ac2]/30 dark:border-[#009ac2]/50 rounded-xl p-6 hover:shadow-md transition-all">
                                 <BookOpen className="h-8 w-8 text-[#009ac2] dark:text-[#009ac2] mb-3"/>
-                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-2">
                                     Collections API
                                 </h3>
-                                <p className="text-gray-700 dark:text-gray-300 text-sm mb-3">
+                                <p className="text-gray-700 dark:text-gray-300 md:text-lg text-sm mb-3">
                                     Accept payments via bank transfers, mobile money, and virtual accounts
                                 </p>
                                 <span
@@ -961,10 +961,10 @@ app.listen(3000, () => {
                             <Link to="/api-documentation/payout"
                                   className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950/30 dark:to-green-900/30 border border-green-200 dark:border-green-800 rounded-xl p-6 hover:shadow-md transition-all">
                                 <DollarSign className="h-8 w-8 text-green-600 dark:text-green-400 mb-3"/>
-                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-2">
                                     Payouts API
                                 </h3>
-                                <p className="text-gray-700 dark:text-gray-300 text-sm mb-3">
+                                <p className="text-gray-700 dark:text-gray-300 md:text-lg text-sm mb-3">
                                     Send money to bank accounts and mobile wallets locally and internationally
                                 </p>
                                 <span
@@ -977,10 +977,10 @@ app.listen(3000, () => {
                             <Link to="/api-documentation/wallet"
                                   className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950/30 dark:to-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-xl p-6 hover:shadow-md transition-all">
                                 <Code className="h-8 w-8 text-purple-600 dark:text-purple-400 mb-3"/>
-                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-2">
                                     Wallet API
                                 </h3>
-                                <p className="text-gray-700 dark:text-gray-300 text-sm mb-3">
+                                <p className="text-gray-700 dark:text-gray-300 md:text-lg text-sm mb-3">
                                     Create and manage digital wallets with multi-currency support
                                 </p>
                                 <span

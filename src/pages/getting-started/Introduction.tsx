@@ -48,11 +48,11 @@ const Introduction = () => {
         <div className="min-h-screen bg-white dark:bg-gray-950">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 <div className="max-w-none">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+                    <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-6">
                         Introduction to Passpoint Payment Service
                     </h1>
 
-                    <p className="text-gray-700 dark:text-gray-300 text-lg mb-12 leading-relaxed max-w-4xl">
+                    <p className="text-gray-700 dark:text-gray-300 md:text-lg text-sm mb-12 leading-relaxed max-w-4xl">
                         Passpoint Payment Service provides a comprehensive API suite for seamless integration of
                         payment,
                         wallet, transfer, and payout services across multiple currencies and regions. Our robust
@@ -63,12 +63,12 @@ const Introduction = () => {
 
                     {/* What is Passpoint */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">What is
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-6">What is
                             Passpoint?</h2>
 
                         <div
                             className="bg-gradient-to-br from-[#009ac2]/10 to-indigo-50 dark:from-[#009ac2]/20 dark:to-indigo-950/20 border border-[#009ac2]/30 dark:border-[#009ac2]/50 rounded-xl p-6 lg:p-8 mb-8">
-                            <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-4">
+                            <p className="text-gray-700 dark:text-gray-300 md:text-lg text-sm leading-relaxed mb-4">
                                 Passpoint is a modern payment infrastructure platform that empowers businesses to accept
                                 payments,
                                 send payouts, and manage digital wallets across Africa and beyond. Built on RESTful API
@@ -107,11 +107,11 @@ const Introduction = () => {
 
                     {/* Prerequisites */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">Prerequisites</h2>
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-6">Prerequisites</h2>
 
                         <div
                             className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm mb-6">
-                            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Before You
+                            <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-4">Before You
                                 Begin</h3>
                             <div className="space-y-4">
                                 <div className="flex items-start gap-3">
@@ -165,7 +165,7 @@ const Introduction = () => {
                                 <CheckCircle
                                     className="h-6 w-6 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5 mr-4"/>
                                 <div>
-                                    <h3 className="text-lg font-semibold text-green-800 dark:text-green-200 mb-2">Dashboard
+                                    <h3 className="md:text-xl text-lg font-semibold text-green-800 dark:text-green-200 mb-2">Dashboard
                                         Access</h3>
                                     <p className="text-green-700 dark:text-green-300">
                                         Your <strong>API keys</strong> and <strong>merchant IDs</strong> can be found in
@@ -183,7 +183,7 @@ const Introduction = () => {
 
                     {/* Core Services */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Core
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Core
                             Services</h2>
 
                         <div className="grid gap-6 sm:grid-cols-2 mb-8">
@@ -191,7 +191,7 @@ const Introduction = () => {
                                 className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
                                 <div className="flex items-center mb-4">
                                     <CreditCard className="h-8 w-8 text-[#009ac2] mr-3"/>
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Payment
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white">Payment
                                         Processing</h3>
                                 </div>
                                 <p className="text-gray-700 dark:text-gray-300 text-sm mb-3">
@@ -209,7 +209,7 @@ const Introduction = () => {
                                 className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
                                 <div className="flex items-center mb-4">
                                     <DollarSign className="h-8 w-8 text-green-500 mr-3"/>
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Wallet
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white">Wallet
                                         Management</h3>
                                 </div>
                                 <p className="text-gray-700 dark:text-gray-300 text-sm mb-3">
@@ -226,7 +226,7 @@ const Introduction = () => {
                                 className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
                                 <div className="flex items-center mb-4">
                                     <Smartphone className="h-8 w-8 text-purple-500 mr-3"/>
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Transfer
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white">Transfer
                                         Services</h3>
                                 </div>
                                 <p className="text-gray-700 dark:text-gray-300 text-sm mb-3">
@@ -244,7 +244,7 @@ const Introduction = () => {
                                 className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
                                 <div className="flex items-center mb-4">
                                     <Globe className="h-8 w-8 text-orange-500 mr-3"/>
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Global
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white">Global
                                         Payouts</h3>
                                 </div>
                                 <p className="text-gray-700 dark:text-gray-300 text-sm mb-3">
@@ -262,13 +262,13 @@ const Introduction = () => {
 
                     {/* Use Cases */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">Common Use
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-6">Common Use
                             Cases</h2>
 
                         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                             <div
                                 className="bg-gradient-to-br from-[#009ac2]/10 to-[#009ac2]/20 dark:from-[#009ac2]/30 dark:to-[#009ac2]/40 border border-[#009ac2]/30 dark:border-[#009ac2]/50 rounded-xl p-6">
-                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">E-commerce
+                                <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-2">E-commerce
                                     Platforms</h3>
                                 <p className="text-gray-700 dark:text-gray-300 text-sm">
                                     Accept payments from customers via bank transfers, mobile money, and cards with
@@ -277,7 +277,7 @@ const Introduction = () => {
                             </div>
                             <div
                                 className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950/30 dark:to-green-900/30 border border-green-200 dark:border-green-800 rounded-xl p-6">
-                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Marketplace
+                                <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-2">Marketplace
                                     Solutions</h3>
                                 <p className="text-gray-700 dark:text-gray-300 text-sm">
                                     Split payments between sellers, handle escrow, and process bulk payouts to vendors
@@ -286,7 +286,7 @@ const Introduction = () => {
                             </div>
                             <div
                                 className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950/30 dark:to-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-xl p-6">
-                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Fintech
+                                <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-2">Fintech
                                     Applications</h3>
                                 <p className="text-gray-700 dark:text-gray-300 text-sm">
                                     Build neobanks, lending platforms, or remittance services with wallet infrastructure
@@ -295,7 +295,7 @@ const Introduction = () => {
                             </div>
                             <div
                                 className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-950/30 dark:to-orange-900/30 border border-orange-200 dark:border-orange-800 rounded-xl p-6">
-                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Subscription
+                                <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-2">Subscription
                                     Services</h3>
                                 <p className="text-gray-700 dark:text-gray-300 text-sm">
                                     Automate recurring billing, manage subscription payments, and handle failed payment
@@ -304,7 +304,7 @@ const Introduction = () => {
                             </div>
                             <div
                                 className="bg-gradient-to-br from-red-50 to-red-100 dark:from-red-950/30 dark:to-red-900/30 border border-red-200 dark:border-red-800 rounded-xl p-6">
-                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Payroll
+                                <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-2">Payroll
                                     Systems</h3>
                                 <p className="text-gray-700 dark:text-gray-300 text-sm">
                                     Process salary disbursements, contractor payments, and expense reimbursements at
@@ -313,7 +313,7 @@ const Introduction = () => {
                             </div>
                             <div
                                 className="bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-950/30 dark:to-indigo-900/30 border border-indigo-200 dark:border-indigo-800 rounded-xl p-6">
-                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Gaming &
+                                <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-2">Gaming &
                                     Betting</h3>
                                 <p className="text-gray-700 dark:text-gray-300 text-sm">
                                     Handle player deposits, instant withdrawals, and real-time wallet balance management
@@ -324,7 +324,7 @@ const Introduction = () => {
 
                     {/* Key Features */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-8">Key
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Key
                             Features</h2>
 
                         <div className="space-y-6">
@@ -332,10 +332,10 @@ const Introduction = () => {
                                 className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm">
                                 <div className="flex items-center mb-4">
                                     <Shield className="h-6 w-6 text-[#009ac2] mr-3"/>
-                                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Enterprise
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white">Enterprise
                                         Security</h3>
                                 </div>
-                                <p className="text-gray-700 dark:text-gray-300 mb-4">
+                                <p className="text-gray-700 dark:text-gray-300 md:text-lg text-sm mb-4">
                                     Bank-level security with comprehensive encryption, fraud detection, and regulatory
                                     compliance across all supported regions.
                                 </p>
@@ -363,10 +363,10 @@ const Introduction = () => {
                                 className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm">
                                 <div className="flex items-center mb-4">
                                     <Zap className="h-6 w-6 text-green-500 mr-3"/>
-                                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Real-time
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white">Real-time
                                         Processing</h3>
                                 </div>
-                                <p className="text-gray-700 dark:text-gray-300 mb-4">
+                                <p className="text-gray-700 dark:text-gray-300 md:text-lg text-sm mb-4">
                                     Fast transaction processing with instant notifications and real-time status updates
                                     through webhooks.
                                 </p>
@@ -394,12 +394,12 @@ const Introduction = () => {
 
                     {/* Environment Configuration */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">Environment
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-6">Environment
                             Configuration</h2>
 
                         <div
                             className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm mb-6">
-                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                            <p className="text-gray-700 dark:text-gray-300 md:text-lg text-sm mb-6 leading-relaxed">
                                 Passpoint Payment Service provides separate environments for development and production.
                                 Use
                                 the appropriate base URLs for your integration environment.
@@ -447,9 +447,9 @@ const Introduction = () => {
                                 <AlertTriangle
                                     className="h-6 w-6 text-[#009ac2] dark:text-[#009ac2] flex-shrink-0 mt-0.5 mr-4"/>
                                 <div>
-                                    <h3 className="text-lg font-semibold text-[#009ac2] dark:text-[#009ac2] mb-2">Token
+                                    <h3 className="md:text-xl text-lg font-semibold text-[#009ac2] dark:text-[#009ac2] mb-2">Token
                                         Expiry Notice</h3>
-                                    <p className="text-gray-700 dark:text-gray-300">
+                                    <p className="text-gray-700 dark:text-gray-300 md:text-lg text-sm">
                                         <strong>Development Environment:</strong> Bearer tokens are active for 10
                                         minutes<br/>
                                         <strong>Production Environment:</strong> Bearer tokens are active for 1
@@ -464,12 +464,12 @@ const Introduction = () => {
 
                     {/* API Integration Quick Start */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">API
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-6">API
                             Integration Overview</h2>
 
                         <div
                             className="bg-[#009ac2]/10 dark:bg-[#009ac2]/20 border border-[#009ac2]/30 dark:border-[#009ac2]/50 rounded-xl p-6 mb-6">
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Quick Integration
+                            <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-4">Quick Integration
                                 Steps</h3>
                             <div className="space-y-3 text-gray-700 dark:text-gray-300">
                                 <div className="flex items-start">
@@ -508,10 +508,10 @@ const Introduction = () => {
                         </div>
 
                         <div className="space-y-4">
-                            <h4 className="text-lg font-semibold text-gray-900 dark:text-white">Sample API Request</h4>
+                            <h4 className="md:text-lg text-base font-semibold text-gray-900 dark:text-white">Sample API Request</h4>
                             <CodeBlock language="bash">{getSampleApiRequestCode()}</CodeBlock>
 
-                            <h4 className="text-lg font-semibold text-gray-900 dark:text-white mt-6">Standard Response
+                            <h4 className="md:text-lg text-base font-semibold text-gray-900 dark:text-white mt-6">Standard Response
                                 Format</h4>
                             <CodeBlock language="json">{getStandardResponseCode()}</CodeBlock>
                         </div>
@@ -519,10 +519,10 @@ const Introduction = () => {
 
                     {/* Authentication Methods */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">Authentication
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-6">Authentication
                             Methods</h2>
 
-                        <p className="text-gray-700 dark:text-gray-300 text-lg mb-8 leading-relaxed">
+                        <p className="text-gray-700 dark:text-gray-300 md:text-lg text-sm mb-8 leading-relaxed">
                             Endpoints requiring authorization can use either Basic Authentication or Bearer Token
                             Authentication methods.
                         </p>
@@ -531,7 +531,7 @@ const Introduction = () => {
                             {/* Basic Authentication */}
                             <div
                                 className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
-                                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">1. Basic
+                                <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-4">1. Basic
                                     Authentication</h3>
 
                                 <div className="overflow-x-auto mb-6">
@@ -565,7 +565,7 @@ const Introduction = () => {
                             {/* Bearer Token Authentication */}
                             <div
                                 className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
-                                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">2. Bearer Token
+                                <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-4">2. Bearer Token
                                     Authentication (Recommended)</h3>
 
                                 <div className="overflow-x-auto mb-6">
@@ -606,12 +606,12 @@ const Introduction = () => {
 
                     {/* Mandatory Headers */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">Mandatory
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-6">Mandatory
                             Headers</h2>
 
                         <div
                             className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
-                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                            <p className="text-gray-700 dark:text-gray-300 md:text-lg text-sm mb-6 leading-relaxed">
                                 The following header parameters are mandatory for all API requests to Passpoint Payment
                                 Service.
                             </p>
@@ -676,12 +676,12 @@ const Introduction = () => {
 
                     {/* Response Parameters */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">Response
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-6">Response
                             Parameters</h2>
 
                         <div
                             className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm mb-6">
-                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                            <p className="text-gray-700 dark:text-gray-300 md:text-lg text-sm mb-6 leading-relaxed">
                                 All API responses follow a consistent structure with the following parameters to
                                 indicate
                                 request status and processing results.
@@ -748,12 +748,12 @@ const Introduction = () => {
 
                     {/* Complete Status Codes */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">Complete
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-6">Complete
                             Status Codes</h2>
 
                         <div
                             className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 lg:p-8 shadow-sm">
-                            <p className="text-gray-700 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                            <p className="text-gray-700 dark:text-gray-300 md:text-lg text-sm mb-6 leading-relaxed">
                                 Comprehensive list of all status codes used throughout the Passpoint Payment Service API
                                 for
                                 detailed error handling and request tracking.
@@ -762,7 +762,7 @@ const Introduction = () => {
                             <div className="grid gap-4 md:grid-cols-2">
                                 {/* Success Codes */}
                                 <div>
-                                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Success &
+                                    <h4 className="md:text-lg text-base font-semibold text-gray-900 dark:text-white mb-3">Success &
                                         Processing</h4>
                                     <div className="space-y-2">
                                         <div
@@ -791,7 +791,7 @@ const Introduction = () => {
 
                                 {/* Error Codes */}
                                 <div>
-                                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Error
+                                    <h4 className="md:text-lg text-base font-semibold text-gray-900 dark:text-white mb-3">Error
                                         Codes</h4>
                                     <div className="space-y-2">
                                         <div
@@ -834,7 +834,7 @@ const Introduction = () => {
 
                                 {/* Validation Codes */}
                                 <div>
-                                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Validation
+                                    <h4 className="md:text-lg text-base font-semibold text-gray-900 dark:text-white mb-3">Validation
                                         Errors</h4>
                                     <div className="space-y-2">
                                         <div
@@ -863,7 +863,7 @@ const Introduction = () => {
 
                                 {/* System Errors */}
                                 <div>
-                                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">System
+                                    <h4 className="md:text-lg text-base font-semibold text-gray-900 dark:text-white mb-3">System
                                         Errors</h4>
                                     <div className="space-y-2">
                                         <div
@@ -919,7 +919,7 @@ const Introduction = () => {
 
                     {/* Next Steps */}
                     <section className="mb-16">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">Next
+                        <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-6">Next
                             Steps</h2>
 
                         <div className="grid gap-6 md:grid-cols-2">
@@ -928,7 +928,7 @@ const Introduction = () => {
                                 <div className="flex items-start gap-4">
                                     <Code className="h-8 w-8 text-[#009ac2] dark:text-[#009ac2] flex-shrink-0"/>
                                     <div>
-                                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                        <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-2">
                                             API Integration Guide
                                         </h3>
                                         <p className="text-gray-700 dark:text-gray-300 text-sm mb-3">
@@ -949,7 +949,7 @@ const Introduction = () => {
                                 <div className="flex items-start gap-4">
                                     <Shield className="h-8 w-8 text-purple-600 dark:text-purple-400 flex-shrink-0"/>
                                     <div>
-                                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                        <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-2">
                                             Authentication Details
                                         </h3>
                                         <p className="text-gray-700 dark:text-gray-300 text-sm mb-3">

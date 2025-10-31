@@ -7,10 +7,10 @@ const Home = () => {
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                 {/* Hero Section */}
                 <div className="max-w-4xl mb-16">
-                    <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+                    <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-6">
                         Welcome to Passpoint Payment Service
                     </h1>
-                    <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+                    <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
                         Build powerful payment solutions with our comprehensive API suite. Accept payments, manage
                         wallets,
                         process transfers, and handle payouts across multiple countries and currencies with
@@ -37,7 +37,8 @@ const Home = () => {
 
                 {/* Key Features Grid */}
                 <section className="mb-16">
-                    <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">Why Choose Passpoint?</h2>
+                    <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Why Choose
+                        Passpoint?</h2>
                     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                         <div
                             className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
@@ -46,7 +47,7 @@ const Home = () => {
                                     <Zap className="h-6 w-6 text-[#009ac2] dark:text-[#009ac2]"/>
                                 </div>
                             </div>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                            <h3 className="md:text-lg text-base font-semibold text-gray-900 dark:text-white mb-2">
                                 Lightning Fast
                             </h3>
                             <p className="text-gray-600 dark:text-gray-400 text-sm">
@@ -62,7 +63,7 @@ const Home = () => {
                                     <Shield className="h-6 w-6 text-green-600 dark:text-green-400"/>
                                 </div>
                             </div>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                            <h3 className="md:text-lg text-base font-semibold text-gray-900 dark:text-white mb-2">
                                 Bank-Level Security
                             </h3>
                             <p className="text-gray-600 dark:text-gray-400 text-sm">
@@ -79,7 +80,7 @@ const Home = () => {
                                     <Globe className="h-6 w-6 text-purple-600 dark:text-purple-400"/>
                                 </div>
                             </div>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                            <h3 className="md:text-lg text-base font-semibold text-gray-900 dark:text-white mb-2">
                                 Global Reach
                             </h3>
                             <p className="text-gray-600 dark:text-gray-400 text-sm">
@@ -95,7 +96,7 @@ const Home = () => {
                                     <DollarSign className="h-6 w-6 text-orange-600 dark:text-orange-400"/>
                                 </div>
                             </div>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                            <h3 className="md:text-lg text-base font-semibold text-gray-900 dark:text-white mb-2">
                                 Multi-Currency
                             </h3>
                             <p className="text-gray-600 dark:text-gray-400 text-sm">
@@ -111,7 +112,7 @@ const Home = () => {
                                     <Clock className="h-6 w-6 text-red-600 dark:text-red-400"/>
                                 </div>
                             </div>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                            <h3 className="md:text-lg text-base font-semibold text-gray-900 dark:text-white mb-2">
                                 99.9% Uptime
                             </h3>
                             <p className="text-gray-600 dark:text-gray-400 text-sm">
@@ -127,7 +128,7 @@ const Home = () => {
                                     <Code className="h-6 w-6 text-indigo-600 dark:text-indigo-400"/>
                                 </div>
                             </div>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                            <h3 className="md:text-lg text-base font-semibold text-gray-900 dark:text-white mb-2">
                                 Developer Friendly
                             </h3>
                             <p className="text-gray-600 dark:text-gray-400 text-sm">
@@ -140,7 +141,7 @@ const Home = () => {
 
                 {/* Core Services */}
                 <section className="mb-16">
-                    <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">Core Services</h2>
+                    <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Core Services</h2>
                     <div className="space-y-6">
                         <div
                             className="bg-gradient-to-r from-[#009ac2]/10 to-[#009ac2]/20 dark:from-[#009ac2]/30 dark:to-[#009ac2]/40 border border-[#009ac2]/30 dark:border-[#009ac2]/50 rounded-xl p-6 lg:p-8">
@@ -149,10 +150,10 @@ const Home = () => {
                                     <DollarSign className="h-6 w-6 text-white"/>
                                 </div>
                                 <div className="flex-1">
-                                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-2">
                                         Payment Collections
                                     </h3>
-                                    <p className="text-gray-700 dark:text-gray-300 mb-4">
+                                    <p className="md:text-base text-sm text-gray-700 dark:text-gray-300 mb-4">
                                         Accept payments through bank transfers, mobile money, virtual accounts, and open
                                         banking.
                                         Support for both one-time and recurring payments with automatic reconciliation.
@@ -175,10 +176,10 @@ const Home = () => {
                                     <ArrowRight className="h-6 w-6 text-white"/>
                                 </div>
                                 <div className="flex-1">
-                                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-2">
                                         Payouts & Transfers
                                     </h3>
-                                    <p className="text-gray-700 dark:text-gray-300 mb-4">
+                                    <p className="md:text-base text-sm text-gray-700 dark:text-gray-300 mb-4">
                                         Send money to bank accounts and mobile wallets locally and internationally.
                                         Bulk payout support with automated scheduling and compliance checks.
                                     </p>
@@ -200,10 +201,10 @@ const Home = () => {
                                     <BookOpen className="h-6 w-6 text-white"/>
                                 </div>
                                 <div className="flex-1">
-                                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                                    <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-2">
                                         Wallet Management
                                     </h3>
-                                    <p className="text-gray-700 dark:text-gray-300 mb-4">
+                                    <p className="md:text-base text-sm text-gray-700 dark:text-gray-300 mb-4">
                                         Create and manage digital wallets for your customers. Multi-currency support,
                                         balance tracking, transaction history, and wallet-to-wallet transfers.
                                     </p>
@@ -222,7 +223,8 @@ const Home = () => {
 
                 {/* Quick Start Guide */}
                 <section className="mb-16">
-                    <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">Quick Start Guide</h2>
+                    <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Quick Start
+                        Guide</h2>
                     <div
                         className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800/50 dark:to-gray-900/50 border border-gray-200 dark:border-gray-700 rounded-xl p-8">
                         <div className="space-y-6">
@@ -232,10 +234,10 @@ const Home = () => {
                                     1
                                 </div>
                                 <div className="flex-1">
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                    <h3 className="md:text-lg text-base font-semibold text-gray-900 dark:text-white mb-2">
                                         Create Your Account
                                     </h3>
-                                    <p className="text-gray-700 dark:text-gray-300">
+                                    <p className="md:text-base text-sm text-gray-700 dark:text-gray-300">
                                         Sign up for a Passpoint merchant account and complete the KYC verification
                                         process.
                                         Access your API credentials from the dashboard.
@@ -249,10 +251,10 @@ const Home = () => {
                                     2
                                 </div>
                                 <div className="flex-1">
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                    <h3 className="md:text-lg text-base font-semibold text-gray-900 dark:text-white mb-2">
                                         Get Your Credentials
                                     </h3>
-                                    <p className="text-gray-700 dark:text-gray-300 mb-2">
+                                    <p className="md:text-base text-sm text-gray-700 dark:text-gray-300 mb-2">
                                         Navigate to the Developers section in your dashboard to retrieve your Merchant
                                         ID
                                         and API keys for both sandbox and production environments.
@@ -277,10 +279,10 @@ const Home = () => {
                                     3
                                 </div>
                                 <div className="flex-1">
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                    <h3 className="md:text-lg text-base font-semibold text-gray-900 dark:text-white mb-2">
                                         Make Your First API Call
                                     </h3>
-                                    <p className="text-gray-700 dark:text-gray-300 mb-3">
+                                    <p className="md:text-base text-sm text-gray-700 dark:text-gray-300 mb-3">
                                         Start with authentication, then create a wallet or process your first
                                         transaction
                                         in the sandbox environment.
@@ -301,10 +303,10 @@ const Home = () => {
                                     4
                                 </div>
                                 <div className="flex-1">
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                    <h3 className="md:text-lg text-base font-semibold text-gray-900 dark:text-white mb-2">
                                         Go Live
                                     </h3>
-                                    <p className="text-gray-700 dark:text-gray-300">
+                                    <p className="md:text-base text-sm text-gray-700 dark:text-gray-300">
                                         After thorough testing in sandbox, switch to production credentials and start
                                         processing real transactions. Configure webhooks for event notifications.
                                     </p>
@@ -316,7 +318,8 @@ const Home = () => {
 
                 {/* Resources */}
                 <section className="mb-16">
-                    <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">Additional Resources</h2>
+                    <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Additional
+                        Resources</h2>
                     <div className="grid gap-6 md:grid-cols-2">
                         <Link
                             to="/introduction"
@@ -325,7 +328,7 @@ const Home = () => {
                             <div className="flex items-start gap-4">
                                 <BookOpen className="h-8 w-8 text-[#009ac2] dark:text-[#009ac2] flex-shrink-0"/>
                                 <div>
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                    <h3 className="md:text-lg text-base font-semibold text-gray-900 dark:text-white mb-2">
                                         Introduction
                                     </h3>
                                     <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">
@@ -348,7 +351,7 @@ const Home = () => {
                             <div className="flex items-start gap-4">
                                 <Zap className="h-8 w-8 text-green-600 dark:text-green-400 flex-shrink-0"/>
                                 <div>
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                    <h3 className="md:text-lg text-base font-semibold text-gray-900 dark:text-white mb-2">
                                         Quick Guides
                                     </h3>
                                     <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">
@@ -371,7 +374,7 @@ const Home = () => {
                             <div className="flex items-start gap-4">
                                 <Shield className="h-8 w-8 text-purple-600 dark:text-purple-400 flex-shrink-0"/>
                                 <div>
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                    <h3 className="md:text-lg text-base font-semibold text-gray-900 dark:text-white mb-2">
                                         Authentication
                                     </h3>
                                     <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">
@@ -394,7 +397,7 @@ const Home = () => {
                             <div className="flex items-start gap-4">
                                 <Code className="h-8 w-8 text-orange-600 dark:text-orange-400 flex-shrink-0"/>
                                 <div>
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                    <h3 className="md:text-lg text-base font-semibold text-gray-900 dark:text-white mb-2">
                                         Status Codes & Errors
                                     </h3>
                                     <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">
@@ -415,10 +418,10 @@ const Home = () => {
                 {/* CTA Section */}
                 <section
                     className="bg-gradient-to-r from-[#009ac2] to-[#008ab0] dark:from-[#008ab0] dark:to-[#007a9a] rounded-2xl p-8 lg:p-12 text-center">
-                    <h2 className="text-3xl font-bold text-white mb-4">
+                    <h2 className="md:text-2xl text-xl font-bold text-white mb-4">
                         Ready to Get Started?
                     </h2>
-                    <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
+                    <p className="text-white/90 md:text-lg text-sm mb-8 max-w-2xl mx-auto">
                         Join thousands of businesses using Passpoint to power their payment infrastructure.
                         Start building today with our comprehensive API suite.
                     </p>

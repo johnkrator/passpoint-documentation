@@ -942,7 +942,7 @@ app.listen(3000, () => {
                             Steps</h2>
 
                         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                            <Link to="/api-documentation/collection"
+                            <Link to="/collection"
                                   className="bg-gradient-to-br from-[#009ac2]/10 to-[#009ac2]/20 dark:from-[#009ac2]/30 dark:to-[#009ac2]/40 border border-[#009ac2]/30 dark:border-[#009ac2]/50 rounded-xl p-6 hover:shadow-md transition-all">
                                 <BookOpen className="h-8 w-8 text-[#009ac2] dark:text-[#009ac2] mb-3"/>
                                 <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-2">
@@ -958,7 +958,7 @@ app.listen(3000, () => {
                                 </span>
                             </Link>
 
-                            <Link to="/api-documentation/payout"
+                            <Link to="/payout"
                                   className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950/30 dark:to-green-900/30 border border-green-200 dark:border-green-800 rounded-xl p-6 hover:shadow-md transition-all">
                                 <DollarSign className="h-8 w-8 text-green-600 dark:text-green-400 mb-3"/>
                                 <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-2">
@@ -974,7 +974,7 @@ app.listen(3000, () => {
                                 </span>
                             </Link>
 
-                            <Link to="/api-documentation/wallet"
+                            <Link to="/wallet"
                                   className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950/30 dark:to-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-xl p-6 hover:shadow-md transition-all">
                                 <Code className="h-8 w-8 text-purple-600 dark:text-purple-400 mb-3"/>
                                 <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-2">

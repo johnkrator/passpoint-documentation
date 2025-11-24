@@ -199,7 +199,7 @@ const Introduction = () => {
                                     and
                                     card processing with real-time settlement.
                                 </p>
-                                <Link to="/api-documentation/collection"
+                                <Link to="/collection"
                                       className="text-[#009ac2] dark:text-[#009ac2] hover:text-[#008ab0] dark:hover:text-[#008ab0] text-sm font-medium inline-flex items-center gap-1">
                                     Learn more <ArrowRight className="h-3 w-3"/>
                                 </Link>
@@ -216,7 +216,7 @@ const Introduction = () => {
                                     Create and manage digital wallets with multi-currency support, balance tracking, and
                                     transaction history.
                                 </p>
-                                <Link to="/api-documentation/wallet"
+                                <Link to="/wallet"
                                       className="text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 text-sm font-medium inline-flex items-center gap-1">
                                     Learn more <ArrowRight className="h-3 w-3"/>
                                 </Link>
@@ -234,7 +234,7 @@ const Introduction = () => {
                                     with
                                     transparent fees.
                                 </p>
-                                <Link to="/api-documentation/transfer"
+                                <Link to="/transfer"
                                       className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 text-sm font-medium inline-flex items-center gap-1">
                                     Learn more <ArrowRight className="h-3 w-3"/>
                                 </Link>
@@ -252,7 +252,7 @@ const Introduction = () => {
                                     and
                                     compliance requirements.
                                 </p>
-                                <Link to="/api-documentation/payout"
+                                <Link to="/payout"
                                       className="text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 text-sm font-medium inline-flex items-center gap-1">
                                     Learn more <ArrowRight className="h-3 w-3"/>
                                 </Link>
@@ -596,7 +596,7 @@ const Introduction = () => {
                                     <p className="text-yellow-800 dark:text-yellow-200 text-sm flex items-start gap-2">
                                         <AlertTriangle className="h-4 w-4 flex-shrink-0 mt-0.5"/>
                                         <span><strong>Best Practice:</strong> Use Bearer Token authentication for better security and easier token management. See the <Link
-                                            to="/getting-started/api-integrations"
+                                            to="/api-integrations"
                                             className="underline hover:text-yellow-900 dark:hover:text-yellow-100">API Integrations</Link> page for implementation examples.</span>
                                     </p>
                                 </div>
@@ -910,7 +910,7 @@ const Introduction = () => {
                                 <p className="text-gray-800 dark:text-gray-200 text-sm flex items-start gap-2">
                                     <BookOpen className="h-4 w-4 flex-shrink-0 mt-0.5"/>
                                     <span>For detailed error handling strategies and troubleshooting, visit the <Link
-                                        to="/learn-more/status-responses"
+                                        to="/status-responses"
                                         className="underline font-semibold hover:text-[#009ac2] dark:hover:text-[#009ac2]">Status Responses</Link> page.</span>
                                 </p>
                             </div>
@@ -923,7 +923,7 @@ const Introduction = () => {
                             Steps</h2>
 
                         <div className="grid gap-6 md:grid-cols-2">
-                            <Link to="/getting-started/api-integrations"
+                            <Link to="/api-integrations"
                                   className="bg-gradient-to-br from-[#009ac2]/10 to-[#009ac2]/20 dark:from-[#009ac2]/30 dark:to-[#009ac2]/40 border border-[#009ac2]/30 dark:border-[#009ac2]/50 rounded-xl p-6 hover:shadow-md transition-all">
                                 <div className="flex items-start gap-4">
                                     <Code className="h-8 w-8 text-[#009ac2] dark:text-[#009ac2] flex-shrink-0"/>
@@ -944,26 +944,26 @@ const Introduction = () => {
                                 </div>
                             </Link>
 
-                            <Link to="/api-documentation/authentication"
-                                  className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950/30 dark:to-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-xl p-6 hover:shadow-md transition-all">
-                                <div className="flex items-start gap-4">
-                                    <Shield className="h-8 w-8 text-purple-600 dark:text-purple-400 flex-shrink-0"/>
-                                    <div>
-                                        <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                                            Authentication Details
-                                        </h3>
-                                        <p className="text-gray-700 dark:text-gray-300 text-sm mb-3">
-                                            Deep dive into authentication methods, token management, and security best
-                                            practices
-                                        </p>
-                                        <span
-                                            className="text-purple-600 dark:text-purple-400 text-sm font-medium inline-flex items-center gap-1">
-                                            Learn More
-                                            <ArrowRight className="h-4 w-4"/>
-                                        </span>
-                                    </div>
-                                </div>
-                            </Link>
+                            {/*<Link to="/api-documentation/authentication"*/}
+                            {/*      className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950/30 dark:to-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-xl p-6 hover:shadow-md transition-all">*/}
+                            {/*    <div className="flex items-start gap-4">*/}
+                            {/*        <Shield className="h-8 w-8 text-purple-600 dark:text-purple-400 flex-shrink-0"/>*/}
+                            {/*        <div>*/}
+                            {/*            <h3 className="md:text-xl text-lg font-semibold text-gray-900 dark:text-white mb-2">*/}
+                            {/*                Authentication Details*/}
+                            {/*            </h3>*/}
+                            {/*            <p className="text-gray-700 dark:text-gray-300 text-sm mb-3">*/}
+                            {/*                Deep dive into authentication methods, token management, and security best*/}
+                            {/*                practices*/}
+                            {/*            </p>*/}
+                            {/*            <span*/}
+                            {/*                className="text-purple-600 dark:text-purple-400 text-sm font-medium inline-flex items-center gap-1">*/}
+                            {/*                Learn More*/}
+                            {/*                <ArrowRight className="h-4 w-4"/>*/}
+                            {/*            </span>*/}
+                            {/*        </div>*/}
+                            {/*    </div>*/}
+                            {/*</Link>*/}
                         </div>
                     </section>
                 </div>

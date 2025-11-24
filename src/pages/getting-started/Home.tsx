@@ -26,7 +26,7 @@ const Home = () => {
                             <ArrowRight className="h-5 w-5"/>
                         </Link>
                         <Link
-                            to="/authentication"
+                            to="/api-integrations"
                             className="inline-flex items-center gap-2 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 px-6 py-3 rounded-lg font-semibold transition-colors shadow-sm hover:shadow-md"
                         >
                             <Code className="h-5 w-5"/>
@@ -37,8 +37,9 @@ const Home = () => {
 
                 {/* Key Features Grid */}
                 <section className="mb-16">
-                    <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Why Choose
-                        Passpoint?</h2>
+                    <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">
+                        Why Choose Passpoint?
+                    </h2>
                     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                         <div
                             className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
@@ -132,7 +133,7 @@ const Home = () => {
                                 Developer Friendly
                             </h3>
                             <p className="text-gray-600 dark:text-gray-400 text-sm">
-                                RESTful APIs with comprehensive documentation, code examples in multiple languages,
+                                RESTful APIs with comprehensive documentation, code samples,
                                 and sandbox environment for testing.
                             </p>
                         </div>
@@ -318,8 +319,9 @@ const Home = () => {
 
                 {/* Resources */}
                 <section className="mb-16">
-                    <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">Additional
-                        Resources</h2>
+                    <h2 className="md:text-2xl text-xl font-bold text-gray-900 dark:text-white mb-8">
+                        Additional Resources
+                    </h2>
                     <div className="grid gap-6 md:grid-cols-2">
                         <Link
                             to="/introduction"
@@ -368,14 +370,14 @@ const Home = () => {
                         </Link>
 
                         <Link
-                            to="/authentication"
+                            to="/api-integrations"
                             className="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover:border-purple-300 dark:hover:border-purple-700"
                         >
                             <div className="flex items-start gap-4">
                                 <Shield className="h-8 w-8 text-purple-600 dark:text-purple-400 flex-shrink-0"/>
                                 <div>
                                     <h3 className="md:text-lg text-base font-semibold text-gray-900 dark:text-white mb-2">
-                                        Authentication
+                                        API Integration Guide
                                     </h3>
                                     <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">
                                         Secure your API integration with proper authentication methods,

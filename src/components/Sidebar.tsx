@@ -24,7 +24,6 @@ import {
     MapPin,
     CreditCard,
     Shield,
-    Code
 } from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {cn} from "@/lib/utils";
@@ -567,7 +566,7 @@ const Sidebar = ({isOpen, onClose}: SidebarProps) => {
             items: [
                 {icon: Users, label: "Manage User Roles and Permissions", href: "/user-roles"},
                 {icon: BarChart3, label: "Status responses and their meanings", href: "/status-responses"},
-                {icon: Code, label: "Sandbox Playground", href: "/sandbox-playground"},
+                // {icon: Code, label: "Sandbox Playground", href: "/sandbox-playground"},
             ]
         }
     ];

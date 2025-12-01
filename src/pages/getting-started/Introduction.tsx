@@ -171,9 +171,9 @@ const Introduction = () => {
                                         Your <strong>API keys</strong> and <strong>merchant IDs</strong> can be found in
                                         the <strong>Developers section</strong> of your Passpoint dashboard. Access your
                                         credentials securely through the merchant portal at{" "}
-                                        <a href="https://app.mypasspoint.com" target="_blank" rel="noopener noreferrer"
+                                        <a href="https://go.mypasspoint.com" target="_blank" rel="noopener noreferrer"
                                            className="underline font-semibold hover:text-green-600 dark:hover:text-green-300">
-                                            app.mypasspoint.com
+                                            go.mypasspoint.com
                                         </a>
                                     </p>
                                 </div>

@@ -122,14 +122,14 @@ const PayoutMomoGetCurrency = () => {
                                     </tr>
                                     <tr>
                                         <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">x-channel-id</td>
-                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">2</td>
+                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">3</td>
                                         <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Channel
                                             identifier
                                         </td>
                                     </tr>
                                     <tr>
                                         <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">x-channel-code</td>
-                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">passpoint-merchant-user</td>
+                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">legacy-api-user</td>
                                         <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">Channel code
                                             identifier
                                         </td>

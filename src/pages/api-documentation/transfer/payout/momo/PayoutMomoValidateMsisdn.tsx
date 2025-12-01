@@ -73,15 +73,15 @@ const PayoutMomoValidateMsisdn = () => {
                                     <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                                     <tr>
                                         <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">x-merchant-id</td>
-                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">go</td>
+                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">pass your merchant id</td>
                                     </tr>
                                     <tr>
                                         <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">x-channel-id</td>
-                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">2</td>
+                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">3</td>
                                     </tr>
                                     <tr>
                                         <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">x-channel-code</td>
-                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">passpoint-merchant-user</td>
+                                        <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">legacy-api-user</td>
                                     </tr>
                                     </tbody>
                                 </table>

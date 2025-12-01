@@ -16,8 +16,8 @@ const PayoutConvertFunds = () => {
 
     const getConvertFundsCurlExample = () => {
         return `curl --location 'https://dev.mypasspoint.com/paypass/ft-app/convert-funds' \\
---header 'x-channel-id: 2' \\
---header 'x-channel-code: passpoint-merchant-user' \\
+--header 'x-channel-id: 3' \\
+--header 'x-channel-code: legacy-api-user' \\
 --header 'x-merchant-id: your-merchant-id' \\
 --header 'Authorization: Bearer YOUR_TOKEN' \\
 --data '{
@@ -126,11 +126,11 @@ const PayoutConvertFunds = () => {
                                         <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                                         <tr>
                                             <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">x-channel-id</td>
-                                            <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">2</td>
+                                            <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">3</td>
                                         </tr>
                                         <tr>
                                             <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">x-channel-code</td>
-                                            <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">passpoint-merchant-user</td>
+                                            <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">legacy-api-user</td>
                                         </tr>
                                         <tr>
                                             <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">x-merchant-id</td>

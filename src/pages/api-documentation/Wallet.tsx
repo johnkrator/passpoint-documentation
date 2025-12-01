@@ -3,20 +3,20 @@ import CodeBlock from "@/components/CodeBlock.tsx";
 
 const Wallet = () => {
     const getWalletBalanceEndpointCode = () => {
-        return `GET https://payment-sandbox.mypasspoint.com/passpoint-payserv/v1/wallet-app/get-wallet-balance`;
+        return `GET https://dev.mypasspoint.com/paypass/wallet-app/get-wallet-balance`;
     };
 
     const getWalletBalanceHeadersCode = () => {
-        return `x-channel-id: 2
-x-channel-code: passpoint-merchant-user
+        return `x-channel-id: 3
+x-channel-code: legacy-api-user
 x-merchant-id: pass your merchant id
 Authorization: Bearer [your-access-token]`;
     };
 
     const getWalletBalanceCurlCode = () => {
-        return `curl --location 'https://payment-sandbox.mypasspoint.com/passpoint-payserv/v1/wallet-app/get-wallet-balance/all' \\
---header 'x-channel-id: 2' \\
---header 'x-channel-code: passpoint-merchant-user' \\
+        return `curl --location 'https://dev.mypasspoint.com/paypass/wallet-app/get-wallet-balance/all' \\
+--header 'x-channel-id: 3' \\
+--header 'x-channel-code: legacy-api-user' \\
 --header 'x-merchant-id: pass your merchant id'`;
     };
 
@@ -39,20 +39,20 @@ Authorization: Bearer [your-access-token]`;
     };
 
     const getWalletDetailsEndpointCode = () => {
-        return `GET https://payment-sandbox.mypasspoint.com/passpoint-payserv/v1/wallet-app/get-wallet-details`;
+        return `GET https://dev.mypasspoint.com/paypass/wallet-app/get-wallet-details`;
     };
 
     const getWalletDetailsHeadersCode = () => {
-        return `x-channel-id: 2
+        return `x-channel-id: 3
 x-channel-code: passpoint-merchant-user
 x-merchant-id: pass your merchant id
 Authorization: Bearer [your-access-token]`;
     };
 
     const getWalletDetailsCurlCode = () => {
-        return `curl --location 'https://payment-sandbox.mypasspoint.com/passpoint-payserv/v1/wallet-app/get-wallet-details' \\
---header 'x-channel-id: 2' \\
---header 'x-channel-code: passpoint-merchant-user' \\
+        return `curl --location 'https://dev.mypasspoint.com/paypass/wallet-app/get-wallet-details' \\
+--header 'x-channel-id: 3' \\
+--header 'x-channel-code: legacy-api-user' \\
 --header 'x-merchant-id: pass your merchant id'`;
     };
 
@@ -80,12 +80,12 @@ Authorization: Bearer [your-access-token]`;
     };
 
     const getWalletHistoryEndpointCode = () => {
-        return `POST https://payment-sandbox.mypasspoint.com/passpoint-payserv/v1/wallet-app/wallet-history?type=all`;
+        return `POST https://dev.mypasspoint.com/paypass/wallet-app/wallet-history?type=all`;
     };
 
     const getWalletHistoryHeadersCode = () => {
-        return `x-channel-id: 2
-x-channel-code: passpoint-merchant-user
+        return `x-channel-id: 3
+x-channel-code: legacy-api-user
 x-merchant-id: pass your merchant id
 Authorization: Bearer [your-access-token]`;
     };
@@ -101,9 +101,9 @@ Authorization: Bearer [your-access-token]`;
     };
 
     const getWalletHistoryCurlCode = () => {
-        return `curl --location 'https://payment-sandbox.mypasspoint.com/passpoint-payserv/v1/wallet-app/wallet-history?type=all' \\
---header 'x-channel-id: 2' \\
---header 'x-channel-code: passpoint-merchant-user' \\
+        return `curl --location 'https://dev.mypasspoint.com/paypass/wallet-app/wallet-history?type=all' \\
+--header 'x-channel-id: 3' \\
+--header 'x-channel-code: legacy-api-user' \\
 --header 'x-merchant-id: pass your merchant id' \\
 --data '{
     "startDate": "2023-10-15",
@@ -124,12 +124,12 @@ Authorization: Bearer [your-access-token]`;
     };
 
     const getWalletStatementEndpointCode = () => {
-        return `POST https://payment-sandbox.mypasspoint.com/passpoint-payserv/v1/wallet-app/get-wallet-statement`;
+        return `POST https://dev.mypasspoint.com/paypass/wallet-app/get-wallet-statement`;
     };
 
     const getWalletStatementHeadersCode = () => {
-        return `x-channel-id: 2
-x-channel-code: passpoint-merchant-user
+        return `x-channel-id: 3
+x-channel-code: legacy-api-user
 x-merchant-id: pass your merchant id
 Authorization: Bearer [your-access-token]`;
     };
@@ -146,9 +146,9 @@ Authorization: Bearer [your-access-token]`;
     };
 
     const getWalletStatementCurlCode = () => {
-        return `curl --location 'https://payment-sandbox.mypasspoint.com/passpoint-payserv/v1/wallet-app/get-wallet-statement' \\
---header 'x-channel-id: 2' \\
---header 'x-channel-code: passpoint-merchant-user' \\
+        return `curl --location 'https://dev.mypasspoint.com/paypass/wallet-app/get-wallet-statement' \\
+--header 'x-channel-id: 3' \\
+--header 'x-channel-code: legacy-api-user' \\
 --header 'x-merchant-id: pass your merchant id' \\
 --data '{
     "startDate": "2024-04-20",
@@ -215,7 +215,7 @@ Authorization: Bearer [your-access-token]`;
                                     <div className="flex-1 min-w-0 lg:max-w-4xl">
                                         <div className="mb-6">
                                             <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
-                                                <strong>Endpoint:</strong> https://payment-sandbox.mypasspoint.com/passpoint-payserv/v1/wallet-app/get-wallet-balance
+                                                <strong>Endpoint:</strong> https://dev.mypasspoint.com/paypass/wallet-app/get-wallet-balance
                                             </p>
                                             <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
                                                 <strong>Method:</strong> GET
@@ -355,7 +355,7 @@ Authorization: Bearer [your-access-token]`;
                                     <div className="flex-1 min-w-0 lg:max-w-4xl">
                                         <div className="mb-6">
                                             <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
-                                                <strong>Endpoint:</strong> https://payment-sandbox.mypasspoint.com/passpoint-payserv/v1/wallet-app/get-wallet-details
+                                                <strong>Endpoint:</strong> https://dev.mypasspoint.com/paypass/wallet-app/get-wallet-details
                                             </p>
                                             <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
                                                 <strong>Method:</strong> GET
@@ -491,7 +491,7 @@ Authorization: Bearer [your-access-token]`;
                                     <div className="flex-1 min-w-0 lg:max-w-4xl">
                                         <div className="mb-6">
                                             <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
-                                                <strong>Endpoint:</strong> https://payment-sandbox.mypasspoint.com/passpoint-payserv/v1/wallet-app/wallet-history?type=all
+                                                <strong>Endpoint:</strong> https://dev.mypasspoint.com/paypass/wallet-app/wallet-history?type=all
                                             </p>
                                             <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
                                                 <strong>Method:</strong> POST
@@ -548,7 +548,7 @@ Authorization: Bearer [your-access-token]`;
                                     <div className="flex-1 min-w-0 lg:max-w-4xl">
                                         <div className="mb-6">
                                             <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
-                                                <strong>Endpoint:</strong> https://payment-sandbox.mypasspoint.com/passpoint-payserv/v1/wallet-app/get-wallet-statement
+                                                <strong>Endpoint:</strong> https://dev.mypasspoint.com/paypass/wallet-app/get-wallet-statement
                                             </p>
                                             <p className="md:text-lg text-sm text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
                                                 <strong>Method:</strong> POST

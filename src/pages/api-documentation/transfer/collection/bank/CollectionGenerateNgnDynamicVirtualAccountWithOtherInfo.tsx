@@ -16,8 +16,8 @@ const CollectionGenerateNgnDynamicVirtualAccountWithOtherInfo = () => {
 }`;
 
     const getCurlRequest = () => `curl --location 'https://dev.mypasspoint.com/paypass/ft-app/generate-virtual-account?type=dynamic' \\
---header 'x-channel-id: 2' \\
---header 'x-channel-code: passpoint-merchant-user' \\
+--header 'x-channel-id: 3' \\
+--header 'x-channel-code: legacy-api-user' \\
 --header 'x-merchant-id: 4832a689-9cce-4380-e8f1-08dc1b7b0701' \\
 --data-raw '{
     "narration": "payment for services 12",
@@ -119,11 +119,11 @@ const CollectionGenerateNgnDynamicVirtualAccountWithOtherInfo = () => {
                                                     <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                                                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-900/30">
                                                         <td className="px-4 py-3 font-mono text-gray-700 dark:text-gray-300">x-channel-id</td>
-                                                        <td className="px-4 py-3 text-gray-600 dark:text-gray-400">2</td>
+                                                        <td className="px-4 py-3 text-gray-600 dark:text-gray-400">3</td>
                                                     </tr>
                                                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-900/30">
                                                         <td className="px-4 py-3 font-mono text-gray-700 dark:text-gray-300">x-channel-code</td>
-                                                        <td className="px-4 py-3 text-gray-600 dark:text-gray-400">passpoint-merchant-user</td>
+                                                        <td className="px-4 py-3 text-gray-600 dark:text-gray-400">legacy-api-user</td>
                                                     </tr>
                                                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-900/30">
                                                         <td className="px-4 py-3 font-mono text-gray-700 dark:text-gray-300">x-merchant-id</td>

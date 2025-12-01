@@ -4,8 +4,8 @@ import CodeBlock from "@/components/CodeBlock.tsx";
 const CollectionRequestPaymentForeignWithBankPreselect = () => {
     const getEndpoint = () => `POST https://dev.mypasspoint.com/paypass/foreign-ft-app/request-payment`;
 
-    const getHeaders = () => `x-channel-id: 2
-x-channel-code: passpoint-merchant-user
+    const getHeaders = () => `x-channel-id: 3
+x-channel-code: legacy-api-user
 x-merchant-id: {your_merchant_id}`;
 
     const getRequestBody = () => `{
@@ -23,8 +23,8 @@ x-merchant-id: {your_merchant_id}`;
 }`;
 
     const getCurlRequest = () => `curl --location 'https://dev.mypasspoint.com/paypass/foreign-ft-app/request-payment' \\
---header 'x-channel-id: 2' \\
---header 'x-channel-code: passpoint-merchant-user' \\
+--header 'x-channel-id: 3' \\
+--header 'x-channel-code: legacy-api-user' \\
 --header 'x-merchant-id: pass your merchant id' \\
 --header 'Authorization: Bearer {your_token}' \\
 --header 'Content-Type: application/json' \\

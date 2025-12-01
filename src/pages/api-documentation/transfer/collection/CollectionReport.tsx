@@ -14,8 +14,8 @@ const CollectionReport = () => {
 }`;
 
     const getTransactionHistoryAllPaginatedCurlRequest = () => `curl --location 'https://dev.mypasspoint.com/paypass/ft-app/transaction-history?type=collection' \\
---header 'x-channel-id: 2' \\
---header 'x-channel-code: passpoint-merchant-user' \\
+--header 'x-channel-id: 3' \\
+--header 'x-channel-code: legacy-api-user' \\
 --header 'x-merchant-id: pass your merchant id' \\
 --data '{
     "startDate": "2023-10-15",
@@ -92,8 +92,8 @@ const CollectionReport = () => {
 }`;
 
     const getTransactionHistoryNGNPaginatedCurlRequest = () => `curl --location 'https://dev.mypasspoint.com/paypass/ft-app/transaction-history?type=collection' \\
---header 'x-channel-id: 2' \\
---header 'x-channel-code: passpoint-merchant-user' \\
+--header 'x-channel-id: 3' \\
+--header 'x-channel-code: legacy-api-user' \\
 --header 'x-merchant-id: pass your merchant id' \\
 --data '{
     "startDate": "2023-10-15",
@@ -182,8 +182,8 @@ const CollectionReport = () => {
 }`;
 
     const getTransactionHistoryAllNotPaginatedCurlRequest = () => `curl --location 'https://dev.mypasspoint.com/paypass/ft-app/transaction-history?type=collection' \\
---header 'x-channel-id: 2' \\
---header 'x-channel-code: passpoint-merchant-user' \\
+--header 'x-channel-id: 3' \\
+--header 'x-channel-code: legacy-api-user' \\
 --header 'x-merchant-id: pass your merchant id' \\
 --data '{
     "startDate": "2023-10-15",
@@ -304,8 +304,8 @@ const CollectionReport = () => {
 }`;
 
     const getVirtualAccountsPaginatedCurlRequest = () => `curl --location 'https://dev.mypasspoint.com/paypass/ft-app/acct-list' \\
---header 'x-channel-id: 2' \\
---header 'x-channel-code: passpoint-merchant-user' \\
+--header 'x-channel-id: 3' \\
+--header 'x-channel-code: legacy-api-user' \\
 --header 'x-merchant-id: pass your merchant id' \\
 --data '{
     "startDate": "2023-10-15",
@@ -325,8 +325,8 @@ const CollectionReport = () => {
 }`;
 
     const getVirtualAccountsNotPaginatedCurlRequest = () => `curl --location 'https://dev.mypasspoint.com/paypass/ft-app/acct-list' \\
---header 'x-channel-id: 2' \\
---header 'x-channel-code: passpoint-merchant-user' \\
+--header 'x-channel-id: 3' \\
+--header 'x-channel-code: legacy-api-user' \\
 --header 'x-merchant-id: pass your merchant id' \\
 --data '{
     "startDate": "2023-10-15",
@@ -374,8 +374,8 @@ const CollectionReport = () => {
                                         <p className="text-sm text-blue-900 dark:text-blue-300 font-semibold mb-2">Header
                                             Requirements:</p>
                                         <ul className="text-sm text-blue-800 dark:text-blue-400 space-y-1">
-                                            <li>• x-channel-id = 2</li>
-                                            <li>• x-channel-code = passpoint-infra-user</li>
+                                            <li>• x-channel-id = 3</li>
+                                            <li>• x-channel-code = legacy-api-user</li>
                                             <li>• x-merchant-id = your merchant id</li>
                                         </ul>
                                     </div>
@@ -415,11 +415,11 @@ const CollectionReport = () => {
                                                     <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                                                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-900/30">
                                                         <td className="px-4 py-3 font-mono text-gray-700 dark:text-gray-300">x-channel-id</td>
-                                                        <td className="px-4 py-3 text-gray-600 dark:text-gray-400">2</td>
+                                                        <td className="px-4 py-3 text-gray-600 dark:text-gray-400">3</td>
                                                     </tr>
                                                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-900/30">
                                                         <td className="px-4 py-3 font-mono text-gray-700 dark:text-gray-300">x-channel-code</td>
-                                                        <td className="px-4 py-3 text-gray-600 dark:text-gray-400">passpoint-merchant-user</td>
+                                                        <td className="px-4 py-3 text-gray-600 dark:text-gray-400">legacy-api-user</td>
                                                     </tr>
                                                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-900/30">
                                                         <td className="px-4 py-3 font-mono text-gray-700 dark:text-gray-300">x-merchant-id</td>
@@ -515,8 +515,8 @@ const CollectionReport = () => {
                                         <p className="text-sm text-blue-900 dark:text-blue-300 font-semibold mb-2">Header
                                             Requirements:</p>
                                         <ul className="text-sm text-blue-800 dark:text-blue-400 space-y-1">
-                                            <li>• x-channel-id = 2</li>
-                                            <li>• x-channel-code = passpoint-infra-user</li>
+                                            <li>• x-channel-id = 3</li>
+                                            <li>• x-channel-code = legacy-api-user</li>
                                             <li>• x-merchant-id = your merchant id</li>
                                         </ul>
                                     </div>
@@ -556,11 +556,11 @@ const CollectionReport = () => {
                                                     <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                                                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-900/30">
                                                         <td className="px-4 py-3 font-mono text-gray-700 dark:text-gray-300">x-channel-id</td>
-                                                        <td className="px-4 py-3 text-gray-600 dark:text-gray-400">2</td>
+                                                        <td className="px-4 py-3 text-gray-600 dark:text-gray-400">3</td>
                                                     </tr>
                                                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-900/30">
                                                         <td className="px-4 py-3 font-mono text-gray-700 dark:text-gray-300">x-channel-code</td>
-                                                        <td className="px-4 py-3 text-gray-600 dark:text-gray-400">passpoint-merchant-user</td>
+                                                        <td className="px-4 py-3 text-gray-600 dark:text-gray-400">legacy-api-user</td>
                                                     </tr>
                                                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-900/30">
                                                         <td className="px-4 py-3 font-mono text-gray-700 dark:text-gray-300">x-merchant-id</td>
@@ -656,8 +656,8 @@ const CollectionReport = () => {
                                         <p className="text-sm text-blue-900 dark:text-blue-300 font-semibold mb-2">Header
                                             Requirements:</p>
                                         <ul className="text-sm text-blue-800 dark:text-blue-400 space-y-1">
-                                            <li>• x-channel-id = 2</li>
-                                            <li>• x-channel-code = passpoint-infra-user</li>
+                                            <li>• x-channel-id = 3</li>
+                                            <li>• x-channel-code = legacy-api-user</li>
                                             <li>• x-merchant-id = your merchant id</li>
                                         </ul>
                                     </div>
@@ -697,11 +697,11 @@ const CollectionReport = () => {
                                                     <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                                                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-900/30">
                                                         <td className="px-4 py-3 font-mono text-gray-700 dark:text-gray-300">x-channel-id</td>
-                                                        <td className="px-4 py-3 text-gray-600 dark:text-gray-400">2</td>
+                                                        <td className="px-4 py-3 text-gray-600 dark:text-gray-400">3</td>
                                                     </tr>
                                                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-900/30">
                                                         <td className="px-4 py-3 font-mono text-gray-700 dark:text-gray-300">x-channel-code</td>
-                                                        <td className="px-4 py-3 text-gray-600 dark:text-gray-400">passpoint-merchant-user</td>
+                                                        <td className="px-4 py-3 text-gray-600 dark:text-gray-400">legacy-api-user</td>
                                                     </tr>
                                                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-900/30">
                                                         <td className="px-4 py-3 font-mono text-gray-700 dark:text-gray-300">x-merchant-id</td>
@@ -826,11 +826,11 @@ const CollectionReport = () => {
                                                     <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                                                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-900/30">
                                                         <td className="px-4 py-3 font-mono text-gray-700 dark:text-gray-300">x-channel-id</td>
-                                                        <td className="px-4 py-3 text-gray-600 dark:text-gray-400">2</td>
+                                                        <td className="px-4 py-3 text-gray-600 dark:text-gray-400">3</td>
                                                     </tr>
                                                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-900/30">
                                                         <td className="px-4 py-3 font-mono text-gray-700 dark:text-gray-300">x-channel-code</td>
-                                                        <td className="px-4 py-3 text-gray-600 dark:text-gray-400">passpoint-merchant-user</td>
+                                                        <td className="px-4 py-3 text-gray-600 dark:text-gray-400">legacy-api-user</td>
                                                     </tr>
                                                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-900/30">
                                                         <td className="px-4 py-3 font-mono text-gray-700 dark:text-gray-300">x-merchant-id</td>
@@ -934,11 +934,11 @@ const CollectionReport = () => {
                                                     <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                                                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-900/30">
                                                         <td className="px-4 py-3 font-mono text-gray-700 dark:text-gray-300">x-channel-id</td>
-                                                        <td className="px-4 py-3 text-gray-600 dark:text-gray-400">2</td>
+                                                        <td className="px-4 py-3 text-gray-600 dark:text-gray-400">3</td>
                                                     </tr>
                                                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-900/30">
                                                         <td className="px-4 py-3 font-mono text-gray-700 dark:text-gray-300">x-channel-code</td>
-                                                        <td className="px-4 py-3 text-gray-600 dark:text-gray-400">passpoint-merchant-user</td>
+                                                        <td className="px-4 py-3 text-gray-600 dark:text-gray-400">legacy-api-user</td>
                                                     </tr>
                                                     <tr className="hover:bg-gray-50 dark:hover:bg-gray-900/30">
                                                         <td className="px-4 py-3 font-mono text-gray-700 dark:text-gray-300">x-merchant-id</td>

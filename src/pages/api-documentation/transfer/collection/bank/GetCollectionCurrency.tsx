@@ -6,8 +6,8 @@ const GetCollectionCurrency = () => {
 
     const getCurlRequest = () => `curl --location 'https://dev.mypasspoint.com/paypass/ft-app/currency-list/bank?type=collection' \\
 --header 'x-merchant-id: pass your merchant id' \\
---header 'x-channel-id: 2' \\
---header 'x-channel-code: passpoint-merchant-user'`;
+--header 'x-channel-id: 3' \\
+--header 'x-channel-code: legacy-api-user'`;
 
     const getResponse = () => `{
   "responseCode": "00",

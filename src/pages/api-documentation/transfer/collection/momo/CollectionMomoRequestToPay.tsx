@@ -23,8 +23,8 @@ const CollectionMomoRequestToPay = () => {
 
     const getCurlCode = () => {
         return `curl --location 'https://dev.mypasspoint.com/paypass/momo-app/request-payment' \\
---header 'x-channel-id: 2' \\
---header 'x-channel-code: passpoint-merchant-user' \\
+--header 'x-channel-id: 3' \\
+--header 'x-channel-code: legacy-api-user' \\
 --header 'x-merchant-id: YOUR_MERCHANT_ID' \\
 --header 'Content-Type: application/json' \\
 --user 'username:password' \\
@@ -50,8 +50,8 @@ const CollectionMomoRequestToPay = () => {
     };
 
     const getHeadersCode = () => {
-        return `x-channel-id: 2
-x-channel-code: passpoint-merchant-user
+        return `x-channel-id: 3
+x-channel-code: legacy-api-user
 x-merchant-id: YOUR_MERCHANT_ID
 Content-Type: application/json`;
     };

@@ -12,6 +12,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Link, useLocation } from 'react-router-dom';
+import Logo from "@/assets/passpoint-logo.webp";
 
 interface AdminSidebarProps {
     isOpen: boolean;
@@ -61,10 +62,7 @@ const AdminSidebar = ({ isOpen, onClose }: AdminSidebarProps) => {
                 {/* Header */}
                 <div className='h-16 border-b border-border flex items-center justify-between px-6 flex-shrink-0'>
                     <Link to='/admin' className='flex items-center gap-2'>
-                        <div className='w-8 h-8 bg-brand rounded-md flex items-center justify-center'>
-                            <span className='text-white font-bold text-sm'>PP</span>
-                        </div>
-                        <span className='font-semibold text-foreground'>Admin Panel</span>
+                        <img src={Logo} className="h-8 sm:h-10 w-auto object-contain" alt="Passpoint Logo"/>
                     </Link>
                     <Button
                         variant='ghost'

@@ -149,6 +149,19 @@ import RealtimeAuthorizationDecisionMaker from "@/pages/virtual-card-v2/Realtime
 // Card Acquiring Pages
 import TransactionDynamics from "@/pages/guides/TransactionDynamics.tsx";
 
+
+// Admin Pages
+import AdminLayout from "@/admin/layouts/AdminLayout.tsx";
+import {
+    Dashboard,
+    Sections,
+    Pages,
+    Endpoints,
+    Users,
+    Settings,
+    Login
+} from "@/admin/pages";
+
 const Routes = () => {
     return createBrowserRouter([
         {
@@ -321,6 +334,21 @@ const Routes = () => {
                 {path: "status-responses", element: <StatusResponses/>},
                 {path: "sandbox-playground", element: <SandboxPlayground/>},
                 // Catch-all route for 404 errors
+                
+        // Admin Routes
+        {
+            path: "/admin",
+            element: <AdminLayout />,
+            children: [
+                { index: true, element: <Dashboard /> },
+                { path: "sections", element: <Sections /> },
+                { path: "pages", element: <Pages /> },
+                { path: "endpoints", element: <Endpoints /> },
+                { path: "users", element: <Users /> },
+                { path: "settings", element: <Settings /> },
+            ]
+        },
+        { path: "/admin/login", element: <Login /> },
                 {path: "*", element: <RouterErrorBoundary/>}
             ]
         }

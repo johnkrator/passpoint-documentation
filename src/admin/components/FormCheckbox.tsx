@@ -7,7 +7,12 @@ interface FormCheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> 
 }
 
 const FormCheckbox = React.forwardRef<HTMLInputElement, FormCheckboxProps>(
-    ({ label, helperText, className, ...props }, ref) => {
+    ({ label, helperText, className, style, ...props }, ref) => {
+        const mergedStyle = {
+            ...(style as React.CSSProperties),
+            accentColor: '#009ac2',
+        } as React.CSSProperties;
+
         return (
             <div className='flex items-start gap-3'>
                 <input
@@ -20,6 +25,7 @@ const FormCheckbox = React.forwardRef<HTMLInputElement, FormCheckboxProps>(
                         'checked:bg-brand checked:border-brand',
                         className
                     )}
+                    style={mergedStyle}
                     {...props}
                 />
                 <div className='flex-1'>

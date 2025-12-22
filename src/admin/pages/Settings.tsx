@@ -64,7 +64,12 @@ const Settings = () => {
                                     Allow users to search documentation
                                 </p>
                             </div>
-                            <input type='checkbox' defaultChecked className='h-4 w-4' />
+                            <input
+                                type='checkbox'
+                                defaultChecked
+                                className='h-4 w-4'
+                                style={{ accentColor: '#009ac2' }}
+                            />
                         </div>
                         <Button variant='outline' className='w-full'>
                             Rebuild Search Index

@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Plus, Users as UsersIcon } from 'lucide-react';
 import DataTable, { type Column } from '@/admin/components/DataTable';
+import UserFormModal from '@/admin/components/UserFormModal';
+import DeleteConfirmModal from '@/admin/components/DeleteConfirmModal';
 import { type User } from '@/admin/types';
 
 const Users = () => {
@@ -23,6 +25,11 @@ const Users = () => {
             updatedAt: new Date('2024-02-20'),
         },
     ]);
+
+    const [isFormModalOpen, setIsFormModalOpen] = useState(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [selectedUser, setSelectedUser] = useState<User | null>(null);
+    const [modalMode, setModalMode] = useState<'create' | 'edit'>('create');
 
     const columns: Column<User>[] = [
         { header: 'Email', accessor: 'email' },
@@ -50,13 +57,48 @@ const Users = () => {
         },
     ];
 
-    const handleEdit = (user: User) => {
-        console.log('Edit user:', user);
+    const handleAdd = () => {
+        setModalMode('create');
+        setSelectedUser(null);
+        setIsFormModalOpen(true);
     };
 
-    const handleDelete = (user: User) => {
-        if (confirm(`Are you sure you want to delete user "${user.email}"?`)) {
-            setUsers(users.filter((u) => u._id !== user._id));
+    const handleEdit = (user: User) => {
+        setModalMode('edit');
+        setSelectedUser(user);
+        setIsFormModalOpen(true);
+    };
+
+    const handleDeleteClick = (user: User) => {
+        setSelectedUser(user);
+        setIsDeleteModalOpen(true);
+    };
+
+    const handleFormSubmit = (data: Partial<User> & { password?: string }) => {
+        if (modalMode === 'create') {
+            const newUser: User = {
+                _id: String(Date.now()),
+                email: data.email!,
+                role: data.role!,
+                isActive: data.isActive!,
+                createdAt: new Date(),
+                updatedAt: new Date(),
+            };
+            setUsers([...users, newUser]);
+        } else if (selectedUser) {
+            setUsers(users.map(u => 
+                u._id === selectedUser._id 
+                    ? { ...u, ...data, updatedAt: new Date() }
+                    : u
+            ));
+        }
+    };
+
+    const handleDeleteConfirm = () => {
+        if (selectedUser) {
+            setUsers(users.filter((u) => u._id !== selectedUser._id));
+            setIsDeleteModalOpen(false);
+            setSelectedUser(null);
         }
     };
 
@@ -72,7 +114,7 @@ const Users = () => {
                         Manage admin users and permissions
                     </p>
                 </div>
-                <Button className='gap-2'>
+                <Button className='gap-2' onClick={handleAdd}>
                     <Plus className='h-4 w-4' />
                     Add User
                 </Button>
@@ -82,7 +124,23 @@ const Users = () => {
                 columns={columns}
                 data={users}
                 onEdit={handleEdit}
-                onDelete={handleDelete}
+                onDelete={handleDeleteClick}
+            />
+
+            <UserFormModal
+                isOpen={isFormModalOpen}
+                onClose={() => setIsFormModalOpen(false)}
+                onSubmit={handleFormSubmit}
+                user={selectedUser}
+                mode={modalMode}
+            />
+
+            <DeleteConfirmModal
+                isOpen={isDeleteModalOpen}
+                onClose={() => setIsDeleteModalOpen(false)}
+                onConfirm={handleDeleteConfirm}
+                title='Delete User'
+                message={`Are you sure you want to delete user "${selectedUser?.email}"?`}
             />
         </div>
     );

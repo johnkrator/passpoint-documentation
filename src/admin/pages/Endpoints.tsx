@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Plus, Code } from 'lucide-react';
 import DataTable, { type Column } from '@/admin/components/DataTable';
+import EndpointFormModal from '@/admin/components/EndpointFormModal';
+import DeleteConfirmModal from '@/admin/components/DeleteConfirmModal';
 import { type ApiEndpoint } from '@/admin/types';
 
 const Endpoints = () => {
@@ -22,6 +24,11 @@ const Endpoints = () => {
             updatedAt: new Date('2024-01-15'),
         },
     ]);
+
+    const [isFormModalOpen, setIsFormModalOpen] = useState(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [selectedEndpoint, setSelectedEndpoint] = useState<ApiEndpoint | null>(null);
+    const [modalMode, setModalMode] = useState<'create' | 'edit'>('create');
 
     const columns: Column<ApiEndpoint>[] = [
         { header: 'Title', accessor: 'title' },
@@ -57,18 +64,54 @@ const Endpoints = () => {
         },
     ];
 
-    const handleEdit = (endpoint: ApiEndpoint) => {
-        console.log('Edit endpoint:', endpoint);
+    const handleAdd = () => {
+        setModalMode('create');
+        setSelectedEndpoint(null);
+        setIsFormModalOpen(true);
     };
 
-    const handleDelete = (endpoint: ApiEndpoint) => {
-        if (confirm(`Are you sure you want to delete "${endpoint.title}"?`)) {
-            setEndpoints(endpoints.filter((e) => e._id !== endpoint._id));
-        }
+    const handleEdit = (endpoint: ApiEndpoint) => {
+        setModalMode('edit');
+        setSelectedEndpoint(endpoint);
+        setIsFormModalOpen(true);
+    };
+
+    const handleDeleteClick = (endpoint: ApiEndpoint) => {
+        setSelectedEndpoint(endpoint);
+        setIsDeleteModalOpen(true);
     };
 
     const handleView = (endpoint: ApiEndpoint) => {
         console.log('View endpoint:', endpoint);
+    };
+
+    const handleFormSubmit = (data: Partial<ApiEndpoint>) => {
+        if (modalMode === 'create') {
+            const newEndpoint: ApiEndpoint = {
+                _id: String(Date.now()),
+                ...data as any,
+                headers: [],
+                parameters: [],
+                codeSamples: [],
+                createdAt: new Date(),
+                updatedAt: new Date(),
+            };
+            setEndpoints([...endpoints, newEndpoint]);
+        } else if (selectedEndpoint) {
+            setEndpoints(endpoints.map(e => 
+                e._id === selectedEndpoint._id 
+                    ? { ...e, ...data, updatedAt: new Date() }
+                    : e
+            ));
+        }
+    };
+
+    const handleDeleteConfirm = () => {
+        if (selectedEndpoint) {
+            setEndpoints(endpoints.filter((e) => e._id !== selectedEndpoint._id));
+            setIsDeleteModalOpen(false);
+            setSelectedEndpoint(null);
+        }
     };
 
     return (
@@ -83,7 +126,7 @@ const Endpoints = () => {
                         Manage API endpoint documentation
                     </p>
                 </div>
-                <Button className='gap-2'>
+                <Button className='gap-2' onClick={handleAdd}>
                     <Plus className='h-4 w-4' />
                     Add Endpoint
                 </Button>
@@ -93,8 +136,24 @@ const Endpoints = () => {
                 columns={columns}
                 data={endpoints}
                 onEdit={handleEdit}
-                onDelete={handleDelete}
+                onDelete={handleDeleteClick}
                 onView={handleView}
+            />
+
+            <EndpointFormModal
+                isOpen={isFormModalOpen}
+                onClose={() => setIsFormModalOpen(false)}
+                onSubmit={handleFormSubmit}
+                endpoint={selectedEndpoint}
+                mode={modalMode}
+            />
+
+            <DeleteConfirmModal
+                isOpen={isDeleteModalOpen}
+                onClose={() => setIsDeleteModalOpen(false)}
+                onConfirm={handleDeleteConfirm}
+                title='Delete Endpoint'
+                message={`Are you sure you want to delete "${selectedEndpoint?.title}"?`}
             />
         </div>
     );

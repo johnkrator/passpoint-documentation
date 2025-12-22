@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Plus, FileText } from 'lucide-react';
 import DataTable, { type Column } from '@/admin/components/DataTable';
+import PageFormModal from '@/admin/components/PageFormModal';
+import DeleteConfirmModal from '@/admin/components/DeleteConfirmModal';
 import { type Page } from '@/admin/types';
 
 const Pages = () => {
@@ -21,6 +23,11 @@ const Pages = () => {
             updatedAt: new Date('2024-01-12'),
         },
     ]);
+
+    const [isFormModalOpen, setIsFormModalOpen] = useState(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [selectedPage, setSelectedPage] = useState<Page | null>(null);
+    const [modalMode, setModalMode] = useState<'create' | 'edit'>('create');
 
     const columns: Column<Page>[] = [
         { header: 'Title', accessor: 'title' },
@@ -44,18 +51,52 @@ const Pages = () => {
         },
     ];
 
-    const handleEdit = (page: Page) => {
-        console.log('Edit page:', page);
+    const handleAdd = () => {
+        setModalMode('create');
+        setSelectedPage(null);
+        setIsFormModalOpen(true);
     };
 
-    const handleDelete = (page: Page) => {
-        if (confirm(`Are you sure you want to delete "${page.title}"?`)) {
-            setPages(pages.filter((p) => p._id !== page._id));
-        }
+    const handleEdit = (page: Page) => {
+        setModalMode('edit');
+        setSelectedPage(page);
+        setIsFormModalOpen(true);
+    };
+
+    const handleDeleteClick = (page: Page) => {
+        setSelectedPage(page);
+        setIsDeleteModalOpen(true);
     };
 
     const handleView = (page: Page) => {
         console.log('View page:', page);
+    };
+
+    const handleFormSubmit = (data: Partial<Page>) => {
+        if (modalMode === 'create') {
+            const newPage: Page = {
+                _id: String(Date.now()),
+                ...data as any,
+                content: [],
+                createdAt: new Date(),
+                updatedAt: new Date(),
+            };
+            setPages([...pages, newPage]);
+        } else if (selectedPage) {
+            setPages(pages.map(p => 
+                p._id === selectedPage._id 
+                    ? { ...p, ...data, updatedAt: new Date() }
+                    : p
+            ));
+        }
+    };
+
+    const handleDeleteConfirm = () => {
+        if (selectedPage) {
+            setPages(pages.filter((p) => p._id !== selectedPage._id));
+            setIsDeleteModalOpen(false);
+            setSelectedPage(null);
+        }
     };
 
     return (
@@ -70,7 +111,7 @@ const Pages = () => {
                         Manage documentation pages and content
                     </p>
                 </div>
-                <Button className='gap-2'>
+                <Button className='gap-2' onClick={handleAdd}>
                     <Plus className='h-4 w-4' />
                     Add Page
                 </Button>
@@ -80,8 +121,24 @@ const Pages = () => {
                 columns={columns}
                 data={pages}
                 onEdit={handleEdit}
-                onDelete={handleDelete}
+                onDelete={handleDeleteClick}
                 onView={handleView}
+            />
+
+            <PageFormModal
+                isOpen={isFormModalOpen}
+                onClose={() => setIsFormModalOpen(false)}
+                onSubmit={handleFormSubmit}
+                page={selectedPage}
+                mode={modalMode}
+            />
+
+            <DeleteConfirmModal
+                isOpen={isDeleteModalOpen}
+                onClose={() => setIsDeleteModalOpen(false)}
+                onConfirm={handleDeleteConfirm}
+                title='Delete Page'
+                message={`Are you sure you want to delete "${selectedPage?.title}"?`}
             />
         </div>
     );

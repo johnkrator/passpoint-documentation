@@ -177,6 +177,7 @@ const Routes = () => {
             errorElement: <RouterErrorBoundary/>,
             children: [
                 {path: "", element: <Home/>},
+        
                 {path: "api-rate-limits", element: <ApiRateLimits/>},
                 {path: "quick-guides", element: <QuickGuides/>},
                 {path: "transaction-dynamics", element: <TransactionDynamics/>},
@@ -335,7 +336,10 @@ const Routes = () => {
                 {path: "sandbox-playground", element: <SandboxPlayground/>},
                 // Catch-all route for 404 errors
                 
-        // Admin Routes
+        
+                {path: "*", element: <RouterErrorBoundary/>}
+            ]
+        },
         {
             path: "/admin",
             element: <AdminLayout />,
@@ -348,9 +352,9 @@ const Routes = () => {
                 { path: "settings", element: <Settings /> },
             ]
         },
-        { path: "/admin/login", element: <Login /> },
-                {path: "*", element: <RouterErrorBoundary/>}
-            ]
+        {
+            path: "/admin/login",
+            element: <Login />
         }
     ]);
 };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Plus, Users as UsersIcon } from 'lucide-react';
 import DataTable, { type Column } from '@/admin/components/DataTable';

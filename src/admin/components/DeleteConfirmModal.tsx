@@ -1,4 +1,3 @@
-import React from 'react';
 import Modal from './Modal';
 import { Button } from '@/components/ui/button';
 import { AlertTriangle } from 'lucide-react';

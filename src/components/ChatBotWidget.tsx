@@ -1,20 +1,31 @@
-import React, { useState, useEffect, useRef } from "react";
-import { MessageCircle, X, Send } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
+import { MessageCircle, X, Send, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
-interface Message {
-    id: string;
-    text: string;
-    sender: "user" | "bot";
-    timestamp: Date;
-}
+import { useChat, type Message } from "@/contexts/ChatContext";
+import { aiStreamingService } from "@/services/aiStreamingService";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const ChatBotWidget: React.FC = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [messages, setMessages] = useState<Message[]>([]);
+    // Chat context
+    const {
+        isOpen,
+        messages,
+        isTyping,
+        error,
+        setIsOpen,
+        addMessage,
+        updateStreamingMessage,
+        finalizeStreamingMessage,
+        setIsTyping,
+        setError,
+    } = useChat();
+
+    // Local state for input
     const [inputValue, setInputValue] = useState("");
-    const [isTyping, setIsTyping] = useState(false);
+
+    // Refs
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -49,67 +60,83 @@ const ChatBotWidget: React.FC = () => {
         return () => {
             document.removeEventListener("keydown", handleEscape);
         };
-    }, [isOpen]);
+    }, [isOpen, setIsOpen]);
 
-    // Add welcome message on first open
+    // Clean up streaming on unmount
     useEffect(() => {
-        if (isOpen && messages.length === 0) {
-            const welcomeMessage: Message = {
-                id: "bot-" + Date.now(),
-                text: "Hello! I'm your documentation assistant. How can I help you today?",
-                sender: "bot",
-                timestamp: new Date()
-            };
-            setMessages([welcomeMessage]);
-        }
-    }, [isOpen, messages.length]);
+        return () => {
+            if (aiStreamingService.isStreaming()) {
+                aiStreamingService.cancel();
+            }
+        };
+    }, []);
 
     /**
-     * Placeholder function for bot response
-     * TODO: integrate actual LLM endpoint here
+     * Handle sending a message with SSE streaming response
      */
-    const handleBotResponse = (): string => {
-        // Simple placeholder logic - can be replaced with API call
-        const responses = [
-            "That's a great question! Let me help you with that.",
-            "I understand what you're asking. Here's what I can tell you:",
-            "Based on the documentation, here's the answer:",
-            "Let me find that information for you.",
-            "That's covered in our API documentation. Would you like more details?"
-        ];
-
-        // Return a random response for demo purposes
-        return responses[Math.floor(Math.random() * responses.length)] + " (This is a placeholder response)";
-    };
-
     const handleSendMessage = async () => {
         if (!inputValue.trim() || isTyping) return;
 
-        const userMessage: Message = {
-            id: "user-" + Date.now(),
-            text: inputValue.trim(),
-            sender: "user",
-            timestamp: new Date()
-        };
+        const question = inputValue.trim();
 
         // Add user message
-        setMessages(prev => [...prev, userMessage]);
+        addMessage({
+            text: question,
+            sender: "user",
+        });
+
+        // Clear input and set typing indicator
         setInputValue("");
         setIsTyping(true);
+        setError(null);
 
-        // Simulate bot thinking/typing delay
-        setTimeout(() => {
-            const botResponse = handleBotResponse();
-            const botMessage: Message = {
-                id: "bot-" + Date.now(),
-                text: botResponse,
-                sender: "bot",
-                timestamp: new Date()
-            };
+        // Create initial bot message for streaming
+        const botMessage = addMessage({
+            text: "",
+            sender: "bot",
+            isStreaming: true,
+        });
 
-            setMessages(prev => [...prev, botMessage]);
+        // Stream the AI response
+        try {
+            await aiStreamingService.streamQuestion(question, {
+                onStart: () => {
+                    setIsTyping(true);
+                },
+
+                onChunk: (_chunk: string, fullText: string) => {
+                    updateStreamingMessage(botMessage.id, fullText);
+                },
+
+                onComplete: (fullText: string) => {
+                    updateStreamingMessage(botMessage.id, fullText);
+                    finalizeStreamingMessage(botMessage.id);
+                },
+
+                onError: (err: Error) => {
+                    setError(err.message || "Failed to get response from AI");
+                    finalizeStreamingMessage(botMessage.id);
+
+                    // Update message with error
+                    updateStreamingMessage(
+                        botMessage.id,
+                        "I apologize, but I encountered an error processing your request. Please try again."
+                    );
+                },
+            });
+        } catch (err) {
+            const errorMessage =
+                err instanceof Error ? err.message : "An unknown error occurred";
+            setError(errorMessage);
             setIsTyping(false);
-        }, 1000 + Math.random() * 1000); // Random delay between 1-2 seconds
+
+            // Update message with error
+            updateStreamingMessage(
+                botMessage.id,
+                "I apologize, but I encountered an error. Please try again."
+            );
+            finalizeStreamingMessage(botMessage.id);
+        }
     };
 
     const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -171,10 +198,10 @@ const ChatBotWidget: React.FC = () => {
                                 </div>
                                 <div>
                                     <h2 id="chatbot-title" className="text-base font-semibold text-white">
-                                        Documentation Assistant
+                                        AI Documentation Assistant
                                     </h2>
                                     <p className="text-xs text-white/80">
-                                        Always here to help
+                                        Powered by Gemini
                                     </p>
                                 </div>
                             </div>
@@ -191,7 +218,7 @@ const ChatBotWidget: React.FC = () => {
 
                         {/* Messages Area */}
                         <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50 dark:bg-gray-900">
-                            {messages.map((message) => (
+                            {messages.map((message: Message) => (
                                 <div
                                     key={message.id}
                                     className={cn(
@@ -207,9 +234,55 @@ const ChatBotWidget: React.FC = () => {
                                                 : "bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700"
                                         )}
                                     >
-                                        <p className="text-sm whitespace-pre-wrap break-words">
-                                            {message.text}
-                                        </p>
+                                        {message.sender === "bot" ? (
+                                            <div className="text-sm prose prose-sm dark:prose-invert max-w-none">
+                                                <ReactMarkdown
+                                                    remarkPlugins={[remarkGfm]}
+                                                    components={{
+                                                        // Style headings
+                                                        h1: ({ ...props }) => <h1 className="text-lg font-bold mt-4 mb-2" {...props} />,
+                                                        h2: ({ ...props }) => <h2 className="text-base font-bold mt-3 mb-2" {...props} />,
+                                                        h3: ({ ...props }) => <h3 className="text-sm font-bold mt-2 mb-1" {...props} />,
+                                                        // Style lists
+                                                        ul: ({ ...props }) => <ul className="list-disc ml-4 my-2 space-y-1" {...props} />,
+                                                        ol: ({ ...props }) => <ol className="list-decimal ml-4 my-2 space-y-1" {...props} />,
+                                                        li: ({ ...props }) => <li className="text-sm" {...props} />,
+                                                        // Style code
+                                                        code: ({ inline, ...props }: any) =>
+                                                            inline ? (
+                                                                <code className="bg-gray-100 dark:bg-gray-700 px-1 py-0.5 rounded text-xs font-mono" {...props} />
+                                                            ) : (
+                                                                <code className="block bg-gray-100 dark:bg-gray-700 p-2 rounded text-xs font-mono overflow-x-auto my-2" {...props} />
+                                                            ),
+                                                        // Style paragraphs
+                                                        p: ({ ...props }) => <p className="my-2 leading-relaxed" {...props} />,
+                                                        // Style links
+                                                        a: ({ ...props }) => <a className="text-[#0099c2] hover:underline" {...props} />,
+                                                        // Style blockquotes
+                                                        blockquote: ({ ...props }) => (
+                                                            <blockquote className="border-l-4 border-gray-300 dark:border-gray-600 pl-4 my-2 italic" {...props} />
+                                                        ),
+                                                        // Style tables
+                                                        table: ({ ...props }) => (
+                                                            <div className="overflow-x-auto my-2">
+                                                                <table className="min-w-full border-collapse text-xs" {...props} />
+                                                            </div>
+                                                        ),
+                                                        th: ({ ...props }) => <th className="border border-gray-300 dark:border-gray-600 px-2 py-1 bg-gray-50 dark:bg-gray-700" {...props} />,
+                                                        td: ({ ...props }) => <td className="border border-gray-300 dark:border-gray-600 px-2 py-1" {...props} />,
+                                                    }}
+                                                >
+                                                    {message.text}
+                                                </ReactMarkdown>
+                                                {message.isStreaming && (
+                                                    <span className="inline-block w-1 h-4 ml-1 bg-current animate-pulse" />
+                                                )}
+                                            </div>
+                                        ) : (
+                                            <p className="text-sm whitespace-pre-wrap break-words">
+                                                {message.text}
+                                            </p>
+                                        )}
                                         <span
                                             className={cn(
                                                 "text-xs mt-1 block",
@@ -240,6 +313,18 @@ const ChatBotWidget: React.FC = () => {
                                 </div>
                             )}
 
+                            {/* Error Message */}
+                            {error && (
+                                <div className="flex justify-center">
+                                    <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg px-4 py-2 shadow-sm flex items-start gap-2 max-w-[90%]">
+                                        <AlertCircle className="h-4 w-4 text-red-600 dark:text-red-400 mt-0.5 flex-shrink-0" />
+                                        <p className="text-xs text-red-700 dark:text-red-300">
+                                            {error}
+                                        </p>
+                                    </div>
+                                </div>
+                            )}
+
                             <div ref={messagesEndRef} />
                         </div>
 
@@ -251,7 +336,7 @@ const ChatBotWidget: React.FC = () => {
                                     value={inputValue}
                                     onChange={(e) => setInputValue(e.target.value)}
                                     onKeyDown={handleKeyPress}
-                                    placeholder="Type your message..."
+                                    placeholder="Ask me anything about the codebase..."
                                     className={cn(
                                         "flex-1 px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md",
                                         "bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100",

@@ -171,6 +171,43 @@ const ChatBotWidget: React.FC = () => {
         }
     };
 
+    /**
+     * Preprocesses markdown text to fix common formatting issues
+     * that can occur with AI-generated markdown
+     */
+    const preprocessMarkdown = (text: string): string => {
+        if (!text) return text;
+
+        let processed = text;
+
+        // Fix: Words concatenated without spaces (e.g., "fordisplaying" -> "for displaying")
+        // Common patterns where spaces are missing after prepositions/conjunctions
+        processed = processed.replace(/\b(for|to|of|in|on|at|by|with|from|and|or)([A-Z][a-z])/g, '$1 $2');
+
+        // Fix: Missing space after period before capital letter (e.g., "example.The" -> "example. The")
+        processed = processed.replace(/([.!?])([A-Z])/g, '$1 $2');
+
+        // Fix: Ensure blank line before lists (*, -, +, 1.)
+        processed = processed.replace(/([^\n])\n(\*|-|\+|\d+\.)\s/g, '$1\n\n$2 ');
+
+        // Fix: Ensure blank line before headings (#)
+        processed = processed.replace(/([^\n])\n(#{1,6}\s)/g, '$1\n\n$2');
+
+        // Fix: Ensure blank line before code blocks
+        processed = processed.replace(/([^\n])\n(```)/g, '$1\n\n$2');
+
+        // Fix: Ensure blank line after code blocks
+        processed = processed.replace(/(```[^\n]*)\n([^\n`])/g, '$1\n\n$2');
+
+        // Fix: Consecutive list items that appear mid-sentence (e.g., "text.* item")
+        processed = processed.replace(/([.!?])\s*\*\s+/g, '$1\n\n* ');
+
+        // Fix: Multiple asterisks without spaces (e.g., "text.*   **" -> proper list format)
+        processed = processed.replace(/([^\n\*])\*\s{2,}\*\*/g, '$1\n\n* **');
+
+        return processed;
+    };
+
     // Custom markdown components with proper styling and copy buttons for code blocks
     const markdownComponents: Components = {
         h1: ({ children }) => (
@@ -385,34 +422,53 @@ const ChatBotWidget: React.FC = () => {
                         </div>
 
                         {/* Messages Area */}
-                        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50 dark:bg-gray-900">
+                        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950">
+                            {messages.length === 0 && (
+                                <div className="flex flex-col items-center justify-center h-full text-center px-4 pb-8">
+                                    <div className="mb-4 p-4 bg-[#0099c2]/10 rounded-full">
+                                        <MessageCircle className="h-12 w-12 text-[#0099c2]" />
+                                    </div>
+                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
+                                        Welcome to AI Assistant
+                                    </h3>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs">
+                                        Ask me anything about the Passpoint documentation system, architecture, APIs, or codebase.
+                                    </p>
+                                </div>
+                            )}
                             {messages.map((message: Message) => (
                                 <div
                                     key={message.id}
                                     className={cn(
-                                        "flex",
+                                        "flex animate-in fade-in-0 slide-in-from-bottom-2 duration-300",
                                         message.sender === "user" ? "justify-end" : "justify-start"
                                     )}
                                 >
                                     <div
                                         className={cn(
-                                            "max-w-[80%] rounded-lg shadow-sm relative group",
+                                            "max-w-[85%] rounded-2xl shadow-sm relative group transition-all",
                                             message.sender === "user"
-                                                ? "bg-[#0099c2] text-white px-4 py-2"
+                                                ? "bg-gradient-to-br from-[#0099c2] to-[#007a9c] text-white px-4 py-3"
                                                 : "bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700 p-4"
                                         )}
                                     >
                                         {message.sender === "bot" ? (
                                             <>
                                                 <div className="text-sm">
-                                                    <ReactMarkdown
-                                                        remarkPlugins={[remarkGfm]}
-                                                        components={markdownComponents}
-                                                    >
-                                                        {message.text}
-                                                    </ReactMarkdown>
-                                                    {message.isStreaming && (
-                                                        <span className="inline-block w-1 h-4 ml-1 bg-gray-400 animate-pulse" />
+                                                    {message.isStreaming ? (
+                                                        // Show raw text during streaming to avoid rendering incomplete markdown
+                                                        <div className="whitespace-pre-wrap text-gray-800 dark:text-gray-200">
+                                                            {message.text}
+                                                            <span className="inline-block w-1 h-4 ml-1 bg-gray-400 animate-pulse" />
+                                                        </div>
+                                                    ) : (
+                                                        // Render markdown only when streaming is complete
+                                                        <ReactMarkdown
+                                                            remarkPlugins={[remarkGfm]}
+                                                            components={markdownComponents}
+                                                        >
+                                                            {preprocessMarkdown(message.text)}
+                                                        </ReactMarkdown>
                                                     )}
                                                 </div>
                                                 {!message.isStreaming && (
@@ -480,21 +536,24 @@ const ChatBotWidget: React.FC = () => {
                         </div>
 
                         {/* Input Area */}
-                        <div className="p-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-b-lg">
-                            <div className="flex gap-2">
+                        <div className="p-4 border-t border-gray-200 dark:border-gray-700 bg-gradient-to-b from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-b-lg">
+                            <div className="flex items-center gap-2">
                                 <textarea
                                     ref={inputRef}
                                     value={inputValue}
                                     onChange={(e) => setInputValue(e.target.value)}
                                     onKeyDown={handleKeyPress}
-                                    placeholder="Ask me anything about the codebase..."
+                                    placeholder="Ask about architecture, APIs, modules, or features..."
                                     className={cn(
-                                        "flex-1 px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md",
+                                        "flex-1 px-4 py-2.5 text-sm",
+                                        "border-2 border-gray-200 dark:border-gray-600 rounded-xl",
                                         "bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100",
-                                        "placeholder-gray-500 dark:placeholder-gray-400",
-                                        "focus:outline-none focus:ring-2 focus:ring-[#0099c2] focus:border-transparent",
-                                        "resize-none transition-colors duration-200",
-                                        "max-h-24"
+                                        "placeholder-gray-400 dark:placeholder-gray-500",
+                                        "focus:outline-none focus:ring-2 focus:ring-[#0099c2] focus:border-[#0099c2]",
+                                        "resize-none transition-all duration-200",
+                                        "h-11 max-h-32",
+                                        "disabled:opacity-60 disabled:cursor-not-allowed",
+                                        "shadow-sm hover:shadow-md focus:shadow-md"
                                     )}
                                     rows={1}
                                     disabled={isTyping}
@@ -504,17 +563,23 @@ const ChatBotWidget: React.FC = () => {
                                     onClick={handleSendMessage}
                                     disabled={!inputValue.trim() || isTyping}
                                     className={cn(
-                                        "h-10 w-10 rounded-md bg-[#0099c2] hover:bg-[#007a9c] text-white",
-                                        "disabled:opacity-50 disabled:cursor-not-allowed",
-                                        "flex items-center justify-center flex-shrink-0"
+                                        "h-11 w-11 rounded-full flex-shrink-0",
+                                        "bg-gradient-to-br from-[#0099c2] to-[#007a9c]",
+                                        "hover:from-[#007a9c] hover:to-[#006080]",
+                                        "text-white shadow-md hover:shadow-lg",
+                                        "disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none",
+                                        "flex items-center justify-center",
+                                        "transition-all duration-200",
+                                        "active:scale-95"
                                     )}
                                     aria-label="Send message"
                                 >
-                                    <Send className="h-4 w-4" />
+                                    <Send className="h-5 w-5" />
                                 </Button>
                             </div>
-                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
-                                Press Enter to send, Shift+Enter for new line
+                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-2.5 px-1 flex items-center gap-1">
+                                <span className="inline-block w-1 h-1 rounded-full bg-gray-400"></span>
+                                Press <kbd className="px-1.5 py-0.5 text-[10px] font-semibold bg-gray-200 dark:bg-gray-700 rounded">Enter</kbd> to send, <kbd className="px-1.5 py-0.5 text-[10px] font-semibold bg-gray-200 dark:bg-gray-700 rounded">Shift+Enter</kbd> for new line
                             </p>
                         </div>
                     </div>

@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import { MessageCircle, X, Send, AlertCircle } from "lucide-react";
+import { MessageCircle, X, Send, AlertCircle, Copy, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useChat, type Message } from "@/contexts/ChatContext";
 import { aiStreamingService } from "@/services/aiStreamingService";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import type { Components } from "react-markdown";
 
 const ChatBotWidget: React.FC = () => {
     // Chat context
@@ -22,12 +23,30 @@ const ChatBotWidget: React.FC = () => {
         setError,
     } = useChat();
 
-    // Local state for input
+    // Local state for input and copy functionality
     const [inputValue, setInputValue] = useState("");
+    const [copiedMessageId, setCopiedMessageId] = useState<string | null>(null);
+    const [copiedCodeId, setCopiedCodeId] = useState<string | null>(null);
 
     // Refs
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLTextAreaElement>(null);
+
+    // Copy to clipboard function
+    const copyToClipboard = async (text: string, id: string, type: 'message' | 'code') => {
+        try {
+            await navigator.clipboard.writeText(text);
+            if (type === 'message') {
+                setCopiedMessageId(id);
+                setTimeout(() => setCopiedMessageId(null), 2000);
+            } else {
+                setCopiedCodeId(id);
+                setTimeout(() => setCopiedCodeId(null), 2000);
+            }
+        } catch (err) {
+            console.error('Failed to copy:', err);
+        }
+    };
 
     // Scroll to bottom when new messages arrive
     const scrollToBottom = () => {
@@ -152,6 +171,155 @@ const ChatBotWidget: React.FC = () => {
         }
     };
 
+    // Custom markdown components with proper styling and copy buttons for code blocks
+    const markdownComponents: Components = {
+        h1: ({ children }) => (
+            <h1 className="text-xl font-bold mt-4 mb-2 text-gray-900 dark:text-gray-100">
+                {children}
+            </h1>
+        ),
+        h2: ({ children }) => (
+            <h2 className="text-lg font-bold mt-3 mb-2 text-gray-900 dark:text-gray-100">
+                {children}
+            </h2>
+        ),
+        h3: ({ children }) => (
+            <h3 className="text-base font-bold mt-2 mb-1 text-gray-900 dark:text-gray-100">
+                {children}
+            </h3>
+        ),
+        p: ({ children }) => (
+            <p className="my-2 leading-relaxed text-gray-800 dark:text-gray-200">
+                {children}
+            </p>
+        ),
+        a: ({ href, children }) => (
+            <a
+                href={href}
+                className="text-[#0099c2] hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                {children}
+            </a>
+        ),
+        ul: ({ children }) => (
+            <ul className="list-disc list-inside my-2 space-y-1 text-gray-800 dark:text-gray-200">
+                {children}
+            </ul>
+        ),
+        ol: ({ children }) => (
+            <ol className="list-decimal list-inside my-2 space-y-1 text-gray-800 dark:text-gray-200">
+                {children}
+            </ol>
+        ),
+        li: ({ children }) => (
+            <li className="ml-4 text-gray-800 dark:text-gray-200">{children}</li>
+        ),
+        code: ({ inline, className, children, ...props }: any) => {
+            const match = /language-(\w+)/.exec(className || '');
+            const codeString = String(children).replace(/\n$/, '');
+            const codeId = 'code-' + Math.random();
+
+            if (!inline && match) {
+                // Code block with language
+                return (
+                    <div className="relative group my-3">
+                        <div className="absolute right-2 top-2 z-10">
+                            <button
+                                onClick={() => copyToClipboard(codeString, codeId, 'code')}
+                                className="p-1.5 bg-gray-700 hover:bg-gray-600 rounded text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity"
+                                title="Copy code"
+                            >
+                                {copiedCodeId === codeId ? (
+                                    <Check className="h-3 w-3" />
+                                ) : (
+                                    <Copy className="h-3 w-3" />
+                                )}
+                            </button>
+                        </div>
+                        <pre className="bg-gray-900 text-gray-100 p-4 rounded-md overflow-x-auto">
+                            <code className={className} {...props}>
+                                {children}
+                            </code>
+                        </pre>
+                    </div>
+                );
+            } else if (!inline) {
+                // Code block without language
+                return (
+                    <div className="relative group my-3">
+                        <div className="absolute right-2 top-2 z-10">
+                            <button
+                                onClick={() => copyToClipboard(codeString, codeId, 'code')}
+                                className="p-1.5 bg-gray-700 hover:bg-gray-600 rounded text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity"
+                                title="Copy code"
+                            >
+                                {copiedCodeId === codeId ? (
+                                    <Check className="h-3 w-3" />
+                                ) : (
+                                    <Copy className="h-3 w-3" />
+                                )}
+                            </button>
+                        </div>
+                        <pre className="bg-gray-900 text-gray-100 p-4 rounded-md overflow-x-auto">
+                            <code {...props}>{children}</code>
+                        </pre>
+                    </div>
+                );
+            } else {
+                // Inline code
+                return (
+                    <code
+                        className="bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded text-xs font-mono text-pink-600 dark:text-pink-400"
+                        {...props}
+                    >
+                        {children}
+                    </code>
+                );
+            }
+        },
+        blockquote: ({ children }) => (
+            <blockquote className="border-l-4 border-[#0099c2] pl-4 my-2 italic text-gray-700 dark:text-gray-300">
+                {children}
+            </blockquote>
+        ),
+        table: ({ children }) => (
+            <div className="overflow-x-auto my-3">
+                <table className="min-w-full border-collapse border border-gray-300 dark:border-gray-600">
+                    {children}
+                </table>
+            </div>
+        ),
+        thead: ({ children }) => (
+            <thead className="bg-gray-100 dark:bg-gray-700">{children}</thead>
+        ),
+        tbody: ({ children }) => <tbody>{children}</tbody>,
+        tr: ({ children }) => (
+            <tr className="border-b border-gray-300 dark:border-gray-600">
+                {children}
+            </tr>
+        ),
+        th: ({ children }) => (
+            <th className="px-4 py-2 text-left font-semibold text-gray-900 dark:text-gray-100">
+                {children}
+            </th>
+        ),
+        td: ({ children }) => (
+            <td className="px-4 py-2 text-gray-800 dark:text-gray-200">
+                {children}
+            </td>
+        ),
+        strong: ({ children }) => (
+            <strong className="font-semibold text-gray-900 dark:text-gray-100">
+                {children}
+            </strong>
+        ),
+        em: ({ children }) => (
+            <em className="italic text-gray-800 dark:text-gray-200">{children}</em>
+        ),
+    };
+
     return (
         <>
             {/* Floating Button */}
@@ -228,56 +396,39 @@ const ChatBotWidget: React.FC = () => {
                                 >
                                     <div
                                         className={cn(
-                                            "max-w-[80%] rounded-lg px-4 py-2 shadow-sm",
+                                            "max-w-[80%] rounded-lg shadow-sm relative group",
                                             message.sender === "user"
-                                                ? "bg-[#0099c2] text-white"
-                                                : "bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700"
+                                                ? "bg-[#0099c2] text-white px-4 py-2"
+                                                : "bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700 p-4"
                                         )}
                                     >
                                         {message.sender === "bot" ? (
-                                            <div className="text-sm prose prose-sm dark:prose-invert max-w-none">
-                                                <ReactMarkdown
-                                                    remarkPlugins={[remarkGfm]}
-                                                    components={{
-                                                        // Style headings
-                                                        h1: ({ ...props }) => <h1 className="text-lg font-bold mt-4 mb-2" {...props} />,
-                                                        h2: ({ ...props }) => <h2 className="text-base font-bold mt-3 mb-2" {...props} />,
-                                                        h3: ({ ...props }) => <h3 className="text-sm font-bold mt-2 mb-1" {...props} />,
-                                                        // Style lists
-                                                        ul: ({ ...props }) => <ul className="list-disc ml-4 my-2 space-y-1" {...props} />,
-                                                        ol: ({ ...props }) => <ol className="list-decimal ml-4 my-2 space-y-1" {...props} />,
-                                                        li: ({ ...props }) => <li className="text-sm" {...props} />,
-                                                        // Style code
-                                                        code: ({ inline, ...props }: any) =>
-                                                            inline ? (
-                                                                <code className="bg-gray-100 dark:bg-gray-700 px-1 py-0.5 rounded text-xs font-mono" {...props} />
-                                                            ) : (
-                                                                <code className="block bg-gray-100 dark:bg-gray-700 p-2 rounded text-xs font-mono overflow-x-auto my-2" {...props} />
-                                                            ),
-                                                        // Style paragraphs
-                                                        p: ({ ...props }) => <p className="my-2 leading-relaxed" {...props} />,
-                                                        // Style links
-                                                        a: ({ ...props }) => <a className="text-[#0099c2] hover:underline" {...props} />,
-                                                        // Style blockquotes
-                                                        blockquote: ({ ...props }) => (
-                                                            <blockquote className="border-l-4 border-gray-300 dark:border-gray-600 pl-4 my-2 italic" {...props} />
-                                                        ),
-                                                        // Style tables
-                                                        table: ({ ...props }) => (
-                                                            <div className="overflow-x-auto my-2">
-                                                                <table className="min-w-full border-collapse text-xs" {...props} />
-                                                            </div>
-                                                        ),
-                                                        th: ({ ...props }) => <th className="border border-gray-300 dark:border-gray-600 px-2 py-1 bg-gray-50 dark:bg-gray-700" {...props} />,
-                                                        td: ({ ...props }) => <td className="border border-gray-300 dark:border-gray-600 px-2 py-1" {...props} />,
-                                                    }}
-                                                >
-                                                    {message.text}
-                                                </ReactMarkdown>
-                                                {message.isStreaming && (
-                                                    <span className="inline-block w-1 h-4 ml-1 bg-current animate-pulse" />
+                                            <>
+                                                <div className="text-sm">
+                                                    <ReactMarkdown
+                                                        remarkPlugins={[remarkGfm]}
+                                                        components={markdownComponents}
+                                                    >
+                                                        {message.text}
+                                                    </ReactMarkdown>
+                                                    {message.isStreaming && (
+                                                        <span className="inline-block w-1 h-4 ml-1 bg-gray-400 animate-pulse" />
+                                                    )}
+                                                </div>
+                                                {!message.isStreaming && (
+                                                    <button
+                                                        onClick={() => copyToClipboard(message.text, message.id, 'message')}
+                                                        className="absolute bottom-2 right-2 p-1.5 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded text-gray-600 dark:text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity"
+                                                        title="Copy entire response"
+                                                    >
+                                                        {copiedMessageId === message.id ? (
+                                                            <Check className="h-3 w-3" />
+                                                        ) : (
+                                                            <Copy className="h-3 w-3" />
+                                                        )}
+                                                    </button>
                                                 )}
-                                            </div>
+                                            </>
                                         ) : (
                                             <p className="text-sm whitespace-pre-wrap break-words">
                                                 {message.text}
@@ -285,7 +436,7 @@ const ChatBotWidget: React.FC = () => {
                                         )}
                                         <span
                                             className={cn(
-                                                "text-xs mt-1 block",
+                                                "text-xs mt-2 block",
                                                 message.sender === "user"
                                                     ? "text-white/70"
                                                     : "text-gray-500 dark:text-gray-400"
